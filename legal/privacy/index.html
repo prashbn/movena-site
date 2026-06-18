@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Privacy Policy — Movena</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Movena privacy policy — what the member app collects, how it is used, who it is shared with, and your choices." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0B; --surface:#131418; --line:rgba(255,255,255,0.07); --line-strong:rgba(255,255,255,0.14);
+    --ink:#ECE7DD; --ink-dim:#A8A399; --ink-mute:#6E6A62;
+    --bronze:oklch(0.74 0.12 70); --bronze-2:oklch(0.82 0.10 75);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{
+    font-family:"Geist", system-ui, sans-serif; font-weight:400; font-size:16px; line-height:1.6;
+    letter-spacing:-0.005em; -webkit-font-smoothing:antialiased; text-wrap:pretty; overflow-x:hidden;
+  }
+  ::selection{background:var(--bronze); color:#0A0A0B}
+  a{color:var(--bronze-2); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .em{font-family:"Instrument Serif", serif; font-style:italic; color:var(--bronze-2)}
+  .mono{font-family:"Geist Mono", ui-monospace, monospace; letter-spacing:0.02em}
+  .wrap{max-width:820px; margin:0 auto; padding:0 40px}
+  @media (max-width:720px){ .wrap{padding:0 22px} }
+
+  header.nav{
+    position:sticky; top:0; z-index:50; padding:16px 0;
+    background:rgba(10,10,11,0.7); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex; align-items:center; justify-content:space-between; gap:20px}
+  .logomark{font-weight:600; font-size:18px; letter-spacing:-0.01em; display:inline-flex; align-items:center; gap:10px; color:var(--ink)}
+  .logomark:hover{text-decoration:none}
+  .logomark .dot{width:8px; height:8px; border-radius:50%; background:var(--bronze); box-shadow:0 0 12px rgba(200,146,61,0.5)}
+  .nav-row .back{font-size:13.5px; color:var(--ink-dim)}
+  .nav-row .back:hover{color:var(--ink); text-decoration:none}
+
+  main{padding:72px 0 40px}
+  .eyebrow{
+    font-family:"Geist Mono", monospace; font-size:11.5px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--bronze-2); display:inline-flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--bronze)}
+  h1{font-family:"Geist"; font-weight:500; font-size:clamp(34px,5vw,52px); line-height:1.02; letter-spacing:-0.03em; margin:18px 0 10px}
+  .updated{color:var(--ink-mute); font-family:"Geist Mono", monospace; font-size:12px; letter-spacing:0.04em; margin:0 0 8px}
+  .lede{color:var(--ink-dim); font-size:18px; line-height:1.6; max-width:64ch; margin:18px 0 0}
+  h2{font-family:"Geist"; font-weight:500; font-size:24px; letter-spacing:-0.02em; margin:54px 0 14px; padding-top:28px; border-top:1px solid var(--line)}
+  h3{font-family:"Geist"; font-weight:500; font-size:16px; letter-spacing:-0.005em; color:var(--ink); margin:24px 0 6px}
+  p{color:var(--ink-dim); margin:0 0 14px}
+  strong{color:var(--ink); font-weight:500}
+  ul{margin:0 0 14px; padding:0; list-style:none}
+  ul li{position:relative; padding:7px 0 7px 22px; color:var(--ink-dim)}
+  ul li::before{content:""; position:absolute; left:0; top:15px; width:5px; height:5px; border-radius:50%; background:var(--bronze)}
+
+  .box{border:1px solid var(--line); border-radius:14px; padding:24px 28px; margin:18px 0; background:linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0))}
+  .box .box-h{font-family:"Geist Mono", monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:14px}
+  .box ul li::before{content:"✕"; font-family:"Geist Mono", monospace; color:#A8896E; font-size:12px; background:none; top:9px; width:auto; height:auto}
+
+  footer{padding:48px 0; border-top:1px solid var(--line); color:var(--ink-mute); font-size:12.5px; margin-top:40px}
+  .foot-row{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center}
+  .foot-row .mono{font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase}
+  .foot-row a{color:var(--ink-dim)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a href="/" class="logomark"><span class="dot"></span>Movena</a>
+    <a href="/#privacy" class="back">← Back to site</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow">Trust · Privacy</span>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 18 June 2026</p>
+    <p class="lede">This policy explains what personal information the Movena member app collects, how we use it, who we share it with, and the choices you have. It covers the app on both <strong>iOS and Android</strong>.</p>
+
+    <h2>1. Who we are</h2>
+    <p>The Movena member app is operated by <strong>Kidness and Wellness</strong> (ABN 95 894 823 689) ("Movena", "we", "us"). It serves gyms and their members. For any privacy question or request, contact us at <a href="mailto:privacy@movena.com.au">privacy@movena.com.au</a>.</p>
+
+    <h2>2. The information we collect</h2>
+    <p>We collect only what the app needs to work. We do <strong>not</strong> use advertising or third-party analytics SDKs, advertising identifiers, or tracking/fingerprinting.</p>
+    <h3>Account &amp; identity</h3>
+    <ul>
+      <li>Your name and email address (your sign-in identity).</li>
+      <li>An authentication token, kept securely on your device to keep you signed in.</li>
+      <li>Your account may also include your date of birth, phone, or postal address where your gym holds them.</li>
+    </ul>
+    <h3>Your gym membership</h3>
+    <ul>
+      <li>The gym(s) you belong to, your current gym, and your membership plan (name, price, billing interval, period progress). Your data is <strong>gym-scoped</strong>.</li>
+    </ul>
+    <h3>Bookings &amp; activity</h3>
+    <ul>
+      <li>Classes/sessions you book, booking status and history, and notifications about them.</li>
+    </ul>
+    <h3>Messages</h3>
+    <ul>
+      <li>Messages between you and your gym, including content and read state. Message content is treated as sensitive and is never stored unencrypted on your device.</li>
+    </ul>
+    <h3>Performance &amp; fitness data</h3>
+    <ul>
+      <li>Your personal records and logged workouts, and the training programs your gym assigns you. See section 5 for how we treat this.</li>
+    </ul>
+    <h3>Payments</h3>
+    <ul>
+      <li>When you buy a pack or update your renewal card in the app, your card details are entered into and processed by <strong>Stripe</strong> (our payment processor) — Movena never sees or stores your full card number. We retain non-sensitive purchase information (e.g. which pack/plan, amount, date).</li>
+    </ul>
+    <h3>Photos</h3>
+    <ul>
+      <li>If you set a profile photo (<strong>Android only</strong>), we store the image you choose.</li>
+    </ul>
+    <h3>Device &amp; technical data</h3>
+    <ul>
+      <li>Device model, operating-system and app version, and a push-notification token (to deliver notifications). For account security we record sign-in metadata on our servers (IP address, approximate country, device/app version). Crash and diagnostic data may be handled by the platform (Apple/Google) — we do not use a third-party crash or analytics SDK.</li>
+    </ul>
+
+    <h2>3. How we use your information</h2>
+    <ul>
+      <li>To provide the app: your gym, bookings, messages, membership, performance history, profile, and payments.</li>
+      <li>To send notifications you've allowed (e.g. waitlist promotions, booking updates).</li>
+      <li>To process purchases and keep your renewal card up to date (via Stripe).</li>
+      <li>To keep your account secure and to provide support.</li>
+    </ul>
+    <p>We process this information to provide the service you've asked for and, where required, with your consent (given at sign-up; you can manage it in the app and your device settings).</p>
+
+    <h2>4. How we share your information</h2>
+    <p><strong>We do not sell your personal information, and we do not share it with advertisers or analytics companies.</strong> We share it only:</p>
+    <ul>
+      <li><strong>With your gym</strong> — your gym, and the coaches who actually train you, can see the context for the members they train, and nothing wider.</li>
+      <li><strong>With service providers acting on our behalf</strong> (bound to our instructions): <strong>Stripe</strong> (payment processing), <strong>Google Firebase</strong> (push notifications on Android) and <strong>Apple</strong> (push notifications on iOS), and our cloud hosting provider.</li>
+      <li><strong>Where required by law</strong>, or to protect rights and safety.</li>
+    </ul>
+
+    <h2>5. Health &amp; fitness data, and device integrations</h2>
+    <p>Performance data is intimate, and we treat it that way — with boundaries written into the product:</p>
+    <ul>
+      <li><strong>Member-owned history.</strong> Your training record is yours and moves with you.</li>
+      <li><strong>Gym-scoped visibility.</strong> Coaches see context only for members they train.</li>
+      <li><strong>Informational only.</strong> What you see is calculated from what was logged — no black box.</li>
+    </ul>
+    <p>The fitness data we hold (personal records, workouts) is what is logged in Movena or provided by your gym — <strong>not</strong> read from your phone's health platform.</p>
+    <p><strong>Apple Health (HealthKit), Google Health Connect, and wearables:</strong> the app <strong>does not currently connect</strong> to Apple Health (HealthKit), Google Health Connect, or any wearable, and does not read data from them. <strong>If</strong> we offer such an integration in future, it will be <strong>opt-in with explicit consent — never by default</strong>: we will ask permission, access only the specific data you grant, use it only for the purpose shown to you, and let you disconnect or revoke at any time. We will not sell health or fitness data or share it with advertisers.</p>
+    <div class="box">
+      <div class="box-h">What Movena will not do</div>
+      <ul>
+        <li>No medical advice</li>
+        <li>No injury prediction</li>
+        <li>No training prescription</li>
+        <li>No readiness scores</li>
+        <li>No black-box claims</li>
+        <li>No selling member data</li>
+      </ul>
+    </div>
+
+    <h2>6. Data retention</h2>
+    <p>We keep your information while your membership/account is active and as needed to provide the service. You can ask us to delete your account and personal information at any time by emailing <a href="mailto:privacy@movena.com.au">privacy@movena.com.au</a>; we'll action it within a reasonable period — except for records we're required to keep by law (for example, payment records for tax/accounting). After that, we delete or de-identify your information.</p>
+
+    <h2>7. Your choices and rights</h2>
+    <ul>
+      <li><strong>Notifications:</strong> manage or turn off push notifications in your device settings.</li>
+      <li><strong>Profile photo:</strong> change or remove it in the app.</li>
+      <li><strong>Access, correction, and account deletion:</strong> email <a href="mailto:privacy@movena.com.au">privacy@movena.com.au</a> to request access to, correction of, or deletion of your account and personal information. There is no in-app self-serve deletion yet — we handle requests by email and action them within a reasonable period.</li>
+    </ul>
+    <p>Depending on where you live, you may have additional rights under privacy law.</p>
+
+    <h2>8. Security</h2>
+    <p>We use industry-standard measures to protect your information — encrypted transport, secure on-device storage of your session token, and never storing card numbers (handled by Stripe). No system is perfectly secure, but we work to protect your data.</p>
+
+    <h2>9. Children</h2>
+    <p>The app is intended for gym members and is not directed to children under <strong>16</strong>. We do not knowingly collect personal information from children under 16.</p>
+
+    <h2>10. International transfers</h2>
+    <p>Your information is <strong>hosted in Australia</strong>. Some service providers may process limited information overseas — for example Stripe (payments) and Apple/Google (push notifications). Where information is processed overseas, we take steps to ensure it remains protected.</p>
+
+    <h2>11. Changes to this policy</h2>
+    <p>We may update this policy as the app evolves. We'll post the updated version here and change the "Last updated" date; significant changes will be communicated in-app or by email.</p>
+
+    <h2>12. Contact</h2>
+    <p><a href="mailto:privacy@movena.com.au">privacy@movena.com.au</a> — Movena, operated by Kidness and Wellness (ABN 95 894 823 689), Australia.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span class="foot-brand mono">© 2026 Movena · Performance Intelligence Platform</span>
+    <span class="mono"><a href="/">movena.com.au</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
