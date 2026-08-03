@@ -393,6 +393,112 @@ section { padding: 96px 0 0; }
 .badge-tile.is-locked { opacity: .3; }
 .badge-caption { margin-top: 10px; font-size: 12px; color: var(--p-muted, var(--ink-3)); }
 
+/* Discipline chips — the 18 seeded disciplines, verbatim from
+   prisma/seeds/disciplines.ts. Answers "is this for my kind of gym?". */
+.chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; }
+.chip-d {
+  font-size: 13.5px; font-weight: 500; color: var(--ink-2);
+  padding: 7px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: #fff;
+  transition: border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+}
+.chip-d:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+/* Workout-builder mock — mirrors the real authoring UI: blocks carry a kind
+   (Straight / Superset / Circuit) and an execution mode; sets are a grid of
+   Set · Reps · Load · RPE · Rest. */
+.builder { padding: 20px 22px 22px; }
+.blk { border: 1px solid var(--line); border-radius: var(--radius-sm); margin-bottom: 14px; overflow: hidden; }
+.blk:last-child { margin-bottom: 0; }
+.blk-head {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 11px 14px; background: var(--bg-soft); border-bottom: 1px solid var(--line);
+}
+.blk-head b { font-size: 14px; letter-spacing: -0.01em; }
+.blk-head .mode { margin-left: auto; font-size: 11.5px; color: var(--ink-2); }
+.blk-body { padding: 12px 14px; }
+.ex { font-size: 14px; font-weight: 600; margin: 0 0 8px; }
+.ex + .setgrid { margin-bottom: 14px; }
+.setgrid { width: 100%; border-collapse: collapse; font-size: 13px; }
+.setgrid th {
+  text-align: left; font-size: 10.5px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--ink-3); padding: 0 10px 6px 0; font-variant-numeric: tabular-nums;
+}
+.setgrid td { padding: 5px 10px 5px 0; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.setgrid td:first-child { color: var(--ink-3); width: 34px; }
+.setgrid tr + tr td { border-top: 1px solid var(--line); }
+.circuit-row {
+  display: flex; align-items: baseline; gap: 10px; padding: 7px 0;
+  font-size: 13.5px; border-top: 1px solid var(--line);
+}
+.circuit-row:first-of-type { border-top: none; }
+.circuit-row b { font-weight: 600; min-width: 120px; }
+.circuit-row span { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+/* Two portraits side by side. */
+.shot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+@media (max-width: 700px) { .shot-pair { grid-template-columns: 1fr; } }
+
+/* Timetable week grid — mirrors the operator grid: hour rows, day columns,
+   cards carrying time, class, coach and booked-vs-capacity. */
+.tt { padding: 0; overflow-x: auto; }
+.tt-inner { min-width: 660px; }
+.tt-head, .tt-row { display: grid; grid-template-columns: 54px repeat(5, 1fr); }
+.tt-head {
+  position: sticky; top: 0; background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+}
+.tt-head div {
+  padding: 10px 8px; font-size: 11.5px; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--ink-3); text-align: center;
+}
+.tt-head .today { color: var(--accent); }
+.tt-row { border-bottom: 1px solid var(--line); min-height: 66px; }
+.tt-row:last-child { border-bottom: none; }
+.tt-hour {
+  padding: 8px 8px 0 0; font-size: 11px; color: var(--ink-3); text-align: right;
+  font-variant-numeric: tabular-nums; border-right: 1px solid var(--line);
+}
+.tt-cell { border-right: 1px solid var(--line); padding: 5px; }
+.tt-cell:last-child { border-right: none; }
+.tt-cell.is-today { background: rgba(47,84,208,.035); }
+.tt-card {
+  height: 100%; border-radius: 9px; padding: 7px 8px;
+  background: var(--accent-soft); border-left: 3px solid var(--accent);
+  transition: transform .2s var(--ease), box-shadow .25s var(--ease);
+}
+.tt-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-card); }
+.tt-card.full { background: var(--warn-soft); border-left-color: var(--warn); }
+.tt-card b { display: block; font-size: 12.5px; letter-spacing: -0.01em; line-height: 1.25; }
+.tt-card span { display: block; font-size: 10.5px; color: var(--ink-2); margin-top: 2px; }
+.tt-card em {
+  display: block; font-style: normal; font-size: 10.5px; font-weight: 600;
+  color: var(--accent); margin-top: 3px; font-variant-numeric: tabular-nums;
+}
+.tt-card.full em { color: var(--warn); }
+
+/* Milestone showcase — the badge ladder as a hero, not a footnote. Dark
+   plate because the art is cream-on-transparent, drawn for the app. */
+.ladder {
+  margin-top: 44px; border-radius: 22px; padding: 46px 32px 40px;
+  background: #0b0d10; text-align: center;
+  box-shadow: var(--shadow-deep);
+}
+.ladder-row {
+  display: flex; justify-content: center; align-items: center;
+  gap: clamp(10px, 3.4vw, 46px); flex-wrap: nowrap;
+}
+.ladder-row img {
+  width: clamp(52px, 12vw, 124px); height: auto; display: block;
+  transition: transform .3s var(--ease);
+}
+.ladder-row a:hover img, .ladder-row figure:hover img { transform: translateY(-4px) scale(1.04); }
+.ladder p {
+  margin: 30px auto 0; max-width: 44ch;
+  color: #8a93a0; font-size: 14.5px;
+}
+.ladder p b { color: #e9edf2; font-weight: 600; }
+
 /* ------------------------------------------------------------------
    Photography slots — real images drop straight in. Ratio is reserved
    up front so nothing reflows when they load.
