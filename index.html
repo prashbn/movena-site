@@ -1,1176 +1,280 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
 <head>
 <meta charset="utf-8" />
 <title>Movena — The Performance Intelligence Platform for modern gyms</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Movena runs your whole gym — memberships, timetable, billing, check-in — and turns every coached session into a performance journey your members can see." />
+<link rel="canonical" href="https://movena.com.au/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://movena.com.au/" />
+<meta property="og:title" content="Movena — The Performance Intelligence Platform for modern gyms" />
+<meta property="og:description" content="The software your gym runs on. The progress your members keep." />
+<meta name="theme-color" content="#ffffff" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<template id="__bundler_thumbnail" data-bg-color="#0A0A0B">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="800" fill="#0A0A0B"/>
-    <circle cx="600" cy="380" r="14" fill="oklch(0.82 0.10 75)"/>
-    <text x="600" y="500" text-anchor="middle" fill="#ECE7DD" font-family="serif" font-style="italic" font-size="64">Movena</text>
-    <text x="600" y="560" text-anchor="middle" fill="#6E6A62" font-family="monospace" font-size="18" letter-spacing="6">PERFORMANCE INTELLIGENCE</text>
-  </svg>
-</template>
-<style>
-  :root{
-    --bg: #0A0A0B;
-    --bg-2: #0E0F11;
-    --surface: #131418;
-    --surface-2: #181A1F;
-    --line: rgba(255,255,255,0.07);
-    --line-strong: rgba(255,255,255,0.14);
-    --ink: #ECE7DD;
-    --ink-dim: #A8A399;
-    --ink-mute: #6E6A62;
-    --bronze: oklch(0.74 0.12 70);
-    --bronze-2: oklch(0.82 0.10 75);
-    --bronze-deep: oklch(0.55 0.10 60);
-    --volt: oklch(0.70 0.16 245);
-    --rad: 14px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:"Geist", system-ui, sans-serif;
-    font-weight:400;
-    font-size:16px;
-    line-height:1.55;
-    letter-spacing:-0.005em;
-    -webkit-font-smoothing:antialiased;
-    text-wrap: pretty;
-    overflow-x:hidden;
-  }
-  ::selection{background:var(--bronze); color:#0A0A0B}
-  a{color:inherit; text-decoration:none}
-
-  .mono{font-family:"Geist Mono", ui-monospace, monospace; font-weight:400; letter-spacing:0.02em}
-  .em{font-family:"Instrument Serif", serif; font-style:italic; font-weight:400; color:var(--bronze-2); letter-spacing:-0.01em}
-
-  /* layout */
-  .wrap{max-width:1240px; margin:0 auto; padding:0 40px}
-  @media (max-width:720px){ .wrap{padding:0 22px} }
-
-  /* eyebrow */
-  .eyebrow{
-    font-family:"Geist Mono", monospace; font-size:11.5px; letter-spacing:0.18em; text-transform:uppercase;
-    color:var(--bronze-2); display:inline-flex; align-items:center; gap:10px;
-  }
-  .eyebrow::before{content:""; width:22px; height:1px; background:var(--bronze)}
-  .eyebrow.dim{color:var(--ink-mute)}
-  .eyebrow.dim::before{background:var(--ink-mute); opacity:.5}
-
-  /* buttons */
-  .btn{
-    font-family:"Geist"; font-size:14px; font-weight:500; letter-spacing:-0.005em;
-    padding:13px 22px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--ink); cursor:pointer;
-    display:inline-flex; align-items:center; gap:10px; transition: transform .15s ease, background .2s, border-color .2s;
-  }
-  .btn:hover{transform: translateY(-1px); border-color:rgba(255,255,255,0.22); background:rgba(255,255,255,0.02)}
-  .btn.primary{background:var(--bronze); border-color:transparent; color:#15110A; font-weight:600}
-  .btn.primary:hover{background:var(--bronze-2); transform: translateY(-1px)}
-  .btn .arr{display:inline-block; transition: transform .2s}
-  .btn:hover .arr{transform: translateX(2px)}
-  .btn.ghost{color:var(--ink-dim); border-color:transparent; padding-left:8px; padding-right:8px}
-  .btn.ghost:hover{color:var(--ink); background:transparent}
-
-  /* NAV */
-  header.nav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    padding:18px 0; border-bottom:1px solid transparent;
-    background:linear-gradient(to bottom, rgba(10,10,11,0.0), rgba(10,10,11,0.0));
-    transition: background .25s ease, border-color .25s ease, padding .2s ease, backdrop-filter .25s;
-  }
-  header.nav.scrolled{
-    background:rgba(10,10,11,0.65);
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    border-bottom-color: var(--line);
-    padding:12px 0;
-  }
-  .nav-row{display:flex; align-items:center; gap:32px}
-  .logomark{
-    font-family:"Geist", sans-serif; font-weight:600; font-size:18px;
-    letter-spacing:-0.01em; display:inline-flex; align-items:center; gap:10px;
-  }
-  .logomark .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--bronze); box-shadow: 0 0 12px rgba(200,146,61,0.5)}
-  .nav-links{display:flex; gap:28px; margin-left:24px; flex:1}
-  .nav-links a{font-size:13.5px; color:var(--ink-dim); transition: color .15s}
-  .nav-links a:hover{color:var(--ink)}
-  .nav-cta{display:flex; gap:10px; align-items:center}
-  .nav-cta .btn{padding:9px 16px; font-size:13.5px}
-  @media (max-width:880px){
-    .nav-links{display:none}
-    .nav-cta .btn:not(.primary){display:none}
-  }
-
-  /* HERO */
-  section.hero{
-    position:relative; padding-top: 140px; padding-bottom: 80px;
-    min-height: 100vh;
-    background:
-      radial-gradient(900px 600px at 88% 22%, rgba(200,146,61,0.10), transparent 55%),
-      radial-gradient(700px 500px at 8% 78%, rgba(60,90,160,0.04), transparent 60%),
-      var(--bg);
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid; grid-template-columns: 1.05fr 1fr; gap:64px; align-items:center;
-    min-height: calc(100vh - 220px);
-  }
-  @media (max-width:980px){ .hero-grid{grid-template-columns:1fr; gap:40px; min-height:auto} }
-  h1.hero-h{
-    font-family:"Geist", sans-serif; font-weight:500;
-    font-size: clamp(40px, 5.6vw, 80px);
-    line-height:0.98; letter-spacing:-0.035em;
-    margin:22px 0 28px; max-width: 16ch;
-  }
-  h1.hero-h .em{font-size:1em}
-  .hero-sub{
-    color:var(--ink-dim); font-size: clamp(16px, 1.3vw, 19px); line-height:1.55;
-    max-width: 52ch;
-  }
-  .hero-ctas{margin-top:36px; display:flex; gap:12px; flex-wrap:wrap}
-  .hero-meta{
-    margin-top:48px; display:flex; gap:28px; flex-wrap:wrap; padding-top:24px; border-top:1px solid var(--line);
-    color:var(--ink-mute); font-size:12px; font-family:"Geist Mono", monospace; letter-spacing:0.14em; text-transform:uppercase;
-  }
-  .hero-meta b{color:var(--ink-dim); font-weight:400}
-
-  /* hero visual */
-  .hero-visual{
-    position:relative; aspect-ratio: 4/5; max-height: 86vh;
-    border-radius:18px; overflow:hidden;
-    border:1px solid var(--line);
-    background:#000;
-  }
-  .hero-visual img.bg{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position: center 25%;
-    filter: saturate(1.05) contrast(1.05);
-  }
-  .hero-visual::after{
-    content:""; position:absolute; inset:0;
-    background:
-      linear-gradient(180deg, rgba(10,10,11,0.0) 50%, rgba(10,10,11,0.55) 100%),
-      linear-gradient(90deg, rgba(10,10,11,0.35), rgba(10,10,11,0) 40%);
-    pointer-events:none;
-  }
-  .hero-visual .vignette-text{
-    position:absolute; left:30px; bottom:30px; right:30px;
-    color:rgba(236,231,221,0.85); font-family:"Instrument Serif", serif; font-style:italic;
-    font-size: clamp(20px, 1.8vw, 26px); line-height:1.2; max-width:22ch;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.6);
-  }
-  /* floating peak card */
-  .peak-card{
-    position:absolute; bottom:24px; right:-28px;
-    width: 270px; padding:20px 22px;
-    background: rgba(20,21,25,0.85);
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border:1px solid var(--line);
-    border-radius:14px;
-    box-shadow: 0 20px 50px -20px rgba(0,0,0,0.7);
-  }
-  .peak-card::before{
-    content:""; position:absolute; inset:-1px; border-radius:15px; pointer-events:none;
-    background:linear-gradient(180deg, rgba(200,146,61,0.5), rgba(200,146,61,0) 40%);
-    -webkit-mask:linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
-    -webkit-mask-composite: xor; mask-composite: exclude; padding:1px;
-  }
-  .peak-card .pk-lab{font-family:"Geist Mono", monospace; font-size:10.5px; color:var(--ink-mute); letter-spacing:0.18em; text-transform:uppercase}
-  .peak-card .pk-val{font-family:"Geist"; font-weight:500; font-size:42px; letter-spacing:-0.025em; color:var(--bronze-2); line-height:1; margin-top:6px}
-  .peak-card .pk-val .u{font-size:14px; color:var(--ink-mute); font-weight:400; margin-left:4px}
-  .peak-card .pk-meta{font-size:12px; color:var(--ink-dim); margin-top:8px; display:flex; align-items:center; gap:8px}
-  .peak-card .pk-meta .dlt{color:var(--bronze-2)}
-  /* mini iphone preview card */
-  .iphone-card{
-    position:absolute; left:-32px; top:64px;
-    width:200px; height:380px;
-    border-radius:24px; overflow:hidden;
-    background: linear-gradient(180deg, #1A1B20, #0E0F11);
-    border:1px solid var(--line-strong);
-    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8);
-    padding:14px;
-    transform: rotate(-4deg);
-  }
-  .iphone-card::before{
-    content:""; position:absolute; left:50%; top:8px; transform:translateX(-50%);
-    width:60px; height:14px; background:#000; border-radius:8px;
-  }
-  .iphone-card .ip-eyebrow{margin-top:30px; font-family:"Geist Mono", monospace; font-size:9.5px; color:var(--bronze-2); letter-spacing:0.18em}
-  .iphone-card .ip-title{font-family:"Geist"; font-size:16px; font-weight:500; letter-spacing:-0.02em; line-height:1.1; margin-top:8px; max-width:14ch}
-  .iphone-card .ip-graph{
-    margin-top:16px; height:90px; border-radius:10px;
-    background:
-      linear-gradient(180deg, rgba(200,146,61,0.15) 0%, rgba(200,146,61,0) 100%),
-      var(--bg-2);
-    border:1px solid var(--line);
-    position:relative; overflow:hidden;
-  }
-  .iphone-card .ip-graph svg{position:absolute; inset:0; width:100%; height:100%}
-  .iphone-card .ip-stat{
-    margin-top:12px; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
-    display:flex; justify-content:space-between; align-items:center;
-  }
-  .iphone-card .ip-stat .l{font-family:"Geist Mono", monospace; font-size:9.5px; color:var(--ink-mute); letter-spacing:0.16em; text-transform:uppercase}
-  .iphone-card .ip-stat .v{font-family:"Geist"; font-size:14px; font-weight:500}
-  .iphone-card .ip-stat .v.live{color:var(--volt)}
-  .iphone-card .ip-stat .v.live::before{content:""; display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--volt); margin-right:6px; vertical-align:middle; box-shadow: 0 0 10px var(--volt); animation: pulse 1.6s infinite}
-  @keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.4} }
-
-  @media (max-width:980px){
-    .hero-visual{aspect-ratio:3/4; max-height: 70vh}
-    .peak-card{right:14px; width:240px}
-    .iphone-card{display:none}
-  }
-  @media (max-width:520px){
-    .peak-card{width: calc(100% - 28px); right: 14px; left:14px; bottom: 14px}
-  }
-
-  /* general section */
-  section.s{padding: 140px 0; border-top:1px solid var(--line); position:relative}
-  @media (max-width:720px){ section.s{padding: 90px 0} }
-  .s-head{display:flex; gap:48px; margin-bottom:64px; align-items:flex-end; flex-wrap:wrap}
-  .s-head .left{flex:0 0 auto; min-width:140px}
-  .s-head .num{font-family:"Geist Mono", monospace; font-size:11.5px; color:var(--bronze-2); letter-spacing:0.2em}
-  h2.s-h{
-    font-family:"Geist", sans-serif; font-weight:500;
-    font-size:clamp(34px, 4.4vw, 60px); line-height:1.02; letter-spacing:-0.03em;
-    margin:6px 0 18px; max-width:22ch;
-  }
-  .s-sub{color:var(--ink-dim); font-size: clamp(16px, 1.2vw, 18px); max-width:62ch; line-height:1.55}
-  .s-sub b{color:var(--ink); font-weight:500}
-
-  /* MARKET GAP */
-  section.gap{position:relative; overflow:hidden}
-  section.gap .gap-bg{
-    position:absolute; inset:0; z-index:0; pointer-events:none;
-    overflow:hidden;
-  }
-  section.gap .gap-bg img{
-    width:100%; height:100%; object-fit:cover; object-position: center 30%;
-    opacity: 0.15;
-    filter: saturate(0.85) contrast(1.1);
-  }
-  section.gap .gap-bg::after{
-    content:""; position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse at center, transparent 0%, rgba(10,10,11,0.45) 75%, rgba(10,10,11,0.95) 100%),
-      linear-gradient(180deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.15) 50%, rgba(10,10,11,0.85) 100%);
-  }
-  section.gap > .wrap{position:relative; z-index:1}
-  .gap-statement{
-    font-family:"Geist", sans-serif; font-weight:400;
-    font-size: clamp(36px, 5vw, 72px);
-    line-height:1.02; letter-spacing:-0.035em;
-    color:var(--ink-dim); max-width: 22ch;
-  }
-  .gap-statement b{color:var(--ink); font-weight:500}
-  .gap-statement .em{font-size:1em}
-  .gap-grid{display:grid; grid-template-columns: 1.3fr 1fr; gap:80px; align-items:flex-end}
-  @media (max-width:880px){ .gap-grid{grid-template-columns:1fr; gap:40px} }
-  .gap-aside{color:var(--ink-dim); font-size:16px; line-height:1.6; max-width:46ch}
-  .gap-aside b{color:var(--ink); font-weight:500}
-
-  /* MISSING LAYER (wedge public-facing) */
-  .layer-stack{
-    position:relative; margin-top:60px;
-    border:1px solid var(--line); border-radius:18px; overflow:hidden;
-    background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0));
-  }
-  .layer-row{
-    display:grid; grid-template-columns: 220px 1fr 200px;
-    align-items:center; padding:26px 30px;
-    border-top:1px solid var(--line);
-    transition: background .25s;
-  }
-  .layer-row:first-child{border-top:none}
-  .layer-row.has{background: rgba(200,146,61,0.04)}
-  .layer-row.has::before{content:""; position:absolute; left:0; width:2px; top:0; bottom:0; background:var(--bronze); }
-  .layer-row .l-name{font-family:"Geist"; font-size:15px; color:var(--ink-dim); font-weight:500; letter-spacing:-0.005em}
-  .layer-row.has .l-name{color:var(--bronze-2)}
-  .layer-row .l-detail{color:var(--ink-mute); font-size:14px}
-  .layer-row .l-status{justify-self:end; font-family:"Geist Mono", monospace; font-size:10.5px; letter-spacing:0.18em; color:var(--ink-mute); text-transform:uppercase}
-  .layer-row.has .l-status{color:var(--bronze-2)}
-  @media (max-width:720px){
-    .layer-row{grid-template-columns:1fr; gap:6px; padding:22px}
-    .layer-row .l-status{justify-self:flex-start}
-  }
-
-  /* PRODUCT LOOP */
-  .loop{
-    position:relative;
-    padding: 30px 0 0;
-  }
-  .loop-grid{
-    display:grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
-    position:relative;
-  }
-  @media (max-width:980px){ .loop-grid{grid-template-columns:1fr 1fr} }
-  @media (max-width:560px){ .loop-grid{grid-template-columns:1fr} }
-  .loop-node{
-    border:1px solid var(--line); border-radius:14px; padding:22px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
-    position:relative; min-height: 200px;
-    display:flex; flex-direction:column; gap:14px;
-  }
-  .loop-node .ix{font-family:"Geist Mono", monospace; font-size:10.5px; color:var(--bronze-2); letter-spacing:0.18em}
-  .loop-node h4{font-family:"Geist"; font-size:18px; font-weight:500; letter-spacing:-0.018em; margin:0; line-height:1.15}
-  .loop-node p{color:var(--ink-dim); font-size:13.5px; margin:0; line-height:1.55}
-  .loop-node .icon{
-    width:32px; height:32px; border-radius:8px;
-    border:1px solid var(--line-strong);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--bronze-2);
-  }
-  .loop-node .icon svg{width:16px; height:16px}
-  .loop-arrow{
-    position:absolute; right:-18px; top:50%; transform: translateY(-50%);
-    width:28px; height:1px; background: linear-gradient(to right, var(--line-strong), transparent);
-    z-index:2;
-  }
-  .loop-arrow::after{
-    content:""; position:absolute; right:-2px; top:-3px; width:6px; height:6px; border-right:1px solid var(--bronze); border-top:1px solid var(--bronze); transform: rotate(45deg);
-  }
-  @media (max-width:980px){ .loop-arrow{display:none} }
-  .loop-tracer{
-    position:absolute; right:-18px; top:50%; transform:translateY(-50%);
-    width:28px; height:2px; background: var(--bronze);
-    box-shadow: 0 0 12px var(--bronze);
-    transform-origin: left center;
-    transform: translateY(-50%) scaleX(0);
-    transition: transform 1s ease;
-  }
-  .loop.entered .loop-tracer{transform: translateY(-50%) scaleX(1)}
-  .loop.entered .loop-node:nth-child(1) .loop-tracer{transition-delay:.3s}
-  .loop.entered .loop-node:nth-child(2) .loop-tracer{transition-delay:.5s}
-  .loop.entered .loop-node:nth-child(3) .loop-tracer{transition-delay:.7s}
-  .loop.entered .loop-node:nth-child(4) .loop-tracer{transition-delay:.9s}
-
-  /* PILLARS */
-  .pillars{display:grid; grid-template-columns: repeat(3, 1fr); gap:24px}
-  @media (max-width:880px){ .pillars{grid-template-columns:1fr} }
-  .pillar{
-    border:1px solid var(--line); border-radius:14px; padding:34px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
-    display:flex; flex-direction:column; min-height: 380px; position:relative;
-    transition: border-color .2s, background .2s;
-  }
-  .pillar:hover{border-color: var(--line-strong); background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.008))}
-  .pillar .audience{font-family:"Geist Mono", monospace; font-size:11px; color:var(--bronze-2); letter-spacing:0.18em; text-transform:uppercase}
-  .pillar h3{font-family:"Geist"; font-weight:500; font-size:28px; letter-spacing:-0.025em; line-height:1.05; margin:14px 0 10px}
-  .pillar h3 .em{font-size:1em}
-  .pillar p{color:var(--ink-dim); font-size:15px; line-height:1.55; margin:0 0 24px; max-width: 32ch}
-  .pillar ul{list-style:none; padding:0; margin:auto 0 0; border-top:1px solid var(--line)}
-  .pillar ul li{padding:14px 0; color:var(--ink); font-size:14px; border-bottom:1px dashed var(--line); display:flex; align-items:center; gap:12px}
-  .pillar ul li:last-child{border-bottom:none}
-  .pillar ul li::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--bronze)}
-
-  /* PERFORMANCE INTELLIGENCE */
-  .perf-wrap{display:grid; grid-template-columns: 1fr 2fr; gap:80px; align-items:flex-start}
-  @media (max-width:980px){ .perf-wrap{grid-template-columns:1fr; gap:40px} }
-  .perf-list{margin:0; padding:0; list-style:none}
-  .perf-list li{padding:18px 0; border-top:1px solid var(--line); display:flex; gap:18px; align-items:flex-start}
-  .perf-list li:last-child{border-bottom:1px solid var(--line)}
-  .perf-list .lk{font-family:"Geist Mono", monospace; font-size:11px; color:var(--bronze-2); letter-spacing:0.16em; text-transform:uppercase; min-width:50px; padding-top:3px}
-  .perf-list .lv{font-size:15px; color:var(--ink); line-height:1.5}
-  .perf-list .lv .muted{color:var(--ink-dim); font-size:14px; display:block; margin-top:2px}
-
-  .perf-cards-grid{
-    display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
-  }
-  @media (max-width:980px){ .perf-cards-grid{grid-template-columns:repeat(2, 1fr)} }
-  @media (max-width:520px){ .perf-cards-grid{grid-template-columns:1fr} }
-  .pcard{
-    border:1px solid var(--line); border-radius:14px; padding:22px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
-    min-height: 200px; display:flex; flex-direction:column; justify-content:space-between;
-    position:relative; overflow:hidden;
-  }
-  .pcard.span-2{grid-column: span 2}
-  @media (max-width:520px){ .pcard.span-2{grid-column: auto} }
-  .pcard .pk{font-family:"Geist Mono", monospace; font-size:10.5px; color:var(--ink-mute); letter-spacing:0.18em; text-transform:uppercase; display:flex; align-items:center; gap:10px}
-  .pcard .pk .live-dot{width:6px; height:6px; border-radius:50%; background:var(--volt); box-shadow: 0 0 10px var(--volt); animation: pulse 1.6s infinite}
-  .pcard .pv{font-family:"Geist"; font-weight:500; font-size:46px; letter-spacing:-0.03em; line-height:1; color:var(--ink); margin-top:14px}
-  .pcard .pv .u{font-size:16px; color:var(--ink-mute); font-weight:400; margin-left:6px}
-  .pcard.peak .pv{color:var(--bronze-2)}
-  .pcard .pmeta{font-size:13px; color:var(--ink-dim); margin-top:10px; display:flex; align-items:center; gap:8px}
-  .pcard .pmeta .delta{color:var(--bronze-2); font-family:"Geist Mono", monospace; font-size:11.5px; letter-spacing:0.04em}
-  .pcard .glyph{position:absolute; right:-30px; top:-30px; opacity:0.06; font-size:200px; font-family:"Instrument Serif", serif; font-style:italic}
-
-  /* mini graph */
-  .pcard .graph{height:80px; margin-top:14px}
-
-  /* progress moments card body */
-  .pcard.moment{justify-content:flex-start}
-  .pcard.moment .pv{font-size:24px; line-height:1.2; color:var(--ink); max-width:18ch}
-  .pcard.moment .moment-list{margin-top:auto; padding-top:14px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-mute); display:flex; gap:18px; flex-wrap:wrap}
-  .pcard.moment .moment-list span{display:flex; align-items:center; gap:6px}
-  .pcard.moment .moment-list span::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--bronze)}
-
-  /* movement detail with bar chart */
-  .pcard.detail .bars{
-    display:flex; align-items:flex-end; gap:6px; height:80px; margin-top:14px;
-  }
-  .pcard.detail .bar{
-    flex:1; background: linear-gradient(180deg, var(--bronze), var(--bronze-deep));
-    border-radius:2px; opacity:.85;
-  }
-  .pcard.detail .bar.faded{background: var(--surface-2); opacity: 1}
-
-  /* PRIVACY */
-  .privacy-grid{display:grid; grid-template-columns: 1.1fr 1fr; gap:80px; align-items:flex-start}
-  @media (max-width:980px){ .privacy-grid{grid-template-columns:1fr; gap:40px} }
-  .privacy-list{margin:0; padding:0; list-style:none; border-top:1px solid var(--line)}
-  .privacy-list li{padding:20px 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns: 36px 1fr; gap:18px; align-items:flex-start}
-  .privacy-list li .ic{width:28px; height:28px; border-radius:8px; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; color:var(--bronze-2)}
-  .privacy-list li .ic svg{width:14px; height:14px}
-  .privacy-list li .pt{font-family:"Geist"; font-size:15.5px; font-weight:500; color:var(--ink); margin-bottom:4px}
-  .privacy-list li .pd{color:var(--ink-dim); font-size:14px; line-height:1.55}
-
-  .nots{
-    border:1px solid var(--line); border-radius:14px; padding:30px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0));
-  }
-  .nots .nots-h{font-family:"Geist Mono", monospace; font-size:11px; color:var(--ink-mute); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:20px}
-  .nots ul{margin:0; padding:0; list-style:none}
-  .nots ul li{padding:11px 0; border-bottom:1px dashed var(--line); display:flex; align-items:center; gap:12px; font-size:14.5px; color:var(--ink-dim)}
-  .nots ul li:last-child{border-bottom:none}
-  .nots ul li::before{content:"✕"; font-family:"Geist Mono", monospace; color:#A8896E; font-size:12px}
-
-  /* FOUNDER */
-  .founder-block{
-    max-width: 880px;
-  }
-  .founder-quote{
-    font-family:"Instrument Serif", serif; font-style:italic;
-    font-size: clamp(28px, 3.4vw, 46px);
-    line-height: 1.18; letter-spacing:-0.01em;
-    color: var(--ink);
-  }
-  .founder-quote .accent{color: var(--bronze-2)}
-  .founder-attr{
-    margin-top:32px; display:flex; align-items:center; gap:18px;
-    color:var(--ink-mute); font-family:"Geist Mono", monospace; font-size:11.5px; letter-spacing:0.18em; text-transform:uppercase;
-  }
-  .founder-attr .avatar{
-    width:48px; height:48px; border-radius:50%; border:1px solid var(--line-strong);
-    background: radial-gradient(circle at 30% 30%, rgba(200,146,61,0.4), #1A1B20 60%, #000);
-  }
-  .founder-attr b{color:var(--ink-dim); font-weight:400}
-
-  /* CINEMATIC BREAK */
-  section.break{
-    position:relative; height: 70vh; min-height:520px; max-height:760px;
-    overflow:hidden; border-top:1px solid var(--line);
-  }
-  section.break img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position: center 30%}
-  section.break::after{
-    content:""; position:absolute; inset:0;
-    background:
-      linear-gradient(180deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.2) 35%, rgba(10,10,11,0.85) 100%);
-  }
-  section.break .break-copy{
-    position:absolute; left:0; right:0; bottom:0; padding: 0 0 80px;
-    z-index:2;
-  }
-  section.break .break-copy .wrap{display:flex; flex-direction:column; gap:12px}
-  section.break h3{
-    font-family:"Instrument Serif", serif; font-style:italic;
-    font-size: clamp(34px, 5vw, 64px); line-height:1.05; letter-spacing:-0.015em;
-    margin:0; max-width: 22ch; color: var(--ink);
-  }
-  section.break h3 .accent{color: var(--bronze-2)}
-  section.break .break-meta{font-family:"Geist Mono", monospace; font-size:11px; color:var(--ink-dim); letter-spacing:0.18em; text-transform:uppercase}
-
-  /* FINAL CTA */
-  section.final{
-    padding: 160px 0 120px;
-    border-top:1px solid var(--line);
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-  }
-  section.final .final-bg{
-    position:absolute; inset:0; z-index:0; overflow:hidden;
-  }
-  section.final .final-bg img{
-    width:100%; height:100%; object-fit:cover; object-position: right center;
-    opacity:0.35;
-    filter: saturate(0.9) contrast(1.05);
-  }
-  section.final .final-bg::after{
-    content:""; position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse at center, rgba(10,10,11,0.6) 0%, rgba(10,10,11,0.95) 70%),
-      linear-gradient(180deg, rgba(10,10,11,1) 0%, rgba(10,10,11,0.4) 30%, rgba(10,10,11,1) 100%);
-  }
-  section.final > .wrap{position:relative; z-index:1}
-  section.final::before{
-    content:""; position:absolute; left:50%; top:0; transform:translateX(-50%);
-    width: 120%; height: 600px;
-    background: radial-gradient(ellipse at center top, rgba(200,146,61,0.18), transparent 60%);
-    pointer-events:none; z-index:1;
-  }
-  .final-eyebrow{justify-content:center}
-  h2.final-h{
-    font-family:"Geist"; font-weight:500;
-    font-size: clamp(40px, 6vw, 88px);
-    line-height: 0.98; letter-spacing:-0.035em;
-    margin: 24px auto 36px; max-width: 16ch;
-  }
-  h2.final-h .em{font-size:1em}
-  .final-sub{color:var(--ink-dim); font-size:18px; max-width:54ch; margin: 0 auto 40px; line-height:1.5}
-  .final-ctas{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
-
-  /* FOOTER */
-  footer.foot{
-    padding: 60px 0 50px;
-    border-top:1px solid var(--line);
-    color:var(--ink-mute); font-size:13px;
-  }
-  .foot-top{display:flex; justify-content:space-between; gap:32px; flex-wrap:wrap; padding-bottom:36px; border-bottom:1px solid var(--line); margin-bottom:30px}
-  .foot-top h6{font-family:"Geist Mono", monospace; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-mute); margin:0 0 12px; font-weight:400}
-  .foot-top ul{list-style:none; padding:0; margin:0}
-  .foot-top ul li{padding:6px 0; color:var(--ink-dim); font-size:13.5px; cursor:pointer}
-  .foot-top ul li:hover{color:var(--ink)}
-  .foot-bottom{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center}
-  .foot-bottom .mono{font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase}
-  .foot-brand{display:flex; align-items:center; gap:14px}
-
-  /* reveal */
-  .reveal{opacity:0; transform: translateY(14px); transition: opacity .8s ease, transform .8s ease}
-  .reveal.in{opacity:1; transform:none}
-
-  /* MODAL */
-  .modal-backdrop{
-    position:fixed; inset:0; z-index:100;
-    background: rgba(6,6,8,0.72);
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    display:flex; align-items:center; justify-content:center;
-    padding:24px;
-    opacity:0; pointer-events:none;
-    transition: opacity .25s ease;
-  }
-  .modal-backdrop.open{opacity:1; pointer-events:auto}
-  .modal{
-    width:100%; max-width: 520px;
-    background: linear-gradient(180deg, #16171C, #0E0F11);
-    border:1px solid var(--line-strong);
-    border-radius:18px;
-    padding: 36px 36px 32px;
-    position:relative;
-    transform: translateY(12px) scale(0.98);
-    transition: transform .3s ease;
-    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);
-  }
-  .modal::before{
-    content:""; position:absolute; inset:-1px; border-radius:19px; pointer-events:none;
-    background:linear-gradient(180deg, rgba(200,146,61,0.4), rgba(200,146,61,0) 35%);
-    -webkit-mask:linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
-    -webkit-mask-composite: xor; mask-composite: exclude; padding:1px;
-  }
-  .modal-backdrop.open .modal{transform: translateY(0) scale(1)}
-  .modal .close{
-    position:absolute; top:16px; right:16px;
-    width:32px; height:32px; border-radius:8px;
-    background:transparent; border:1px solid var(--line); color:var(--ink-dim);
-    cursor:pointer; display:flex; align-items:center; justify-content:center;
-    font-size:16px; transition: color .15s, border-color .15s;
-  }
-  .modal .close:hover{color:var(--ink); border-color:var(--line-strong)}
-  .modal h3{
-    font-family:"Geist"; font-weight:500; font-size:28px; letter-spacing:-0.025em;
-    line-height:1.05; margin:0 0 10px; max-width:18ch;
-  }
-  .modal h3 .em{font-size:1em}
-  .modal .modal-sub{color:var(--ink-dim); font-size:14.5px; line-height:1.55; margin:0 0 24px; max-width:42ch}
-  .modal form{display:flex; flex-direction:column; gap:14px}
-  .modal label{display:flex; flex-direction:column; gap:6px}
-  .modal label .lab{font-family:"Geist Mono", monospace; font-size:10.5px; color:var(--ink-mute); letter-spacing:0.18em; text-transform:uppercase}
-  .modal input, .modal select, .modal textarea{
-    background: var(--bg);
-    border:1px solid var(--line);
-    color:var(--ink); font-family:"Geist", sans-serif; font-size:14.5px;
-    padding:12px 14px; border-radius:8px;
-    transition: border-color .15s;
-  }
-  .modal input:focus, .modal select:focus, .modal textarea:focus{
-    outline:none; border-color: var(--bronze);
-  }
-  .modal textarea{resize:vertical; min-height:80px; font-family:"Geist", sans-serif}
-  .modal .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-  @media (max-width:480px){ .modal .row2{grid-template-columns:1fr} .modal{padding:28px 22px} }
-  .modal .submit-row{display:flex; gap:10px; align-items:center; margin-top:8px}
-  .modal .submit-row .btn{flex:0 0 auto}
-  .modal .legal{font-size:11.5px; color:var(--ink-mute); line-height:1.5; margin-top:14px}
-  .modal .legal a{color:var(--ink-dim); text-decoration:underline; text-decoration-color:var(--line-strong)}
-
-  /* success state */
-  .modal .success{display:none; text-align:left}
-  .modal.sent form{display:none}
-  .modal.sent .success{display:block}
-  .modal .success .check{
-    width:48px; height:48px; border-radius:50%; border:1px solid var(--bronze);
-    display:flex; align-items:center; justify-content:center; color:var(--bronze-2);
-    margin-bottom:18px;
-  }
-  .modal .success .check svg{width:22px; height:22px}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css" />
 </head>
-<body data-screen-label="01 Movena Landing">
+<body>
 
-<!-- NAV -->
-<header class="nav" id="nav">
+<a class="visually-hidden" href="#main">Skip to content</a>
+
+<header class="nav">
   <div class="wrap nav-row">
-    <a href="#top" class="logomark"><span class="dot"></span>Movena</a>
-    <nav class="nav-links">
-      <a href="#platform">Platform</a>
-      <a href="#gyms">For gyms</a>
-      <a href="#coaches">For coaches</a>
-      <a href="#members">For members</a>
-      <a href="#privacy">Privacy</a>
+    <a href="/" class="logomark">Movena<span class="dot"></span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/platform">Platform</a>
+      <a href="/members">For members</a>
+      <a href="/help">Help</a>
     </nav>
-    <div class="nav-cta">
-      <a href="#final" class="btn">See the platform</a>
-      <a href="#" class="btn primary" data-open-pilot>Join the pilot <span class="arr">→</span></a>
-    </div>
+    <a class="btn btn-primary btn-sm nav-cta" href="mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20enquiry">Talk to us</a>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="top">
+<main id="main">
+
+<div class="hero">
   <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow reveal">Performance Intelligence Platform</span>
-        <h1 class="hero-h reveal">The Performance <span class="em">Intelligence</span> Platform for modern gyms.</h1>
-        <p class="hero-sub reveal">Movena helps gyms capture performance in real sessions, turn it into coach context, and give members a meaningful progress journey.</p>
-        <div class="hero-ctas reveal">
-          <a href="#" class="btn primary" data-open-pilot>Join the pilot <span class="arr">→</span></a>
-          <a href="#platform" class="btn">See the platform</a>
-        </div>
-        <div class="hero-meta reveal">
-          <span><b>Built for</b> &nbsp;modern gyms</span>
-          <span><b>Designed with</b> &nbsp;coaches</span>
-          <span><b>Owned by</b> &nbsp;members</span>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal" aria-hidden="true">
-        <img class="bg" src="assets/movena-intro-mobile.png" alt="Athlete mid-session" />
-        <span class="vignette-text">A real session, captured.</span>
-
-        <!-- floating mini iphone -->
-        <div class="iphone-card" aria-hidden="true">
-          <div class="ip-eyebrow">SESSION · LIVE</div>
-          <div class="ip-title">Back squat<br>3RM attempt</div>
-          <div class="ip-graph">
-            <svg viewBox="0 0 180 90" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="oklch(0.74 0.12 70)" stop-opacity="0.5"/>
-                  <stop offset="100%" stop-color="oklch(0.74 0.12 70)" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0,70 L20,62 L40,55 L60,58 L80,42 L100,38 L120,30 L140,22 L160,16 L180,10 L180,90 L0,90 Z" fill="url(#g1)"/>
-              <path d="M0,70 L20,62 L40,55 L60,58 L80,42 L100,38 L120,30 L140,22 L160,16 L180,10" stroke="oklch(0.82 0.10 75)" stroke-width="1.5" fill="none"/>
-              <circle cx="180" cy="10" r="3" fill="oklch(0.82 0.10 75)"/>
-            </svg>
-          </div>
-          <div class="ip-stat">
-            <span class="l">Current</span>
-            <span class="v live">142.5 kg</span>
-          </div>
-        </div>
-
-        <!-- peak card -->
-        <div class="peak-card" aria-hidden="true">
-          <div class="pk-lab">Peak · 3RM Back Squat</div>
-          <div class="pk-val">142.5<span class="u">kg</span></div>
-          <div class="pk-meta"><span class="dlt">↑ 8.5 kg</span> &nbsp;over 90 days · Mar 12</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MARKET GAP -->
-<section class="s gap" id="platform">
-  <div class="gap-bg" aria-hidden="true"><img src="assets/athlete-gap.png" alt="" /></div>
-  <div class="wrap">
-    <div class="s-head">
-      <div class="left"><span class="num">02 · MARKET</span></div>
-      <div class="right">
-        <span class="eyebrow">The gap</span>
-      </div>
-    </div>
-
-    <div class="gap-grid">
-      <p class="gap-statement reveal"><b>Bookings are solved.</b> <span class="em">Progress isn't.</span></p>
-      <p class="gap-aside reveal">Gym software manages bookings, payments and timetables. But performance progress — the signal members actually <b>feel</b> — is still fragmented, invisible, or trapped in coach memory.</p>
-    </div>
-  </div>
-</section>
-
-<!-- MISSING LAYER -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head">
-      <div class="left"><span class="num">03 · MISSING LAYER</span></div>
-      <div class="right">
-        <h2 class="s-h reveal">Performance is the layer gyms have been <span class="em">missing.</span></h2>
-        <p class="s-sub reveal">Coaches already capture what happens in training. Movena turns it into <b>member progress</b>, <b>coach context</b> and <b>gym intelligence</b> — without changing the way a session is run.</p>
-      </div>
-    </div>
-
-    <div class="layer-stack reveal">
-      <div class="layer-row">
-        <div class="l-name">Bookings</div>
-        <div class="l-detail">Schedules, classes, sign-ups, capacity</div>
-        <div class="l-status">Solved</div>
-      </div>
-      <div class="layer-row">
-        <div class="l-name">Payments</div>
-        <div class="l-detail">Memberships, billing, dunning</div>
-        <div class="l-status">Solved</div>
-      </div>
-      <div class="layer-row">
-        <div class="l-name">Timetables &amp; CRM</div>
-        <div class="l-detail">Comms, retention pings, marketing flows</div>
-        <div class="l-status">Solved</div>
-      </div>
-      <div class="layer-row has">
-        <div class="l-name">Performance intelligence</div>
-        <div class="l-detail">Coach context · member journey · gym signal</div>
-        <div class="l-status">Movena</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCT LOOP -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head">
-      <div class="left"><span class="num">04 · LOOP</span></div>
-      <div class="right">
-        <h2 class="s-h reveal">One loop. <span class="em">Five sides.</span> Each one feeds the next.</h2>
-        <p class="s-sub reveal">Performance data isn't a destination — it's a circulation. The same logged session shows up as progress for the member, context for the coach, and signal for the gym.</p>
-      </div>
-    </div>
-
-    <div class="loop reveal" id="loop">
-      <div class="loop-grid">
-        <div class="loop-node">
-          <div class="ix">01</div>
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h6M8 17h4"/></svg></div>
-          <h4>Coach logs performance</h4>
-          <p>Sets, reps, loads, times — captured in the session, not after the fact.</p>
-          <div class="loop-arrow"></div>
-          <div class="loop-tracer"></div>
-        </div>
-        <div class="loop-node">
-          <div class="ix">02</div>
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-5 4 4 7-7"/><path d="M14 10h6v6"/></svg></div>
-          <h4>Member sees progress</h4>
-          <p>Logged data becomes a personal performance journey, owned by the member.</p>
-          <div class="loop-arrow"></div>
-          <div class="loop-tracer"></div>
-        </div>
-        <div class="loop-node">
-          <div class="ix">03</div>
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div>
-          <h4>Gym sees engagement</h4>
-          <p>Patterns of attendance, attempt and progress become operational signal.</p>
-          <div class="loop-arrow"></div>
-          <div class="loop-tracer"></div>
-        </div>
-        <div class="loop-node">
-          <div class="ix">04</div>
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6l3 6 3-12 3 6h3"/></svg></div>
-          <h4>Coaches get context</h4>
-          <p>Movement history surfaces in time for the next set, not the next quarter.</p>
-          <div class="loop-arrow"></div>
-          <div class="loop-tracer"></div>
-        </div>
-        <div class="loop-node">
-          <div class="ix">05</div>
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8c2.5-2 5-3 7-3s4.5 1 7 3M5 16c2.5 2 5 3 7 3s4.5-1 7-3"/></svg></div>
-          <h4>Members stay connected</h4>
-          <p>Visible progress is the strongest reason to come back next session.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CINEMATIC BREAK -->
-<section class="break" aria-hidden="true">
-  <img src="assets/athlete-medball.png" alt="" />
-  <div class="break-copy">
-    <div class="wrap">
-      <span class="break-meta">Real sessions · real progress</span>
-      <h3>Elite-level <span class="accent">performance visibility</span> — brought to everyday training.</h3>
-    </div>
-  </div>
-</section>
-
-<!-- PILLARS -->
-<section class="s" id="gyms">
-  <div class="wrap">
-    <div class="s-head">
-      <div class="left"><span class="num">05 · PILLARS</span></div>
-      <div class="right">
-        <h2 class="s-h reveal">One platform. <span class="em">Three audiences.</span> Equal weight.</h2>
-        <p class="s-sub reveal">Movena is not a coach tool with a member view bolted on, or a member app with an admin panel. Each side is designed first.</p>
-      </div>
-    </div>
-
-    <div class="pillars">
-      <div class="pillar reveal" id="gyms-pillar">
-        <span class="audience">For gyms</span>
-        <h3>Run a sharper <span class="em">operation.</span></h3>
-        <p>Performance becomes operational signal — see retention signal, member momentum and coach effectiveness without another login.</p>
-        <ul>
-          <li>Operations dashboard</li>
-          <li>Retention signals</li>
-          <li>Member engagement view</li>
-        </ul>
-      </div>
-      <div class="pillar reveal" id="coaches">
-        <span class="audience">For coaches</span>
-        <h3>Walk in with <span class="em">context.</span></h3>
-        <p>Movement history surfaces before the set, not after the quarter — so every conversation has something to stand on.</p>
-        <ul>
-          <li>Session context</li>
-          <li>Movement history</li>
-          <li>Better conversations</li>
-        </ul>
-      </div>
-      <div class="pillar reveal" id="members">
-        <span class="audience">For members</span>
-        <h3>A progress journey <span class="em">worth feeling.</span></h3>
-        <p>Real moments captured in real sessions — not vanity metrics. Owned by you, scoped by your gym.</p>
-        <ul>
-          <li>Progress moments</li>
-          <li>Movement detail</li>
-          <li>Personal performance journey</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PERFORMANCE INTELLIGENCE -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head">
-      <div class="left"><span class="num">06 · INTELLIGENCE</span></div>
-      <div class="right">
-        <h2 class="s-h reveal">Movena does not just <span class="em">store</span> records.</h2>
-        <p class="s-sub reveal">It understands how different movements should be shown. Strength curves, bodyweight progressions, time-for-distance efforts — each rendered the way it actually progresses.</p>
-      </div>
-    </div>
-
-    <div class="perf-wrap">
-      <ul class="perf-list reveal">
-        <li><span class="lk">01</span><span class="lv">1RM / 3RM / 5RM strength curves<span class="muted">Squat, deadlift, press — visible across the season.</span></span></li>
-        <li><span class="lk">02</span><span class="lv">Bodyweight-rep progress<span class="muted">Pull-ups, push-ups, pistols. Reps and tempo over time.</span></span></li>
-        <li><span class="lk">03</span><span class="lv">Time-for-distance efforts<span class="muted">Rows, runs, intervals. Pace and split, structured properly.</span></span></li>
-        <li><span class="lk">04</span><span class="lv">Skill breakthroughs<span class="muted">Future: first muscle-up, first handstand, first pistol.</span></span></li>
-      </ul>
-
-      <div class="perf-cards-grid reveal">
-        <div class="pcard peak">
-          <div>
-            <div class="pk">Peak · 3RM</div>
-            <div class="pv">142.5<span class="u">kg</span></div>
-          </div>
-          <div class="pmeta"><span class="delta">↑ 8.5kg</span> Back squat · 90d</div>
-          <div class="glyph">P</div>
-        </div>
-        <div class="pcard">
-          <div>
-            <div class="pk"><span class="live-dot"></span>Current trend</div>
-            <div class="pv">128<span class="u">kg</span></div>
-          </div>
-          <div class="pmeta">90% of peak · this block</div>
-          <div class="glyph">C</div>
-        </div>
-        <div class="pcard">
-          <div>
-            <div class="pk">Last session</div>
-            <div class="pv">120<span class="u">kg</span></div>
-          </div>
-          <div class="pmeta">Apr 21 · 5×3 felt smooth</div>
-          <div class="glyph">L</div>
-        </div>
-
-        <div class="pcard moment span-2">
-          <div class="pk">Progress moments</div>
-          <div class="pv" style="margin-top:18px">First unbroken set of <span class="em">5</span> · pull-up bodyweight breakthrough · 5km PB.</div>
-          <div class="moment-list">
-            <span>Mar 12 · Squat PR</span>
-            <span>Mar 28 · BW pull-up ×5</span>
-            <span>Apr 14 · 5km 22:48</span>
-          </div>
-        </div>
-        <div class="pcard detail">
-          <div class="pk">Movement detail</div>
-          <div class="pv" style="font-size:22px; line-height:1.2; margin-top:12px">Pull-up<br><span style="color:var(--ink-mute); font-size:14px">bodyweight · since Jan</span></div>
-          <div class="bars" aria-hidden="true">
-            <div class="bar faded" style="height:14%"></div>
-            <div class="bar faded" style="height:22%"></div>
-            <div class="bar" style="height:30%"></div>
-            <div class="bar" style="height:42%"></div>
-            <div class="bar" style="height:38%"></div>
-            <div class="bar" style="height:55%"></div>
-            <div class="bar" style="height:64%"></div>
-            <div class="bar" style="height:72%"></div>
-            <div class="bar" style="height:88%"></div>
-            <div class="bar" style="height:100%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="mono reveal" style="margin-top:48px; color:var(--ink-mute); font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase">All values calculated from logged data · informational only · not medical advice</p>
-  </div>
-</section>
-
-<!-- PRIVACY -->
-<section class="s" id="privacy">
-  <div class="wrap">
-    <div class="s-head">
-      <div class="left"><span class="num">07 · TRUST</span></div>
-      <div class="right">
-        <h2 class="s-h reveal">Boundaries from <span class="em">day one.</span></h2>
-        <p class="s-sub reveal">Performance data is intimate. Movena treats it that way — with explicit boundaries the platform refuses to cross, written into the architecture before the first feature ships.</p>
-      </div>
-    </div>
-
-    <div class="privacy-grid">
-      <ul class="privacy-list reveal">
-        <li>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1"/></svg></div>
-          <div>
-            <div class="pt">Member-owned performance history</div>
-            <div class="pd">Your record of training is yours. It moves with you.</div>
-          </div>
-        </li>
-        <li>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 10h6M9 14h4"/></svg></div>
-          <div>
-            <div class="pt">Gym-scoped coach visibility</div>
-            <div class="pd">Coaches see context for the members they actually train. Nothing wider.</div>
-          </div>
-        </li>
-        <li>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></div>
-          <div>
-            <div class="pt">Consent-first future integrations</div>
-            <div class="pd">Wearables and devices connect on explicit member consent — never by default.</div>
-          </div>
-        </li>
-        <li>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <div>
-            <div class="pt">Calculated from logged data, informational only</div>
-            <div class="pd">What you see is the math on what was logged. No black box. No claims beyond that.</div>
-          </div>
-        </li>
-      </ul>
-
-      <div class="nots reveal">
-        <div class="nots-h">What Movena will not do</div>
-        <ul>
-          <li>No medical advice</li>
-          <li>No injury prediction</li>
-          <li>No training prescription</li>
-          <li>No readiness scores</li>
-          <li>No black-box claims</li>
-          <li>No selling member data</li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="reveal" style="margin-top:44px; color:var(--ink-dim); font-size:15px">
-      Read our full <a href="/legal/privacy" style="color:var(--bronze-2); text-decoration:underline; text-decoration-color:var(--line-strong)">privacy policy →</a>
+    <span class="kicker">Performance intelligence for gyms</span>
+    <h1>The software your gym runs on. The progress your members keep.</h1>
+    <p class="lede">
+      Movena handles memberships, the timetable, billing and the front desk — then turns
+      every coached session into a performance journey your members can actually see.
+      The kind of data that used to belong to elite sport, made useful for everyday training.
     </p>
-  </div>
-</section>
-
-<!-- FOUNDER -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head">
-      <div class="left"><span class="num">08 · FOUNDER</span></div>
-      <div class="right">
-        <span class="eyebrow">A note</span>
-      </div>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20walkthrough">Book a walkthrough</a>
+      <a class="btn btn-ghost" href="/platform">See the platform</a>
     </div>
+    <p class="hero-note">Now onboarding a limited number of Australian gyms.</p>
 
-    <div class="founder-block">
-      <p class="founder-quote reveal">Built by a architect, athlete and a dad who believes <span class="accent">performance visibility</span> should not belong only to elite sport.</p>
-      <div class="founder-attr reveal">
-        <span class="avatar" aria-hidden="true"></span>
-        <span><b>Founder, Movena</b><br>Building from real gyms, with real coaches</span>
+    <div class="frame">
+      <div class="chrome">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="url mono">app.movena.com.au — Timetable</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final" id="final">
-  <div class="final-bg" aria-hidden="true"><img src="assets/athlete-sprint.png" alt="" /></div>
-  <div class="wrap">
-    <span class="eyebrow final-eyebrow reveal">Pilot · 2026</span>
-    <h2 class="final-h reveal">Build the future of <span class="em">training intelligence.</span></h2>
-    <p class="final-sub reveal">Pilots are limited. We're working with a small group of modern gyms through 2026 — operators, coaches and members ready to bring performance into the open.</p>
-    <div class="final-ctas reveal">
-      <a href="#" class="btn primary" data-open-pilot>Request pilot access <span class="arr">→</span></a>
-      <a href="mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20enquiry" class="btn">Contact Movena</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="foot">
-  <div class="wrap">
-    <div class="foot-top">
-      <div style="max-width: 320px">
-        <span class="logomark"><span class="dot"></span>Movena</span>
-        <p class="mono" style="margin-top:14px; color:var(--ink-mute); font-size:11.5px; letter-spacing:0.14em">Performance Intelligence Platform for modern gyms.</p>
+      <div class="console">
+        <div class="console-main">
+          <p class="panel-title">Today</p>
+          <div class="row">
+            <span class="t">6:00</span>
+            <span><span class="name">CrossFit</span><span class="meta">Coach Dana · Main floor</span></span>
+            <span class="chip">12 / 14 booked</span>
+          </div>
+          <div class="row">
+            <span class="t">9:30</span>
+            <span><span class="name">Reformer Pilates</span><span class="meta">Coach Mia · Studio 2</span></span>
+            <span class="chip warn">Full · waitlist 3</span>
+          </div>
+          <div class="row">
+            <span class="t">17:30</span>
+            <span><span class="name">Strength</span><span class="meta">Coach Alex · Main floor</span></span>
+            <span class="chip">9 / 12 booked</span>
+          </div>
+        </div>
+        <div class="console-side">
+          <p class="panel-title">Across your locations</p>
+          <div class="stat"><b>84</b><span>check-ins today</span></div>
+          <div class="stat"><b>7</b><span>new enquiries this week</span></div>
+          <div class="stat"><b>3</b><span>waivers awaiting signature</span></div>
+        </div>
       </div>
-      <div>
-        <h6>Platform</h6>
-        <ul>
-          <li>For gyms</li>
-          <li>For coaches</li>
-          <li>For members</li>
-          <li>Performance intelligence</li>
-        </ul>
-      </div>
-      <div>
-        <h6>Trust</h6>
-        <ul>
-          <li><a href="/legal/privacy">Privacy policy</a></li>
-          <li>Member rights</li>
-          <li>Coach scope</li>
-          <li>Security</li>
-        </ul>
-      </div>
-      <div>
-        <h6>Pilot</h6>
-        <ul>
-          <li>Request access</li>
-          <li>Contact</li>
-          <li>Press</li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span class="foot-brand mono">© 2026 Movena · Performance Intelligence Platform</span>
-      <span class="mono">Informational only · Not medical advice</span>
-    </div>
-  </div>
-</footer>
-
-<!-- PILOT MODAL -->
-<div class="modal-backdrop" id="pilot-modal" role="dialog" aria-modal="true" aria-labelledby="pilot-title">
-  <div class="modal">
-    <button class="close" type="button" aria-label="Close" data-close-modal>✕</button>
-    <h3 id="pilot-title">Join the <span class="em">pilot.</span></h3>
-    <p class="modal-sub">A few details so we can route your enquiry to the right person. We respond inside 48 hours.</p>
-    <form id="pilot-form">
-      <label><span class="lab">Name</span><input type="text" name="name" required autocomplete="name" /></label>
-      <div class="row2">
-        <label><span class="lab">Email</span><input type="email" name="email" required autocomplete="email" /></label>
-        <label><span class="lab">Role</span>
-          <select name="role" required>
-            <option value="">Select …</option>
-            <option>Gym owner / operator</option>
-            <option>Head coach</option>
-            <option>Coach</option>
-            <option>Member</option>
-            <option>Other</option>
-          </select>
-        </label>
-      </div>
-      <label><span class="lab">Gym name</span><input type="text" name="gym" /></label>
-      <label><span class="lab">Anything we should know? (optional)</span><textarea name="notes" rows="3" placeholder="Number of members, training style, what you're hoping to solve…"></textarea></label>
-      <div class="submit-row">
-        <button type="submit" class="btn primary">Send enquiry <span class="arr">→</span></button>
-        <button type="button" class="btn ghost" data-close-modal>Cancel</button>
-      </div>
-      <p class="legal">Submitting will open your email client with the details pre-filled. We never share or sell pilot enquiries.</p>
-    </form>
-    <div class="success" aria-live="polite">
-      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
-      <h3 style="font-size:22px; margin-bottom:8px">Email opened.</h3>
-      <p class="modal-sub">Send the message from your mail client and we'll be in touch within 48 hours. If nothing opened, write to <a href="mailto:info@movena.com.au" style="color:var(--bronze-2); text-decoration:underline">info@movena.com.au</a>.</p>
-      <button type="button" class="btn" data-close-modal style="margin-top:8px">Close</button>
     </div>
   </div>
 </div>
 
-<script>
-  // PILOT MODAL
-  const pilotModal = document.getElementById('pilot-modal');
-  const pilotForm = document.getElementById('pilot-form');
-  const openPilot = () => { pilotModal.classList.add('open'); document.body.style.overflow = 'hidden'; };
-  const closePilot = () => { pilotModal.classList.remove('open'); document.body.style.overflow = ''; setTimeout(() => pilotModal.querySelector('.modal').classList.remove('sent'), 250); };
-  document.querySelectorAll('[data-open-pilot]').forEach(el => {
-    el.addEventListener('click', (e) => { e.preventDefault(); openPilot(); });
-  });
-  document.querySelectorAll('[data-close-modal]').forEach(el => {
-    el.addEventListener('click', closePilot);
-  });
-  pilotModal.addEventListener('click', (e) => { if (e.target === pilotModal) closePilot(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && pilotModal.classList.contains('open')) closePilot(); });
-  pilotForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(pilotForm);
-    const subject = encodeURIComponent('Movena — pilot enquiry from ' + (data.get('name') || ''));
-    const body = encodeURIComponent(
-      'Name: ' + (data.get('name') || '') + '\n' +
-      'Email: ' + (data.get('email') || '') + '\n' +
-      'Role: ' + (data.get('role') || '') + '\n' +
-      'Gym: ' + (data.get('gym') || '') + '\n\n' +
-      'Notes:\n' + (data.get('notes') || '')
-    );
-    window.location.href = 'mailto:info@movena.com.au?subject=' + subject + '&body=' + body;
-    pilotModal.querySelector('.modal').classList.add('sent');
-  });
+<div class="facts">
+  <div class="wrap facts-in">
+    <span class="fact">Built in Australia</span>
+    <span class="fact">Multi-location from day one</span>
+    <span class="fact">Stripe billing built in</span>
+    <span class="fact">Privacy considered from day one</span>
+  </div>
+</div>
 
-</script>
-<script>
-  // sticky nav scrolled state
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 16) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+<section id="loop">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="sec-num mono">01</span><span class="kicker">The loop</span></div>
+    <h2>Coaches capture it. Members keep it. Gyms feel it.</h2>
+    <p class="sec-lede">
+      Most gym software stops at bookings and payments. The session itself — the work, the
+      loads, the result — is written on a whiteboard and gone by morning. Movena closes that loop.
+    </p>
+    <div class="steps">
+      <article class="card">
+        <span class="n mono">STEP 1</span>
+        <h3>Coaches capture the session</h3>
+        <p>Attendance, movements and results recorded in the flow of coaching — not typed up afterwards.</p>
+        <div class="mini">
+          <b>Tuesday 17:30 · Strength</b>
+          <div class="sub">Back squat 5×5 · 11 athletes logged</div>
+          <div class="ok">✓ Session recorded</div>
+        </div>
+      </article>
+      <article class="card">
+        <span class="n mono">STEP 2</span>
+        <h3>Members see a real journey</h3>
+        <p>Not a wall of numbers — a curated story: milestones, featured movements, a history that builds.</p>
+        <div class="mini">
+          <b>Back squat — 92.5&nbsp;kg</b>
+          <div class="sub">5-rep best · logged 3 Aug</div>
+          <div class="ok">✓ Matched your best</div>
+        </div>
+      </article>
+      <article class="card">
+        <span class="n mono">STEP 3</span>
+        <h3>Gyms keep members longer</h3>
+        <p>Progress a member can see is a reason to stay. The signals surface quietly, where your team already works.</p>
+        <div class="mini">
+          <b>Front desk</b>
+          <div class="sub">4 members hit a milestone this week</div>
+          <div class="ok">✓ Worth a mention at the door</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
-  // reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        if (e.target.id === 'loop') e.target.classList.add('entered');
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+<section id="platform">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="sec-num mono">02</span><span class="kicker">The platform</span></div>
+    <h2>Everything a gym runs on, in one place.</h2>
+    <p class="sec-lede">
+      No stitched-together tools and no exports between systems. One platform, one member
+      record, every location.
+    </p>
+    <div class="featgrid">
+      <div class="feat"><h3>Memberships &amp; billing</h3><p>Plans, packs and payments through Stripe — or tracked in person when that suits.</p></div>
+      <div class="feat"><h3>Timetable &amp; bookings</h3><p>Templates, capacity, waitlists and multi-week generation across rooms and locations.</p></div>
+      <div class="feat"><h3>Kiosk check-in</h3><p>Members check themselves in at the door, on your tablet.</p></div>
+      <div class="feat"><h3>Digital waivers</h3><p>Signed on the kiosk or a phone — versioned, timestamped, stored.</p></div>
+      <div class="feat"><h3>Leads &amp; enquiries</h3><p>An enquiry form for your own website, feeding a pipeline the front desk will use.</p></div>
+      <div class="feat"><h3>Messaging</h3><p>Threads and broadcasts between your team and your members, moderation included.</p></div>
+      <div class="feat"><h3>Programming</h3><p>A workout builder with a real exercise catalogue, published straight to members.</p></div>
+      <div class="feat"><h3>Team &amp; locations</h3><p>Owners, managers and coaches see what they should — per location, per role.</p></div>
+    </div>
+    <p style="margin-top:34px">
+      <a class="link-arrow" href="/platform">Everything the platform does <span>→</span></a>
+    </p>
+  </div>
+</section>
+
+<section id="retention">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="sec-num mono">03</span><span class="kicker">Staying power</span></div>
+    <div class="split">
+      <div>
+        <h2>The part that keeps members.</h2>
+        <p class="sec-lede">
+          Members rarely quit in a moment — they drift. Movena gives your gym the things that
+          make training feel worth showing up for, and a quiet way to notice when someone stops.
+        </p>
+        <div class="caps" style="grid-template-columns:1fr; margin-top:32px">
+          <div class="cap">
+            <h3>Recognition that lands by itself</h3>
+            <p>Members earn a digital badge at 50, 100, 250, 500 and 1,000 classes — automatically, and kept in their app for good. Your desk sees who just crossed one, so someone can say something.</p>
+          </div>
+          <div class="cap">
+            <h3>Challenges the whole gym can join</h3>
+            <p>Run a challenge on classes attended, minutes trained, or the longest streak. Scores come from check-ins, so nobody has to log anything. Set a finish line and everyone who reaches it earns a finisher badge.</p>
+          </div>
+          <div class="cap">
+            <h3>A nudge before someone drifts</h3>
+            <p>A retention list surfaces members who haven't trained in a fortnight, so your team can reach out while it still matters — and note what they did about it.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="phone">
+          <div class="phone-screen">
+            <p class="p-head">Trophy case</p>
+            <p class="p-title">Sam's badges</p>
+            <div class="badges">
+              <div class="badge-tile">50<small>classes</small></div>
+              <div class="badge-tile">100<small>classes</small></div>
+              <div class="badge-tile">250<small>classes</small></div>
+              <div class="badge-tile is-locked">500<small>next</small></div>
+            </div>
+            <div class="p-card">
+              <div class="lift">Winter Streak</div>
+              <div class="val">Finished <small>· 20 classes</small></div>
+              <span class="tag">Finisher badge earned</span>
+            </div>
+            <div class="p-card">
+              <div class="p-row"><span>This week</span><b>4 sessions</b></div>
+              <div class="p-row"><span>Longest streak</span><b>11 days</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="members">
+  <div class="wrap">
+    <div class="sec-kicker"><span class="sec-num mono">04</span><span class="kicker">For members</span></div>
+    <h2>An app worth opening.</h2>
+    <p class="sec-lede">
+      Book classes, check in, follow a program — and watch a training story build with every
+      session. Descriptive, never preachy: what you did, and how far you've come.
+    </p>
+    <p style="margin-top:26px">
+      <a class="link-arrow" href="/members">See the member experience <span>→</span></a>
+    </p>
+  </div>
+</section>
+
+<div class="band" id="boundaries">
+  <section>
+    <div class="wrap">
+      <div class="sec-kicker"><span class="sec-num mono">05</span><span class="kicker">Data &amp; privacy</span></div>
+      <h2>Members own their story.</h2>
+      <p class="sec-lede">
+        A training history belongs to the person who trained it. Movena is built on that
+        boundary — it's the architecture, not a policy page.
+      </p>
+      <div class="bound-grid">
+        <div class="cap">
+          <h3>Portable by design</h3>
+          <p>A member's performance journey can follow them. Sharing it with another gym is theirs to grant, never the gym's to take.</p>
+        </div>
+        <div class="cap">
+          <h3>Consent, not defaults</h3>
+          <p>Nothing about a member is shared without them saying so, and consent is asked in plain language — per gym, never bundled.</p>
+        </div>
+        <div class="cap">
+          <h3>Erasure honoured</h3>
+          <p>When someone leaves and asks to be forgotten, deletion is designed in — mapped table by table, not retrofitted later.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="close-cta">
+  <div class="wrap">
+    <span class="kicker">Closed beta</span>
+    <h2>Run your gym on Movena.</h2>
+    <p>We're onboarding a limited number of Australian gyms — single sites and multi-location groups. Tell us about yours.</p>
+    <a class="btn btn-primary" href="mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20enquiry">info@movena.com.au</a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <a href="/" class="logomark" style="font-size:16px">Movena<span class="dot"></span></a>
+    <a href="/platform">Platform</a>
+    <a href="/members">For members</a>
+    <a href="/help">Help</a>
+    <a href="/legal/privacy">Privacy</a>
+    <a href="/legal/terms">Terms</a>
+    <span class="foot-right">Made in Australia · © 2026 Movena</span>
+  </div>
+</footer>
+
 </body>
 </html>
