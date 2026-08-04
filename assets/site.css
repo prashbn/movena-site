@@ -635,6 +635,44 @@ footer { border-top: 1px solid var(--line); padding: 34px 0 56px; }
    Motion & print
    -------------------------------------------------------------------------- */
 
+/* ==========================================================================
+   COLOUR — "tinted sections" (2026-08-04)
+   Colour arrives as large soft washes rather than small marks. Type stays ink
+   on near-white everywhere, so contrast is unchanged; the accent, the buttons
+   and the links are untouched.
+
+   Self-contained on purpose: deleting this block returns the site to the
+   plain white scheme exactly. Sequence down a page is
+   white → blue → white → violet → white → navy → sage → mint, so no two
+   tinted areas ever touch.
+   ========================================================================== */
+:root {
+  --tint-blue:   #EEF2FD;  /* fact strip — closest to the accent */
+  --tint-violet: #F6F3FF;  /* capability panel */
+  --tint-sage:   #F0F4FA;  /* banded sections (privacy / team) */
+  --tint-mint:   #EEF7F1;  /* closing call to action */
+  --ink-navy:    #10233F;  /* milestone ladder — must stay dark for the art */
+}
+
+.facts { background: var(--tint-blue); border-color: #DDE4F7; }
+
+/* Capability tiles sit on a wash, white cards on top. No negative margins —
+   at 22px viewport gutters they would push the page into horizontal scroll. */
+.featgrid {
+  background: var(--tint-violet);
+  padding: 26px; border-radius: 20px;
+}
+@media (max-width: 560px) { .featgrid { padding: 18px; } }
+.feat { background: #fff; }
+
+.band { background: var(--tint-sage); border-color: #E1E8F2; }
+
+.close-cta { background: var(--tint-mint); }
+
+/* Badge art is cream-on-transparent, so the ladder can never go light —
+   navy rather than near-black keeps it in the palette. */
+.ladder { background: var(--ink-navy); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
