@@ -614,6 +614,14 @@ footer { border-top: 1px solid var(--line); padding: 34px 0 56px; }
   width: 6px; height: 6px; border-radius: 2px; background: var(--accent); opacity: .55;
 }
 
+.doc ol { margin: 0 0 14px; padding: 0; list-style: none; counter-reset: doc-step; }
+.doc ol li { position: relative; padding: 7px 0 7px 30px; color: var(--ink-2); counter-increment: doc-step; }
+.doc ol li::before {
+  content: counter(doc-step); position: absolute; left: 1px; top: 8px;
+  font-family: "Geist Mono", ui-monospace, monospace; font-size: 12.5px; font-weight: 500;
+  color: var(--accent); opacity: .85;
+}
+
 .doc a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;
          text-decoration-color: rgba(47,84,208,.35); transition: text-decoration-color .2s var(--ease); }
 .doc a:hover { text-decoration-color: var(--accent); }

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Movena + Kisi — door access from your memberships</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Connect Movena to Kisi and your memberships become door access. Enrolled members walk in while their membership is active — access is granted and revoked automatically." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=kisi-ol-1" />
+</head>
+<body class="doc">
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a href="/" class="logomark">Movena<span class="dot"></span></a>
+    <a href="/" class="back">← Back to site</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow">Integrations · Access control</span>
+    <h1>Movena + Kisi</h1>
+    <p class="lede">Connect Movena to <a href="https://www.getkisi.com" rel="noopener">Kisi</a> and a membership becomes door access. Members who hold the right plan walk in — and access is granted and revoked automatically as memberships change, at every location you cover.</p>
+
+    <h2>What the integration does</h2>
+    <ul>
+      <li><strong>Memberships open doors.</strong> Put facility access on a plan and its members can enter while their membership is active — no fobs to hand out, no lists to maintain.</li>
+      <li><strong>Bookings open doors too.</strong> A confirmed class booking grants access for the session window on its own, so class-based plans work naturally without around-the-clock entry.</li>
+      <li><strong>Changes take care of themselves.</strong> Suspensions, holds, cancellations and expiries remove access automatically; reactivation brings it back. Turning a location off removes access there and nothing else.</li>
+      <li><strong>Multi-location by design.</strong> Each participating location gets its own place and member group in your Kisi organization, and one person is one Kisi user across all of them — no duplicate seats.</li>
+    </ul>
+
+    <h2>Who decides what</h2>
+    <p>Movena decides <strong>who</strong> has access, from memberships, bookings and staff decisions. Kisi decides <strong>when</strong> and <strong>which doors</strong> — opening hours, door schedules and the hardware itself stay in the Kisi console.</p>
+    <p>Two switches, both in Movena, control standing access: <strong>Include facility access</strong> on the membership plan, and <strong>Door access</strong> on the member. Nobody gets access automatically — a member participates only after your team turns them on.</p>
+
+    <h2>Setting it up</h2>
+    <ol>
+      <li>Ask Movena to activate the <strong>Access Control add-on</strong> for your locations.</li>
+      <li>In Movena, go to <strong>Settings → Access Control</strong>, paste an API key created by your Kisi administrator, and choose <strong>Connect</strong>. Movena verifies the key with Kisi before saving it, and stores it encrypted.</li>
+      <li>Choose <strong>Configure Access Control</strong>. Movena creates a place and a member group in your Kisi organization for each location and sets up live event updates — there are no IDs to copy between systems.</li>
+      <li>In the Kisi console, register your hardware (controller and reader), create your doors, and add each door to the group Movena created — <strong>Movena Members — [location name]</strong>.</li>
+      <li>Choose <strong>Turn on</strong> for the location. Movena shows how many members will receive access and roughly how many Kisi seats that uses before you confirm.</li>
+    </ol>
+
+    <h2>What you need</h2>
+    <ul>
+      <li>A Kisi organization with an active subscription, installed Kisi hardware, and enough user seats for the members who'll hold access.</li>
+      <li>The Movena Access Control add-on, active for your participating locations.</li>
+      <li>Owner or manager access to your gym's settings in Movena.</li>
+    </ul>
+
+    <h2>Built to be trusted with your doors</h2>
+    <ul>
+      <li><strong>Continuous reconciliation.</strong> Changes apply within about a minute, Kisi's live events are processed as they arrive, and a nightly verification re-checks everything and repairs drift.</li>
+      <li><strong>Movena manages only what Movena created.</strong> Users, groups and access set up directly in Kisi are never modified or removed.</li>
+      <li><strong>Capacity checked first.</strong> Any change that would add Kisi users in bulk shows its seat impact up front — and is refused rather than half-applied if seats run short.</li>
+      <li><strong>Credentials protected.</strong> Your API key is verified, encrypted at rest, and never shown again; event updates from Kisi are individually signed and verified.</li>
+    </ul>
+
+    <h2>Get started</h2>
+    <p>Already on Movena? Write to <a href="mailto:support@movena.com.au">support@movena.com.au</a> and we'll activate Access Control for your locations. New to Movena? Say hello at <a href="mailto:info@movena.com.au">info@movena.com.au</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <a href="/" class="logomark" style="font-size:16px">Movena<span class="dot"></span></a>
+    <a href="/platform">Platform</a>
+    <a href="/members">For members</a>
+    <a href="/help">Help</a>
+    <a href="/legal/privacy">Privacy</a>
+    <a href="/legal/terms">Terms</a>
+    <span class="foot-right">Movena Pty Ltd (ACN 700 863 618)</span>
+  </div>
+</footer>
+
+</body>
+</html>
