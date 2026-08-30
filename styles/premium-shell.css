@@ -1,0 +1,205 @@
+/* Shared shell primitives used by the Slice 2 header, footer and homepage. */
+
+.site-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-shell > main {
+  flex: 1;
+}
+
+.visually-hidden:focus {
+  width: auto;
+  height: auto;
+  clip: auto;
+  clip-path: none;
+  overflow: visible;
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.5rem;
+  background: var(--site-white);
+  color: var(--site-ink);
+  box-shadow: 0 8px 30px rgba(12, 28, 44, 0.18);
+}
+
+header.site-header {
+  padding: 0;
+  background: rgba(252, 251, 248, 0.94);
+  border-bottom-color: rgba(16, 24, 32, 0.1);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+}
+
+.site-header .site-header__inner {
+  max-width: var(--container-site);
+  min-height: 76px;
+  padding-inline: var(--site-gutter);
+  gap: clamp(1rem, 2.5vw, 2.25rem);
+}
+
+.site-logo {
+  flex: none;
+  gap: 0.08em;
+  color: var(--site-ink);
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+}
+
+.site-logo .dot {
+  width: 0.34rem;
+  height: 0.34rem;
+  margin-bottom: 0.28rem;
+  background: var(--site-blue);
+}
+
+.site-header .site-navigation {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.3vw, 2rem);
+  margin-left: auto;
+}
+
+.site-header .site-navigation a {
+  padding: 0.35rem 0;
+  color: var(--site-ink-soft);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.site-header .site-navigation a:hover,
+.site-header .site-navigation a[aria-current="page"] {
+  color: var(--site-ink);
+}
+
+.site-header .site-navigation a::after {
+  height: 1px;
+  background: var(--site-blue);
+}
+
+.site-header .site-header__cta {
+  margin-left: 0;
+  padding: 0.65rem 1.05rem;
+  border: 1px solid var(--site-navy);
+  border-radius: var(--radius-control-premium);
+  background: var(--site-navy);
+  box-shadow: none;
+  color: var(--site-white);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.site-header .site-header__cta:hover {
+  border-color: var(--site-blue);
+  background: var(--site-blue);
+  box-shadow: none;
+}
+
+.site-header .site-header__back {
+  color: var(--site-ink-soft);
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+footer.site-footer {
+  margin: 0;
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  border-top: 0;
+  background: var(--site-navy);
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.site-footer .site-footer__inner {
+  max-width: var(--container-site);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem 3rem;
+  padding-inline: var(--site-gutter);
+  font-size: 0.8rem;
+}
+
+.site-footer .site-footer__logo {
+  color: var(--site-white);
+  font-size: 1.08rem;
+}
+
+.site-footer .site-footer__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem 1.6rem;
+}
+
+.site-footer .site-footer__navigation a,
+.site-footer .foot-right {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.site-footer .site-footer__navigation a {
+  transition: color 180ms var(--motion-standard);
+}
+
+.site-footer .site-footer__navigation a:hover {
+  color: var(--site-white);
+}
+
+.site-footer .foot-right {
+  margin-left: 0;
+  text-align: right;
+}
+
+@media (max-width: 840px) {
+  .site-header .site-header__inner {
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    padding-block: 0.8rem 0.65rem;
+  }
+
+  .site-header .site-navigation {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-left: 0;
+    padding-top: 0.55rem;
+    border-top: 1px solid rgba(16, 24, 32, 0.08);
+  }
+
+  .site-header .site-header__cta,
+  .site-header .site-header__back {
+    margin-left: auto;
+  }
+
+  .site-footer .site-footer__inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1.75rem;
+  }
+
+  .site-footer .foot-right {
+    max-width: 32rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header .site-header__inner {
+    padding-inline: 1.1rem;
+  }
+
+  .site-header .site-navigation a {
+    font-size: 0.8rem;
+  }
+
+  .site-header .site-header__cta {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.78rem;
+  }
+}

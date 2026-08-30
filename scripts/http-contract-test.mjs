@@ -71,6 +71,24 @@ function canonicalFromHtml(html) {
 async function runContract() {
   await waitForServer();
 
+  const homepageResponse = await fetch(`${origin}/`);
+  const homepageHtml = await homepageResponse.text();
+  assert.match(homepageHtml, /class="site-shell home-page"/);
+  assert.match(homepageHtml, /class="nav site-header"/);
+  assert.match(homepageHtml, /class="site-footer"/);
+  assert.match(
+    homepageHtml,
+    /The gym platform that remembers the training\./,
+  );
+
+  const primaryNavigation = homepageHtml.match(
+    /<nav class="nav-links site-navigation" aria-label="Primary">([\s\S]*?)<\/nav>/,
+  )?.[1];
+  assert.ok(primaryNavigation, "homepage should render the shared navigation");
+  for (const href of ["/platform/", "/members/", "/help/"]) {
+    assert.match(primaryNavigation, new RegExp(`href="${href}"`));
+  }
+
   for (const route of routes) {
     const response = await fetch(`${origin}${route}`, { redirect: "manual" });
     assert.equal(response.status, 200, `${route} should return 200`);

@@ -16,8 +16,9 @@ type SiteHeaderProps = MarketingHeaderProps | DocumentHeaderProps;
 
 function Logo() {
   return (
-    <Link href="/" className="logomark">
-      Movena<span className="dot" />
+    <Link href="/" className="logomark site-logo">
+      <span>Movena</span>
+      <span className="dot" aria-hidden="true" />
     </Link>
   );
 }
@@ -25,10 +26,10 @@ function Logo() {
 export function SiteHeader(props: SiteHeaderProps) {
   if (props.variant === "document") {
     return (
-      <header className="nav">
-        <div className="wrap nav-row">
+      <header className="nav site-header">
+        <div className="wrap nav-row site-header__inner">
           <Logo />
-          <Link href="/" className="back">
+          <Link href="/" className="back site-header__back">
             ← Back to site
           </Link>
         </div>
@@ -37,10 +38,10 @@ export function SiteHeader(props: SiteHeaderProps) {
   }
 
   return (
-    <header className="nav">
-      <div className="wrap nav-row">
+    <header className="nav site-header">
+      <div className="wrap nav-row site-header__inner">
         <Logo />
-        <nav className="nav-links" aria-label="Primary">
+        <nav className="nav-links site-navigation" aria-label="Primary">
           <Link
             href="/platform/"
             aria-current={
@@ -59,7 +60,10 @@ export function SiteHeader(props: SiteHeaderProps) {
           </Link>
           <Link href="/help/">Help</Link>
         </nav>
-        <a className="btn btn-primary btn-sm nav-cta" href={props.cta.href}>
+        <a
+          className="btn btn-primary btn-sm nav-cta site-header__cta"
+          href={props.cta.href}
+        >
           {props.cta.label}
         </a>
       </div>

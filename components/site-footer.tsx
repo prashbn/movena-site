@@ -8,16 +8,19 @@ type SiteFooterProps = {
 
 export function SiteFooter({ marketing = false }: SiteFooterProps) {
   return (
-    <footer>
-      <div className="wrap foot-row">
-        <Link href="/" className="logomark" style={{ fontSize: 16 }}>
-          Movena<span className="dot" />
+    <footer className="site-footer">
+      <div className="wrap foot-row site-footer__inner">
+        <Link href="/" className="logomark site-logo site-footer__logo">
+          <span>Movena</span>
+          <span className="dot" aria-hidden="true" />
         </Link>
-        <Link href="/platform/">Platform</Link>
-        <Link href="/members/">For members</Link>
-        <Link href="/help/">Help</Link>
-        <Link href="/legal/privacy/">Privacy</Link>
-        <Link href="/legal/terms/">Terms</Link>
+        <nav className="site-footer__navigation" aria-label="Footer">
+          <Link href="/platform/">Platform</Link>
+          <Link href="/members/">For members</Link>
+          <Link href="/help/">Help</Link>
+          <Link href="/legal/privacy/">Privacy</Link>
+          <Link href="/legal/terms/">Terms</Link>
+        </nav>
         <span className="foot-right">
           {siteConfig.legalName} (ACN {siteConfig.acn})
           {marketing ? " · Made in Australia" : ""}

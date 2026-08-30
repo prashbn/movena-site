@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { MarketingPageShell } from "@/components/page-shells";
+import { HomePageShell } from "@/components/page-shells";
 import { createRouteMetadata } from "@/lib/metadata";
 import { routeByPath } from "@/lib/routes";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = createRouteMetadata(route);
 
 export default function HomePage() {
   return (
-    <MarketingPageShell
+    <HomePageShell
       source={route.source}
       cta={{
         label: "Talk to us",

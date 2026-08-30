@@ -13,4 +13,40 @@
   --radius-card: var(--radius);
   --radius-control: var(--radius-sm);
   --motion-standard: var(--ease);
+
+  /* Slice 2: small shared visual system for the premium site shell. */
+  --site-paper: #f6f4ef;
+  --site-paper-bright: #fcfbf8;
+  --site-ink: #101820;
+  --site-ink-soft: #4c555d;
+  --site-ink-faint: #737b82;
+  --site-navy: #0c1c2c;
+  --site-blue: #3158e2;
+  --site-blue-deep: #2545bd;
+  --site-sage: #dfe8df;
+  --site-sand: #e9e2d7;
+  --site-line: rgba(16, 24, 32, 0.14);
+  --site-line-light: rgba(255, 255, 255, 0.16);
+  --site-white: #ffffff;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --container-text: 760px;
+  --container-site: 1180px;
+  --container-media: 1340px;
+  --site-gutter: clamp(1.25rem, 4vw, 3.5rem);
+
+  --radius-control-premium: 999px;
+  --radius-panel-premium: 1.5rem;
+  --radius-media-premium: 2rem;
+  --shadow-media-premium: 0 34px 80px -48px rgba(12, 28, 44, 0.58);
 }

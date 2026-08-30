@@ -12,20 +12,36 @@ type MarketingPageShellProps = {
     | { label: "Get help"; href: "/help/" };
 };
 
+export function HomePageShell({
+  source,
+  cta,
+}: Pick<MarketingPageShellProps, "source" | "cta">) {
+  return (
+    <div className="site-shell home-page">
+      <a className="visually-hidden" href="#main">
+        Skip to content
+      </a>
+      <SiteHeader cta={cta} />
+      <LegacyMain source={source} />
+      <SiteFooter marketing />
+    </div>
+  );
+}
+
 export function MarketingPageShell({
   source,
   activePath,
   cta,
 }: MarketingPageShellProps) {
   return (
-    <>
+    <div className="site-shell marketing-page">
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>
       <SiteHeader activePath={activePath} cta={cta} />
       <LegacyMain source={source} />
       <SiteFooter marketing />
-    </>
+    </div>
   );
 }
 
@@ -35,7 +51,7 @@ type DocumentPageShellProps = {
 
 export function DocumentPageShell({ source }: DocumentPageShellProps) {
   return (
-    <div className="doc">
+    <div className="doc site-shell document-page">
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>
