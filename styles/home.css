@@ -28,20 +28,20 @@
 }
 
 .home-page h1 {
-  max-width: 11ch;
-  margin-top: 1.35rem;
-  font-size: clamp(3.25rem, 7.1vw, 6.25rem);
-  font-weight: 570;
-  line-height: 0.94;
-  letter-spacing: -0.065em;
+  max-width: 13ch;
+  margin-top: 1.1rem;
+  font-size: clamp(2.9rem, 4.6vw, 4.25rem);
+  font-weight: 580;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
 }
 
 .home-page h2 {
   max-width: 19ch;
-  font-size: clamp(2.45rem, 5.2vw, 4.8rem);
-  font-weight: 540;
-  line-height: 0.99;
-  letter-spacing: -0.055em;
+  font-size: clamp(2.15rem, 3.8vw, 3.65rem);
+  font-weight: 550;
+  line-height: 1.03;
+  letter-spacing: -0.048em;
 }
 
 .home-page h3 {
@@ -75,18 +75,18 @@
 
 .home-page .sec-lede {
   max-width: 50ch;
-  margin-top: 1.4rem;
-  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  margin-top: 1.15rem;
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
   line-height: 1.55;
 }
 
 .home-page section {
-  padding-top: clamp(6.5rem, 12vw, 10rem);
+  padding-top: clamp(5rem, 8vw, 7.5rem);
 }
 
 .home-page .sec-kicker {
   gap: 1rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.4rem;
 }
 
 .home-page .sec-num {
@@ -94,10 +94,10 @@
 }
 
 .home-page .btn {
-  min-height: 3.25rem;
-  padding: 0.85rem 1.35rem;
+  min-height: 2.85rem;
+  padding: 0.68rem 1.15rem;
   border-radius: var(--radius-control-premium);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 610;
 }
 
@@ -138,13 +138,13 @@
 /* Hero */
 
 .home-page .hero {
-  padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(5rem, 9vw, 7.5rem);
+  padding: clamp(3.75rem, 6vw, 5.75rem) 0 clamp(3.75rem, 6vw, 5.5rem);
   background: var(--site-paper);
 }
 
 .home-page .hero .split {
-  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
 
@@ -159,28 +159,28 @@
 }
 
 .home-page .hero .lede {
-  max-width: 35ch;
-  margin-top: 1.8rem;
+  max-width: 39ch;
+  margin-top: 1.4rem;
   color: var(--site-ink-soft);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-size: clamp(1.05rem, 1.55vw, 1.22rem);
   line-height: 1.5;
 }
 
 .home-page .hero-ctas {
   gap: 0.75rem;
-  margin-top: 2.25rem;
+  margin-top: 1.75rem;
 }
 
 .home-page .hero-note {
-  margin-top: 1.35rem;
+  margin-top: 1.05rem;
   color: var(--site-ink-faint);
   font-size: 0.78rem;
 }
 
 .home-page .hero .shot-portrait {
-  aspect-ratio: 4 / 5.2;
+  aspect-ratio: 4 / 5.05;
   border: 0;
-  border-radius: clamp(1.5rem, 3vw, 2.75rem);
+  border-radius: clamp(1.35rem, 2.5vw, 2.25rem);
   background: var(--site-sand);
   box-shadow: var(--shadow-media-premium);
 }
@@ -195,7 +195,7 @@
 }
 
 .home-page .hero > .wrap > .frame {
-  margin-top: clamp(4.5rem, 8vw, 7.5rem);
+  margin-top: clamp(3.5rem, 5vw, 5rem);
 }
 
 /* Existing approved interface illustration; no UI or claims added in Slice 2. */
@@ -256,7 +256,7 @@
 .home-page .fact {
   flex: 1 1 240px;
   justify-content: center;
-  min-height: 4.75rem;
+  min-height: 4rem;
   padding: 1rem 1.5rem;
   border-right: 1px solid var(--site-line-light);
   color: rgba(255, 255, 255, 0.72);
@@ -276,14 +276,14 @@
 
 .home-page #loop .steps {
   gap: 0;
-  margin-top: clamp(3.5rem, 7vw, 5.75rem);
+  margin-top: clamp(2.75rem, 4.5vw, 4rem);
   border-top: 1px solid var(--site-line);
   border-bottom: 1px solid var(--site-line);
 }
 
 .home-page #loop .card {
   min-width: 0;
-  padding: clamp(2rem, 3.5vw, 3.25rem);
+  padding: clamp(1.75rem, 2.75vw, 2.5rem);
   border: 0;
   border-right: 1px solid var(--site-line);
   border-radius: 0;
@@ -312,7 +312,7 @@
 
 .home-page #loop .mini {
   min-height: 8.5rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding: 1.1rem;
   border-color: rgba(16, 24, 32, 0.1);
   border-radius: 0.85rem;
@@ -320,7 +320,7 @@
 }
 
 .home-page .wrap-band[style*="margin-top:80px"] {
-  margin-top: clamp(5rem, 10vw, 9rem) !important;
+  margin-top: clamp(4rem, 7vw, 6.5rem) !important;
 }
 
 .home-page .shot {
@@ -342,7 +342,7 @@
 .home-page #platform .featgrid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
-  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-top: clamp(2.5rem, 4vw, 3.75rem);
   padding: 0;
   border-top: 1px solid var(--site-line);
   border-radius: 0;
@@ -350,8 +350,8 @@
 }
 
 .home-page #platform .feat {
-  min-height: 9rem;
-  padding: 1.75rem 1.5rem 2rem 0;
+  min-height: 7.75rem;
+  padding: 1.5rem 1.5rem 1.65rem 0;
   border: 0;
   border-bottom: 1px solid var(--site-line);
   border-radius: 0;
@@ -392,14 +392,14 @@
 /* Disciplines and workout builder */
 
 .home-page #disciplines {
-  margin-top: clamp(6rem, 12vw, 10rem);
-  padding: clamp(6rem, 10vw, 9rem) 0;
+  margin-top: clamp(4.5rem, 8vw, 7rem);
+  padding: clamp(5rem, 7vw, 6.75rem) 0;
   background: var(--site-sage);
 }
 
 .home-page #disciplines .chips {
   gap: 0.55rem;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 
 .home-page #disciplines .chip-d {
@@ -417,7 +417,7 @@
 }
 
 .home-page #disciplines .shot {
-  margin-top: clamp(3rem, 6vw, 5rem) !important;
+  margin-top: clamp(2.5rem, 4vw, 3.75rem) !important;
 }
 
 .home-page #disciplines .frame {
@@ -432,7 +432,7 @@
 
 .home-page #retention {
   margin-top: 0;
-  padding: clamp(6rem, 11vw, 9rem) 0;
+  padding: clamp(5rem, 8vw, 7rem) 0;
   background: var(--site-navy);
   color: var(--site-white);
 }
@@ -452,7 +452,7 @@
 }
 
 .home-page #retention .ladder {
-  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-top: clamp(2.5rem, 4vw, 3.75rem);
   padding: 0;
   background: transparent;
   box-shadow: none;
@@ -464,7 +464,7 @@
 
 .home-page #retention .steps {
   gap: 0;
-  margin-top: 3.5rem !important;
+  margin-top: 2.75rem !important;
   border-top: 1px solid var(--site-line-light);
 }
 
@@ -499,7 +499,7 @@
 /* Member and privacy statements */
 
 .home-page #members {
-  padding-block: clamp(7rem, 14vw, 12rem);
+  padding-block: clamp(5rem, 8vw, 7rem);
 }
 
 .home-page #members h2 {
@@ -508,7 +508,7 @@
 
 .home-page .band {
   margin: 0;
-  padding: clamp(6rem, 11vw, 9rem) 0;
+  padding: clamp(5rem, 8vw, 7rem) 0;
   border: 0;
   background: var(--site-sand);
 }
@@ -519,7 +519,7 @@
 
 .home-page .bound-grid {
   gap: 0;
-  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-top: clamp(2.5rem, 4vw, 3.75rem);
   border-top: 1px solid var(--site-line);
 }
 
@@ -551,14 +551,14 @@
 }
 
 .home-page .wrap-band[style*="margin-top:96px"] {
-  margin-top: clamp(5rem, 10vw, 9rem) !important;
+  margin-top: clamp(4rem, 7vw, 6.5rem) !important;
 }
 
 /* Closing CTA */
 
 .home-page .close-cta {
-  margin-top: clamp(5rem, 10vw, 9rem);
-  padding: clamp(6rem, 12vw, 10rem) 0;
+  margin-top: clamp(4rem, 7vw, 6.5rem);
+  padding: clamp(5rem, 8vw, 7rem) 0;
   background: var(--site-blue);
   text-align: left;
 }
@@ -577,7 +577,7 @@
   max-width: 45ch;
   margin: 1.5rem 0 2rem;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .home-page .close-cta .btn-primary {
@@ -606,7 +606,7 @@
 @media (max-width: 900px) {
   .home-page .hero .split {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .home-page .hero .split > div:first-child {
@@ -614,7 +614,7 @@
   }
 
   .home-page .hero .shot-portrait {
-    max-height: 42rem;
+    max-height: 32rem;
     aspect-ratio: 4 / 3;
   }
 
@@ -665,19 +665,32 @@
 
 @media (max-width: 640px) {
   .home-page h1 {
-    font-size: clamp(3rem, 15vw, 4.25rem);
+    font-size: clamp(2.65rem, 12vw, 3.25rem);
   }
 
   .home-page h2 {
-    font-size: clamp(2.25rem, 11vw, 3.4rem);
+    font-size: clamp(2.05rem, 9.5vw, 2.75rem);
   }
 
   .home-page section {
-    padding-top: 6rem;
+    padding-top: 4.75rem;
   }
 
   .home-page .hero {
-    padding-top: 4rem;
+    padding-top: 2.75rem;
+  }
+
+  .home-page .hero .lede {
+    font-size: 1.04rem;
+  }
+
+  .home-page .hero-ctas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-page .hero-ctas > :first-child {
+    grid-column: 1 / -1;
   }
 
   .home-page .hero-ctas .btn {
@@ -685,7 +698,7 @@
   }
 
   .home-page .hero .shot-portrait {
-    aspect-ratio: 4 / 4.8;
+    aspect-ratio: 4 / 4.5;
   }
 
   .home-page .facts-in {
@@ -741,7 +754,17 @@
   }
 
   .home-page .close-cta {
-    margin-top: 5rem;
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-page .hero-ctas {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .hero-ctas > :first-child {
+    grid-column: auto;
   }
 }
 

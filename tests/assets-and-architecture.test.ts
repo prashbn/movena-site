@@ -73,3 +73,13 @@ test("the baseline has no runtime application or marketing backend surface", () 
   assert.match(readFileSync("next.config.ts", "utf8"), /trailingSlash:\s*true/);
   assert.equal(readFileSync("CNAME", "utf8"), "movena.com.au");
 });
+
+test("the repository has one consistent Node 24 runtime contract", () => {
+  const packageJson = JSON.parse(readFileSync("package.json", "utf8")) as {
+    engines?: { node?: string };
+  };
+
+  assert.equal(packageJson.engines?.node, "24.x");
+  assert.equal(readFileSync(".nvmrc", "utf8").trim(), "24");
+  assert.equal(existsSync(".node-version"), false);
+});
