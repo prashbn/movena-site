@@ -10,10 +10,6 @@ export const metadata: Metadata = createRouteMetadata(route);
 
 export default function MembersPage() {
   return (
-    <MarketingPageShell
-      source={route.source}
-      activePath="/members/"
-      cta={{ label: "Get help", href: "/help/" }}
-    />
+    <MarketingPageShell source={route.source} activePath="/members/" />
   );
 }

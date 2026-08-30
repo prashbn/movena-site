@@ -18,12 +18,7 @@ export default function NotFoundPage() {
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>
-      <SiteHeader
-        cta={{
-          label: "Talk to us",
-          href: "mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20enquiry",
-        }}
-      />
+      <SiteHeader />
       <main id="main">
         <div className="hero">
           <div className="wrap">

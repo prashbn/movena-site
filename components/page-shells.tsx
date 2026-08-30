@@ -1,4 +1,6 @@
-import type { LegacySource } from "@/lib/routes";
+import type { ReactNode } from "react";
+
+import type { LegacySource, PublicPath } from "@/lib/routes";
 
 import { LegacyMain } from "@/components/legacy-main";
 import { SiteFooter } from "@/components/site-footer";
@@ -6,22 +8,18 @@ import { SiteHeader } from "@/components/site-header";
 
 type MarketingPageShellProps = {
   source: LegacySource;
-  activePath?: "/platform/" | "/members/";
-  cta:
-    | { label: "Talk to us"; href: string }
-    | { label: "Get help"; href: "/help/" };
+  activePath?: PublicPath;
 };
 
 export function HomePageShell({
   source,
-  cta,
-}: Pick<MarketingPageShellProps, "source" | "cta">) {
+}: Pick<MarketingPageShellProps, "source">) {
   return (
     <div className="site-shell home-page">
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>
-      <SiteHeader cta={cta} />
+      <SiteHeader />
       <LegacyMain source={source} />
       <SiteFooter marketing />
     </div>
@@ -31,15 +29,35 @@ export function HomePageShell({
 export function MarketingPageShell({
   source,
   activePath,
-  cta,
 }: MarketingPageShellProps) {
   return (
     <div className="site-shell marketing-page">
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>
-      <SiteHeader activePath={activePath} cta={cta} />
+      <SiteHeader activePath={activePath} />
       <LegacyMain source={source} />
+      <SiteFooter marketing />
+    </div>
+  );
+}
+
+type CommercialPageShellProps = {
+  activePath: "/pricing/" | "/product-comparison/";
+  children: ReactNode;
+};
+
+export function CommercialPageShell({
+  activePath,
+  children,
+}: CommercialPageShellProps) {
+  return (
+    <div className="site-shell commercial-page">
+      <a className="visually-hidden" href="#main">
+        Skip to content
+      </a>
+      <SiteHeader activePath={activePath} />
+      <main id="main">{children}</main>
       <SiteFooter marketing />
     </div>
   );

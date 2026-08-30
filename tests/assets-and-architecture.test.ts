@@ -59,7 +59,6 @@ test("the baseline has no runtime application or marketing backend surface", () 
     /\bcookies\s*\(/,
     /\bheaders\s*\(/,
     /\brevalidate\s*=/,
-    /app\.movena\.com\.au/,
   ];
 
   for (const sourceFile of sourceFiles) {
@@ -72,6 +71,11 @@ test("the baseline has no runtime application or marketing backend surface", () 
   assert.match(readFileSync("app/layout.tsx", "utf8"), /force-static/);
   assert.match(readFileSync("next.config.ts", "utf8"), /trailingSlash:\s*true/);
   assert.equal(readFileSync("CNAME", "utf8"), "movena.com.au");
+
+  const saasReferences = sourceFiles.filter((sourceFile) =>
+    readFileSync(sourceFile, "utf8").includes("app.movena.com.au"),
+  );
+  assert.deepEqual(saasReferences, ["lib/site-config.ts"]);
 });
 
 test("the repository has one consistent Node 24 runtime contract", () => {

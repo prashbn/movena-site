@@ -1,6 +1,6 @@
 import { siteConfig } from "./site-config.ts";
 
-export const publicRoutes = [
+export const legacyRoutes = [
   {
     path: "/",
     source: "index.html",
@@ -65,9 +65,28 @@ export const publicRoutes = [
   },
 ] as const;
 
+export const commercialRoutes = [
+  {
+    path: "/pricing/",
+    title: "Pricing — Movena",
+    description:
+      "Everything you need to run one great gym. Built for growing fitness businesses. For fitness organisations that need advanced analytics, deeper control and organisation-wide operations.",
+    kind: "marketing",
+  },
+  {
+    path: "/product-comparison/",
+    title: "Product comparison — Movena",
+    description:
+      "Compare Movena One, Movena Collective and Movena Enterprise.",
+    kind: "marketing",
+  },
+] as const;
+
+export const publicRoutes = [...legacyRoutes, ...commercialRoutes] as const;
+
 export type PublicRoute = (typeof publicRoutes)[number];
 export type PublicPath = PublicRoute["path"];
-export type LegacySource = PublicRoute["source"];
+export type LegacySource = (typeof legacyRoutes)[number]["source"];
 
 export function withTrailingSlash(path: string): string {
   if (path === "/") return path;
@@ -78,12 +97,14 @@ export function canonicalUrl(path: string): string {
   return new URL(withTrailingSlash(path), `${siteConfig.origin}/`).toString();
 }
 
-export function routeByPath(path: PublicPath): PublicRoute {
+export function routeByPath<Path extends PublicPath>(
+  path: Path,
+): Extract<PublicRoute, { path: Path }> {
   const route = publicRoutes.find((candidate) => candidate.path === path);
 
   if (!route) {
     throw new Error(`Unknown public route: ${path}`);
   }
 
-  return route;
+  return route as Extract<PublicRoute, { path: Path }>;
 }

@@ -15,6 +15,8 @@ const routes = [
   "/integrations/kisi/",
   "/legal/privacy/",
   "/legal/terms/",
+  "/pricing/",
+  "/product-comparison/",
 ];
 
 const frozenDocumentMarkers = new Map([
@@ -82,11 +84,48 @@ async function runContract() {
   );
 
   const primaryNavigation = homepageHtml.match(
-    /<nav class="nav-links site-navigation" aria-label="Primary">([\s\S]*?)<\/nav>/,
+    /<nav class="site-navigation" aria-label="Primary">([\s\S]*?)<\/nav>/,
   )?.[1];
   assert.ok(primaryNavigation, "homepage should render the shared navigation");
-  for (const href of ["/platform/", "/members/", "/help/"]) {
+  for (const href of [
+    "/platform/",
+    "/pricing/",
+    "/product-comparison/",
+    "/members/",
+    "/help/",
+  ]) {
     assert.match(primaryNavigation, new RegExp(`href="${href}"`));
+  }
+  assert.match(
+    homepageHtml,
+    /href="https:\/\/app\.movena\.com\.au\/sign-in"[^>]*>Sign in<\/a>/,
+  );
+
+  const pricingHtml = await (await fetch(`${origin}/pricing/`)).text();
+  for (const marker of [
+    "A$129 / month + GST",
+    "A$349 / month + GST",
+    "Access Control Integration",
+    "+A$49 / location / month + GST",
+    "Movena integration fee only. Hardware, installation and access-control provider subscriptions are purchased separately.",
+    "+A$99 / brand / month + GST",
+    "Optional usage-based",
+    "Plus a 0.30% platform administration fee on applicable Movena-processed payments.",
+  ]) {
+    assert.match(pricingHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  const comparisonHtml = await (
+    await fetch(`${origin}/product-comparison/`)
+  ).text();
+  for (const marker of [
+    "Owners, managers &amp; coaches",
+    "Native Retail / Shop",
+    "Advanced analytics",
+    "Organisation-wide insights",
+    "Enterprise onboarding/support",
+  ]) {
+    assert.match(comparisonHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 
   for (const route of routes) {

@@ -5,6 +5,7 @@ import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
 import { createRouteMetadata } from "../lib/metadata.ts";
 import {
   canonicalUrl,
+  legacyRoutes,
   publicRoutes,
   withTrailingSlash,
 } from "../lib/routes.ts";
@@ -17,9 +18,11 @@ const expectedPaths = [
   "/integrations/kisi/",
   "/legal/privacy/",
   "/legal/terms/",
+  "/pricing/",
+  "/product-comparison/",
 ];
 
-test("the explicit route manifest contains exactly the seven production routes", () => {
+test("the explicit route manifest contains the seven legacy and two commercial routes", () => {
   assert.deepEqual(
     publicRoutes.map((route) => route.path),
     expectedPaths,
@@ -46,7 +49,7 @@ test("canonical path and URL generation preserve trailing slashes", () => {
 test("legacy internal links are rewritten to canonical slash routes", () => {
   const knownPaths = new Set(expectedPaths);
 
-  for (const route of publicRoutes) {
+  for (const route of legacyRoutes) {
     const markup = readLegacyMainMarkup(route.source);
     const hrefs = Array.from(markup.matchAll(/href="([^"]+)"/g), (match) =>
       match[1],

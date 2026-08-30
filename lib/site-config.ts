@@ -7,6 +7,9 @@ export const siteConfig = {
   language: "en-AU",
   email: "info@movena.com.au",
   supportEmail: "support@movena.com.au",
+  businessSignInUrl: "https://app.movena.com.au/sign-in",
+  contactHref:
+    "mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20enquiry",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

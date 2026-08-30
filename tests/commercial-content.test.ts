@@ -1,0 +1,129 @@
+import assert from "node:assert/strict";
+import { existsSync, readFileSync } from "node:fs";
+import test from "node:test";
+
+import {
+  movenaPackages,
+  optionalAddOns,
+  packageComparisonRows,
+  platformAdministrationFee,
+} from "../lib/commercial.ts";
+import { siteConfig } from "../lib/site-config.ts";
+
+const expectedComparisonRows = [
+  ["Price", "A$129/mo + GST", "A$349/mo + GST", "Custom"],
+  ["Locations", "1", "Up to 3", "Custom"],
+  ["Members", "Up to 150", "Up to 500", "Custom"],
+  ["Owners, managers & coaches", "Included", "Included", "Included"],
+  ["Membership & billing", "Included", "Included", "Included"],
+  ["Timetable & bookings", "Included", "Included", "Included"],
+  ["Member app", "Included", "Included", "Included"],
+  ["Programming", "Included", "Included", "Included"],
+  ["Messaging", "Included", "Included", "Included"],
+  ["Check-in & waivers", "Included", "Included", "Included"],
+  ["Core reporting", "Included", "Included", "Included"],
+  ["Native Retail / Shop", "—", "Included", "Included"],
+  ["Multi-location management", "—", "Included", "Included"],
+  ["Advanced analytics", "—", "—", "Included"],
+  ["Organisation-wide insights", "—", "—", "Included"],
+  ["Enterprise integrations", "—", "—", "Tailored"],
+  ["Enterprise onboarding/support", "—", "—", "Tailored"],
+] as const;
+
+test("locked package prices and comparison allocation remain exact", () => {
+  assert.deepEqual(
+    movenaPackages.map(({ name, price }) => [name, price]),
+    [
+      ["Movena One", "A$129 / month + GST"],
+      ["Movena Collective", "A$349 / month + GST"],
+      ["Movena Enterprise", "Custom"],
+    ],
+  );
+  assert.deepEqual(packageComparisonRows, expectedComparisonRows);
+
+  const [one, collective, enterprise] = movenaPackages;
+  assert.match(one.highlights.join(" "), /managers, staff \/ coaches included/);
+  assert.doesNotMatch(one.highlights.join(" "), /Native Retail \/ Shop/);
+  assert.match(collective.highlights.join(" "), /Native Retail \/ Shop/);
+  assert.match(
+    enterprise.highlights.join(" "),
+    /Advanced analytics & organisation insights/,
+  );
+
+  const commercialModel = JSON.stringify({
+    movenaPackages,
+    optionalAddOns,
+    packageComparisonRows,
+  });
+  assert.doesNotMatch(commercialModel, /unlimited locations/i);
+  assert.doesNotMatch(commercialModel, /unlimited members/i);
+  assert.doesNotMatch(commercialModel, /Shopify/i);
+});
+
+test("locked optional add-ons and platform fee remain exact", () => {
+  assert.deepEqual(optionalAddOns, [
+    {
+      name: "Access Control Integration",
+      price: "+A$49 / location / month + GST",
+      detail:
+        "Movena integration fee only. Hardware, installation and access-control provider subscriptions are purchased separately.",
+    },
+    {
+      name: "Branded App",
+      price: "+A$99 / brand / month + GST",
+    },
+    {
+      name: "AI",
+      price: "Optional usage-based",
+    },
+  ]);
+  assert.equal(
+    platformAdministrationFee,
+    "Plus a 0.30% platform administration fee on applicable Movena-processed payments.",
+  );
+});
+
+test("business sign-in is an external link with no marketing auth route", () => {
+  assert.equal(
+    siteConfig.businessSignInUrl,
+    "https://app.movena.com.au/sign-in",
+  );
+  assert.equal(existsSync("app/sign-in"), false);
+  assert.equal(existsSync("app/login"), false);
+
+  const header = readFileSync("components/site-header.tsx", "utf8");
+  assert.match(header, /businessSignInUrl/);
+  assert.doesNotMatch(header, /fetch\s*\(/);
+});
+
+test("FAQ remains reserved and has no route or supplied content", () => {
+  assert.equal(existsSync("app/faq"), false);
+});
+
+test("desktop and mobile commercial navigation retain accessible controls", () => {
+  const header = readFileSync("components/site-header.tsx", "utf8");
+  const shellCss = readFileSync("styles/premium-shell.css", "utf8");
+  const commercialCss = readFileSync("styles/commercial.css", "utf8");
+
+  for (const label of [
+    "For businesses",
+    "For members",
+    "Platform",
+    "Pricing",
+    "Product comparison",
+    "Integrations",
+    "Help",
+    "Sign in",
+    "Talk to us",
+  ]) {
+    assert.match(header, new RegExp(label));
+  }
+
+  assert.match(header, /aria-expanded=/);
+  assert.match(header, /aria-controls=/);
+  assert.match(header, /event\.key !== "Escape"/);
+  assert.match(shellCss, /@media \(max-width: 840px\)/);
+  assert.match(commercialCss, /@media \(max-width: 760px\)/);
+  assert.match(commercialCss, /@media \(max-width: 520px\)/);
+  assert.match(commercialCss, /data-plan/);
+});
