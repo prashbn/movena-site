@@ -80,6 +80,13 @@ export const commercialRoutes = [
       "Movena integrations for accounting, access control, health and fitness data, payments and billing infrastructure.",
     kind: "marketing",
   },
+  {
+    path: "/app/",
+    title: "Movena member app — Movena",
+    description:
+      "Native Movena member apps for iPhone and Android. Book classes, check in, follow your program, and watch a training history build with every session.",
+    kind: "marketing",
+  },
 ] as const;
 
 export const publicRoutes = [...legacyRoutes, ...commercialRoutes] as const;

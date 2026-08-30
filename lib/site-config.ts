@@ -8,6 +8,13 @@ export const siteConfig = {
   email: "info@movena.com.au",
   supportEmail: "support@movena.com.au",
   businessSignInUrl: "https://app.movena.com.au/sign-in",
+  memberApp: {
+    path: "/app/",
+    url: "https://movena.com.au/app/",
+    appStoreUrl: "https://apps.apple.com/au/app/movena/id6770032378",
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=au.com.movena.member&pli=1",
+  },
   contactHref:
     "mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20enquiry",
 } as const;

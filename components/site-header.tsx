@@ -25,7 +25,8 @@ const businessLinks = [
 ] as const;
 
 const memberLinks = [
-  { href: "/members/", label: "For members" },
+  { href: "/members/", label: "Member experience" },
+  { href: "/app/", label: "Download the app" },
   { href: "/help/", label: "Help" },
 ] as const;
 
@@ -62,27 +63,36 @@ function NavigationLink({
 
 export function SiteHeader(props: SiteHeaderProps) {
   const [businessOpen, setBusinessOpen] = useState(false);
+  const [memberOpen, setMemberOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const businessMenuId = useId();
+  const memberMenuId = useId();
   const mobileMenuId = useId();
   const businessMenuRef = useRef<HTMLDivElement>(null);
+  const memberMenuRef = useRef<HTMLDivElement>(null);
   const businessButtonRef = useRef<HTMLButtonElement>(null);
+  const memberButtonRef = useRef<HTMLButtonElement>(null);
   const mobileButtonRef = useRef<HTMLButtonElement>(null);
   const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
   const activePath = props.variant === "document" ? undefined : props.activePath;
 
   useEffect(() => {
-    if (!businessOpen) return;
+    if (!businessOpen && !memberOpen) return;
 
     function handlePointerDown(event: PointerEvent) {
-      if (!businessMenuRef.current?.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (
+        !businessMenuRef.current?.contains(target) &&
+        !memberMenuRef.current?.contains(target)
+      ) {
         setBusinessOpen(false);
+        setMemberOpen(false);
       }
     }
 
     document.addEventListener("pointerdown", handlePointerDown);
     return () => document.removeEventListener("pointerdown", handlePointerDown);
-  }, [businessOpen]);
+  }, [businessOpen, memberOpen]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -90,7 +100,7 @@ export function SiteHeader(props: SiteHeaderProps) {
   }, [mobileOpen]);
 
   useEffect(() => {
-    if (!businessOpen && !mobileOpen) return;
+    if (!businessOpen && !memberOpen && !mobileOpen) return;
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
@@ -98,6 +108,9 @@ export function SiteHeader(props: SiteHeaderProps) {
       if (mobileOpen) {
         setMobileOpen(false);
         mobileButtonRef.current?.focus();
+      } else if (memberOpen) {
+        setMemberOpen(false);
+        memberButtonRef.current?.focus();
       } else {
         setBusinessOpen(false);
         businessButtonRef.current?.focus();
@@ -106,7 +119,7 @@ export function SiteHeader(props: SiteHeaderProps) {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [businessOpen, mobileOpen]);
+  }, [businessOpen, memberOpen, mobileOpen]);
 
   if (props.variant === "document") {
     return (
@@ -146,6 +159,7 @@ export function SiteHeader(props: SiteHeaderProps) {
               aria-controls={businessMenuId}
               onClick={() => {
                 setMobileOpen(false);
+                setMemberOpen(false);
                 setBusinessOpen((open) => !open);
               }}
             >
@@ -168,11 +182,38 @@ export function SiteHeader(props: SiteHeaderProps) {
               ))}
             </div>
           </div>
-          <NavigationLink
-            href="/members/"
-            label="For members"
-            activePath={activePath}
-          />
+          <div className="site-member-menu" ref={memberMenuRef}>
+            <button
+              ref={memberButtonRef}
+              type="button"
+              className="site-member-menu__trigger"
+              aria-expanded={memberOpen}
+              aria-controls={memberMenuId}
+              onClick={() => {
+                setMobileOpen(false);
+                setBusinessOpen(false);
+                setMemberOpen((open) => !open);
+              }}
+            >
+              For members
+              <span aria-hidden="true">⌄</span>
+            </button>
+            <div
+              id={memberMenuId}
+              className="site-member-menu__panel"
+              hidden={!memberOpen}
+            >
+              <p>For members</p>
+              {memberLinks.map((link) => (
+                <NavigationLink
+                  key={link.href}
+                  {...link}
+                  activePath={activePath}
+                  onClick={() => setMemberOpen(false)}
+                />
+              ))}
+            </div>
+          </div>
         </nav>
 
         <div className="site-header__actions">
@@ -195,6 +236,7 @@ export function SiteHeader(props: SiteHeaderProps) {
           aria-controls={mobileMenuId}
           onClick={() => {
             setBusinessOpen(false);
+            setMemberOpen(false);
             setMobileOpen((open) => !open);
           }}
         >

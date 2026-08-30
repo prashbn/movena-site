@@ -17,6 +17,7 @@ const routes = [
   "/legal/terms/",
   "/pricing/",
   "/integrations/",
+  "/app/",
 ];
 
 const frozenDocumentMarkers = new Map([
@@ -92,6 +93,7 @@ async function runContract() {
     "/pricing/",
     "/integrations/",
     "/members/",
+    "/app/",
     "/help/",
   ]) {
     assert.match(primaryNavigation, new RegExp(`href="${href}"`));
@@ -100,6 +102,21 @@ async function runContract() {
     homepageHtml,
     /href="https:\/\/app\.movena\.com\.au\/sign-in"[^>]*>Sign in<\/a>/,
   );
+
+  const memberAppHtml = await (await fetch(`${origin}/app/`)).text();
+  for (const marker of [
+    "Native Movena apps for iPhone and Android.",
+    "https://apps.apple.com/au/app/movena/id6770032378",
+    "https://play.google.com/store/apps/details?id=au.com.movena.member&amp;pli=1",
+    "/assets/app/movena-app-page-qr.png",
+    "/assets/app/movena-training-performance.jpg",
+    "/assets/app/movena-class-booking.jpg",
+  ]) {
+    assert.match(
+      memberAppHtml,
+      new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
 
   const pricingHtml = await (await fetch(`${origin}/pricing/`)).text();
   for (const marker of [

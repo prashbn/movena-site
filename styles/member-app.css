@@ -1,0 +1,240 @@
+.member-app-hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: clamp(3.5rem, 6vw, 6.25rem) 0 clamp(4.5rem, 8vw, 7.5rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 24%, rgba(216, 226, 255, 0.62), transparent 28rem),
+    var(--site-paper);
+}
+
+.member-app-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(30rem, 1.18fr);
+  align-items: center;
+  gap: clamp(3rem, 7vw, 7rem);
+}
+
+.member-app-hero__content {
+  position: relative;
+  z-index: 2;
+}
+
+.member-app-hero h1 {
+  max-width: 10ch;
+  margin: 0.8rem 0 0;
+  color: var(--site-ink);
+  font-size: clamp(3.1rem, 5vw, 5rem);
+  font-weight: 570;
+  line-height: 0.98;
+  letter-spacing: -0.058em;
+}
+
+.member-app-hero__platforms {
+  margin: 1.5rem 0 0;
+  color: var(--site-ink);
+  font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+  font-weight: 570;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.member-app-hero__description {
+  max-width: 36rem;
+  margin: 0.7rem 0 0;
+  color: var(--site-ink-soft);
+  font-size: 0.96rem;
+  line-height: 1.62;
+}
+
+.member-app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.75rem;
+}
+
+.member-app-actions a {
+  min-width: 10.75rem;
+  min-height: 3.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--site-navy);
+  border-radius: var(--radius-control-premium);
+  background: var(--site-navy);
+  color: var(--site-white);
+  font-size: 0.94rem;
+  font-weight: 620;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.member-app-actions a:last-child {
+  background: transparent;
+  color: var(--site-navy);
+}
+
+.member-app-actions a:hover {
+  border-color: var(--site-blue);
+  background: var(--site-blue);
+  color: var(--site-white);
+}
+
+.member-app-actions span {
+  margin-bottom: 0.16rem;
+  font-size: 0.61rem;
+  font-weight: 520;
+  letter-spacing: 0.02em;
+}
+
+.member-app-qr {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1.65rem;
+}
+
+.member-app-qr img {
+  width: 5.25rem;
+  height: 5.25rem;
+  border: 1px solid var(--site-line);
+  border-radius: 0.7rem;
+}
+
+.member-app-qr p {
+  display: grid;
+  gap: 0.18rem;
+  margin: 0;
+  color: var(--site-ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+.member-app-qr strong {
+  color: var(--site-ink);
+  font-size: 0.8rem;
+  font-weight: 620;
+}
+
+.member-app-gallery {
+  min-height: min(45rem, 71vw);
+  position: relative;
+}
+
+.member-app-gallery::before {
+  content: "";
+  width: 78%;
+  aspect-ratio: 1;
+  position: absolute;
+  top: 4%;
+  right: -5%;
+  border: 1px solid rgba(49, 88, 226, 0.14);
+  border-radius: 50%;
+}
+
+.member-app-gallery__image {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  border-radius: clamp(1.4rem, 2.5vw, 2.3rem);
+  background: var(--site-navy);
+  box-shadow: 0 35px 85px -45px rgba(12, 28, 44, 0.65);
+}
+
+.member-app-gallery__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.member-app-gallery__image--primary {
+  width: min(76%, 34rem);
+  top: 0;
+  right: 0;
+  transform: rotate(1.75deg);
+}
+
+.member-app-gallery__image--secondary {
+  width: min(45%, 20rem);
+  bottom: 0;
+  left: 0;
+  transform: rotate(-3deg);
+}
+
+@media (max-width: 980px) {
+  .member-app-hero__inner {
+    grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 1.1fr);
+    gap: 2.5rem;
+  }
+
+  .member-app-gallery {
+    min-height: 37rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .member-app-hero {
+    align-items: start;
+    padding: 3.25rem 0 4.5rem;
+  }
+
+  .member-app-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .member-app-hero h1 {
+    max-width: 9ch;
+    font-size: clamp(2.8rem, 13vw, 4.2rem);
+  }
+
+  .member-app-hero__platforms {
+    margin-top: 1.2rem;
+  }
+
+  .member-app-gallery {
+    min-height: 112vw;
+  }
+
+  .member-app-gallery__image--primary {
+    width: 78%;
+  }
+
+  .member-app-gallery__image--secondary {
+    width: 48%;
+  }
+
+  .member-app-qr {
+    margin-top: 1.15rem;
+  }
+
+  .member-app-qr img {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .member-app-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .member-app-actions a {
+    min-width: 0;
+    padding-inline: 0.8rem;
+  }
+
+  .member-app-qr {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member-app-actions a {
+    transition: none;
+  }
+}

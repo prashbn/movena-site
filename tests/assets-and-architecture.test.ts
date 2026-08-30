@@ -31,10 +31,18 @@ function sha256(path: string): string {
 test("Next public assets are an exact, non-destructive copy of legacy assets", () => {
   const legacyFiles = filesUnder("assets");
   const publicFiles = filesUnder("public/assets");
+  const legacyPaths = legacyFiles.map((path) => relative("assets", path));
+  const legacyPathSet = new Set(legacyPaths);
 
   assert.deepEqual(
-    publicFiles.map((path) => relative("public/assets", path)),
-    legacyFiles.map((path) => relative("assets", path)),
+    publicFiles
+      .map((path) => relative("public/assets", path))
+      .filter((path) => !legacyPathSet.has(path)),
+    [
+      "app/movena-app-page-qr.png",
+      "app/movena-class-booking.jpg",
+      "app/movena-training-performance.jpg",
+    ],
   );
 
   for (const legacyPath of legacyFiles) {

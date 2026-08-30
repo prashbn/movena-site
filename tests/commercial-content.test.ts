@@ -111,6 +111,8 @@ test("desktop and mobile commercial navigation retain accessible controls", () =
   for (const label of [
     "For businesses",
     "For members",
+    "Member experience",
+    "Download the app",
     "Platform",
     "Pricing",
     "Integrations",
