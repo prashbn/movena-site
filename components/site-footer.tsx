@@ -17,7 +17,7 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
         <nav className="site-footer__navigation" aria-label="Footer">
           <Link href="/platform/">Platform</Link>
           <Link href="/pricing/">Pricing</Link>
-          <Link href="/product-comparison/">Product comparison</Link>
+          <Link href="/integrations/">Integrations</Link>
           <Link href="/members/">For members</Link>
           <Link href="/help/">Help</Link>
           <a href={siteConfig.businessSignInUrl}>Sign in</a>

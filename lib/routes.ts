@@ -74,10 +74,10 @@ export const commercialRoutes = [
     kind: "marketing",
   },
   {
-    path: "/product-comparison/",
-    title: "Product comparison — Movena",
+    path: "/integrations/",
+    title: "Integrations — Movena",
     description:
-      "Compare Movena One, Movena Collective and Movena Enterprise.",
+      "Movena integrations for accounting, access control, health and fitness data, payments and billing infrastructure.",
     kind: "marketing",
   },
 ] as const;

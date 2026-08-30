@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
@@ -19,7 +20,7 @@ const expectedPaths = [
   "/legal/privacy/",
   "/legal/terms/",
   "/pricing/",
-  "/product-comparison/",
+  "/integrations/",
 ];
 
 test("the explicit route manifest contains the seven legacy and two commercial routes", () => {
@@ -65,4 +66,12 @@ test("legacy internal links are rewritten to canonical slash routes", () => {
       );
     }
   }
+});
+
+test("the retired product comparison route permanently redirects into pricing", () => {
+  const nextConfig = readFileSync("next.config.ts", "utf8");
+
+  assert.match(nextConfig, /source: "\/product-comparison\/"/);
+  assert.match(nextConfig, /destination: "\/pricing\/#compare"/);
+  assert.match(nextConfig, /permanent: true/);
 });

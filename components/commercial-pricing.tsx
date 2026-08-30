@@ -86,6 +86,7 @@ export function PackageComparison() {
 
   return (
     <section
+      id="compare"
       className="commercial-section comparison-section"
       aria-labelledby="comparison-heading"
     >
@@ -123,6 +124,19 @@ export function PackageComparison() {
             </tbody>
           </table>
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function CommercialCta() {
+  return (
+    <section className="commercial-cta" aria-labelledby="commercial-cta-heading">
+      <div className="commercial-wrap commercial-cta__inner">
+        <h2 id="commercial-cta-heading">Talk to us</h2>
+        <a className="commercial-button" href={siteConfig.contactHref}>
+          Talk to us
+        </a>
       </div>
     </section>
   );

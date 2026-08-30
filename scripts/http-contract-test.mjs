@@ -16,7 +16,7 @@ const routes = [
   "/legal/privacy/",
   "/legal/terms/",
   "/pricing/",
-  "/product-comparison/",
+  "/integrations/",
 ];
 
 const frozenDocumentMarkers = new Map([
@@ -90,7 +90,7 @@ async function runContract() {
   for (const href of [
     "/platform/",
     "/pricing/",
-    "/product-comparison/",
+    "/integrations/",
     "/members/",
     "/help/",
   ]) {
@@ -111,22 +111,57 @@ async function runContract() {
     "+A$99 / brand / month + GST",
     "Optional usage-based",
     "Plus a 0.30% platform administration fee on applicable Movena-processed payments.",
+    'id="compare"',
+    "Package comparison",
+    "Native Retail / Shop",
+    "Advanced analytics",
+    "Organisation-wide insights",
   ]) {
     assert.match(pricingHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 
-  const comparisonHtml = await (
-    await fetch(`${origin}/product-comparison/`)
-  ).text();
+  const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [
-    "Owners, managers &amp; coaches",
-    "Native Retail / Shop",
-    "Advanced analytics",
-    "Organisation-wide insights",
-    "Enterprise onboarding/support",
+    "Xero",
+    "Accounting integration.",
+    "Kisi",
+    "Access control integration.",
+    "Apple Health",
+    "Supported member health and workout data.",
+    "Health Connect",
+    "Supported Android health and fitness data.",
+    "Stripe",
+    "Payments and billing infrastructure.",
+    "Brevo — Coming soon",
   ]) {
-    assert.match(comparisonHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(integrationsHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
+  assert.doesNotMatch(
+    integrationsHtml,
+    /Siri|Gemini|Apple Intelligence|App Intents|HealthKit|GymMaster|Mindbody|Hapana/i,
+  );
+
+  const productComparison = await fetch(`${origin}/product-comparison/`, {
+    redirect: "manual",
+  });
+  assert.equal(productComparison.status, 308);
+  const productComparisonDestination = new URL(
+    productComparison.headers.get("location"),
+    origin,
+  );
+  assert.equal(productComparisonDestination.pathname, "/pricing/");
+  assert.equal(productComparisonDestination.hash, "#compare");
+
+  const productComparisonWithoutSlash = await fetch(
+    `${origin}/product-comparison`,
+    { redirect: "manual" },
+  );
+  assert.equal(productComparisonWithoutSlash.status, 308);
+  assert.equal(
+    new URL(productComparisonWithoutSlash.headers.get("location"), origin)
+      .pathname,
+    "/product-comparison/",
+  );
 
   for (const route of routes) {
     const response = await fetch(`${origin}${route}`, { redirect: "manual" });
@@ -205,6 +240,7 @@ async function runContract() {
   for (const route of routes) {
     assert.match(sitemapXml, new RegExp(`https://movena\\.com\\.au${route}`));
   }
+  assert.doesNotMatch(sitemapXml, /product-comparison/);
 
   process.stdout.write(
     `HTTP contract passed: ${routes.length} routes, ${routes.length - 1} redirects, 404, ${allInternalLinks.size} internal links, robots and sitemap.\n`,

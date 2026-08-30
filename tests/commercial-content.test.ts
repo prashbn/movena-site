@@ -8,6 +8,7 @@ import {
   packageComparisonRows,
   platformAdministrationFee,
 } from "../lib/commercial.ts";
+import { publicIntegrations } from "../lib/integrations.ts";
 import { siteConfig } from "../lib/site-config.ts";
 
 const expectedComparisonRows = [
@@ -98,6 +99,8 @@ test("business sign-in is an external link with no marketing auth route", () => 
 
 test("FAQ remains reserved and has no route or supplied content", () => {
   assert.equal(existsSync("app/faq"), false);
+  assert.equal(existsSync("app/download"), false);
+  assert.equal(existsSync("app/app-download"), false);
 });
 
 test("desktop and mobile commercial navigation retain accessible controls", () => {
@@ -110,7 +113,6 @@ test("desktop and mobile commercial navigation retain accessible controls", () =
     "For members",
     "Platform",
     "Pricing",
-    "Product comparison",
     "Integrations",
     "Help",
     "Sign in",
@@ -126,4 +128,68 @@ test("desktop and mobile commercial navigation retain accessible controls", () =
   assert.match(commercialCss, /@media \(max-width: 760px\)/);
   assert.match(commercialCss, /@media \(max-width: 520px\)/);
   assert.match(commercialCss, /data-plan/);
+  assert.doesNotMatch(header, /Product comparison/);
+});
+
+test("pricing owns the single package comparison and the legacy route is retired", () => {
+  const pricingPage = readFileSync("app/pricing/page.tsx", "utf8");
+
+  assert.match(pricingPage, /<PackageCards \/>/);
+  assert.match(pricingPage, /<PlatformFee \/>/);
+  assert.match(pricingPage, /<PackageComparison \/>/);
+  assert.match(pricingPage, /<OptionalAddOns \/>/);
+  assert.match(pricingPage, /<CommercialCta \/>/);
+  const pricingFlow = [
+    "<PackageCards />",
+    "<PlatformFee />",
+    "<PackageComparison />",
+    "<OptionalAddOns />",
+    "<CommercialCta />",
+  ].map((component) => pricingPage.indexOf(component));
+  assert.deepEqual(pricingFlow, [...pricingFlow].sort((a, b) => a - b));
+  assert.equal(existsSync("app/product-comparison"), false);
+});
+
+test("the public integrations surface remains exact and conservative", () => {
+  assert.deepEqual(publicIntegrations, [
+    { name: "Xero", description: "Accounting integration." },
+    {
+      name: "Kisi",
+      description: "Access control integration.",
+      href: "/integrations/kisi/",
+    },
+    {
+      name: "Apple Health",
+      description: "Supported member health and workout data.",
+    },
+    {
+      name: "Health Connect",
+      description: "Supported Android health and fitness data.",
+    },
+    { name: "Stripe", description: "Payments and billing infrastructure." },
+    { name: "Brevo — Coming soon" },
+  ]);
+
+  const integrationCopy = JSON.stringify(publicIntegrations);
+  const integrationCss = readFileSync("styles/integrations.css", "utf8");
+  assert.doesNotMatch(integrationCopy, /HealthKit/);
+  assert.doesNotMatch(
+    integrationCopy,
+    /Siri|Gemini|Apple Intelligence|App Intents/i,
+  );
+  assert.doesNotMatch(
+    integrationCopy,
+    /GymMaster|Mindbody|Hapana|competitor/i,
+  );
+  assert.doesNotMatch(
+    integrationCopy,
+    /apps\.apple\.com|play\.google\.com|QR code|download/i,
+  );
+
+  const paidAddOns = optionalAddOns.map((addOn) => addOn.name);
+  assert.doesNotMatch(paidAddOns.join(" "), /Apple Health|Health Connect/);
+  assert.match(paidAddOns.join(" "), /Access Control Integration/);
+  assert.doesNotMatch(paidAddOns.join(" "), /Kisi/);
+  assert.match(integrationCss, /@media \(max-width: 860px\)/);
+  assert.match(integrationCss, /@media \(max-width: 560px\)/);
 });

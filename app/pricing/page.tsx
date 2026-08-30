@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import {
+  CommercialCta,
   OptionalAddOns,
   PackageCards,
+  PackageComparison,
   PlatformFee,
 } from "@/components/commercial-pricing";
 import { CommercialPageShell } from "@/components/page-shells";
@@ -23,14 +24,13 @@ export default function PricingPage() {
             <p className="commercial-kicker">Movena</p>
             <h1>Pricing</h1>
           </div>
-          <Link className="commercial-text-link" href="/product-comparison/">
-            Product comparison <span aria-hidden="true">→</span>
-          </Link>
         </div>
       </header>
       <PackageCards />
       <PlatformFee />
+      <PackageComparison />
       <OptionalAddOns />
+      <CommercialCta />
     </CommercialPageShell>
   );
 }
