@@ -1,0 +1,16 @@
+:root {
+  /* Semantic aliases for the current production design tokens. */
+  --color-surface: var(--bg);
+  --color-surface-subtle: var(--bg-tint);
+  --color-surface-soft: var(--bg-soft);
+  --color-text: var(--ink);
+  --color-text-muted: var(--ink-2);
+  --color-text-subtle: var(--ink-3);
+  --color-border: var(--line);
+  --color-border-strong: var(--line-2);
+  --color-action: var(--accent);
+  --color-action-hover: var(--accent-ink);
+  --radius-card: var(--radius);
+  --radius-control: var(--radius-sm);
+  --motion-standard: var(--ease);
+}

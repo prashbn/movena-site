@@ -1,0 +1,17 @@
+# Next.js build output
+/.next/
+/out/
+
+# Dependencies and local tooling
+/node_modules/
+*.tsbuildinfo
+
+# Test output
+/coverage/
+
+# Local OS/editor files
+.DS_Store
+
+# Local environment files
+.env*
+!.env.example
