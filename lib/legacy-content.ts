@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import type { LegacySource } from "./routes.ts";
+import { siteConfig } from "./site-config.ts";
 
 const internalRouteReplacements = new Map([
   ["/platform", "/platform/"],
@@ -82,8 +83,45 @@ function rewriteMemberProductImagery(
 ): string {
   if (source !== "members/index.html") return markup;
 
-  const legacyPhone = '<div class="phone app-dark">';
+  const googlePlayHref = siteConfig.memberApp.googlePlayUrl.replaceAll(
+    "&",
+    "&amp;",
+  );
+  const memberStoreActions = `<div class="members-store-availability">
+          <p>Available for iPhone and Android.</p>
+          <div class="members-store-actions" aria-label="Download Movena">
+            <a href="${siteConfig.memberApp.appStoreUrl}" aria-label="Download Movena on the App Store">
+              <span>Download on the</span>
+              App Store
+            </a>
+            <a href="${googlePlayHref}" aria-label="Get Movena on Google Play">
+              <span>Get it on</span>
+              Google Play
+            </a>
+          </div>
+        </div>`;
+
+  const ownerCallToAction = `<section class="members-owner-cta" aria-labelledby="members-owner-heading">
+    <div class="wrap members-owner-cta__inner">
+      <div>
+        <span class="kicker">For gym owners</span>
+        <h2 id="members-owner-heading">Run the experience behind the app.</h2>
+        <p>Keep memberships, bookings, payments, check-ins, programming and progress connected in one place.</p>
+      </div>
+      <div class="members-owner-cta__actions">
+        <a class="btn btn-primary" href="/businesses/">See who Movena is for</a>
+        <a class="link-arrow" href="/contact/">Talk to Movena <span>→</span></a>
+      </div>
+    </div>
+  </section>`;
+
   let rewritten = markup.replace(
+    /(<p class="hero-note">[\s\S]*?<\/p>)/,
+    `$1\n        ${memberStoreActions}`,
+  );
+
+  const legacyPhone = '<div class="phone app-dark">';
+  rewritten = rewritten.replace(
     legacyPhone,
     `${memberScreenMarkup({
       className: "member-screen--home",
@@ -124,7 +162,9 @@ function rewriteMemberProductImagery(
 
   const coachingPhoto = /<div class="wrap-band" style="margin-top:80px">\s*<figure class="shot shot-feature">[\s\S]*?coaching-1254w\.jpg[\s\S]*?<\/figure>\s*<\/div>/;
 
-  return rewritten.replace(coachingPhoto, "");
+  return rewritten
+    .replace(coachingPhoto, "")
+    .replace('<div class="close-cta">', `${ownerCallToAction}\n\n<div class="close-cta">`);
 }
 
 export function rewriteSalesContactHrefs(

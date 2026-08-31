@@ -99,6 +99,7 @@ test("business sign-in is an external link with no marketing auth route", () => 
 
 test("FAQ is published while deferred download aliases remain absent", () => {
   assert.equal(existsSync("app/faq/page.tsx"), true);
+  assert.equal(existsSync("app/businesses/page.tsx"), true);
   assert.equal(existsSync("app/download"), false);
   assert.equal(existsSync("app/app-download"), false);
 });
@@ -114,6 +115,7 @@ test("desktop and mobile commercial navigation retain accessible controls", () =
     "Member experience",
     "Download the app",
     "Platform",
+    "Who it’s for",
     "Pricing",
     "Integrations",
     "FAQ",

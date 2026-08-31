@@ -67,6 +67,13 @@ export const legacyRoutes = [
 
 export const commercialRoutes = [
   {
+    path: "/businesses/",
+    title: "Gym and studio software — Who Movena is for",
+    description:
+      "Movena brings memberships, bookings, payments, check-ins, programming and progress together for gyms, studios and coaching businesses.",
+    kind: "marketing",
+  },
+  {
     path: "/pricing/",
     title: "Pricing — Movena",
     description:

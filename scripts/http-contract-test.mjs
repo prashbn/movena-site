@@ -15,6 +15,7 @@ const routes = [
   "/integrations/kisi/",
   "/legal/privacy/",
   "/legal/terms/",
+  "/businesses/",
   "/pricing/",
   "/integrations/",
   "/app/",
@@ -155,6 +156,7 @@ async function runContract() {
   assert.ok(primaryNavigation, "homepage should render the shared navigation");
   for (const href of [
     "/platform/",
+    "/businesses/",
     "/pricing/",
     "/integrations/",
     "/blog/",
@@ -180,6 +182,39 @@ async function runContract() {
   ]) {
     assert.match(
       memberAppHtml,
+      new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+
+  const membersHtml = await (await fetch(`${origin}/members/`)).text();
+  for (const marker of [
+    "Available for iPhone and Android.",
+    "https://apps.apple.com/au/app/movena/id6770032378",
+    "https://play.google.com/store/apps/details?id=au.com.movena.member&amp;pli=1",
+    "For gym owners",
+    "Run the experience behind the app.",
+    'href="/businesses/"',
+  ]) {
+    assert.match(
+      membersHtml,
+      new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+
+  const businessesHtml = await (await fetch(`${origin}/businesses/`)).text();
+  for (const marker of [
+    "Built for how your business trains.",
+    "Functional fitness",
+    "Strength and conditioning",
+    "Pilates and yoga",
+    "Boxing and martial arts",
+    "Personal training",
+    "Multi-discipline gyms",
+    "Eighteen disciplines. Already set up.",
+    "Show us how your business runs.",
+  ]) {
+    assert.match(
+      businessesHtml,
       new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
     );
   }

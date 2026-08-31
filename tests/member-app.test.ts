@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 import { siteConfig } from "../lib/site-config.ts";
+import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
 
 function sha256(path: string): string {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
@@ -73,6 +74,30 @@ test("member navigation exposes the app without adding deferred surfaces", () =>
     `${header}\n${footer}\n${page}`,
     /Siri|Gemini|Apple Intelligence|App Intents/i,
   );
+});
+
+test("the member experience exposes both app stores and a clear owner journey", () => {
+  const memberPage = readLegacyMainMarkup("members/index.html");
+  const membersCss = readFileSync("styles/members.css", "utf8");
+
+  assert.match(memberPage, /Available for iPhone and Android\./);
+  assert.match(
+    memberPage,
+    new RegExp(siteConfig.memberApp.appStoreUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+  );
+  assert.match(
+    memberPage,
+    new RegExp(
+      siteConfig.memberApp.googlePlayUrl
+        .replaceAll("&", "&amp;")
+        .replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+    ),
+  );
+  assert.match(memberPage, /For gym owners/);
+  assert.match(memberPage, /href="\/businesses\/">See who Movena is for/);
+  assert.match(memberPage, /href="\/contact\/">Talk to Movena/);
+  assert.match(membersCss, /\.members-store-actions/);
+  assert.match(membersCss, /\.members-owner-cta/);
 });
 
 test("the member app layout has desktop, mobile and reduced-motion contracts", () => {

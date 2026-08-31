@@ -19,6 +19,7 @@ type SiteHeaderProps = MarketingHeaderProps | DocumentHeaderProps;
 
 const businessLinks = [
   { href: "/platform/", label: "Platform" },
+  { href: "/businesses/", label: "Who it’s for" },
   { href: "/pricing/", label: "Pricing" },
   { href: "/integrations/", label: "Integrations" },
   { href: "/faq/", label: "FAQ" },

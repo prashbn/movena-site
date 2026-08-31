@@ -44,6 +44,7 @@ export function MarketingPageShell({
 
 type CommercialPageShellProps = {
   activePath:
+    | "/businesses/"
     | "/pricing/"
     | "/integrations/"
     | "/app/"
