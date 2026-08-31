@@ -15,6 +15,7 @@ import {
   contactLocationOptions,
   validateContactPayload,
 } from "@/lib/contact-schema";
+import { trackContactEnquiry } from "@/lib/client-analytics";
 
 type FormValues = {
   name: string;
@@ -152,6 +153,7 @@ export function ContactForm() {
       const body = (await response.json().catch(() => null)) as unknown;
 
       if (response.ok && isRecord(body) && body.ok === true) {
+        trackContactEnquiry();
         setStatus("success");
         setStatusMessage(
           apiMessage(body) ||

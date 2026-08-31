@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AnalyticsSettingsButton } from "@/components/analytics-settings-button";
 import { siteConfig } from "@/lib/site-config";
 
 type SiteFooterProps = {
@@ -28,6 +29,7 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
           <a href={siteConfig.businessSignInUrl}>Sign in</a>
           <Link href="/legal/privacy/">Privacy</Link>
           <Link href="/legal/terms/">Terms</Link>
+          <AnalyticsSettingsButton />
         </nav>
         <span className="foot-right">
           {siteConfig.legalName} (ACN {siteConfig.acn})

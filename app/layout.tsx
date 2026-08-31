@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { AnalyticsConsentManager } from "@/components/analytics-consent";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site-config";
 import { organizationStructuredData } from "@/lib/structured-data";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <JsonLd data={organizationStructuredData} />
         {children}
+        <AnalyticsConsentManager />
       </body>
     </html>
   );
