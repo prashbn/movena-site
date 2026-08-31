@@ -42,6 +42,12 @@ test("Next public assets are an exact, non-destructive copy of legacy assets", (
       "app/movena-app-page-qr.png",
       "app/movena-class-booking.jpg",
       "app/movena-training-performance.jpg",
+      "integrations/apple-health-data.svg",
+      "integrations/brevo-messaging.svg",
+      "integrations/health-connect-data.svg",
+      "integrations/kisi-access-control.svg",
+      "integrations/stripe-payments.svg",
+      "integrations/xero-accounting.svg",
     ],
   );
 

@@ -13,10 +13,10 @@
 }
 
 .integration-card {
-  min-height: 15rem;
+  min-height: 25rem;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.5rem, 2.8vw, 2.25rem);
+  padding: clamp(1rem, 1.7vw, 1.5rem);
   border-right: 1px solid var(--site-line);
   border-bottom: 1px solid var(--site-line);
 }
@@ -26,15 +26,37 @@
 }
 
 .integration-card__number {
+  margin-top: clamp(1.15rem, 2vw, 1.5rem);
   color: var(--site-ink-faint);
   font-family: "Geist Mono", ui-monospace, monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
 }
 
+.integration-card__image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--site-line) 78%, transparent);
+  border-radius: 1rem;
+  background: #f1f0ec;
+}
+
+.integration-card__image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 320ms var(--motion-standard);
+}
+
+.integration-card:hover .integration-card__image img {
+  transform: scale(1.018);
+}
+
 .integration-card h3 {
   max-width: 15ch;
-  margin: 2.25rem 0 0;
+  margin: 1rem 0 0;
   color: var(--site-ink);
   font-size: clamp(1.45rem, 2.3vw, 2rem);
   font-weight: 570;
@@ -92,12 +114,17 @@
   .integration-card,
   .integration-card:nth-child(3n + 1),
   .integration-card:nth-child(2n + 1) {
-    min-height: 12rem;
+    min-height: 22rem;
     border-left: 1px solid var(--site-line);
+  }
+
+  .integration-card__image {
+    aspect-ratio: 16 / 8.5;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .integration-card__image img,
   .integration-card__link span {
     transition: none;
   }

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Apple Health workout and heart data illustration</title>
+  <desc id="desc">A heart, activity arc and workout metrics arranged on a warm light background.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fff8f9"/>
+      <stop offset="1" stop-color="#ffe4eb"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff2d55"/>
+      <stop offset="1" stop-color="#ff6b82"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="28" fill="url(#bg)"/>
+  <circle cx="565" cy="45" r="104" fill="#ff2d55" opacity=".07"/>
+  <g transform="translate(50 39)">
+    <rect width="540" height="282" rx="27" fill="#fff" fill-opacity=".82" stroke="#ffc8d4"/>
+    <rect x="26" y="24" width="122" height="30" rx="15" fill="#ffe0e8"/>
+    <text x="87" y="44" text-anchor="middle" fill="#bd2447" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="1.1">APPLE HEALTH</text>
+    <g transform="translate(35 78)">
+      <circle cx="97" cy="91" r="82" fill="#fff1f4"/>
+      <circle cx="97" cy="91" r="65" fill="none" stroke="#ffc4d0" stroke-width="11"/>
+      <path d="M97 26a65 65 0 0 1 61 43" fill="none" stroke="#ff2d55" stroke-width="11" stroke-linecap="round"/>
+      <path d="M97 132s-43-24-43-57c0-18 12-30 29-30 10 0 18 5 24 13 6-8 14-13 24-13 17 0 29 12 29 30 0 33-43 57-43 57l-10 6z" transform="translate(-10 -9) scale(.92)" fill="url(#heart)"/>
+    </g>
+    <g transform="translate(254 79)">
+      <rect width="253" height="61" rx="16" fill="#fff1f4"/>
+      <circle cx="31" cy="30.5" r="17" fill="#ff2d55" opacity=".13"/>
+      <path d="M19 31h8l4-10 7 20 5-10h9" fill="none" stroke="#ff2d55" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="65" y="26" fill="#73515a" font-family="Arial, Helvetica, sans-serif" font-size="11">HEART RATE</text>
+      <text x="65" y="45" fill="#301820" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">142 bpm</text>
+      <rect y="76" width="253" height="61" rx="16" fill="#fff1f4"/>
+      <circle cx="31" cy="106.5" r="17" fill="#ff2d55" opacity=".13"/>
+      <path d="M25 115l13-18M29 98l9 17" stroke="#ff2d55" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="65" y="102" fill="#73515a" font-family="Arial, Helvetica, sans-serif" font-size="11">WORKOUT</text>
+      <text x="65" y="121" fill="#301820" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">54 minutes</text>
+      <rect y="152" width="253" height="50" rx="16" fill="#fff1f4"/>
+      <rect x="20" y="22" width="184" height="7" rx="3.5" fill="#ff2d55" opacity=".18" transform="translate(0 152)"/>
+      <rect x="20" y="22" width="128" height="7" rx="3.5" fill="#ff2d55" transform="translate(0 152)"/>
+    </g>
+  </g>
+</svg>

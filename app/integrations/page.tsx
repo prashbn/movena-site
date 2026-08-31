@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { CommercialPageShell } from "@/components/page-shells";
@@ -32,6 +33,16 @@ export default function IntegrationsPage() {
           <div className="integrations-grid">
             {publicIntegrations.map((integration, index) => (
               <article className="integration-card" key={integration.name}>
+                <div className="integration-card__image">
+                  <Image
+                    alt={integration.imageAlt}
+                    height={360}
+                    sizes="(max-width: 560px) calc(100vw - 3rem), (max-width: 860px) 50vw, 33vw"
+                    src={integration.image}
+                    unoptimized
+                    width={640}
+                  />
+                </div>
                 <span className="integration-card__number" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
