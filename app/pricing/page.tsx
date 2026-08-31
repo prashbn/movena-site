@@ -23,6 +23,10 @@ export default function PricingPage() {
           <div>
             <p className="commercial-kicker">Movena</p>
             <h1>Pricing</h1>
+            <p className="commercial-hero__lede">
+              Choose by locations and capabilities. Member numbers and team
+              accounts are unlimited on every plan.
+            </p>
           </div>
         </div>
       </header>

@@ -77,7 +77,7 @@ export const commercialRoutes = [
     path: "/pricing/",
     title: "Pricing — Movena",
     description:
-      "Everything you need to run one great gym. Built for growing fitness businesses. For fitness organisations that need advanced analytics, deeper control and organisation-wide operations.",
+      "Simple location-based Movena pricing with unlimited members and team users on every plan.",
     kind: "marketing",
   },
   {

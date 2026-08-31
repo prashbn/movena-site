@@ -239,6 +239,9 @@ async function runContract() {
   for (const marker of [
     "A$129 / month + GST",
     "A$349 / month + GST",
+    "Member numbers and team accounts are unlimited on every plan.",
+    "Unlimited members",
+    "Unlimited owners, managers, staff &amp; coaches",
     "Access Control Integration",
     "+A$49 / location / month + GST",
     "Movena integration fee only. Hardware, installation and access-control provider subscriptions are purchased separately.",
@@ -253,6 +256,7 @@ async function runContract() {
   ]) {
     assert.match(pricingHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
+  assert.doesNotMatch(pricingHtml, /Up to 150|Up to 500|per (?:user|seat)/i);
 
   const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [

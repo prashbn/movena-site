@@ -6,8 +6,8 @@ export const movenaPackages = [
     positioning: "Everything you need to run one great gym.",
     highlights: [
       "1 location",
-      "Up to 150 members",
-      "Owners, managers, staff / coaches included",
+      "Unlimited members",
+      "Unlimited owners, managers, staff & coaches",
       "Membership, billing, timetable & bookings",
       "Member app, programming & messaging",
       "Check-in, waivers & core reporting",
@@ -21,7 +21,7 @@ export const movenaPackages = [
     highlights: [
       "Everything in Movena One",
       "Up to 3 locations",
-      "Up to 500 members",
+      "Unlimited members and team users",
       "Multi-location management",
       "Native Retail / Shop",
       "Physical merchandise collected in person",
@@ -36,7 +36,7 @@ export const movenaPackages = [
     highlights: [
       "Everything in Movena Collective",
       "Larger / custom location scale",
-      "Custom member scale",
+      "Unlimited members and team users",
       "Advanced analytics & organisation insights",
       "Enterprise permissions and governance",
       "Tailored onboarding, migration and support",
@@ -47,8 +47,8 @@ export const movenaPackages = [
 export const packageComparisonRows = [
   ["Price", "A$129/mo + GST", "A$349/mo + GST", "Custom"],
   ["Locations", "1", "Up to 3", "Custom"],
-  ["Members", "Up to 150", "Up to 500", "Custom"],
-  ["Owners, managers & coaches", "Included", "Included", "Included"],
+  ["Members", "Unlimited", "Unlimited", "Unlimited"],
+  ["Owners, managers, staff & coaches", "Unlimited", "Unlimited", "Unlimited"],
   ["Membership & billing", "Included", "Included", "Included"],
   ["Timetable & bookings", "Included", "Included", "Included"],
   ["Member app", "Included", "Included", "Included"],

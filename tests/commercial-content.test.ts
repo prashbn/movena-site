@@ -14,8 +14,8 @@ import { siteConfig } from "../lib/site-config.ts";
 const expectedComparisonRows = [
   ["Price", "A$129/mo + GST", "A$349/mo + GST", "Custom"],
   ["Locations", "1", "Up to 3", "Custom"],
-  ["Members", "Up to 150", "Up to 500", "Custom"],
-  ["Owners, managers & coaches", "Included", "Included", "Included"],
+  ["Members", "Unlimited", "Unlimited", "Unlimited"],
+  ["Owners, managers, staff & coaches", "Unlimited", "Unlimited", "Unlimited"],
   ["Membership & billing", "Included", "Included", "Included"],
   ["Timetable & bookings", "Included", "Included", "Included"],
   ["Member app", "Included", "Included", "Included"],
@@ -43,13 +43,16 @@ test("locked package prices and comparison allocation remain exact", () => {
   assert.deepEqual(packageComparisonRows, expectedComparisonRows);
 
   const [one, collective, enterprise] = movenaPackages;
-  assert.match(one.highlights.join(" "), /managers, staff \/ coaches included/);
+  assert.match(one.highlights.join(" "), /Unlimited members/);
+  assert.match(one.highlights.join(" "), /Unlimited owners, managers, staff & coaches/);
   assert.doesNotMatch(one.highlights.join(" "), /Native Retail \/ Shop/);
+  assert.match(collective.highlights.join(" "), /Unlimited members and team users/);
   assert.match(collective.highlights.join(" "), /Native Retail \/ Shop/);
   assert.match(
     enterprise.highlights.join(" "),
     /Advanced analytics & organisation insights/,
   );
+  assert.match(enterprise.highlights.join(" "), /Unlimited members and team users/);
 
   const commercialModel = JSON.stringify({
     movenaPackages,
@@ -57,8 +60,29 @@ test("locked package prices and comparison allocation remain exact", () => {
     packageComparisonRows,
   });
   assert.doesNotMatch(commercialModel, /unlimited locations/i);
-  assert.doesNotMatch(commercialModel, /unlimited members/i);
+  assert.match(commercialModel, /unlimited members/i);
+  assert.doesNotMatch(commercialModel, /Up to \d+ members|per (?:user|seat)|member cap/i);
   assert.doesNotMatch(commercialModel, /Shopify/i);
+});
+
+test("pricing is explicitly free of member and team-user caps", () => {
+  const pricingPage = readFileSync("app/pricing/page.tsx", "utf8");
+
+  assert.match(pricingPage, /Member numbers and team/);
+  assert.match(pricingPage, /accounts are unlimited on every plan/);
+  assert.deepEqual(
+    packageComparisonRows.find(([capability]) => capability === "Members"),
+    ["Members", "Unlimited", "Unlimited", "Unlimited"],
+  );
+  assert.deepEqual(
+    packageComparisonRows.find(([capability]) => capability.includes("staff")),
+    [
+      "Owners, managers, staff & coaches",
+      "Unlimited",
+      "Unlimited",
+      "Unlimited",
+    ],
+  );
 });
 
 test("locked optional add-ons and platform fee remain exact", () => {
