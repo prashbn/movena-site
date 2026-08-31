@@ -18,18 +18,40 @@ const salesContactSources = new Set<LegacySource>([
   "platform/index.html",
 ]);
 
-function rewriteHomepagePublicCopy(
+function rewritePublicMarketingCopy(
   markup: string,
   source: LegacySource,
 ): string {
-  if (source !== "index.html") return markup;
+  if (source === "index.html") {
+    return markup
+      .replace(
+        /<span class="kicker kicker-plain">Other gym software\? Yeah, nah\.<br>Movena\? Nah, yeah\.<\/span>\s*/,
+        "",
+      )
+      .replace("Stripe billing built in", "Payments built in")
+      .replace(
+        "Take payments through Stripe, or track them in person.",
+        "Take payments online, or track them in person.",
+      );
+  }
 
-  return markup
-    .replace(
-      /<span class="kicker kicker-plain">Other gym software\? Yeah, nah\.<br>Movena\? Nah, yeah\.<\/span>\s*/,
-      "",
-    )
-    .replace("Stripe billing built in", "Payments built in");
+  if (source === "platform/index.html") {
+    return markup
+      .replace(
+        "Online through Stripe, or in person when a member prefers it — the membership is tracked either way.",
+        "Online or in person, the membership is tracked either way.",
+      )
+      .replace(
+        "<b>Stripe Connect</b> — payments settle to your own account",
+        "<b>Online payments</b> — payments settle to your own account",
+      )
+      .replace(
+        "<b>Failures and disputes</b> — surfaced, not buried in Stripe",
+        "<b>Failures and disputes</b> — surfaced clearly in Movena",
+      );
+  }
+
+  return markup;
 }
 
 export function rewriteSalesContactHrefs(
@@ -91,7 +113,7 @@ export function readLegacyDocument(source: LegacySource): string {
 
 export function readLegacyMainMarkup(source: LegacySource): string {
   return rewriteInternalRouteHrefs(
-    rewriteHomepagePublicCopy(
+    rewritePublicMarketingCopy(
       rewriteSalesContactHrefs(
         extractMainMarkup(readLegacyDocument(source), source),
         source,

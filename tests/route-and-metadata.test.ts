@@ -72,9 +72,13 @@ test("legacy internal links are rewritten to canonical slash routes", () => {
 
 test("the live homepage uses the approved public-facing payments copy", () => {
   const homepage = readLegacyMainMarkup("index.html");
+  const platform = readLegacyMainMarkup("platform/index.html");
 
   assert.match(homepage, />Payments built in</);
-  assert.doesNotMatch(homepage, /Stripe billing built in/);
+  assert.match(homepage, /Take payments online/);
+  assert.match(platform, /Online payments/);
+  assert.doesNotMatch(homepage, /Stripe/);
+  assert.doesNotMatch(platform, /Stripe/);
   assert.doesNotMatch(homepage, /Other gym software\? Yeah, nah/);
   assert.doesNotMatch(homepage, /Movena\? Nah, yeah/);
 });
