@@ -1,4 +1,5 @@
 import { siteConfig } from "./site-config.ts";
+import { blogPath, type BlogPost } from "./blog.ts";
 
 export type JsonLdValue = Record<string, unknown>;
 
@@ -15,6 +16,46 @@ export const organizationStructuredData = {
     value: siteConfig.acn,
   },
 } satisfies JsonLdValue;
+
+export const blogStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Movena Blog",
+  description:
+    "Practical, carefully sourced articles about training, wellbeing, recovery and performance.",
+  url: `${siteConfig.origin}/blog/`,
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: `${siteConfig.origin}/`,
+  },
+} satisfies JsonLdValue;
+
+export function articleStructuredData(post: BlogPost): JsonLdValue {
+  const url = new URL(blogPath(post.slug), siteConfig.origin).toString();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    image: new URL(post.image, siteConfig.origin).toString(),
+    datePublished: post.published,
+    dateModified: post.published,
+    articleSection: post.category,
+    mainEntityOfPage: url,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: `${siteConfig.origin}/`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: `${siteConfig.origin}/`,
+    },
+  };
+}
 
 export function serializeJsonLd(value: JsonLdValue): string {
   return JSON.stringify(value).replace(/</g, "\\u003c");

@@ -94,6 +94,13 @@ export const commercialRoutes = [
       "Tell Movena about your gym, locations and the platform capabilities you are interested in.",
     kind: "marketing",
   },
+  {
+    path: "/blog/",
+    title: "Movena Blog — Training, wellbeing and performance",
+    description:
+      "Practical, carefully sourced articles about training, wellbeing, recovery and performance from Movena.",
+    kind: "marketing",
+  },
 ] as const;
 
 export const publicRoutes = [...legacyRoutes, ...commercialRoutes] as const;

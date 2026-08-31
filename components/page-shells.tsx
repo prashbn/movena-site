@@ -43,7 +43,12 @@ export function MarketingPageShell({
 }
 
 type CommercialPageShellProps = {
-  activePath: "/pricing/" | "/integrations/" | "/app/" | "/contact/";
+  activePath:
+    | "/pricing/"
+    | "/integrations/"
+    | "/app/"
+    | "/contact/"
+    | "/blog/";
   children: ReactNode;
 };
 

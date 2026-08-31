@@ -19,6 +19,10 @@ const routes = [
   "/integrations/",
   "/app/",
   "/contact/",
+  "/blog/",
+  "/blog/movement-and-mental-health/",
+  "/blog/strength-training-for-everyday-movement/",
+  "/blog/how-to-fuel-for-hyrox/",
 ];
 
 const frozenDocumentMarkers = new Map([
@@ -152,6 +156,7 @@ async function runContract() {
     "/platform/",
     "/pricing/",
     "/integrations/",
+    "/blog/",
     "/members/",
     "/app/",
     "/help/",
@@ -217,6 +222,37 @@ async function runContract() {
     integrationsHtml,
     /Siri|Gemini|Apple Intelligence|App Intents|HealthKit|GymMaster|Mindbody|Hapana/i,
   );
+
+  const blogHtml = await (await fetch(`${origin}/blog/`)).text();
+  for (const marker of [
+    "Useful notes for people who train.",
+    "Movement and mental health: a practical, pressure-free guide",
+    "Strength training for everyday movement",
+    "How to fuel for HYROX training and race day",
+    "Useful before searchable.",
+  ]) {
+    assert.match(blogHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  const mentalHealthArticle = await (
+    await fetch(`${origin}/blog/movement-and-mental-health/`)
+  ).text();
+  assert.match(mentalHealthArticle, /Movement is support, not a replacement for care/);
+  assert.match(mentalHealthArticle, /Lifeline is available on 13 11 14/);
+  assert.match(mentalHealthArticle, /Healthdirect Australia/);
+
+  const strengthArticle = await (
+    await fetch(`${origin}/blog/strength-training-for-everyday-movement/`)
+  ).text();
+  assert.match(strengthArticle, /Train patterns, not just body parts/);
+  assert.match(strengthArticle, /This is not an individual exercise prescription/);
+
+  const hyroxArticle = await (
+    await fetch(`${origin}/blog/how-to-fuel-for-hyrox/`)
+  ).text();
+  assert.match(hyroxArticle, /Race morning: familiar beats clever/);
+  assert.match(hyroxArticle, /Accredited Sports Dietitian/);
+  assert.match(hyroxArticle, /Australian Institute of Sport/);
 
   const productComparison = await fetch(`${origin}/product-comparison/`, {
     redirect: "manual",

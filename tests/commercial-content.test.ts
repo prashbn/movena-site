@@ -116,6 +116,7 @@ test("desktop and mobile commercial navigation retain accessible controls", () =
     "Platform",
     "Pricing",
     "Integrations",
+    "Blog",
     "Help",
     "Sign in",
     "Talk to Movena",
