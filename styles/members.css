@@ -1,0 +1,49 @@
+/* Real member-app imagery used on the legacy-backed Members page. */
+
+.marketing-page .member-screen {
+  width: min(100%, 22rem);
+  margin: 0 auto;
+  padding: clamp(0.38rem, 0.8vw, 0.56rem);
+  overflow: hidden;
+  border: 1px solid rgba(16, 24, 32, 0.1);
+  border-radius: clamp(1.55rem, 3vw, 2.1rem);
+  background: var(--site-white);
+  box-shadow: 0 34px 78px -42px rgba(12, 28, 44, 0.58);
+}
+
+.marketing-page .member-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: clamp(1.2rem, 2.5vw, 1.65rem);
+}
+
+.marketing-page .hero .member-screen--home,
+.marketing-page .member-screen--movements {
+  width: min(100%, 23rem);
+}
+
+.marketing-page .member-screen-grid {
+  max-width: 49rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 22rem));
+  justify-content: center;
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  margin: clamp(2.75rem, 5vw, 4rem) auto 0;
+}
+
+.marketing-page .member-legacy-phone {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .marketing-page .member-screen,
+  .marketing-page .hero .member-screen--home,
+  .marketing-page .member-screen--movements {
+    width: min(100%, 20rem);
+  }
+
+  .marketing-page .member-screen-grid {
+    grid-template-columns: minmax(0, 20rem);
+  }
+}

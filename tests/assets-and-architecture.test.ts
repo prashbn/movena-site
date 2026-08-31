@@ -46,6 +46,10 @@ test("Next public assets are an exact, non-destructive copy of legacy assets", (
       "integrations/health-connect-logo.png",
       "integrations/kisi-logo.png",
       "integrations/xero-logo.svg",
+      "members/movena-member-book.png",
+      "members/movena-member-home.png",
+      "members/movena-member-movements.png",
+      "members/movena-member-session-detail.png",
     ],
   );
 
