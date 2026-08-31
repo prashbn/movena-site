@@ -70,6 +70,15 @@ test("legacy internal links are rewritten to canonical slash routes", () => {
   }
 });
 
+test("the live homepage uses the approved public-facing payments copy", () => {
+  const homepage = readLegacyMainMarkup("index.html");
+
+  assert.match(homepage, />Payments built in</);
+  assert.doesNotMatch(homepage, /Stripe billing built in/);
+  assert.doesNotMatch(homepage, /Other gym software\? Yeah, nah/);
+  assert.doesNotMatch(homepage, /Movena\? Nah, yeah/);
+});
+
 test("the retired product comparison route permanently redirects into pricing", () => {
   const nextConfig = readFileSync("next.config.ts", "utf8");
 

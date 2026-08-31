@@ -25,10 +25,10 @@ export const publicIntegrations = [
     imageAlt: "Health Connect linked fitness data illustration",
   },
   {
-    name: "Stripe",
-    description: "Payments and billing infrastructure.",
-    image: "/assets/integrations/stripe-payments.svg",
-    imageAlt: "Stripe payments and billing illustration",
+    name: "Payments built in",
+    description: "Payments and billing, built into Movena.",
+    image: "/assets/integrations/movena-payments.svg",
+    imageAlt: "Movena payments and billing illustration",
   },
   {
     name: "Brevo — Coming soon",

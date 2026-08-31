@@ -207,8 +207,8 @@ async function runContract() {
     "Supported member health and workout data.",
     "Health Connect",
     "Supported Android health and fitness data.",
-    "Stripe",
-    "Payments and billing infrastructure.",
+    "Payments built in",
+    "Payments and billing, built into Movena.",
     "Brevo — Coming soon",
   ]) {
     assert.match(integrationsHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));

@@ -18,6 +18,20 @@ const salesContactSources = new Set<LegacySource>([
   "platform/index.html",
 ]);
 
+function rewriteHomepagePublicCopy(
+  markup: string,
+  source: LegacySource,
+): string {
+  if (source !== "index.html") return markup;
+
+  return markup
+    .replace(
+      /<span class="kicker kicker-plain">Other gym software\? Yeah, nah\.<br>Movena\? Nah, yeah\.<\/span>\s*/,
+      "",
+    )
+    .replace("Stripe billing built in", "Payments built in");
+}
+
 export function rewriteSalesContactHrefs(
   markup: string,
   source: LegacySource,
@@ -77,8 +91,11 @@ export function readLegacyDocument(source: LegacySource): string {
 
 export function readLegacyMainMarkup(source: LegacySource): string {
   return rewriteInternalRouteHrefs(
-    rewriteSalesContactHrefs(
-      extractMainMarkup(readLegacyDocument(source), source),
+    rewriteHomepagePublicCopy(
+      rewriteSalesContactHrefs(
+        extractMainMarkup(readLegacyDocument(source), source),
+        source,
+      ),
       source,
     ),
   );

@@ -46,7 +46,7 @@ test("Next public assets are an exact, non-destructive copy of legacy assets", (
       "integrations/brevo-messaging.svg",
       "integrations/health-connect-data.svg",
       "integrations/kisi-access-control.svg",
-      "integrations/stripe-payments.svg",
+      "integrations/movena-payments.svg",
       "integrations/xero-accounting.svg",
     ],
   );
