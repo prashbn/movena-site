@@ -74,6 +74,7 @@ test("blog routes provide static generation, metadata, structured data and respo
   assert.match(articlePage, /dynamicParams = false/);
   assert.match(articlePage, /generateMetadata/);
   assert.match(articlePage, /articleStructuredData/);
+  assert.match(articlePage, /By Movena/);
   assert.match(articlePage, /rel="external"/);
   assert.match(sitemap, /blogPosts/);
   assert.match(sitemap, /lastModified/);

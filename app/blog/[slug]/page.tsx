@@ -123,6 +123,8 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
           <div className="blog-article__meta">
             <span>{post.category}</span>
             <span aria-hidden="true">·</span>
+            <span>By Movena</span>
+            <span aria-hidden="true">·</span>
             <time dateTime={post.published}>{post.publishedLabel}</time>
             <span aria-hidden="true">·</span>
             <span>{post.readingTime}</span>
