@@ -19,6 +19,15 @@ npm run test:http
 Next.js app can serve the existing `/assets/...` URLs without moving or deleting
 anything required by GitHub Pages.
 
+## Visual design guidance
+
+The approved homepage is the visual source of truth for every public marketing
+page and the shared site shell. Use the existing design tokens rather than
+creating page-specific colour palettes.
+
+See [Movena visual design and approved colour palette](docs/design-guidelines.md)
+before changing colours, surfaces, branded integrations, or shared components.
+
 ## Contact form configuration
 
 The `/contact/` form posts to the server-only `/api/contact/` route. The route
