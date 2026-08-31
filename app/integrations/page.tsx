@@ -33,15 +33,18 @@ export default function IntegrationsPage() {
           <div className="integrations-grid">
             {publicIntegrations.map((integration, index) => (
               <article className="integration-card" key={integration.name}>
-                <div className="integration-card__image">
-                  <Image
-                    alt={integration.imageAlt}
-                    height={360}
-                    sizes="(max-width: 560px) calc(100vw - 3rem), (max-width: 860px) 50vw, 33vw"
-                    src={integration.image}
-                    unoptimized
-                    width={640}
-                  />
+                <div className="integration-card__brand" aria-hidden="true">
+                  {integration.mark.kind === "image" ? (
+                    <Image
+                      alt=""
+                      height={integration.mark.height}
+                      src={integration.mark.src}
+                      unoptimized
+                      width={integration.mark.width}
+                    />
+                  ) : (
+                    <span>{integration.mark.label}</span>
+                  )}
                 </div>
                 <span className="integration-card__number" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
@@ -60,6 +63,11 @@ export default function IntegrationsPage() {
               </article>
             ))}
           </div>
+          <p className="integrations-trademarks">
+            Third-party product names and marks belong to their respective
+            owners. Their display identifies compatibility and does not imply
+            endorsement.
+          </p>
         </div>
       </section>
     </CommercialPageShell>

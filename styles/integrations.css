@@ -33,25 +33,28 @@
   letter-spacing: 0.08em;
 }
 
-.integration-card__image {
-  position: relative;
+.integration-card__brand {
   aspect-ratio: 16 / 9;
-  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 2.2vw, 2rem);
   border: 1px solid color-mix(in srgb, var(--site-line) 78%, transparent);
   border-radius: 1rem;
-  background: #f1f0ec;
+  background: #f5f4f0;
 }
 
-.integration-card__image img {
-  width: 100%;
-  height: 100%;
+.integration-card__brand img {
+  width: clamp(4.75rem, 7vw, 6rem);
+  height: auto;
   display: block;
-  object-fit: cover;
-  transition: transform 320ms var(--motion-standard);
 }
 
-.integration-card:hover .integration-card__image img {
-  transform: scale(1.018);
+.integration-card__brand span {
+  color: var(--site-ink);
+  font-size: clamp(1.45rem, 2.7vw, 2.15rem);
+  font-weight: 620;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
 .integration-card h3 {
@@ -92,6 +95,14 @@
   transform: translateX(0.2rem);
 }
 
+.integrations-trademarks {
+  max-width: 60rem;
+  margin: 1.15rem 0 0;
+  color: var(--site-ink-faint);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 860px) {
   .integrations-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -118,13 +129,12 @@
     border-left: 1px solid var(--site-line);
   }
 
-  .integration-card__image {
+  .integration-card__brand {
     aspect-ratio: 16 / 8.5;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .integration-card__image img,
   .integration-card__link span {
     transition: none;
   }
