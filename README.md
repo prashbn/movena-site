@@ -21,9 +21,9 @@ anything required by GitHub Pages.
 
 ## Visual design guidance
 
-The approved homepage is the visual source of truth for every public marketing
-page and the shared site shell. Use the existing design tokens rather than
-creating page-specific colour palettes.
+The approved Platform page at `/platform/` is the visual source of truth for
+every public marketing page and the shared site shell. Use the existing design
+tokens rather than creating page-specific colour palettes.
 
 See [Movena visual design and approved colour palette](docs/design-guidelines.md)
 before changing colours, surfaces, branded integrations, or shared components.

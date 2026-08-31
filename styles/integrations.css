@@ -40,7 +40,7 @@
   padding: clamp(1.5rem, 2.2vw, 2rem);
   border: 1px solid color-mix(in srgb, var(--site-line) 78%, transparent);
   border-radius: 1rem;
-  background: #f5f4f0;
+  background: var(--site-surface-tint);
 }
 
 .integration-card__brand img {

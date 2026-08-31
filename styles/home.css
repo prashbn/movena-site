@@ -181,7 +181,7 @@
   aspect-ratio: 4 / 5.05;
   border: 0;
   border-radius: clamp(1.35rem, 2.5vw, 2.25rem);
-  background: var(--site-sand);
+  background: var(--site-wash-blue);
   box-shadow: var(--shadow-media-premium);
 }
 
@@ -211,13 +211,13 @@
   min-height: 3rem;
   padding-inline: 1.25rem;
   border-bottom-color: rgba(16, 24, 32, 0.1);
-  background: #f1f1ef;
+  background: var(--site-surface-soft);
 }
 
 .home-page .chrome .dot {
   width: 0.48rem;
   height: 0.48rem;
-  background: #ccd0ce;
+  background: var(--line-2);
 }
 
 .home-page .chrome .url {
@@ -231,7 +231,7 @@
 }
 
 .home-page .console-side {
-  background: #f6f6f3;
+  background: var(--site-surface-tint);
 }
 
 .home-page .row,
@@ -394,7 +394,7 @@
 .home-page #disciplines {
   margin-top: clamp(4.5rem, 8vw, 7rem);
   padding: clamp(5rem, 7vw, 6.75rem) 0;
-  background: var(--site-sage);
+  background: var(--site-wash-slate);
 }
 
 .home-page #disciplines .chips {
@@ -510,7 +510,7 @@
   margin: 0;
   padding: clamp(5rem, 8vw, 7rem) 0;
   border: 0;
-  background: var(--site-sand);
+  background: var(--site-wash-blue);
 }
 
 .home-page .band section {

@@ -29,7 +29,7 @@
 
 header.site-header {
   padding: 0;
-  background: rgba(252, 251, 248, 0.94);
+  background: rgba(255, 255, 255, 0.94);
   border-bottom-color: rgba(16, 24, 32, 0.1);
   backdrop-filter: blur(18px) saturate(130%);
   -webkit-backdrop-filter: blur(18px) saturate(130%);
@@ -152,7 +152,7 @@ header.site-header {
 .site-business-menu__panel a[aria-current="page"],
 .site-member-menu__panel a:hover,
 .site-member-menu__panel a[aria-current="page"] {
-  background: rgba(49, 88, 226, 0.08);
+  background: rgba(47, 84, 208, 0.08);
   color: var(--site-blue-deep);
 }
 
