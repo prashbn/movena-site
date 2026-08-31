@@ -1,13 +1,13 @@
 [
   {
     "source": "index.html",
-    "documentSha256": "9dc916e55c606d1b6532279318b63cf0c8321432f2bb21c33f40b911cb47eebd",
-    "mainSha256": "db782bde72ed26ff8c759d7081fc820a3becb0abc1aaab30f84df648d6a66ea4"
+    "documentSha256": "d4f7fdc15f58c29ea0c6e2c499ccf28fa9ec14ebccdc0fb88c515f3a01870b97",
+    "mainSha256": "e151742fabc79ecd96f80ce731a07794271227ff462a3d4a35d45befb9aece2f"
   },
   {
     "source": "platform/index.html",
-    "documentSha256": "28663e62d7c73d2a514f9d95e92b47bfd72e8c4c67436e4dc8247ff7bcea8160",
-    "mainSha256": "d219c099b7ee50d4253cdf001b2ae9b2547b607b6ec50a94ea2a960d30331b4d"
+    "documentSha256": "b25b0cf1b6fc567895c4993424c9e4af68c50451a16dae8d968db6ed78f7f110",
+    "mainSha256": "3266bb79a2cb21cf34b606d724b2b0db59ed061e47e3c7fbcd0b5764eee991b0"
   },
   {
     "source": "members/index.html",

@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
+import {
+  readLegacyDocument,
+  readLegacyMainMarkup,
+} from "../lib/legacy-content.ts";
 import { createRouteMetadata } from "../lib/metadata.ts";
 import {
   canonicalUrl,
@@ -76,6 +79,10 @@ test("legacy internal links are rewritten to canonical slash routes", () => {
 test("the live homepage uses the approved public-facing payments copy", () => {
   const homepage = readLegacyMainMarkup("index.html");
   const platform = readLegacyMainMarkup("platform/index.html");
+  const sourceMarkup = [
+    readLegacyDocument("index.html"),
+    readLegacyDocument("platform/index.html"),
+  ].join("\n");
 
   assert.match(homepage, />Payments built in</);
   assert.match(homepage, /Take payments online/);
@@ -86,6 +93,11 @@ test("the live homepage uses the approved public-facing payments copy", () => {
   assert.doesNotMatch(homepage, /Movena\? Nah, yeah/);
   assert.doesNotMatch(homepage, /Closed beta|limited number of Australian gyms/);
   assert.doesNotMatch(platform, /Closed beta/);
+  assert.doesNotMatch(
+    sourceMarkup,
+    /Closed beta|limited number of Australian gyms|limited onboarding/i,
+  );
+  assert.match(homepage, /Available now for Australian gyms/);
   assert.match(platform, /Know what changed\. Know what to do next\./);
   assert.match(platform, /\/product-screenshots\/movena-financials\.png/);
   assert.match(platform, /\/product-screenshots\/movena-program-builder\.png/);

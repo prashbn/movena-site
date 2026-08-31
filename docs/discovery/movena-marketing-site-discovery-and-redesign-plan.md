@@ -174,7 +174,7 @@ Current narrative:
 1. Australian colloquial kicker: “Other gym software? Yeah, nah. Movena? Nah, yeah.”
 2. Hero: “The gym platform that remembers the training.”
 3. Breadth statement: memberships, timetable, billing, check-in, and member-owned training history.
-4. CTA group: walkthrough, platform, and member app; limited Australian onboarding note.
+4. CTA group: walkthrough, platform, and member app; Australian availability note.
 5. Drawn timetable/operator console with sample classes and gym metrics.
 6. Proof strip: Australian, multi-location, Stripe billing, privacy by design.
 7. “The loop”: coaches capture, members keep, desk stays informed.
@@ -183,7 +183,7 @@ Current narrative:
 10. Retention: attendance badges, challenges, and a 14-day absence list.
 11. Short member-app handoff.
 12. Member data ownership and privacy.
-13. Closed-beta CTA.
+13. Owner CTA.
 
 Disposition:
 
@@ -191,7 +191,7 @@ Disposition:
 - **Rewrite and elevate:** lead with operating-platform value, then explain why remembered training makes the platform different. Add access control, native apps, performance context, HealthKit/Health Connect, integrations, and the coach–member closed loop.
 - **Reposition:** badges, challenges, the 18-discipline list, and the privacy detail should support broader stories rather than dominate the homepage.
 - **Retire from the hero:** the “yeah, nah” opener. It is distinctive but lowers perceived enterprise/investor seriousness and narrows an Australian brand into a joke before the product is understood. It could remain as internal voice reference or occasional campaign copy.
-- **Review:** “Closed beta” and “limited number of Australian gyms” may be valuable scarcity or stale stage language; product leadership must confirm.
+- **Resolved:** Movena is fully operational. Public copy must not imply a beta, restricted rollout, or artificial scarcity.
 
 ### Platform: `/platform/`
 
@@ -418,7 +418,7 @@ Keep the GitHub Pages origin intact during the rollback window. Do not combine t
 - The main conversion is a `mailto:` link, which offers no scheduler, attribution, structured qualification, or graceful mobile flow.
 - There is no durable Contact/Demo destination; CTAs are encoded separately across pages.
 - There are no approved customer logos, case studies, testimonials, quantified outcomes, founder/company detail, or security/trust overview. It is correct not to invent them, but the lack of proof limits credibility.
-- “Closed beta” and “limited onboarding” are stage claims that may date quickly.
+- Stage-specific scarcity language has been retired because Movena is fully operational.
 
 ### Product presentation
 
@@ -853,7 +853,7 @@ Only after approval, create Vercel, validate previews, pre-provision TLS, attach
 
 1. **Primary ICP:** Should launch language optimise first for independent gyms, boutique studios, multi-location operators, or a deliberately balanced mix?
 2. **Product truth matrix:** Which capabilities are generally available, beta, limited, partner-dependent, planned, or not yet public? This is required for every product statement and screenshot.
-3. **Stage language:** Are “Closed beta” and “limited number of Australian gyms” still accurate and strategically useful?
+3. **Availability language:** Keep public wording aligned with Movena's fully operational status.
 4. **Pricing:** Is pricing public, “from” pricing, sales-led, or deliberately absent at launch?
 5. **Demo flow:** Which external scheduler, CRM/lead service, and marketing-email provider—if any—will be selected later?
 6. **Brand identity:** Is the live blue-dot wordmark the intended identity, is the old gold “M” still valid, and where are the vector/source brand files?

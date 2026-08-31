@@ -29,14 +29,6 @@ function rewritePublicMarketingCopy(
         /<span class="kicker kicker-plain">Other gym software\? Yeah, nah\.<br>Movena\? Nah, yeah\.<\/span>\s*/,
         "",
       )
-      .replace(
-        /\s*<p class="hero-note">Now onboarding a limited number of Australian gyms\.<\/p>/,
-        "",
-      )
-      .replace(
-        '<span class="kicker">Closed beta</span>',
-        '<span class="kicker">Built for Australian gyms</span>',
-      )
       .replace("Stripe billing built in", "Payments built in")
       .replace(
         "Take payments through Stripe, or track them in person.",
@@ -49,10 +41,6 @@ function rewritePublicMarketingCopy(
       .replace(
         "Nothing to reconcile\n          between tools, because there aren't any other tools.",
         "One record moves with each member, so owners, staff and coaches see the same operation\n          without rebuilding it in spreadsheets.",
-      )
-      .replace(
-        '<span class="kicker">Closed beta</span>',
-        '<span class="kicker">See Movena in action</span>',
       )
       .replace(
         "Online through Stripe, or in person when a member prefers it — the membership is tracked either way.",
