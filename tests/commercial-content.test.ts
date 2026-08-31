@@ -97,8 +97,8 @@ test("business sign-in is an external link with no marketing auth route", () => 
   assert.doesNotMatch(header, /fetch\s*\(/);
 });
 
-test("FAQ remains reserved and has no route or supplied content", () => {
-  assert.equal(existsSync("app/faq"), false);
+test("FAQ is published while deferred download aliases remain absent", () => {
+  assert.equal(existsSync("app/faq/page.tsx"), true);
   assert.equal(existsSync("app/download"), false);
   assert.equal(existsSync("app/app-download"), false);
 });
@@ -116,6 +116,7 @@ test("desktop and mobile commercial navigation retain accessible controls", () =
     "Platform",
     "Pricing",
     "Integrations",
+    "FAQ",
     "Blog",
     "Help",
     "Sign in",

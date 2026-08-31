@@ -18,6 +18,7 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
           <Link href="/platform/">Platform</Link>
           <Link href="/pricing/">Pricing</Link>
           <Link href="/integrations/">Integrations</Link>
+          <Link href="/faq/">FAQ</Link>
           <Link href="/blog/">Blog</Link>
           <Link href="/members/">For members</Link>
           <Link href="/app/">Download the app</Link>

@@ -48,7 +48,8 @@ type CommercialPageShellProps = {
     | "/integrations/"
     | "/app/"
     | "/contact/"
-    | "/blog/";
+    | "/blog/"
+    | "/faq/";
   children: ReactNode;
 };
 

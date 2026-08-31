@@ -1,5 +1,6 @@
 import { siteConfig } from "./site-config.ts";
 import { blogPath, type BlogPost } from "./blog.ts";
+import { faqAnswerText, faqItems } from "./faq.ts";
 
 export type JsonLdValue = Record<string, unknown>;
 
@@ -29,6 +30,19 @@ export const blogStructuredData = {
     name: siteConfig.name,
     url: `${siteConfig.origin}/`,
   },
+} satisfies JsonLdValue;
+
+export const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faqAnswerText(item),
+    },
+  })),
 } satisfies JsonLdValue;
 
 export function articleStructuredData(post: BlogPost): JsonLdValue {

@@ -68,7 +68,7 @@ test("member navigation exposes the app without adding deferred surfaces", () =>
   assert.match(header, /href: "\/app\/", label: "Download the app"/);
   assert.match(header, /href: "\/help\/", label: "Help"/);
   assert.match(footer, /href="\/app\/">Download the app/);
-  assert.equal(existsSync("app/faq"), false);
+  assert.equal(existsSync("app/faq/page.tsx"), true);
   assert.doesNotMatch(
     `${header}\n${footer}\n${page}`,
     /Siri|Gemini|Apple Intelligence|App Intents/i,

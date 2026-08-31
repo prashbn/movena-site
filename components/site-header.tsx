@@ -21,6 +21,7 @@ const businessLinks = [
   { href: "/platform/", label: "Platform" },
   { href: "/pricing/", label: "Pricing" },
   { href: "/integrations/", label: "Integrations" },
+  { href: "/faq/", label: "FAQ" },
   { href: "/blog/", label: "Blog" },
   { href: "/help/", label: "Help" },
 ] as const;

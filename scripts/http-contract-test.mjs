@@ -19,6 +19,7 @@ const routes = [
   "/integrations/",
   "/app/",
   "/contact/",
+  "/faq/",
   "/blog/",
   "/blog/movement-and-mental-health/",
   "/blog/strength-training-for-everyday-movement/",
@@ -222,6 +223,19 @@ async function runContract() {
     integrationsHtml,
     /Siri|Gemini|Apple Intelligence|App Intents|HealthKit|GymMaster|Mindbody|Hapana/i,
   );
+
+  const faqHtml = await (await fetch(`${origin}/faq/`)).text();
+  for (const marker of [
+    "Questions, answered.",
+    "Do we have to sign a lock-in contract?",
+    "30 days’ notice",
+    "Payments settle into your own Stripe account",
+    "Kisi subscription directly from Kisi",
+    "hosted in Sydney, Australia",
+  ]) {
+    assert.match(faqHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  assert.match(faqHtml, /FAQPage/);
 
   const blogHtml = await (await fetch(`${origin}/blog/`)).text();
   for (const marker of [
