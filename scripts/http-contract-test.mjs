@@ -30,7 +30,7 @@ const routes = [
 const frozenDocumentMarkers = new Map([
   ["/help/", ["Help &amp; Support", "Last updated: 2 August 2026"]],
   ["/integrations/kisi/", ["Movena + Kisi", "Ending the integration"]],
-  ["/legal/privacy/", ["Privacy Policy", "Last updated: 6 August 2026"]],
+  ["/legal/privacy/", ["Privacy Policy", "Last updated: 31 August 2026"]],
   ["/legal/terms/", ["Terms of Service", "Last updated: 3 August 2026"]],
 ]);
 
@@ -201,6 +201,22 @@ async function runContract() {
     );
   }
 
+  const platformHtml = await (await fetch(`${origin}/platform/`)).text();
+  for (const marker of [
+    "Know what changed. Know what to do next.",
+    "/product-screenshots/movena-financials.png",
+    "/product-screenshots/movena-program-builder.png",
+    "/product-screenshots/movena-exercise-library.png",
+    "Product screens shown with demonstration data.",
+    "See Movena in action",
+  ]) {
+    assert.match(
+      platformHtml,
+      new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+  assert.doesNotMatch(platformHtml, /Closed beta/);
+
   const businessesHtml = await (await fetch(`${origin}/businesses/`)).text();
   for (const marker of [
     "Built for how your business trains.",
@@ -241,16 +257,16 @@ async function runContract() {
   const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [
     "Xero",
-    "Accounting integration.",
+    "Accounting integration — available shortly.",
     "Kisi",
     "Access control integration.",
     "Apple Health",
-    "Supported member health and workout data.",
+    "Member-controlled workout and health data from iPhone.",
     "Health Connect",
-    "Supported Android health and fitness data.",
+    "Member-controlled health and fitness data from Android.",
     "Payments built in",
     "Payments and billing, built into Movena.",
-    "Brevo — Coming soon",
+    "Brevo — Available shortly",
   ]) {
     assert.match(integrationsHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }

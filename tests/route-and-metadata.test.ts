@@ -84,6 +84,12 @@ test("the live homepage uses the approved public-facing payments copy", () => {
   assert.doesNotMatch(platform, /Stripe/);
   assert.doesNotMatch(homepage, /Other gym software\? Yeah, nah/);
   assert.doesNotMatch(homepage, /Movena\? Nah, yeah/);
+  assert.doesNotMatch(homepage, /Closed beta|limited number of Australian gyms/);
+  assert.doesNotMatch(platform, /Closed beta/);
+  assert.match(platform, /Know what changed\. Know what to do next\./);
+  assert.match(platform, /\/product-screenshots\/movena-financials\.png/);
+  assert.match(platform, /\/product-screenshots\/movena-program-builder\.png/);
+  assert.match(platform, /\/product-screenshots\/movena-exercise-library\.png/);
 });
 
 test("the retired product comparison route permanently redirects into pricing", () => {

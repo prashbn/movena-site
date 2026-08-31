@@ -7,6 +7,7 @@ const customStylePaths = [
   "styles/premium-shell.css",
   "styles/home.css",
   "styles/members.css",
+  "styles/platform-proof.css",
   "styles/commercial.css",
   "styles/businesses.css",
   "styles/integrations.css",
@@ -28,6 +29,7 @@ test("the Platform page is the documented visual source of truth", () => {
 
 test("custom pages resolve to the Platform colour primitives", () => {
   const tokens = readFileSync("styles/tokens.css", "utf8");
+  const layout = readFileSync("app/layout.tsx", "utf8");
 
   for (const alias of [
     "--site-canvas: var(--bg)",
@@ -43,6 +45,9 @@ test("custom pages resolve to the Platform colour primitives", () => {
   ]) {
     assert.match(tokens, new RegExp(alias.replace(/[()]/g, "\\$&")));
   }
+
+  assert.match(layout, /themeColor: "#ffffff"/);
+  assert.doesNotMatch(layout, /themeColor: "#f6f4ef"/);
 });
 
 test("custom pages preserve the Platform cool-white surface hierarchy", () => {

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#f6f4ef",
+  themeColor: "#ffffff",
 };
 
 type RootLayoutProps = Readonly<{

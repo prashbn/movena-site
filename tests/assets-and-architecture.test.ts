@@ -59,6 +59,20 @@ test("Next public assets are an exact, non-destructive copy of legacy assets", (
   }
 });
 
+test("the Platform product proof uses repository-owned product screenshots", () => {
+  for (const screenshot of [
+    "movena-financials.png",
+    "movena-program-builder.png",
+    "movena-exercise-library.png",
+  ]) {
+    assert.equal(
+      existsSync(join("public/product-screenshots", screenshot)),
+      true,
+      screenshot,
+    );
+  }
+});
+
 test("the runtime backend surface is limited to the server-side contact endpoint", () => {
   assert.equal(existsSync("app/api/contact/route.ts"), true);
   assert.equal(existsSync("middleware.ts"), false);

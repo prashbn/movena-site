@@ -1,7 +1,7 @@
 export const publicIntegrations = [
   {
     name: "Xero",
-    description: "Accounting integration.",
+    description: "Accounting integration — available shortly.",
     mark: {
       kind: "image",
       src: "/assets/integrations/xero-logo.svg",
@@ -22,7 +22,7 @@ export const publicIntegrations = [
   },
   {
     name: "Apple Health",
-    description: "Supported member health and workout data.",
+    description: "Member-controlled workout and health data from iPhone.",
     mark: {
       kind: "text",
       label: "Apple Health",
@@ -30,7 +30,7 @@ export const publicIntegrations = [
   },
   {
     name: "Health Connect",
-    description: "Supported Android health and fitness data.",
+    description: "Member-controlled health and fitness data from Android.",
     mark: {
       kind: "image",
       src: "/assets/integrations/health-connect-logo.png",
@@ -47,7 +47,7 @@ export const publicIntegrations = [
     },
   },
   {
-    name: "Brevo — Coming soon",
+    name: "Brevo — Available shortly",
     mark: {
       kind: "image",
       src: "/assets/integrations/brevo-logo.svg",
