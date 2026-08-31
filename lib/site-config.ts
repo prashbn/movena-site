@@ -15,8 +15,7 @@ export const siteConfig = {
     googlePlayUrl:
       "https://play.google.com/store/apps/details?id=au.com.movena.member&pli=1",
   },
-  contactHref:
-    "mailto:info@movena.com.au?subject=Movena%20%E2%80%94%20enquiry",
+  contactHref: "/contact/",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

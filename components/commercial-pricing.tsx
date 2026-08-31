@@ -33,7 +33,7 @@ export function PackageCards() {
                 ))}
               </ul>
               <a className="commercial-button" href={siteConfig.contactHref}>
-                Talk to us
+                Talk to Movena
               </a>
             </article>
           ))}
@@ -133,9 +133,9 @@ export function CommercialCta() {
   return (
     <section className="commercial-cta" aria-labelledby="commercial-cta-heading">
       <div className="commercial-wrap commercial-cta__inner">
-        <h2 id="commercial-cta-heading">Talk to us</h2>
+        <h2 id="commercial-cta-heading">Talk to Movena</h2>
         <a className="commercial-button" href={siteConfig.contactHref}>
-          Talk to us
+          Talk to Movena
         </a>
       </div>
     </section>

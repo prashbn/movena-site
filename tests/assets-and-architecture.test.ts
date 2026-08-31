@@ -51,8 +51,8 @@ test("Next public assets are an exact, non-destructive copy of legacy assets", (
   }
 });
 
-test("the baseline has no runtime application or marketing backend surface", () => {
-  assert.equal(existsSync("app/api"), false);
+test("the runtime backend surface is limited to the server-side contact endpoint", () => {
+  assert.equal(existsSync("app/api/contact/route.ts"), true);
   assert.equal(existsSync("middleware.ts"), false);
   assert.equal(existsSync("middleware.js"), false);
 
@@ -62,7 +62,6 @@ test("the baseline has no runtime application or marketing backend surface", () 
   );
 
   const forbidden = [
-    /\bfetch\s*\(/,
     /["']use server["']/,
     /\bcookies\s*\(/,
     /\bheaders\s*\(/,
@@ -76,7 +75,24 @@ test("the baseline has no runtime application or marketing backend surface", () 
     }
   }
 
+  const fetchSources = sourceFiles.filter((sourceFile) =>
+    /\bfetch\s*\(/.test(readFileSync(sourceFile, "utf8")),
+  );
+  assert.deepEqual(fetchSources, ["components/contact-form.tsx"]);
+
+  const brevoSource = readFileSync("lib/brevo-contact.ts", "utf8");
+  assert.match(brevoSource, /api\.brevo\.com\/v3/);
+  assert.match(brevoSource, /process\.env/);
+  assert.doesNotMatch(
+    readFileSync("components/contact-form.tsx", "utf8"),
+    /BREVO_|api\.brevo\.com|api-key/,
+  );
+
   assert.match(readFileSync("app/layout.tsx", "utf8"), /force-static/);
+  assert.match(
+    readFileSync("app/api/contact/route.ts", "utf8"),
+    /force-dynamic/,
+  );
   assert.match(readFileSync("next.config.ts", "utf8"), /trailingSlash:\s*true/);
   assert.equal(readFileSync("CNAME", "utf8"), "movena.com.au");
 

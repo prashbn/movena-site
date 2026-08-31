@@ -1,13 +1,7 @@
 # Movena marketing site
 
-The production website is currently published from the legacy static HTML at
-the repository root through GitHub Pages. The `CNAME`, root HTML files,
-directory `index.html` files, and root `assets/` directory remain the production
-source until a separately approved hosting cutover.
-
-The migration-safe Next.js baseline lives alongside those files on the
-`redesign/slice-1-next-baseline` branch. It statically renders the existing
-content without implementing the later visual/content redesign.
+The production website is a Next.js App Router application deployed to the
+`movena-site` project on Vercel and served at `https://movena.com.au`.
 
 ## Local Next.js commands
 
@@ -24,3 +18,27 @@ npm run test:http
 `public/assets/` is an exact copy of the legacy root `assets/` directory so the
 Next.js app can serve the existing `/assets/...` URLs without moving or deleting
 anything required by GitHub Pages.
+
+## Contact form configuration
+
+The `/contact/` form posts to the server-only `/api/contact/` route. The route
+creates or updates the visitor as a Brevo contact and sends a Brevo
+transactional notification to Movena. It does not add marketing consent.
+
+Configure these variables in both Vercel Preview and Production before testing
+or releasing the form:
+
+- `BREVO_API_KEY` — Brevo API key with contact and transactional-email access.
+- `BREVO_SENDER_EMAIL` — a sender address verified for Brevo transactional
+  email.
+- `BREVO_NOTIFICATION_EMAIL` — the fixed Movena inbox that receives enquiries.
+
+Optional:
+
+- `BREVO_CONTACT_LIST_ID` — a positive numeric ID for a dedicated enquiry list.
+  Leave it unset unless that list is used only for enquiry management rather
+  than promotional marketing.
+
+Do not commit real values. Preview and Production values are managed separately
+in Vercel. The lightweight in-process submission limit is best-effort on
+serverless instances; no durable rate-limit service is currently configured.

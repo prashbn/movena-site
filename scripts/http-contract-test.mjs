@@ -18,6 +18,7 @@ const routes = [
   "/pricing/",
   "/integrations/",
   "/app/",
+  "/contact/",
 ];
 
 const frozenDocumentMarkers = new Map([
@@ -83,6 +84,65 @@ async function runContract() {
     homepageHtml,
     /The gym platform that remembers the training\./,
   );
+  assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a walkthrough<\/a>/);
+
+  const contactHtml = await (await fetch(`${origin}/contact/`)).text();
+  for (const marker of [
+    "Tell us about your gym.",
+    "Start the conversation.",
+    'name="businessName"',
+    'name="workEmail"',
+    'name="locations"',
+    'name="interest"',
+    "Privacy Policy",
+  ]) {
+    assert.match(
+      contactHtml,
+      new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+
+  const contactApiWithoutSlash = await fetch(`${origin}/api/contact`, {
+    redirect: "manual",
+  });
+  assert.equal(contactApiWithoutSlash.status, 308);
+
+  const contactGet = await fetch(`${origin}/api/contact/`, {
+    redirect: "manual",
+  });
+  assert.equal(contactGet.status, 405);
+
+  const contactHeaders = {
+    "content-type": "application/json",
+    origin,
+  };
+  const invalidContact = await fetch(`${origin}/api/contact/`, {
+    method: "POST",
+    headers: contactHeaders,
+    body: "{}",
+  });
+  assert.equal(invalidContact.status, 422);
+  const invalidContactBody = await invalidContact.json();
+  assert.equal(invalidContactBody.ok, false);
+  assert.ok(invalidContactBody.fieldErrors.workEmail);
+
+  const honeypotContact = await fetch(`${origin}/api/contact/`, {
+    method: "POST",
+    headers: contactHeaders,
+    body: JSON.stringify({ website: "https://spam.example" }),
+  });
+  assert.equal(honeypotContact.status, 200);
+  assert.equal((await honeypotContact.json()).ok, true);
+
+  const crossOriginContact = await fetch(`${origin}/api/contact/`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      origin: "https://attacker.example",
+    },
+    body: "{}",
+  });
+  assert.equal(crossOriginContact.status, 403);
 
   const primaryNavigation = homepageHtml.match(
     /<nav class="site-navigation" aria-label="Primary">([\s\S]*?)<\/nav>/,

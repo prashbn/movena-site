@@ -21,6 +21,7 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
           <Link href="/members/">For members</Link>
           <Link href="/app/">Download the app</Link>
           <Link href="/help/">Help</Link>
+          <Link href={siteConfig.contactHref}>Talk to Movena</Link>
           <a href={siteConfig.businessSignInUrl}>Sign in</a>
           <Link href="/legal/privacy/">Privacy</Link>
           <Link href="/legal/terms/">Terms</Link>

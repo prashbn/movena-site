@@ -224,7 +224,7 @@ export function SiteHeader(props: SiteHeaderProps) {
             Sign in
           </a>
           <a className="site-header__cta" href={siteConfig.contactHref}>
-            Talk to us
+            Talk to Movena
           </a>
         </div>
 
@@ -277,7 +277,7 @@ export function SiteHeader(props: SiteHeaderProps) {
           </div>
           <div className="site-mobile-menu__actions">
             <a href={siteConfig.businessSignInUrl}>Sign in</a>
-            <a href={siteConfig.contactHref}>Talk to us</a>
+            <a href={siteConfig.contactHref}>Talk to Movena</a>
           </div>
         </nav>
       </div>

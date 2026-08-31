@@ -10,7 +10,40 @@ const internalRouteReplacements = new Map([
   ["/integrations/kisi", "/integrations/kisi/"],
   ["/legal/privacy", "/legal/privacy/"],
   ["/legal/terms", "/legal/terms/"],
+  ["/contact", "/contact/"],
 ]);
+
+const salesContactSources = new Set<LegacySource>([
+  "index.html",
+  "platform/index.html",
+]);
+
+export function rewriteSalesContactHrefs(
+  markup: string,
+  source: LegacySource,
+): string {
+  let rewritten = markup;
+
+  if (salesContactSources.has(source)) {
+    rewritten = rewritten.replace(
+      /href="mailto:info@movena\.com\.au\?subject=Movena%20%E2%80%94%20(?:enquiry|walkthrough)"/g,
+      'href="/contact/"',
+    );
+    rewritten = rewritten.replace(
+      /(<a class="btn btn-primary" href="\/contact\/">)info@movena\.com\.au(<\/a>)/g,
+      "$1Talk to Movena$2",
+    );
+  }
+
+  if (source === "integrations/kisi/index.html") {
+    rewritten = rewritten.replace(
+      /New to Movena\? Say hello at <a href="mailto:info@movena\.com\.au">info@movena\.com\.au<\/a>\./,
+      'New to Movena? <a href="/contact/">Talk to Movena</a>.',
+    );
+  }
+
+  return rewritten;
+}
 
 export function extractMainMarkup(document: string, source: string): string {
   const match = document.match(/<main(?:\s[^>]*)?>([\s\S]*?)<\/main>/i);
@@ -44,7 +77,10 @@ export function readLegacyDocument(source: LegacySource): string {
 
 export function readLegacyMainMarkup(source: LegacySource): string {
   return rewriteInternalRouteHrefs(
-    extractMainMarkup(readLegacyDocument(source), source),
+    rewriteSalesContactHrefs(
+      extractMainMarkup(readLegacyDocument(source), source),
+      source,
+    ),
   );
 }
 

@@ -118,7 +118,7 @@ test("desktop and mobile commercial navigation retain accessible controls", () =
     "Integrations",
     "Help",
     "Sign in",
-    "Talk to us",
+    "Talk to Movena",
   ]) {
     assert.match(header, new RegExp(label));
   }

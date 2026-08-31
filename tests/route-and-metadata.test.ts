@@ -22,9 +22,10 @@ const expectedPaths = [
   "/pricing/",
   "/integrations/",
   "/app/",
+  "/contact/",
 ];
 
-test("the explicit route manifest contains the seven legacy and three commercial routes", () => {
+test("the explicit route manifest contains the seven legacy and four commercial routes", () => {
   assert.deepEqual(
     publicRoutes.map((route) => route.path),
     expectedPaths,
