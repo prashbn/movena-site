@@ -24,6 +24,8 @@ test("the Members page presents all four supplied product screens", () => {
   assert.equal(markup.match(/class="member-screen /g)?.length, 4);
   assert.equal(markup.match(/member-legacy-phone/g)?.length, 2);
   assert.match(markup, /member-screen-grid/);
+  assert.doesNotMatch(markup, /coaching-1254w\.jpg/);
+  assert.match(markup, /training-1000\.jpg/);
 });
 
 test("the repository-owned member screenshots match the supplied masters", () => {

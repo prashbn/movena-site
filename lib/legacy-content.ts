@@ -106,7 +106,7 @@ function rewriteMemberProductImagery(
 
   const photoPair = /<div class="shot-pair">\s*<figure class="shot shot-portrait">[\s\S]*?<\/figure>\s*<figure class="shot shot-portrait">[\s\S]*?<\/figure>\s*<\/div>/;
 
-  return rewritten.replace(
+  rewritten = rewritten.replace(
     photoPair,
     `<div class="member-screen-grid">
       ${memberScreenMarkup({
@@ -121,6 +121,10 @@ function rewriteMemberProductImagery(
       })}
     </div>`,
   );
+
+  const coachingPhoto = /<div class="wrap-band" style="margin-top:80px">\s*<figure class="shot shot-feature">[\s\S]*?coaching-1254w\.jpg[\s\S]*?<\/figure>\s*<\/div>/;
+
+  return rewritten.replace(coachingPhoto, "");
 }
 
 export function rewriteSalesContactHrefs(
