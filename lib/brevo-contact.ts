@@ -20,10 +20,13 @@ export class BrevoConfigurationError extends Error {
 }
 
 export class BrevoRequestError extends Error {
-  readonly stage: "contact" | "notification";
+  readonly stage: "contact" | "notification" | "acknowledgement";
   readonly status: number;
 
-  constructor(stage: "contact" | "notification", status: number) {
+  constructor(
+    stage: "contact" | "notification" | "acknowledgement",
+    status: number,
+  ) {
     super(`Brevo ${stage} request failed`);
     this.name = "BrevoRequestError";
     this.stage = stage;
@@ -147,22 +150,59 @@ export function buildBrevoNotificationPayload(
   };
 }
 
+export function buildBrevoAcknowledgementPayload(
+  submission: ContactSubmission,
+  configuration: BrevoConfiguration,
+) {
+  const textContent = [
+    `Hi ${submission.name},`,
+    "",
+    "Thanks for getting in touch with Movena.",
+    "",
+    `We’ve received your enquiry about ${submission.interest}. Someone from Movena will be in touch soon.`,
+    "",
+    "If you’d like to add anything, reply to this email.",
+    "",
+    "Movena",
+    "https://movena.com.au/",
+  ].join("\n");
+
+  return {
+    sender: {
+      name: "Movena",
+      email: configuration.senderEmail,
+    },
+    to: [{ email: submission.workEmail, name: submission.name }],
+    replyTo: {
+      name: "Movena",
+      email: configuration.notificationEmail,
+    },
+    subject: "We’ve received your Movena enquiry",
+    textContent,
+  };
+}
+
 async function postToBrevo(
   path: "/contacts" | "/smtp/email",
   body: unknown,
   configuration: BrevoConfiguration,
-  stage: "contact" | "notification",
+  stage: "contact" | "notification" | "acknowledgement",
   fetchImpl: FetchLike,
 ): Promise<void> {
-  const response = await fetchImpl(`${brevoApiOrigin}${path}`, {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-      "api-key": configuration.apiKey,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  let response: Pick<Response, "ok" | "status">;
+  try {
+    response = await fetchImpl(`${brevoApiOrigin}${path}`, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "api-key": configuration.apiKey,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  } catch {
+    throw new BrevoRequestError(stage, 0);
+  }
 
   if (!response.ok) {
     throw new BrevoRequestError(stage, response.status);
@@ -173,7 +213,13 @@ export async function submitContactToBrevo(
   submission: ContactSubmission,
   configuration: BrevoConfiguration,
   fetchImpl: FetchLike = fetch,
-): Promise<void> {
+): Promise<
+  | { acknowledgementSent: true }
+  | {
+      acknowledgementSent: false;
+      acknowledgementError: BrevoRequestError;
+    }
+> {
   await postToBrevo(
     "/contacts",
     buildBrevoContactPayload(submission, configuration),
@@ -188,4 +234,26 @@ export async function submitContactToBrevo(
     "notification",
     fetchImpl,
   );
+
+  try {
+    await postToBrevo(
+      "/smtp/email",
+      buildBrevoAcknowledgementPayload(submission, configuration),
+      configuration,
+      "acknowledgement",
+      fetchImpl,
+    );
+    return { acknowledgementSent: true };
+  } catch (error) {
+    if (
+      error instanceof BrevoRequestError &&
+      error.stage === "acknowledgement"
+    ) {
+      return {
+        acknowledgementSent: false,
+        acknowledgementError: error,
+      };
+    }
+    throw error;
+  }
 }

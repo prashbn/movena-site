@@ -32,7 +32,10 @@ before changing colours, surfaces, branded integrations, or shared components.
 
 The `/contact/` form posts to the server-only `/api/contact/` route. The route
 creates or updates the visitor as a Brevo contact and sends a Brevo
-transactional notification to Movena. It does not add marketing consent.
+transactional notification to Movena. It also sends the visitor one
+transactional acknowledgement confirming that the enquiry was received, with
+replies directed to the Movena notification inbox. It does not add marketing
+consent or enrol the visitor in an email sequence.
 
 Configure these variables in both Vercel Preview and Production before testing
 or releasing the form:

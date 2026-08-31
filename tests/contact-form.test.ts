@@ -4,6 +4,7 @@ import test from "node:test";
 
 import {
   BrevoRequestError,
+  buildBrevoAcknowledgementPayload,
   buildBrevoContactPayload,
   buildBrevoNotificationPayload,
   readBrevoConfiguration,
@@ -184,7 +185,7 @@ test("Brevo configuration is explicit and contains no invented values", () => {
   );
 });
 
-test("Brevo receives a bounded contact update then a fixed-recipient notification", async () => {
+test("Brevo receives one contact update, one notification and one acknowledgement", async () => {
   const configuration = {
     apiKey: "test-key",
     senderEmail: "verified@example.com",
@@ -200,11 +201,17 @@ test("Brevo receives a bounded contact update then a fixed-recipient notificatio
     return { ok: true, status: 201 };
   };
 
-  await submitContactToBrevo(validSubmission, configuration, fetchMock);
+  const result = await submitContactToBrevo(
+    validSubmission,
+    configuration,
+    fetchMock,
+  );
 
-  assert.equal(calls.length, 2);
+  assert.deepEqual(result, { acknowledgementSent: true });
+  assert.equal(calls.length, 3);
   assert.equal(calls[0]?.url, "https://api.brevo.com/v3/contacts");
   assert.equal(calls[1]?.url, "https://api.brevo.com/v3/smtp/email");
+  assert.equal(calls[2]?.url, "https://api.brevo.com/v3/smtp/email");
   assert.deepEqual(JSON.parse(String(calls[0]?.init?.body)), {
     email: "hello@example.com",
     attributes: { FIRSTNAME: "Prash Test" },
@@ -222,6 +229,32 @@ test("Brevo receives a bounded contact update then a fixed-recipient notificatio
   assert.match(notification.textContent, /Marketing consent: Not collected/);
   assert.doesNotMatch(String(calls[0]?.init?.body), /message|recipient/i);
 
+  const acknowledgement = JSON.parse(String(calls[2]?.init?.body));
+  assert.deepEqual(acknowledgement.to, [
+    { email: "hello@example.com", name: "Prash Test" },
+  ]);
+  assert.deepEqual(acknowledgement.replyTo, {
+    name: "Movena",
+    email: "movena@example.com",
+  });
+  assert.equal(
+    acknowledgement.subject,
+    "We’ve received your Movena enquiry",
+  );
+  assert.match(acknowledgement.textContent, /Hi Prash Test,/);
+  assert.match(
+    acknowledgement.textContent,
+    /Someone from Movena will be in touch soon\./,
+  );
+  assert.match(
+    acknowledgement.textContent,
+    /If you’d like to add anything, reply to this email\./,
+  );
+  assert.doesNotMatch(
+    acknowledgement.textContent,
+    /subscribe|newsletter|marketing|discount/i,
+  );
+
   assert.deepEqual(
     buildBrevoContactPayload(validSubmission, configuration),
     JSON.parse(String(calls[0]?.init?.body)),
@@ -234,6 +267,40 @@ test("Brevo receives a bounded contact update then a fixed-recipient notificatio
     ).to[0]?.email,
     "movena@example.com",
   );
+  assert.deepEqual(
+    buildBrevoAcknowledgementPayload(validSubmission, configuration),
+    acknowledgement,
+  );
+});
+
+test("an acknowledgement transport failure is logged without losing the enquiry", async () => {
+  const configuration = {
+    apiKey: "test-key",
+    senderEmail: "verified@example.com",
+    notificationEmail: "movena@example.com",
+  };
+  let callNumber = 0;
+  const fetchMock = async () => {
+    callNumber += 1;
+    if (callNumber === 3) throw new Error("network unavailable");
+    return { ok: true, status: 201 };
+  };
+
+  const result = await submitContactToBrevo(
+    validSubmission,
+    configuration,
+    fetchMock,
+  );
+
+  assert.equal(callNumber, 3);
+  assert.equal(result.acknowledgementSent, false);
+  if (!result.acknowledgementSent) {
+    assert.equal(result.acknowledgementError.stage, "acknowledgement");
+    assert.equal(result.acknowledgementError.status, 0);
+  }
+
+  const route = readFileSync("app/api/contact/route.ts", "utf8");
+  assert.match(route, /contact_acknowledgement_failed/);
 });
 
 test("the client form exposes complete loading, validation, success and error states", () => {

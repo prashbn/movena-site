@@ -88,7 +88,14 @@ export async function POST(request: NextRequest) {
   const result = await processContactSubmission(payload, {
     submit: async (submission) => {
       const configuration = readBrevoConfiguration();
-      await submitContactToBrevo(submission, configuration);
+      const delivery = await submitContactToBrevo(submission, configuration);
+      if (!delivery.acknowledgementSent) {
+        console.error("contact_acknowledgement_failed", {
+          requestId,
+          stage: delivery.acknowledgementError.stage,
+          status: delivery.acknowledgementError.status,
+        });
+      }
     },
     onError(error) {
       if (error instanceof BrevoRequestError) {
