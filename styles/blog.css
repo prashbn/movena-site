@@ -1,8 +1,11 @@
 .blog-hero,
+.blog-article {
+  background: var(--site-canvas);
+}
+
 .blog-index,
-.blog-article,
 .blog-related {
-  background: var(--site-paper);
+  background: var(--site-surface-tint);
 }
 
 .blog-hero {

@@ -31,6 +31,7 @@ test("custom pages resolve to the Platform colour primitives", () => {
     "--site-canvas: var(--bg)",
     "--site-surface-tint: var(--bg-tint)",
     "--site-surface-soft: var(--bg-soft)",
+    "--site-paper: var(--site-surface-tint)",
     "--site-ink: var(--ink)",
     "--site-ink-soft: var(--ink-2)",
     "--site-ink-faint: var(--ink-3)",
@@ -40,6 +41,19 @@ test("custom pages resolve to the Platform colour primitives", () => {
   ]) {
     assert.match(tokens, new RegExp(alias.replace(/[()]/g, "\\$&")));
   }
+});
+
+test("custom pages preserve the Platform cool-white surface hierarchy", () => {
+  const home = readFileSync("styles/home.css", "utf8");
+  const commercial = readFileSync("styles/commercial.css", "utf8");
+  const integrations = readFileSync("styles/integrations.css", "utf8");
+  const blog = readFileSync("styles/blog.css", "utf8");
+
+  assert.match(home, /\.home-page \.hero \{[\s\S]*?background: var\(--site-canvas\)/);
+  assert.match(commercial, /\.commercial-hero \{[\s\S]*?background: var\(--site-canvas\)/);
+  assert.match(integrations, /\.integration-card \{[\s\S]*?background: var\(--site-surface\)/);
+  assert.match(integrations, /\.integration-card__brand \{[\s\S]*?background: var\(--site-surface-soft\)/);
+  assert.match(blog, /\.blog-index,[\s\S]*?background: var\(--site-surface-tint\)/);
 });
 
 test("the retired warm and Apple-clone palettes cannot return to custom styles", () => {

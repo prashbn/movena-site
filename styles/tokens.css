@@ -23,7 +23,8 @@
   --site-surface: var(--bg);
   --site-surface-tint: var(--bg-tint);
   --site-surface-soft: var(--bg-soft);
-  --site-paper: var(--site-canvas);
+  /* Compatibility name used by newer page shells: now the cool section wash. */
+  --site-paper: var(--site-surface-tint);
   --site-paper-bright: var(--site-surface);
   --site-ink: var(--ink);
   --site-ink-soft: var(--ink-2);

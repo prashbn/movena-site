@@ -19,6 +19,7 @@
   padding: clamp(1rem, 1.7vw, 1.5rem);
   border-right: 1px solid var(--site-line);
   border-bottom: 1px solid var(--site-line);
+  background: var(--site-surface);
 }
 
 .integration-card:nth-child(3n + 1) {
@@ -40,7 +41,7 @@
   padding: clamp(1.5rem, 2.2vw, 2rem);
   border: 1px solid color-mix(in srgb, var(--site-line) 78%, transparent);
   border-radius: 1rem;
-  background: var(--site-surface-tint);
+  background: var(--site-surface-soft);
 }
 
 .integration-card__brand img {

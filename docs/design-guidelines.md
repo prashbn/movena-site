@@ -24,6 +24,11 @@ a few of the same hex values. The overall impression is clean and cool: a white
 canvas, very pale blue-grey washes, dark ink, cobalt actions, white bordered
 cards, and isolated navy contrast.
 
+Preserve that layering: shared navigation and page heroes sit on white; major
+content areas may use the cool `#f5f7fb` wash; nested component surfaces use
+`#fafbfd`; primary cards return to white with a visible border. Do not collapse
+all four roles into one continuous white surface.
+
 ## Approved palette
 
 The canonical primitives live in `assets/site.css`. Newer components consume
@@ -58,8 +63,9 @@ small UI demonstrations are content, not additions to the website palette.
    palette or hard-code a near-duplicate neutral.
 2. Let white, ink, cobalt, cool washes, and occasional navy create the page
    hierarchy.
-3. Use tinted surfaces only as isolated supporting moments. Do not use them
-   across a whole page or in several consecutive sections.
+3. Use the cool section wash to distinguish major content areas, then place
+   white bordered cards above it. Tinted surfaces must not consume the entire
+   page or replace the white hero.
 4. Use blue for purposeful interaction and emphasis, not decoration on every
    element.
 5. Use navy for one strong contrast moment where the content benefits from it;
