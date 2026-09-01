@@ -263,7 +263,7 @@ async function runContract() {
   const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [
     "Xero",
-    "Accounting integration — available shortly.",
+    "Xero-ready exports.",
     "Kisi",
     "Access control integration — listed in Kisi’s marketplace.",
     "https://www.getkisi.com/integrations/movena",

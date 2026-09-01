@@ -1,7 +1,7 @@
 export const publicIntegrations = [
   {
     name: "Xero",
-    description: "Accounting integration — available shortly.",
+    description: "Xero-ready exports.",
     mark: {
       kind: "image",
       src: "/assets/integrations/xero-logo.svg",
