@@ -11,6 +11,7 @@ export const organizationStructuredData = {
   legalName: siteConfig.legalName,
   url: `${siteConfig.origin}/`,
   email: siteConfig.email,
+  sameAs: Object.values(siteConfig.social),
   identifier: {
     "@type": "PropertyValue",
     propertyID: "ACN",

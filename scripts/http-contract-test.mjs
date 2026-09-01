@@ -265,7 +265,9 @@ async function runContract() {
     "Xero",
     "Accounting integration — available shortly.",
     "Kisi",
-    "Access control integration.",
+    "Access control integration — listed in Kisi’s marketplace.",
+    "https://www.getkisi.com/integrations/movena",
+    "https://docs.kisi.io/marketplace/fitness/movena/",
     "Apple Health",
     "Member-controlled workout and health data from iPhone.",
     "Health Connect",
@@ -273,6 +275,9 @@ async function runContract() {
     "Payments built in",
     "Payments and billing, built into Movena.",
     "Brevo — Available shortly",
+    "https://www.facebook.com/profile.php?id=61594035146486",
+    "https://www.instagram.com/movena_au/",
+    "https://www.linkedin.com/company/movena-au/",
   ]) {
     assert.match(integrationsHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }

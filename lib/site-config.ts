@@ -15,6 +15,11 @@ export const siteConfig = {
     googlePlayUrl:
       "https://play.google.com/store/apps/details?id=au.com.movena.member&pli=1",
   },
+  social: {
+    facebook: "https://www.facebook.com/profile.php?id=61594035146486",
+    instagram: "https://www.instagram.com/movena_au/",
+    linkedin: "https://www.linkedin.com/company/movena-au/",
+  },
   contactHref: "/contact/",
 } as const;
 

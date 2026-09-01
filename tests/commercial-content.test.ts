@@ -194,7 +194,7 @@ test("the public integrations surface remains exact and conservative", () => {
     },
     {
       name: "Kisi",
-      description: "Access control integration.",
+      description: "Access control integration — listed in Kisi’s marketplace.",
       href: "/integrations/kisi/",
       mark: {
         kind: "image",
@@ -262,4 +262,17 @@ test("the public integrations surface remains exact and conservative", () => {
   assert.doesNotMatch(paidAddOns.join(" "), /Kisi/);
   assert.match(integrationCss, /@media \(max-width: 860px\)/);
   assert.match(integrationCss, /@media \(max-width: 560px\)/);
+});
+
+test("Kisi partner proof links to the official listing and setup guide", () => {
+  const page = readFileSync("app/integrations/page.tsx", "utf8");
+
+  assert.match(page, /Kisi integration partner/);
+  assert.match(page, /Listed in Kisi’s integration marketplace/);
+  assert.match(page, /https:\/\/www\.getkisi\.com\/integrations\/movena/);
+  assert.match(
+    page,
+    /https:\/\/docs\.kisi\.io\/marketplace\/fitness\/movena\//,
+  );
+  assert.match(page, /Kisi remains authoritative for doors/);
 });

@@ -11,7 +11,7 @@ export const publicIntegrations = [
   },
   {
     name: "Kisi",
-    description: "Access control integration.",
+    description: "Access control integration — listed in Kisi’s marketplace.",
     href: "/integrations/kisi/",
     mark: {
       kind: "image",

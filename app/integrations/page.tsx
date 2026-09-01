@@ -23,6 +23,53 @@ export default function IntegrationsPage() {
         </div>
       </header>
       <section
+        className="integrations-partner"
+        aria-labelledby="kisi-partner-heading"
+      >
+        <div className="commercial-wrap">
+          <article className="integrations-partner__card">
+            <div className="integrations-partner__brand" aria-hidden="true">
+              <Image
+                alt=""
+                height={228}
+                src="/assets/integrations/kisi-logo.png"
+                unoptimized
+                width={228}
+              />
+              <span>Listed in Kisi’s integration marketplace</span>
+            </div>
+            <div className="integrations-partner__copy">
+              <p className="commercial-kicker">Kisi integration partner</p>
+              <h2 id="kisi-partner-heading">
+                Membership and booking rules, carried through to the door.
+              </h2>
+              <p>
+                Movena is listed in Kisi’s integration marketplace. Enrolled
+                members can receive door access from their membership or an
+                eligible booking, while Kisi remains authoritative for doors,
+                hardware and opening schedules.
+              </p>
+              <div className="integrations-partner__actions">
+                <a
+                  href="https://www.getkisi.com/integrations/movena"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View Movena on Kisi <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  href="https://docs.kisi.io/marketplace/fitness/movena/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Read the setup guide <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section
         className="integrations-section"
         aria-labelledby="integrations-heading"
       >

@@ -123,6 +123,6 @@ test("the member app layout has desktop, mobile and reduced-motion contracts", (
   assert.match(shellCss, /\.site-footer__column/);
   assert.match(
     shellCss,
-    /grid-template-columns: 1\.25fr 1fr 0\.75fr 0\.75fr/,
+    /grid-template-columns: 1\.15fr 1fr 0\.65fr 0\.65fr 1fr/,
   );
 });

@@ -49,6 +49,33 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
             <Link href="/legal/terms/">Terms</Link>
             <AnalyticsSettingsButton />
           </div>
+          <div className="site-footer__column">
+            <p>Find us on social</p>
+            <a
+              className="site-footer__social-link"
+              href={siteConfig.social.facebook}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Facebook <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className="site-footer__social-link"
+              href={siteConfig.social.instagram}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Instagram <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className="site-footer__social-link"
+              href={siteConfig.social.linkedin}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </nav>
       </div>
       <div className="wrap site-footer__meta">
