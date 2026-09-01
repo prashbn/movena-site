@@ -1,7 +1,7 @@
 export type FaqParagraph = {
   type: "paragraph";
   text: string;
-  href?: "/pricing/";
+  href?: "/pricing/" | "/integrations/kisi/";
 };
 
 export type FaqList = {
@@ -96,6 +96,36 @@ export const faqItems = [
       {
         type: "paragraph",
         text: "Movena does not specify or recommend hardware. Kisi and your installer will tell you what your doors need.",
+      },
+    ],
+  },
+  {
+    question: "Can Movena support a 24/7 gym with no reception?",
+    content: [
+      {
+        type: "paragraph",
+        text: "Yes—when Movena is connected to Kisi and the rest of your physical-security setup is designed for unstaffed operation. Movena can grant an enrolled member facility access from an eligible active membership, or time-bounded access from an eligible booking. Membership cancellations and expiries remove access when the entitlement ends, and an access suspension prevents entry until it is lifted—so reception does not maintain a separate door list.",
+      },
+      {
+        type: "paragraph",
+        text: "Movena does not replace access-control hardware or the safety systems required to operate an unstaffed facility. Kisi remains authoritative for doors, hardware, opening schedules and physical access restrictions.",
+      },
+      {
+        type: "list",
+        items: [
+          "You purchase the Kisi hardware and subscription directly from Kisi, and Kisi and your installer specify and configure the physical access setup.",
+          "You remain responsible for emergency access, monitoring, incident response, insurance and the legal and safety obligations that apply to your facility.",
+          "Movena’s Access Control add-on manages membership and booking eligibility and the day-to-day access automation.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "That can make reception optional for routine access administration. It does not make Movena a substitute for a complete unstaffed-gym security and operating plan.",
+      },
+      {
+        type: "paragraph",
+        text: "See how Movena and Kisi divide responsibility for software, access and hardware.",
+        href: "/integrations/kisi/",
       },
     ],
   },

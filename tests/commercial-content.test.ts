@@ -193,6 +193,22 @@ test("the public integrations surface remains exact and conservative", () => {
       },
     },
     {
+      name: "QuickBooks®",
+      description: "QuickBooks-ready exports.",
+      mark: {
+        kind: "text",
+        label: "QuickBooks®",
+      },
+    },
+    {
+      name: "MYOB",
+      description: "MYOB-ready exports.",
+      mark: {
+        kind: "text",
+        label: "MYOB",
+      },
+    },
+    {
       name: "Kisi",
       description: "Access control integration — listed in Kisi’s marketplace.",
       href: "/integrations/kisi/",
@@ -255,6 +271,12 @@ test("the public integrations surface remains exact and conservative", () => {
     integrationCopy,
     /apps\.apple\.com|play\.google\.com|QR code|download/i,
   );
+  assert.doesNotMatch(
+    JSON.stringify(
+      publicIntegrations.filter(({ name }) => /QuickBooks|MYOB/.test(name)),
+    ),
+    /kind":"image"|logo/i,
+  );
 
   const paidAddOns = optionalAddOns.map((addOn) => addOn.name);
   assert.doesNotMatch(paidAddOns.join(" "), /Apple Health|Health Connect/);
@@ -275,4 +297,10 @@ test("Kisi partner proof links to the official listing and setup guide", () => {
     /https:\/\/docs\.kisi\.io\/marketplace\/fitness\/movena\//,
   );
   assert.match(page, /Kisi remains authoritative for doors/);
+  assert.match(page, /For 24\/7 and unstaffed gyms/);
+  assert.match(page, /Intuit and QuickBooks are trademarks of Intuit Inc\./);
+  assert.match(
+    page,
+    /MYOB is a registered trademark of MYOB\s+Technology Pty Ltd\./,
+  );
 });

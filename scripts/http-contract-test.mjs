@@ -264,6 +264,10 @@ async function runContract() {
   for (const marker of [
     "Xero",
     "Xero-ready exports.",
+    "QuickBooks®",
+    "QuickBooks-ready exports.",
+    "MYOB",
+    "MYOB-ready exports.",
     "Kisi",
     "Access control integration — listed in Kisi’s marketplace.",
     "https://www.getkisi.com/integrations/movena",
@@ -293,6 +297,9 @@ async function runContract() {
     "30 days’ notice",
     "Payments settle into your own Stripe account",
     "Kisi subscription directly from Kisi",
+    "Can Movena support a 24/7 gym with no reception?",
+    "time-bounded access from an eligible booking",
+    "complete unstaffed-gym security and operating plan",
     "hosted in Sydney, Australia",
   ]) {
     assert.match(faqHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));

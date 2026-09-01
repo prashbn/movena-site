@@ -6,7 +6,7 @@ import { faqAnswerText, faqItems } from "../lib/faq.ts";
 import { faqStructuredData } from "../lib/structured-data.ts";
 
 test("the FAQ preserves every supplied commercial and operational fact", () => {
-  assert.equal(faqItems.length, 8);
+  assert.equal(faqItems.length, 9);
 
   const faqText = faqItems
     .map((item) => `${item.question} ${faqAnswerText(item)}`)
@@ -25,6 +25,12 @@ test("the FAQ preserves every supplied commercial and operational fact", () => {
     /Kisi hardware and Kisi subscription directly from Kisi/,
     /two suppliers and two bills/,
     /does not specify or recommend hardware/,
+    /24\/7 gym with no reception/,
+    /connected to Kisi/,
+    /time-bounded access from an eligible booking/,
+    /Kisi remains authoritative for doors, hardware, opening schedules/,
+    /emergency access, monitoring, incident response, insurance/,
+    /complete unstaffed-gym security and operating plan/,
     /workouts and programs/,
     /check-ins and logged sessions/,
     /submissions go straight to your Leads page/,

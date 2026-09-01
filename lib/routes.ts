@@ -42,9 +42,9 @@ export const legacyRoutes = [
   {
     path: "/integrations/kisi/",
     source: "integrations/kisi/index.html",
-    title: "Movena + Kisi — door access from your memberships",
+    title: "Movena + Kisi — access control for 24/7 and unstaffed gyms",
     description:
-      "Connect Movena to Kisi and memberships become door access. Eligible, enrolled members receive the right access automatically as their memberships and bookings change — Kisi keeps managing the doors and hardware.",
+      "Connect Movena to Kisi for staffed, 24/7 and unstaffed gyms. Eligible, enrolled members receive access as memberships and bookings change, while Kisi keeps managing the doors and hardware.",
     kind: "document",
   },
   {
@@ -84,7 +84,7 @@ export const commercialRoutes = [
     path: "/integrations/",
     title: "Integrations — Movena",
     description:
-      "Movena integrations for accounting, access control, health and fitness data, payments and billing infrastructure.",
+      "Movena integrations for accounting exports, access control for 24/7 and unstaffed gyms, health and fitness data, payments and billing infrastructure.",
     kind: "marketing",
   },
   {

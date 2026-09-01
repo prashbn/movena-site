@@ -10,6 +10,22 @@ export const publicIntegrations = [
     },
   },
   {
+    name: "QuickBooks®",
+    description: "QuickBooks-ready exports.",
+    mark: {
+      kind: "text",
+      label: "QuickBooks®",
+    },
+  },
+  {
+    name: "MYOB",
+    description: "MYOB-ready exports.",
+    mark: {
+      kind: "text",
+      label: "MYOB",
+    },
+  },
+  {
     name: "Kisi",
     description: "Access control integration — listed in Kisi’s marketplace.",
     href: "/integrations/kisi/",

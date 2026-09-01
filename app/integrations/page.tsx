@@ -49,6 +49,12 @@ export default function IntegrationsPage() {
                 eligible booking, while Kisi remains authoritative for doors,
                 hardware and opening schedules.
               </p>
+              <p>
+                For 24/7 and unstaffed gyms, this removes the
+                reception-managed door list. It does not replace the wider
+                security, safety, monitoring and emergency-response setup the
+                facility needs.
+              </p>
               <div className="integrations-partner__actions">
                 <a
                   href="https://www.getkisi.com/integrations/movena"
@@ -113,7 +119,10 @@ export default function IntegrationsPage() {
           <p className="integrations-trademarks">
             Third-party product names and marks belong to their respective
             owners. Their display identifies compatibility and does not imply
-            endorsement.
+            endorsement. Intuit and QuickBooks are trademarks of Intuit Inc.,
+            registered in the US and other countries. Movena is not endorsed
+            or sponsored by Intuit. MYOB is a registered trademark of MYOB
+            Technology Pty Ltd.
           </p>
         </div>
       </section>
