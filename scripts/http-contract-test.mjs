@@ -173,12 +173,14 @@ async function runContract() {
 
   const memberAppHtml = await (await fetch(`${origin}/app/`)).text();
   for (const marker of [
-    "Native Movena apps for iPhone and Android.",
+    "Download Movena.",
+    "Native apps for iPhone and Android.",
     "https://apps.apple.com/au/app/movena/id6770032378",
     "https://play.google.com/store/apps/details?id=au.com.movena.member&amp;pli=1",
     "/assets/app/movena-app-page-qr.png",
-    "/assets/app/movena-training-performance.jpg",
-    "/assets/app/movena-class-booking.jpg",
+    "/assets/members/movena-member-book.png",
+    "/assets/members/movena-member-home.png",
+    "/assets/members/movena-member-movements.png",
   ]) {
     assert.match(
       memberAppHtml,
@@ -385,10 +387,7 @@ async function runContract() {
   assert.equal(missing.status, 404);
   const missingHtml = await missing.text();
   assert.match(missingHtml, /That page is not here\./);
-  assert.doesNotMatch(
-    missingHtml,
-    /The gym platform that remembers the training\./,
-  );
+  assert.doesNotMatch(missingHtml, /class="site-shell home-page"/);
 
   const allInternalLinks = new Set();
   for (const route of routes) {

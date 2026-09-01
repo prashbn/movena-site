@@ -22,15 +22,21 @@ test("member app destinations remain exact and Movena-owned", () => {
 
 test("the member app page is static and has no device-sniffing behaviour", () => {
   const page = readFileSync("app/app/page.tsx", "utf8");
+  const storeActions = readFileSync(
+    "components/app-store-actions.tsx",
+    "utf8",
+  );
 
   assert.doesNotMatch(page, /["']use client["']/);
   assert.doesNotMatch(page, /fetch\s*\(/);
   assert.doesNotMatch(page, /navigator|userAgent|headers\s*\(|redirect\s*\(/);
-  assert.match(page, /siteConfig\.memberApp\.appStoreUrl/);
-  assert.match(page, /siteConfig\.memberApp\.googlePlayUrl/);
+  assert.match(storeActions, /siteConfig\.memberApp\.appStoreUrl/);
+  assert.match(storeActions, /siteConfig\.memberApp\.googlePlayUrl/);
   assert.match(page, /movena-app-page-qr\.png/);
-  assert.match(page, /movena-training-performance\.jpg/);
-  assert.match(page, /movena-class-booking\.jpg/);
+  assert.match(page, /movena-member-home\.png/);
+  assert.match(page, /movena-member-book\.png/);
+  assert.match(page, /movena-member-movements\.png/);
+  assert.match(page, /Your gym\. Your training\. One app\./);
 });
 
 test("approved Movena product assets and the QR output retain exact hashes", () => {
@@ -102,10 +108,21 @@ test("the member experience exposes both app stores and a clear owner journey", 
 
 test("the member app layout has desktop, mobile and reduced-motion contracts", () => {
   const css = readFileSync("styles/member-app.css", "utf8");
+  const footer = readFileSync("components/site-footer.tsx", "utf8");
+  const shellCss = readFileSync("styles/premium-shell.css", "utf8");
 
-  assert.match(css, /grid-template-columns:/);
-  assert.match(css, /@media \(max-width: 760px\)/);
-  assert.match(css, /@media \(max-width: 480px\)/);
+  assert.match(css, /\.member-app-download-card/);
+  assert.match(css, /\.member-app-store-actions/);
+  assert.match(css, /\.member-app-product-stage/);
+  assert.match(css, /@media \(max-width: 900px\)/);
+  assert.match(css, /@media \(max-width: 680px\)/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(css, /\.member-app-qr\s*\{[\s\S]*?display: none;/);
+  assert.match(footer, /className="site-footer__app" href="\/app\/"/);
+  assert.match(footer, /Get the app <PlatformMarks \/>/);
+  assert.match(shellCss, /\.site-footer__column/);
+  assert.match(
+    shellCss,
+    /grid-template-columns: 1\.25fr 1fr 0\.75fr 0\.75fr/,
+  );
 });

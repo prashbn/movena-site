@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import { AppStoreActions, PlatformMarks } from "@/components/app-store-actions";
 import { CommercialPageShell } from "@/components/page-shells";
 import { createRouteMetadata } from "@/lib/metadata";
 import { routeByPath } from "@/lib/routes";
-import { siteConfig } from "@/lib/site-config";
 
 const route = routeByPath("/app/");
 
@@ -13,28 +13,62 @@ export const metadata: Metadata = createRouteMetadata(route);
 export default function MemberAppPage() {
   return (
     <CommercialPageShell activePath="/app/">
-      <section className="member-app-hero" aria-labelledby="member-app-title">
-        <div className="commercial-wrap member-app-hero__inner">
-          <div className="member-app-hero__content">
-            <p className="commercial-kicker">Movena member app</p>
-            <h1 id="member-app-title">Your training, remembered.</h1>
-            <p className="member-app-hero__platforms">
-              Native Movena apps for iPhone and Android.
-            </p>
-            <p className="member-app-hero__description">
-              Book classes, check in, follow your program, and watch a training
-              history build with every session.
-            </p>
-            <div className="member-app-actions" aria-label="Download Movena">
-              <a href={siteConfig.memberApp.appStoreUrl}>
-                <span>Download on the</span>
-                App Store
-              </a>
-              <a href={siteConfig.memberApp.googlePlayUrl}>
-                <span>Get it on</span>
-                Google Play
-              </a>
+      <section className="member-app-page" aria-labelledby="member-app-title">
+        <header className="commercial-wrap member-app-intro">
+          <p className="commercial-kicker">Movena member app</p>
+          <h1 id="member-app-title">Download Movena.</h1>
+          <p>
+            Book, train and keep your progress with you. Native apps for iPhone
+            and Android.
+          </p>
+        </header>
+
+        <div className="commercial-wrap">
+          <article className="member-app-download-card">
+            <div className="member-app-download-card__copy">
+              <p className="member-app-availability">
+                Available on <PlatformMarks />
+              </p>
+              <h2>Your gym. Your training. One app.</h2>
+              <p className="member-app-download-card__description">
+                Book classes, check in, follow your program and watch your
+                training history build with every session.
+              </p>
+              <AppStoreActions />
             </div>
+
+            <div className="member-app-product-stage" aria-label="Movena app screens">
+              <figure className="member-app-product-shot member-app-product-shot--book">
+                <Image
+                  src="/assets/members/movena-member-book.png"
+                  width={1320}
+                  height={2868}
+                  priority
+                  sizes="(max-width: 760px) 48vw, 22vw"
+                  alt="Movena class booking app screen"
+                />
+              </figure>
+              <figure className="member-app-product-shot member-app-product-shot--home">
+                <Image
+                  src="/assets/members/movena-member-home.png"
+                  width={1320}
+                  height={2868}
+                  priority
+                  sizes="(max-width: 760px) 58vw, 27vw"
+                  alt="Movena member home and training progress screen"
+                />
+              </figure>
+              <figure className="member-app-product-shot member-app-product-shot--progress">
+                <Image
+                  src="/assets/members/movena-member-movements.png"
+                  width={1320}
+                  height={2868}
+                  sizes="(max-width: 760px) 48vw, 22vw"
+                  alt="Movena strength progress and movement history screen"
+                />
+              </figure>
+            </div>
+
             <div className="member-app-qr">
               <Image
                 src="/assets/app/movena-app-page-qr.png"
@@ -43,32 +77,16 @@ export default function MemberAppPage() {
                 alt="QR code for movena.com.au/app/"
               />
               <p>
-                <strong>Open Movena on your phone.</strong>
-                <span>Scan to visit movena.com.au/app/</span>
+                <strong>Scan to get Movena.</strong>
+                <span>Opens movena.com.au/app/</span>
               </p>
             </div>
-          </div>
+          </article>
 
-          <div className="member-app-gallery" aria-label="Movena member app">
-            <figure className="member-app-gallery__image member-app-gallery__image--primary">
-              <Image
-                src="/assets/app/movena-training-performance.jpg"
-                width={1024}
-                height={1024}
-                priority
-                sizes="(max-width: 760px) 86vw, 34vw"
-                alt="Movena member app home and training performance screen on an iPhone"
-              />
-            </figure>
-            <figure className="member-app-gallery__image member-app-gallery__image--secondary">
-              <Image
-                src="/assets/app/movena-class-booking.jpg"
-                width={1024}
-                height={1024}
-                sizes="(max-width: 760px) 58vw, 20vw"
-                alt="Movena member app class booking timetable on an iPhone"
-              />
-            </figure>
+          <div className="member-app-benefits" aria-label="Movena member app features">
+            <p><strong>Book.</strong> Find classes and secure your place.</p>
+            <p><strong>Train.</strong> Follow the programming from your coach.</p>
+            <p><strong>Progress.</strong> Keep every session and milestone together.</p>
           </div>
         </div>
       </section>
