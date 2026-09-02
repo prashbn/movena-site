@@ -91,6 +91,15 @@ async function runContract() {
     /The gym platform that remembers the training\./,
   );
   assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a walkthrough<\/a>/);
+  for (const badge of [
+    "retention-milestone-005.png",
+    "retention-milestone-500.png",
+    "retention-challenge-weekly.png",
+    "retention-challenge-winner.png",
+  ]) {
+    assert.match(homepageHtml, new RegExp(`/assets/badges/${badge}`));
+  }
+  assert.doesNotMatch(homepageHtml, /src="\/assets\/badges\/milestone-/);
 
   const contactHtml = await (await fetch(`${origin}/contact/`)).text();
   for (const marker of [

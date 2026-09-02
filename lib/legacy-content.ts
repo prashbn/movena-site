@@ -59,6 +59,40 @@ function rewritePublicMarketingCopy(
   return markup;
 }
 
+function rewriteHomeRetentionBadges(
+  markup: string,
+  source: LegacySource,
+): string {
+  if (source !== "index.html") return markup;
+
+  const badgeGallery = `<div class="badge-collection">
+        <span class="badge-collection__label">Milestones</span>
+        <div class="ladder-row ladder-row--milestones">
+          <figure><img src="/assets/badges/retention-milestone-005.png" width="512" height="512" loading="lazy" decoding="async" alt="5 classes milestone badge"></figure>
+          <figure><img src="/assets/badges/retention-milestone-025.png" width="512" height="512" loading="lazy" decoding="async" alt="25 classes milestone badge"></figure>
+          <figure><img src="/assets/badges/retention-milestone-050.png" width="512" height="512" loading="lazy" decoding="async" alt="50 classes milestone badge"></figure>
+          <figure><img src="/assets/badges/retention-milestone-100.png" width="512" height="512" loading="lazy" decoding="async" alt="100 classes milestone badge"></figure>
+          <figure><img src="/assets/badges/retention-milestone-150.png" width="512" height="512" loading="lazy" decoding="async" alt="150 classes milestone badge"></figure>
+          <figure><img src="/assets/badges/retention-milestone-200.png" width="512" height="512" loading="lazy" decoding="async" alt="200 classes milestone badge"></figure>
+          <figure><img src="/assets/badges/retention-milestone-500.png" width="512" height="481" loading="lazy" decoding="async" alt="500 classes milestone badge"></figure>
+        </div>
+      </div>
+      <div class="badge-collection">
+        <span class="badge-collection__label">Challenges</span>
+        <div class="ladder-row ladder-row--challenges">
+          <figure><img src="/assets/badges/retention-challenge-weekly.png" width="512" height="512" loading="lazy" decoding="async" alt="Weekly challenge badge"></figure>
+          <figure><img src="/assets/badges/retention-challenge-monthly.png" width="512" height="512" loading="lazy" decoding="async" alt="Monthly challenge badge"></figure>
+          <figure><img src="/assets/badges/retention-challenge-complete.png" width="512" height="512" loading="lazy" decoding="async" alt="Completed challenge badge"></figure>
+          <figure><img src="/assets/badges/retention-challenge-winner.png" width="512" height="512" loading="lazy" decoding="async" alt="Challenge winner badge"></figure>
+        </div>
+      </div>`;
+
+  return markup.replace(
+    /<div class="ladder-row">[\s\S]*?<\/div>(\s*<p>Attendance milestones)/,
+    `${badgeGallery}$1`,
+  );
+}
+
 function rewritePlatformProductProof(
   markup: string,
   source: LegacySource,
@@ -318,8 +352,11 @@ export function readLegacyMainMarkup(source: LegacySource): string {
     rewritePlatformProductProof(
       rewriteMemberProductImagery(
         rewritePublicMarketingCopy(
-          rewriteSalesContactHrefs(
-            extractMainMarkup(readLegacyDocument(source), source),
+          rewriteHomeRetentionBadges(
+            rewriteSalesContactHrefs(
+              extractMainMarkup(readLegacyDocument(source), source),
+              source,
+            ),
             source,
           ),
           source,
