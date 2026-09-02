@@ -50,5 +50,6 @@ test("the retention section uses the complete new badge collection", () => {
   assert.match(homepage, /badge-collection__label">Challenges/);
   assert.match(homeCss, /grid-template-columns: repeat\(7/);
   assert.match(homeCss, /grid-template-columns: repeat\(4/);
+  assert.match(homeCss, /margin-inline: auto/);
   assert.match(homeCss, /@media \(max-width: 520px\)/);
 });
