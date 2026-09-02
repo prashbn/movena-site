@@ -389,10 +389,83 @@
   line-height: 1.55;
 }
 
+/* Verified 24/7 access path */
+
+.home-page .home-access {
+  margin-top: clamp(4.5rem, 8vw, 7rem);
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  border-block: 1px solid var(--site-line);
+  background: var(--site-surface-tint);
+}
+
+.home-page .home-access__inner {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.55fr) minmax(0, 1.45fr);
+  align-items: center;
+  gap: clamp(3rem, 8vw, 7rem);
+}
+
+.home-page .home-access__brand {
+  min-height: 18rem;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1.25rem;
+  padding: 2.25rem;
+  border: 1px solid var(--site-line);
+  border-radius: var(--radius-media-premium);
+  background: var(--site-paper-bright);
+  box-shadow: var(--shadow-media-premium);
+  text-align: center;
+}
+
+.home-page .home-access__brand img {
+  width: clamp(7.5rem, 14vw, 10rem);
+  height: auto;
+  display: block;
+  border-radius: 1.5rem;
+}
+
+.home-page .home-access__brand span {
+  max-width: 22ch;
+  color: var(--site-ink-soft);
+  font-size: 0.78rem;
+  font-weight: 580;
+  line-height: 1.5;
+}
+
+.home-page .home-access__copy h2 {
+  max-width: 15ch;
+  margin: 0.9rem 0 0;
+}
+
+.home-page .home-access__copy > p {
+  max-width: 53ch;
+  margin: 1.35rem 0 0;
+  color: var(--site-ink-soft);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.home-page .home-access__copy .home-access__boundary {
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--site-line);
+  color: var(--site-ink-faint);
+  font-size: 0.83rem;
+}
+
+.home-page .home-access__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
 /* Disciplines and workout builder */
 
 .home-page #disciplines {
-  margin-top: clamp(4.5rem, 8vw, 7rem);
+  margin-top: 0;
   padding: clamp(5rem, 7vw, 6.75rem) 0;
   background: var(--site-wash-slate);
 }
@@ -683,6 +756,22 @@
     object-position: center 38%;
   }
 
+  .home-page .home-access__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .home-page .home-access__brand {
+    min-height: 0;
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    text-align: left;
+  }
+
+  .home-page .home-access__brand img {
+    width: 6rem;
+  }
+
   .home-page .facts-in {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -760,6 +849,22 @@
 
   .home-page .hero .shot-portrait {
     aspect-ratio: 4 / 4.5;
+  }
+
+  .home-page .home-access__brand {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .home-page .home-access__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .home-page .home-access__actions .btn {
+    width: 100%;
   }
 
   .home-page .facts-in {

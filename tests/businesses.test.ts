@@ -13,6 +13,7 @@ test("the business hub uses approved types and the existing discipline catalogue
       "Pilates and yoga",
       "Boxing and martial arts",
       "Personal training",
+      "24/7 and unstaffed gyms",
       "Multi-discipline gyms",
     ],
   );
@@ -28,6 +29,7 @@ test("the business hub is text-led and gives owners clear next steps", () => {
   assert.match(page, /siteConfig\.contactHref/);
   assert.match(page, /href="\/platform\/"/);
   assert.match(page, /href="\/pricing\/"/);
+  assert.match(JSON.stringify(businessTypes), /Kisi integration/);
   assert.doesNotMatch(page, /next\/image|<Image/);
   assert.doesNotMatch(page, /white.?label|guarantee|unlimited/i);
 });

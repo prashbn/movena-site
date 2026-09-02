@@ -30,6 +30,16 @@ export const businessTypes = [
     capabilities: ["Individual programs", "Bookings", "Private messages"],
   },
   {
+    name: "24/7 and unstaffed gyms",
+    description:
+      "Connect eligible memberships and bookings to Kisi door access so reception does not maintain a separate door list. Kisi and your installer remain responsible for the physical access setup.",
+    capabilities: [
+      "Kisi integration",
+      "Membership eligibility",
+      "Booking access",
+    ],
+  },
+  {
     name: "Multi-discipline gyms",
     description:
       "Offer different ways to train without stitching together different systems. Use one member record across disciplines, teams and locations.",

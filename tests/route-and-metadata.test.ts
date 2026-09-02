@@ -76,7 +76,7 @@ test("legacy internal links are rewritten to canonical slash routes", () => {
   }
 });
 
-test("the live homepage uses the approved public-facing payments copy", () => {
+test("the live marketing pages use the approved public-facing payments copy", () => {
   const homepage = readLegacyMainMarkup("index.html");
   const platform = readLegacyMainMarkup("platform/index.html");
   const sourceMarkup = [
@@ -84,11 +84,11 @@ test("the live homepage uses the approved public-facing payments copy", () => {
     readLegacyDocument("platform/index.html"),
   ].join("\n");
 
-  assert.match(homepage, />Payments built in</);
-  assert.match(homepage, /Take payments online/);
-  assert.match(platform, /Online payments/);
+  assert.match(homepage, /Card, BECS direct debit and PayTo/);
+  assert.match(homepage, /Xero-ready, QuickBooks-ready and MYOB-ready/);
+  assert.match(platform, /Offer card, BECS direct debit or PayTo/);
+  assert.match(platform, /Your Stripe account/);
   assert.doesNotMatch(homepage, /Stripe/);
-  assert.doesNotMatch(platform, /Stripe/);
   assert.doesNotMatch(homepage, /Other gym software\? Yeah, nah/);
   assert.doesNotMatch(homepage, /Movena\? Nah, yeah/);
   assert.doesNotMatch(homepage, /Closed beta|limited number of Australian gyms/);

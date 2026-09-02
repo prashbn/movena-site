@@ -6,6 +6,38 @@ import {
 } from "@/lib/commercial";
 import { siteConfig } from "@/lib/site-config";
 
+export function PaymentOperations() {
+  return (
+    <section
+      className="pricing-operations"
+      aria-labelledby="pricing-operations-heading"
+    >
+      <div className="commercial-wrap pricing-operations__inner">
+        <div className="pricing-operations__copy">
+          <p className="commercial-kicker">Built for Australia</p>
+          <h2 id="pricing-operations-heading">
+            Take payment your way. Keep the numbers portable.
+          </h2>
+        </div>
+        <dl className="pricing-operations__facts">
+          <div>
+            <dt>Payment methods</dt>
+            <dd>Card, BECS direct debit and PayTo</dd>
+          </div>
+          <div>
+            <dt>Where funds settle</dt>
+            <dd>Your own Stripe account</dd>
+          </div>
+          <div>
+            <dt>Accounting exports</dt>
+            <dd>Xero-ready, QuickBooks-ready and MYOB-ready</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  );
+}
+
 export function PackageCards() {
   return (
     <section className="commercial-section" aria-labelledby="packages-heading">

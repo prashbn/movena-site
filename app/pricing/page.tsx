@@ -5,6 +5,7 @@ import {
   OptionalAddOns,
   PackageCards,
   PackageComparison,
+  PaymentOperations,
   PlatformFee,
 } from "@/components/commercial-pricing";
 import { CommercialPageShell } from "@/components/page-shells";
@@ -24,12 +25,13 @@ export default function PricingPage() {
             <p className="commercial-kicker">Movena</p>
             <h1>Pricing</h1>
             <p className="commercial-hero__lede">
-              Choose by locations and capabilities. Member numbers and team
-              accounts are unlimited on every plan.
+              Unlimited members. Unlimited team. Choose by locations and
+              capabilities—not by member count or seats.
             </p>
           </div>
         </div>
       </header>
+      <PaymentOperations />
       <PackageCards />
       <PlatformFee />
       <PackageComparison />

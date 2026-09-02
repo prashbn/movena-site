@@ -13,17 +13,21 @@ const route = routeByPath("/blog/");
 export const metadata: Metadata = createRouteMetadata(route);
 
 export default function BlogPage() {
+  const latestFirst = [...blogPosts].sort((left, right) =>
+    right.published.localeCompare(left.published),
+  );
+
   return (
     <CommercialPageShell activePath="/blog/">
       <JsonLd data={blogStructuredData} />
       <header className="blog-hero">
         <div className="commercial-wrap blog-hero__inner">
           <p className="commercial-kicker">The Movena Journal</p>
-          <h1>Useful notes for people who train.</h1>
+          <h1>Useful notes for people who run gyms—and train in them.</h1>
           <p className="blog-hero__lede">
-            Practical, carefully sourced articles about movement, wellbeing,
-            strength and performance—written to help, not to fill a keyword
-            calendar.
+            Practical, carefully sourced articles about gym operations,
+            payments, retention, movement and performance—written to help,
+            not to fill a keyword calendar.
           </p>
         </div>
       </header>
@@ -35,7 +39,7 @@ export default function BlogPage() {
             <h2 id="latest-articles">Latest articles</h2>
           </div>
           <div className="blog-grid">
-            {blogPosts.map((post, index) => (
+            {latestFirst.map((post, index) => (
               <BlogCard key={post.slug} post={post} priority={index === 0} />
             ))}
           </div>
@@ -50,14 +54,14 @@ export default function BlogPage() {
           </div>
           <div className="blog-editorial__copy">
             <p>
-              Health and performance topics deserve more care than a catchy
-              headline. We use plain language, link to primary Australian
-              health and sport sources, and state clearly when guidance needs
-              to be individualised.
+              Operational, health and performance topics deserve more care
+              than a catchy headline. We use plain language, distinguish
+              shipped capabilities from roadmap ideas, and link to primary
+              sources for claims that can change.
             </p>
             <p>
-              Movena articles provide general education, not medical,
-              psychological or personalised nutrition advice.
+              Movena articles provide general education—not legal, financial,
+              medical, psychological or personalised nutrition advice.
             </p>
           </div>
         </div>

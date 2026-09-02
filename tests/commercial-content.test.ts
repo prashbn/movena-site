@@ -68,8 +68,8 @@ test("locked package prices and comparison allocation remain exact", () => {
 test("pricing is explicitly free of member and team-user caps", () => {
   const pricingPage = readFileSync("app/pricing/page.tsx", "utf8");
 
-  assert.match(pricingPage, /Member numbers and team/);
-  assert.match(pricingPage, /accounts are unlimited on every plan/);
+  assert.match(pricingPage, /Unlimited members\. Unlimited team\./);
+  assert.match(pricingPage, /not by member count or seats/);
   assert.deepEqual(
     packageComparisonRows.find(([capability]) => capability === "Members"),
     ["Members", "Unlimited", "Unlimited", "Unlimited"],
@@ -85,7 +85,7 @@ test("pricing is explicitly free of member and team-user caps", () => {
   );
 });
 
-test("locked optional add-ons and platform fee remain exact", () => {
+test("public add-ons contain only capabilities available to order", () => {
   assert.deepEqual(optionalAddOns, [
     {
       name: "Access Control Integration",
@@ -93,15 +93,8 @@ test("locked optional add-ons and platform fee remain exact", () => {
       detail:
         "Movena integration fee only. Hardware, installation and access-control provider subscriptions are purchased separately.",
     },
-    {
-      name: "Branded App",
-      price: "+A$99 / brand / month + GST",
-    },
-    {
-      name: "AI",
-      price: "Optional usage-based",
-    },
   ]);
+  assert.doesNotMatch(JSON.stringify(optionalAddOns), /Branded App|\bAI\b/);
   assert.equal(
     platformAdministrationFee,
     "Plus a 0.30% platform administration fee on applicable Movena-processed payments.",
@@ -165,11 +158,13 @@ test("pricing owns the single package comparison and the legacy route is retired
   const pricingPage = readFileSync("app/pricing/page.tsx", "utf8");
 
   assert.match(pricingPage, /<PackageCards \/>/);
+  assert.match(pricingPage, /<PaymentOperations \/>/);
   assert.match(pricingPage, /<PlatformFee \/>/);
   assert.match(pricingPage, /<PackageComparison \/>/);
   assert.match(pricingPage, /<OptionalAddOns \/>/);
   assert.match(pricingPage, /<CommercialCta \/>/);
   const pricingFlow = [
+    "<PaymentOperations />",
     "<PackageCards />",
     "<PlatformFee />",
     "<PackageComparison />",
@@ -178,6 +173,17 @@ test("pricing owns the single package comparison and the legacy route is retired
   ].map((component) => pricingPage.indexOf(component));
   assert.deepEqual(pricingFlow, [...pricingFlow].sort((a, b) => a - b));
   assert.equal(existsSync("app/product-comparison"), false);
+});
+
+test("pricing explains Australian payments and accounting export boundaries", () => {
+  const components = readFileSync("components/commercial-pricing.tsx", "utf8");
+
+  assert.match(components, /Card, BECS direct debit and PayTo/);
+  assert.match(components, /Your own Stripe account/);
+  assert.match(
+    components,
+    /Xero-ready, QuickBooks-ready and MYOB-ready/,
+  );
 });
 
 test("the public integrations surface remains exact and conservative", () => {

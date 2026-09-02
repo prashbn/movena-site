@@ -108,9 +108,10 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
   if (!post) notFound();
 
-  const relatedPosts = blogPosts.filter(
-    (candidate) => candidate.slug !== post.slug,
-  );
+  const relatedPosts = [...blogPosts]
+    .filter((candidate) => candidate.slug !== post.slug)
+    .sort((left, right) => right.published.localeCompare(left.published))
+    .slice(0, 3);
 
   return (
     <CommercialPageShell activePath="/blog/">

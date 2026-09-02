@@ -25,6 +25,11 @@ const routes = [
   "/blog/movement-and-mental-health/",
   "/blog/strength-training-for-everyday-movement/",
   "/blog/how-to-fuel-for-hyrox/",
+  "/blog/running-a-24-7-gym-without-reception/",
+  "/blog/australian-gym-software-migration-checklist/",
+  "/blog/card-becs-payto-for-gym-memberships/",
+  "/blog/notice-member-drift-before-cancellation/",
+  "/blog/questions-before-choosing-gym-software/",
 ];
 
 const frozenDocumentMarkers = new Map([
@@ -91,6 +96,18 @@ async function runContract() {
     /The gym platform that remembers the training\./,
   );
   assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a walkthrough<\/a>/);
+  for (const marker of [
+    "Unlimited members and team",
+    "Card, BECS direct debit and PayTo",
+    "Xero-ready, QuickBooks-ready and MYOB-ready",
+    "Memberships and bookings, carried through to the door.",
+    "Movena is listed in Kisi’s integration marketplace",
+  ]) {
+    assert.match(
+      homepageHtml,
+      new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
   for (const badge of [
     "retention-milestone-005.png",
     "retention-milestone-500.png",
@@ -214,6 +231,10 @@ async function runContract() {
 
   const platformHtml = await (await fetch(`${origin}/platform/`)).text();
   for (const marker of [
+    "Offer card, BECS direct debit or PayTo",
+    "Accounting exports",
+    "Member status",
+    "Sell physical merchandise without separating the shop",
     "Know what changed. Know what to do next.",
     "/product-screenshots/movena-financials.png",
     "/product-screenshots/movena-program-builder.png",
@@ -236,6 +257,7 @@ async function runContract() {
     "Pilates and yoga",
     "Boxing and martial arts",
     "Personal training",
+    "24/7 and unstaffed gyms",
     "Multi-discipline gyms",
     "Eighteen disciplines. Already set up.",
     "Show us how your business runs.",
@@ -250,14 +272,15 @@ async function runContract() {
   for (const marker of [
     "A$129 / month + GST",
     "A$349 / month + GST",
-    "Member numbers and team accounts are unlimited on every plan.",
+    "Unlimited members. Unlimited team. Choose by locations and capabilities—not by member count or seats.",
+    "Card, BECS direct debit and PayTo",
+    "Your own Stripe account",
+    "Xero-ready, QuickBooks-ready and MYOB-ready",
     "Unlimited members",
     "Unlimited owners, managers, staff &amp; coaches",
     "Access Control Integration",
     "+A$49 / location / month + GST",
     "Movena integration fee only. Hardware, installation and access-control provider subscriptions are purchased separately.",
-    "+A$99 / brand / month + GST",
-    "Optional usage-based",
     "Plus a 0.30% platform administration fee on applicable Movena-processed payments.",
     'id="compare"',
     "Package comparison",
@@ -268,6 +291,7 @@ async function runContract() {
     assert.match(pricingHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
   assert.doesNotMatch(pricingHtml, /Up to 150|Up to 500|per (?:user|seat)/i);
+  assert.doesNotMatch(pricingHtml, /Branded App|Optional usage-based/);
 
   const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [
@@ -317,10 +341,15 @@ async function runContract() {
 
   const blogHtml = await (await fetch(`${origin}/blog/`)).text();
   for (const marker of [
-    "Useful notes for people who train.",
+    "Useful notes for people who run gyms—and train in them.",
     "Movement and mental health: a practical, pressure-free guide",
     "Strength training for everyday movement",
     "How to fuel for HYROX training and race day",
+    "Running a 24/7 gym without a reception desk",
+    "An Australian gym-software migration checklist",
+    "Card, BECS and PayTo for gym memberships",
+    "Notice member drift before cancellation",
+    "What to ask before choosing gym software",
     "Useful before searchable.",
   ]) {
     assert.match(blogHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
@@ -345,6 +374,18 @@ async function runContract() {
   assert.match(hyroxArticle, /Race morning: familiar beats clever/);
   assert.match(hyroxArticle, /Accredited Sports Dietitian/);
   assert.match(hyroxArticle, /Australian Institute of Sport/);
+
+  const accessArticle = await (
+    await fetch(`${origin}/blog/running-a-24-7-gym-without-reception/`)
+  ).text();
+  assert.match(accessArticle, /Keep the door system authoritative/);
+  assert.match(accessArticle, /Kisi Marketplace/);
+
+  const paymentArticle = await (
+    await fetch(`${origin}/blog/card-becs-payto-for-gym-memberships/`)
+  ).text();
+  assert.match(paymentArticle, /BECS direct debit/);
+  assert.match(paymentArticle, /Stripe Documentation/);
 
   const productComparison = await fetch(`${origin}/product-comparison/`, {
     redirect: "manual",

@@ -32,7 +32,15 @@ function rewritePublicMarketingCopy(
       .replace("Stripe billing built in", "Payments built in")
       .replace(
         "Take payments through Stripe, or track them in person.",
-        "Take payments online, or track them in person.",
+        "Card, BECS direct debit and PayTo, or track payments made in person.",
+      )
+      .replace(
+        '<span class="fact">Multi-location from day one</span>\n    <span class="fact">Payments built in</span>\n    <span class="fact">Privacy designed in from day one</span>',
+        '<span class="fact">Unlimited members and team</span>\n    <span class="fact">Native iPhone and Android apps</span>\n    <span class="fact">Listed in Kisi’s marketplace</span>',
+      )
+      .replace(
+        '<div class="feat"><h3>Team &amp; locations</h3><p>Set access by role and location.</p></div>',
+        '<div class="feat"><h3>Team &amp; locations</h3><p>Set access by role and location.</p></div>\n      <div class="feat"><h3>Accounting exports</h3><p>Xero-ready, QuickBooks-ready and MYOB-ready.</p></div>\n      <div class="feat"><h3>Retail</h3><p>Sell physical merchandise for collection at your gym.</p></div>',
       );
   }
 
@@ -44,19 +52,85 @@ function rewritePublicMarketingCopy(
       )
       .replace(
         "Online through Stripe, or in person when a member prefers it — the membership is tracked either way.",
-        "Online or in person, the membership is tracked either way.",
+        "Offer card, BECS direct debit or PayTo, or record a payment made in person — the membership is tracked either way.",
       )
       .replace(
         "<b>Stripe Connect</b> — payments settle to your own account",
-        "<b>Online payments</b> — payments settle to your own account",
+        "<b>Card, BECS and PayTo</b> — choose which methods to offer</li>\n          <li><b>Your Stripe account</b> — online payments settle to the account you control",
       )
       .replace(
         "<b>Failures and disputes</b> — surfaced, not buried in Stripe",
         "<b>Failures and disputes</b> — surfaced clearly in Movena",
+      )
+      .replace(
+        "<li><b>Outstanding</b> — who owes, and how long it's been</li>",
+        "<li><b>Outstanding</b> — who owes, and how long it's been</li>\n          <li><b>Accounting exports</b> — Xero-ready, QuickBooks-ready and MYOB-ready</li>",
+      )
+      .replace(
+        "<li><b>Access control</b> — pause or remove access without losing history</li>",
+        "<li><b>Member status</b> — pause a membership without losing its history</li>",
+      )
+      .replace(
+        `          <li><b>Straight to the app</b> — no PDFs, no printouts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">`,
+        `          <li><b>Straight to the app</b> — no PDFs, no printouts</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <h3>Retail</h3>
+        <p>Sell physical merchandise without separating the shop from the member experience.</p>
+        <ul>
+          <li><b>Native shop</b> — set up physical merchandise in Movena</li>
+          <li><b>Member purchase</b> — members buy through the Movena app</li>
+          <li><b>In-person collection</b> — purchases are collected at your gym</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">`,
       );
   }
 
   return markup;
+}
+
+function rewriteHomeAccessProof(
+  markup: string,
+  source: LegacySource,
+): string {
+  if (source !== "index.html") return markup;
+
+  const accessProof = `<section class="home-access" aria-labelledby="home-access-heading">
+  <div class="wrap home-access__inner">
+    <div class="home-access__brand">
+      <img src="/assets/integrations/kisi-logo.png" width="228" height="228" loading="lazy" decoding="async" alt="Kisi">
+      <span>Movena is listed in Kisi’s integration marketplace</span>
+    </div>
+    <div class="home-access__copy">
+      <span class="kicker">24/7 access</span>
+      <h2 id="home-access-heading">Memberships and bookings, carried through to the door.</h2>
+      <p>Movena can grant enrolled members access from an eligible active membership or booking. When that entitlement ends, access ends without reception maintaining a separate door list.</p>
+      <p class="home-access__boundary">Movena manages eligibility. Kisi remains authoritative for doors, hardware and opening schedules. You purchase Kisi hardware and its subscription directly from Kisi.</p>
+      <div class="home-access__actions">
+        <a class="btn btn-primary" href="/integrations/kisi/">See Movena + Kisi</a>
+        <a class="link-arrow" href="https://www.getkisi.com/integrations/movena" rel="noopener noreferrer" target="_blank">View the Kisi listing <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+  return markup.replace(
+    '<section id="disciplines">',
+    `${accessProof}\n\n<section id="disciplines">`,
+  );
 }
 
 function rewriteHomeRetentionBadges(
@@ -351,10 +425,13 @@ export function readLegacyMainMarkup(source: LegacySource): string {
   return rewriteInternalRouteHrefs(
     rewritePlatformProductProof(
       rewriteMemberProductImagery(
-        rewritePublicMarketingCopy(
-          rewriteHomeRetentionBadges(
-            rewriteSalesContactHrefs(
-              extractMainMarkup(readLegacyDocument(source), source),
+        rewriteHomeAccessProof(
+          rewritePublicMarketingCopy(
+            rewriteHomeRetentionBadges(
+              rewriteSalesContactHrefs(
+                extractMainMarkup(readLegacyDocument(source), source),
+                source,
+              ),
               source,
             ),
             source,

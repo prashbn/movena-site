@@ -5,7 +5,6 @@ export const contactInterestOptions = [
   "Movena Collective",
   "Movena Enterprise",
   "Access Control Integration",
-  "Branded App",
   "General enquiry",
 ] as const;
 

@@ -70,7 +70,7 @@ export const commercialRoutes = [
     path: "/businesses/",
     title: "Gym and studio software — Who Movena is for",
     description:
-      "Movena brings memberships, bookings, payments, check-ins, programming and progress together for gyms, studios and coaching businesses.",
+      "Movena brings memberships, bookings, payments, check-ins, programming, progress and optional Kisi access together for gyms, studios and coaching businesses.",
     kind: "marketing",
   },
   {
@@ -103,9 +103,9 @@ export const commercialRoutes = [
   },
   {
     path: "/blog/",
-    title: "Movena Blog — Training, wellbeing and performance",
+    title: "Movena Blog — Gym operations, training and performance",
     description:
-      "Practical, carefully sourced articles about training, wellbeing, recovery and performance from Movena.",
+      "Practical, carefully sourced articles about gym operations, payments, retention, training, wellbeing and performance from Movena.",
     kind: "marketing",
   },
   {

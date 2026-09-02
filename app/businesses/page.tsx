@@ -21,8 +21,8 @@ export default function BusinessesPage() {
             <h1>Built for how your business trains.</h1>
             <p>
               Movena brings memberships, bookings, payments, check-ins,
-              programming and progress together for fitness businesses that
-              coach in person.
+              programming, progress and optional Kisi access together for
+              fitness businesses that coach in person.
             </p>
             <div className="businesses-hero__actions">
               <a className="commercial-button" href={siteConfig.contactHref}>

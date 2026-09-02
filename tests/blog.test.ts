@@ -5,23 +5,33 @@ import test from "node:test";
 import { blogPath, blogPostBySlug, blogPosts } from "../lib/blog.ts";
 
 const allowedSourceHosts = new Set([
+  "docs.kisi.io",
+  "docs.stripe.com",
+  "movena.com.au",
   "www.ais.gov.au",
+  "www.getkisi.com",
   "www.health.gov.au",
   "www.healthdirect.gov.au",
+  "www.oaic.gov.au",
   "hyrox.com",
 ]);
 
-test("the blog launches with three distinct, static starter articles", () => {
+test("the blog publishes distinct, static member and owner articles", () => {
   assert.deepEqual(
     blogPosts.map((post) => post.slug),
     [
       "movement-and-mental-health",
       "strength-training-for-everyday-movement",
       "how-to-fuel-for-hyrox",
+      "running-a-24-7-gym-without-reception",
+      "australian-gym-software-migration-checklist",
+      "card-becs-payto-for-gym-memberships",
+      "notice-member-drift-before-cancellation",
+      "questions-before-choosing-gym-software",
     ],
   );
 
-  assert.equal(new Set(blogPosts.map((post) => post.slug)).size, 3);
+  assert.equal(new Set(blogPosts.map((post) => post.slug)).size, 8);
   assert.equal(blogPostBySlug("missing-article"), undefined);
 
   for (const post of blogPosts) {
@@ -43,6 +53,24 @@ test("the blog launches with three distinct, static starter articles", () => {
       );
     }
   }
+});
+
+test("owner articles keep product and supplier boundaries explicit", () => {
+  const access = blogPostBySlug("running-a-24-7-gym-without-reception");
+  const payments = blogPostBySlug("card-becs-payto-for-gym-memberships");
+  const buyingGuide = blogPostBySlug(
+    "questions-before-choosing-gym-software",
+  );
+
+  assert.ok(access);
+  assert.ok(payments);
+  assert.ok(buyingGuide);
+  assert.match(JSON.stringify(access), /Kisi remains authoritative/);
+  assert.match(JSON.stringify(access), /does not replace/);
+  assert.match(JSON.stringify(payments), /own Stripe account/);
+  assert.match(JSON.stringify(payments), /delayed-notification method/);
+  assert.match(JSON.stringify(buyingGuide), /roadmap items/);
+  assert.doesNotMatch(JSON.stringify(blogPosts), /free trial|automated journeys/i);
 });
 
 test("health and performance articles carry explicit safety boundaries", () => {

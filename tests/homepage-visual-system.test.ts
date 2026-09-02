@@ -53,3 +53,22 @@ test("the retention section uses the complete new badge collection", () => {
   assert.match(homeCss, /margin-inline: auto/);
   assert.match(homeCss, /@media \(max-width: 520px\)/);
 });
+
+test("the homepage carries verified commercial proof without roadmap claims", () => {
+  const homepage = readLegacyMainMarkup("index.html");
+  const homeCss = readFileSync("styles/home.css", "utf8");
+
+  for (const marker of [
+    "Unlimited members and team",
+    "Card, BECS direct debit and PayTo",
+    "Xero-ready, QuickBooks-ready and MYOB-ready",
+    "Memberships and bookings, carried through to the door.",
+    "Movena is listed in Kisi’s integration marketplace",
+    "Kisi remains authoritative for doors, hardware and opening schedules",
+  ]) {
+    assert.match(homepage, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  assert.doesNotMatch(homepage, /Branded App|\bAI-powered\b/i);
+  assert.match(homeCss, /\.home-page \.home-access/);
+});

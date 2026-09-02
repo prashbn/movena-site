@@ -71,14 +71,6 @@ export const optionalAddOns = [
     detail:
       "Movena integration fee only. Hardware, installation and access-control provider subscriptions are purchased separately.",
   },
-  {
-    name: "Branded App",
-    price: "+A$99 / brand / month + GST",
-  },
-  {
-    name: "AI",
-    price: "Optional usage-based",
-  },
 ] as const;
 
 export const platformAdministrationFee =
