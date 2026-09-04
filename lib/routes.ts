@@ -75,7 +75,7 @@ export const commercialRoutes = [
   },
   {
     path: "/pricing/",
-    title: "Pricing — Movena",
+    title: "Gym software pricing with unlimited members — Movena",
     description:
       "Simple location-based Movena pricing with unlimited members and team users on every plan.",
     kind: "marketing",

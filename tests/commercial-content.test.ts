@@ -67,9 +67,19 @@ test("locked package prices and comparison allocation remain exact", () => {
 
 test("pricing is explicitly free of member and team-user caps", () => {
   const pricingPage = readFileSync("app/pricing/page.tsx", "utf8");
+  const publicPricingSources = [
+    pricingPage,
+    readFileSync("components/commercial-pricing.tsx", "utf8"),
+    readFileSync("lib/commercial.ts", "utf8"),
+    readFileSync("lib/routes.ts", "utf8"),
+  ].join("\n");
 
   assert.match(pricingPage, /Unlimited members\. Unlimited team\./);
   assert.match(pricingPage, /not by member count or seats/);
+  assert.doesNotMatch(
+    publicPricingSources,
+    /Up to \d[\d,]* (?:active )?members|Custom member scale|per member|member cap/i,
+  );
   assert.deepEqual(
     packageComparisonRows.find(([capability]) => capability === "Members"),
     ["Members", "Unlimited", "Unlimited", "Unlimited"],

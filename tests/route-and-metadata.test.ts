@@ -55,6 +55,17 @@ test("canonical path and URL generation preserve trailing slashes", () => {
   }
 });
 
+test("pricing metadata and sitemap clearly signal unlimited-member pricing", () => {
+  const pricing = publicRoutes.find((route) => route.path === "/pricing/");
+  const sitemap = readFileSync("app/sitemap.ts", "utf8");
+
+  assert.ok(pricing);
+  assert.match(pricing.title, /pricing with unlimited members/i);
+  assert.match(pricing.description, /unlimited members and team users on every plan/i);
+  assert.match(sitemap, /route\.path === "\/pricing\/"/);
+  assert.match(sitemap, /lastModified: "2026-09-04"/);
+});
+
 test("legacy internal links are rewritten to canonical slash routes", () => {
   const knownPaths = new Set(expectedPaths);
 
