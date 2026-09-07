@@ -262,6 +262,14 @@ test("the public integrations surface remains exact and conservative", () => {
       },
     },
     {
+      name: "ChatGPT — In development",
+      description: "Beyond dashboards. Into conversation.",
+      mark: {
+        kind: "text",
+        label: "ChatGPT",
+      },
+    },
+    {
       name: "Brevo — Available shortly",
       mark: {
         kind: "image",
@@ -286,6 +294,12 @@ test("the public integrations surface remains exact and conservative", () => {
   assert.doesNotMatch(
     integrationCopy,
     /apps\.apple\.com|play\.google\.com|QR code|download/i,
+  );
+  assert.doesNotMatch(
+    JSON.stringify(
+      publicIntegrations.find(({ name }) => name.startsWith("ChatGPT")),
+    ),
+    /booking health|fill rate|waitlist|MCP|owner|coach|member name|member ID/i,
   );
   assert.doesNotMatch(
     JSON.stringify(

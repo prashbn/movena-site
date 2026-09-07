@@ -63,6 +63,14 @@ export const publicIntegrations = [
     },
   },
   {
+    name: "ChatGPT — In development",
+    description: "Beyond dashboards. Into conversation.",
+    mark: {
+      kind: "text",
+      label: "ChatGPT",
+    },
+  },
+  {
     name: "Brevo — Available shortly",
     mark: {
       kind: "image",
