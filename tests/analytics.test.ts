@@ -38,7 +38,7 @@ test("analytics can be reopened and the privacy policy explains the choice", () 
   assert.match(privacySource, /Optional website analytics:/);
   assert.match(privacySource, /Google Analytics remains off until you allow it/);
   assert.match(privacySource, /Analytics settings/);
-  assert.match(privacySource, /Last updated: 31 August 2026/);
+  assert.match(privacySource, /Last updated: 12 September 2026/);
 });
 
 test("a successful enquiry sends one consent-gated event without form data", () => {
@@ -51,4 +51,3 @@ test("a successful enquiry sends one consent-gated event without form data", () 
     /workEmail|businessName|phone|message|utmSource|referrer/,
   );
 });
-
