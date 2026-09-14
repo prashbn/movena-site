@@ -17,7 +17,7 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
             <span>Movena</span>
             <span className="dot" aria-hidden="true" />
           </Link>
-          <p>Move for a better you.</p>
+          <p>The gym platform that remembers the training.</p>
           <Link className="site-footer__app" href="/app/">
             Get the app <PlatformMarks />
           </Link>

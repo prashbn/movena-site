@@ -35,9 +35,16 @@ const memberLinks = [
 
 function Logo() {
   return (
-    <Link href="/" className="logomark site-logo">
-      <span>Movena</span>
-      <span className="dot" aria-hidden="true" />
+    <Link
+      href="/"
+      className="logomark site-logo site-header__logo"
+      aria-label="Movena — Move for a better you."
+    >
+      <span className="site-logo__wordmark">
+        <span>Movena</span>
+        <span className="dot" aria-hidden="true" />
+      </span>
+      <span className="site-logo__tagline">Move for a better you.</span>
     </Link>
   );
 }
