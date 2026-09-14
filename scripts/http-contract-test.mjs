@@ -93,7 +93,7 @@ async function runContract() {
   assert.match(homepageHtml, /class="site-footer"/);
   assert.match(
     homepageHtml,
-    /The gym platform that remembers the training\./,
+    /Move for a better you\./,
   );
   assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a walkthrough<\/a>/);
   for (const marker of [
