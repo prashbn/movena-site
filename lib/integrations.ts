@@ -29,8 +29,10 @@ export const publicIntegrations = [
     name: "Facebook",
     description: "New Facebook leads arrive in Movena automatically.",
     mark: {
-      kind: "text",
-      label: "Facebook",
+      kind: "image",
+      src: "/assets/integrations/facebook-logo.png",
+      width: 2084,
+      height: 2084,
     },
   },
   {

@@ -43,6 +43,7 @@ test("Next public assets are an exact, non-destructive copy of legacy assets", (
       "app/movena-class-booking.jpg",
       "app/movena-training-performance.jpg",
       "integrations/brevo-logo.svg",
+      "integrations/facebook-logo.png",
       "integrations/health-connect-logo.png",
       "integrations/kisi-logo.png",
       "integrations/xero-logo.svg",
