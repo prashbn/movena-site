@@ -84,7 +84,7 @@ export const commercialRoutes = [
     path: "/integrations/",
     title: "Integrations — Movena",
     description:
-      "Movena integrations for accounting exports, access control for 24/7 and unstaffed gyms, health and fitness data, payments and billing infrastructure.",
+      "Connect Movena with Xero and QuickBooks, bring in marketing leads from Facebook and Google, and use MYOB-ready exports, Kisi access control and health data integrations.",
     kind: "marketing",
   },
   {

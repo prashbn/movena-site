@@ -200,7 +200,7 @@ test("the public integrations surface remains exact and conservative", () => {
   assert.deepEqual(publicIntegrations, [
     {
       name: "Xero",
-      description: "Xero-ready exports.",
+      description: "Connect Xero directly to Movena.",
       mark: {
         kind: "image",
         src: "/assets/integrations/xero-logo.svg",
@@ -210,7 +210,7 @@ test("the public integrations surface remains exact and conservative", () => {
     },
     {
       name: "QuickBooks®",
-      description: "QuickBooks-ready exports.",
+      description: "Connect QuickBooks directly to Movena.",
       mark: {
         kind: "text",
         label: "QuickBooks®",
@@ -222,6 +222,22 @@ test("the public integrations surface remains exact and conservative", () => {
       mark: {
         kind: "text",
         label: "MYOB",
+      },
+    },
+    {
+      name: "Facebook",
+      description: "New Facebook leads arrive in Movena automatically.",
+      mark: {
+        kind: "text",
+        label: "Facebook",
+      },
+    },
+    {
+      name: "Google",
+      description: "Bring Google marketing leads into Movena.",
+      mark: {
+        kind: "text",
+        label: "Google",
       },
     },
     {

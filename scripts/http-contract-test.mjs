@@ -296,11 +296,15 @@ async function runContract() {
   const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [
     "Xero",
-    "Xero-ready exports.",
+    "Connect Xero directly to Movena.",
     "QuickBooks®",
-    "QuickBooks-ready exports.",
+    "Connect QuickBooks directly to Movena.",
     "MYOB",
     "MYOB-ready exports.",
+    "Facebook",
+    "New Facebook leads arrive in Movena automatically.",
+    "Google",
+    "Bring Google marketing leads into Movena.",
     "Kisi",
     "Access control integration — listed in Kisi’s marketplace.",
     "https://www.getkisi.com/integrations/movena",
