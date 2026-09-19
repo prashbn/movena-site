@@ -26,12 +26,12 @@
   },
   {
     "source": "legal/privacy/index.html",
-    "documentSha256": "e67065bbc26e722fa4fdc12c7b150f6713a68b9f605079db11259e065ad93556",
-    "mainSha256": "b0f1d0802cfae2183cec1d72a5f0d6d7486860d10e19cdfb5a0f37b59ef6f09f"
+    "documentSha256": "263d0e9a40f9168c5168ea500d60f00ea7e5e8aa53f87d34f335fd0ec15c17a1",
+    "mainSha256": "0004a29e99d9a7ee8ddf2bfe0e5de633d7dfc5fe218b8ca16e5978be2c73b6a1"
   },
   {
     "source": "legal/terms/index.html",
-    "documentSha256": "2ae0165c78c69c00cc01b55cdb5148814398b6eddee8488fe03890ccd6784f2f",
-    "mainSha256": "d110517f474fdc818e9779e565e9ac5f4749518a4c76fbdc985b4cd53af884a9"
+    "documentSha256": "4198c9e7c9a3e90028a032b43cd1ca2b3934bde93443c7921ad6db40722827d3",
+    "mainSha256": "2c3904bd776fc2fd001dc5db502fb4a5b592889cb31327cd68519c4e07f66b33"
   }
 ]

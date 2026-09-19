@@ -35,8 +35,8 @@ const routes = [
 const frozenDocumentMarkers = new Map([
   ["/help/", ["Help &amp; Support", "Last updated: 2 August 2026"]],
   ["/integrations/kisi/", ["Movena + Kisi", "Ending the integration"]],
-  ["/legal/privacy/", ["Privacy Policy", "Last updated: 12 September 2026"]],
-  ["/legal/terms/", ["Terms of Service", "Last updated: 12 September 2026"]],
+  ["/legal/privacy/", ["Privacy Policy", "Last updated: 19 September 2026"]],
+  ["/legal/terms/", ["Terms of Service", "Last updated: 19 September 2026"]],
 ]);
 
 const server = spawn(
