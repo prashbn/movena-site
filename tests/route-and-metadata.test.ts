@@ -52,7 +52,24 @@ test("canonical path and URL generation preserve trailing slashes", () => {
     assert.equal(metadata.openGraph?.url, expectedCanonical);
     assert.equal(metadata.title, route.title);
     assert.equal(metadata.description, route.description);
+    assert.equal(
+      (metadata.twitter as { card?: string } | undefined)?.card,
+      "summary_large_image",
+    );
+    assert.deepEqual(metadata.twitter?.images, [
+      "/brand/social-dark-1200x630.png",
+    ]);
   }
+});
+
+test("root metadata declares the approved browser and install icons", () => {
+  const layout = readFileSync("app/layout.tsx", "utf8");
+
+  assert.match(layout, /\/brand\/light\/favicon\.ico/);
+  assert.match(layout, /\/brand\/light\/favicon\.svg/);
+  assert.match(layout, /\/brand\/dark\/favicon\.svg/);
+  assert.match(layout, /\/brand\/light\/apple-touch-icon\.png/);
+  assert.match(layout, /\/brand\/light\/site\.webmanifest/);
 });
 
 test("pricing metadata and sitemap clearly signal unlimited-member pricing", () => {

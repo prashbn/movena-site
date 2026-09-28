@@ -138,30 +138,52 @@
 /* Hero */
 
 .home-page .hero {
-  padding: clamp(3.75rem, 6vw, 5.75rem) 0 clamp(3.75rem, 6vw, 5.5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(3.75rem, 6vw, 5.5rem);
   background: var(--site-canvas);
 }
 
 .home-page .hero .split {
-  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
-  gap: clamp(2.5rem, 5vw, 5rem);
-  align-items: center;
-}
-
-.home-page .hero .split > div:first-child {
   position: relative;
-  z-index: 1;
-  animation: home-enter 700ms var(--motion-standard) both;
+  display: block;
+  min-height: clamp(27rem, 39vw, 33rem);
+  overflow: hidden;
+  border-radius: var(--radius-media-premium);
+  background:
+    linear-gradient(90deg, rgba(8, 15, 24, 0.94) 0%, rgba(8, 15, 24, 0.78) 38%, rgba(8, 15, 24, 0.08) 70%),
+    linear-gradient(0deg, rgba(8, 15, 24, 0.28), transparent 48%),
+    var(--site-navy) url("/home-hero-banner.jpg") center / cover no-repeat;
+  box-shadow: var(--shadow-media-premium);
 }
 
 .home-page .hero .split > div:last-child {
-  animation: home-enter 800ms 90ms var(--motion-standard) both;
+  display: none;
+}
+
+.home-page .hero .split > div:first-child {
+  width: min(53%, 39rem);
+  min-height: inherit;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  animation: home-enter 700ms var(--motion-standard) both;
+}
+
+.home-page .hero .kicker-plain {
+  display: none;
+}
+
+.home-page .hero .split h1 {
+  max-width: 11.5ch;
+  margin-top: 0;
+  color: var(--site-white);
 }
 
 .home-page .hero .lede {
   max-width: 39ch;
   margin-top: 1.4rem;
-  color: var(--site-ink-soft);
+  color: rgba(255, 255, 255, 0.78);
   font-size: clamp(1.05rem, 1.55vw, 1.22rem);
   line-height: 1.5;
 }
@@ -173,25 +195,19 @@
 
 .home-page .hero-note {
   margin-top: 1.05rem;
-  color: var(--site-ink-faint);
+  color: rgba(255, 255, 255, 0.62);
   font-size: 0.78rem;
 }
 
-.home-page .hero .shot-portrait {
-  aspect-ratio: 4 / 5.05;
-  border: 0;
-  border-radius: clamp(1.35rem, 2.5vw, 2.25rem);
-  background: var(--site-wash-blue);
-  box-shadow: var(--shadow-media-premium);
+.home-page .hero .split .btn-ghost {
+  border-color: rgba(255, 255, 255, 0.42);
+  color: var(--site-white);
 }
 
-.home-page .hero .shot-portrait img {
-  object-position: 52% center;
-  transition: transform 700ms var(--motion-standard);
-}
-
-.home-page .hero .shot-portrait:hover img {
-  transform: scale(1.018);
+.home-page .hero .split .btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--site-white);
 }
 
 .home-page .hero > .wrap > .frame {
@@ -739,21 +755,17 @@
 
 @media (max-width: 900px) {
   .home-page .hero .split {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    min-height: 39rem;
+    background:
+      linear-gradient(0deg, rgba(8, 15, 24, 0.96) 0%, rgba(8, 15, 24, 0.62) 56%, rgba(8, 15, 24, 0.1) 88%),
+      linear-gradient(90deg, rgba(8, 15, 24, 0.26), transparent 68%),
+      var(--site-navy) url("/home-hero-banner.jpg") 67% center / cover no-repeat;
   }
 
   .home-page .hero .split > div:first-child {
-    max-width: 48rem;
-  }
-
-  .home-page .hero .shot-portrait {
-    max-height: 32rem;
-    aspect-ratio: 4 / 3;
-  }
-
-  .home-page .hero .shot-portrait img {
-    object-position: center 38%;
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 12rem;
   }
 
   .home-page .home-access__inner {
@@ -827,7 +839,7 @@
   }
 
   .home-page .hero {
-    padding-top: 2.75rem;
+    padding-top: 1rem;
   }
 
   .home-page .hero .lede {
@@ -847,8 +859,13 @@
     width: 100%;
   }
 
-  .home-page .hero .shot-portrait {
-    aspect-ratio: 4 / 4.5;
+  .home-page .hero .split {
+    min-height: 43rem;
+    border-radius: 1.35rem;
+  }
+
+  .home-page .hero .split > div:first-child {
+    padding: 10rem 1.35rem 1.5rem;
   }
 
   .home-page .home-access__brand {
@@ -935,7 +952,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-page .hero .split > div,
+  .home-page .hero .split > div:first-child,
   .home-page .shot img {
     animation: none;
     transition: none;

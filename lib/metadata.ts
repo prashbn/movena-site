@@ -31,11 +31,20 @@ export function createPageMetadata({
       url,
       title,
       description: socialDescription,
+      images: [
+        {
+          url: "/brand/social-dark-1200x630.png",
+          width: 1200,
+          height: 630,
+          alt: "Movena",
+        },
+      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description: socialDescription,
+      images: ["/brand/social-dark-1200x630.png"],
     },
   };
 }

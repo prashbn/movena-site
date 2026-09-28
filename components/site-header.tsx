@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { BrandLockup } from "@/components/brand-lockup";
 import type { PublicPath } from "@/lib/routes";
 import { siteConfig } from "@/lib/site-config";
 
@@ -40,10 +41,7 @@ function Logo() {
       className="logomark site-logo site-header__logo"
       aria-label="Movena — Move for a better you."
     >
-      <span className="site-logo__wordmark">
-        <span>Movena</span>
-        <span className="dot" aria-hidden="true" />
-      </span>
+      <BrandLockup priority />
       <span className="site-logo__tagline">Move for a better you.</span>
     </Link>
   );

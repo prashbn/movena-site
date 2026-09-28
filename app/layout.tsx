@@ -20,6 +20,23 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/brand/light/favicon.ico", sizes: "any" },
+      {
+        url: "/brand/light/favicon.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/brand/dark/favicon.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: [{ url: "/brand/light/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/brand/light/site.webmanifest",
 };
 
 export const viewport: Viewport = {

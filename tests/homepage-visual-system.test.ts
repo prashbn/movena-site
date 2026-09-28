@@ -25,6 +25,30 @@ test("the visual system includes responsive and reduced-motion contracts", () =>
   assert.match(homeCss, /\.home-page \.shot/);
 });
 
+test("the shared shell uses the approved outlined brand lockup", () => {
+  const lockup = readFileSync("components/brand-lockup.tsx", "utf8");
+  const header = readFileSync("components/site-header.tsx", "utf8");
+  const footer = readFileSync("components/site-footer.tsx", "utf8");
+
+  assert.match(lockup, /\/brand\/header-light\.svg/);
+  assert.match(header, /<BrandLockup priority \/>/);
+  assert.match(header, /Move for a better you\./);
+  assert.match(footer, /<BrandLockup \/>/);
+  assert.doesNotMatch(header, /className="dot"/);
+  assert.doesNotMatch(footer, /className="dot"/);
+});
+
+test("the approved homepage banner stays inside the existing cool visual system", () => {
+  const homeCss = readFileSync("styles/home.css", "utf8");
+  const shellCss = readFileSync("styles/premium-shell.css", "utf8");
+
+  assert.match(homeCss, /\.home-page \.hero \.split/);
+  assert.match(homeCss, /var\(--site-navy\) url\("\/home-hero-banner\.jpg"\)/);
+  assert.match(homeCss, /\.home-page \.hero \.split \.btn-ghost/);
+  assert.match(shellCss, /\.site-logo__tagline[\s\S]*font-size: 0\.72rem/);
+  assert.match(shellCss, /\.site-logo__tagline[\s\S]*font-weight: 700/);
+});
+
 test("the retention section uses the complete new badge collection", () => {
   const homepage = readLegacyMainMarkup("index.html");
   const homeCss = readFileSync("styles/home.css", "utf8");

@@ -74,6 +74,37 @@ test("the Platform product proof uses repository-owned product screenshots", () 
   }
 });
 
+test("the approved brand identity ships with complete web assets", () => {
+  for (const asset of [
+    "public/brand/header-light.svg",
+    "public/brand/header-dark.svg",
+    "public/brand/light/favicon.ico",
+    "public/brand/light/favicon.svg",
+    "public/brand/dark/favicon.svg",
+    "public/brand/light/apple-touch-icon.png",
+    "public/brand/light/icon-192.png",
+    "public/brand/light/icon-512.png",
+    "public/brand/light/maskable-512.png",
+    "public/brand/light/site.webmanifest",
+    "public/brand/social-dark-1200x630.png",
+  ]) {
+    assert.equal(existsSync(asset), true, asset);
+  }
+
+  const headerLockup = readFileSync("public/brand/header-light.svg", "utf8");
+  assert.match(headerLockup, /id="movena-symbol"/);
+  assert.match(headerLockup, /id="movena-wordmark-outlined"/);
+  assert.doesNotMatch(headerLockup, /<text\b/);
+});
+
+test("the homepage hero uses the repository-owned panoramic gym image", () => {
+  assert.equal(existsSync("public/home-hero-banner.jpg"), true);
+
+  const homeCss = readFileSync("styles/home.css", "utf8");
+  assert.match(homeCss, /url\("\/home-hero-banner\.jpg"\)/);
+  assert.match(homeCss, /\.home-page \.hero \.split > div:last-child/);
+});
+
 test("the runtime backend surface is limited to the server-side contact endpoint", () => {
   assert.equal(existsSync("app/api/contact/route.ts"), true);
   assert.equal(existsSync("middleware.ts"), false);

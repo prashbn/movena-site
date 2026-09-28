@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { AnalyticsSettingsButton } from "@/components/analytics-settings-button";
 import { PlatformMarks } from "@/components/app-store-actions";
+import { BrandLockup } from "@/components/brand-lockup";
 import { siteConfig } from "@/lib/site-config";
 
 type SiteFooterProps = {
@@ -13,9 +14,12 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
     <footer className="site-footer">
       <div className="wrap foot-row site-footer__inner">
         <div className="site-footer__brand">
-          <Link href="/" className="logomark site-logo site-footer__logo">
-            <span>Movena</span>
-            <span className="dot" aria-hidden="true" />
+          <Link
+            href="/"
+            className="logomark site-logo site-footer__logo"
+            aria-label="Movena home"
+          >
+            <BrandLockup />
           </Link>
           <p>The gym platform that remembers the training.</p>
           <Link className="site-footer__app" href="/app/">

@@ -57,6 +57,22 @@ their matching `--site-*` aliases from `styles/tokens.css`.
 Colours inside product screenshots, official third-party brand assets, and
 small UI demonstrations are content, not additions to the website palette.
 
+## Approved identity assets
+
+- The shared header and footer use the approved outlined Movena lockup at
+  `public/brand/header-light.svg`. Do not recreate the wordmark as live text or
+  add the former blue-dot treatment.
+- Use `public/brand/header-dark.svg` only when the lockup must appear on a dark
+  background.
+- The website interface remains set in Geist, with Geist Mono reserved for
+  the existing technical accents. The outlined lettering inside the lockup is
+  artwork, not a new website typeface.
+- Keep the tagline in the site's interface typeface rather than embedding it
+  in the logo artwork.
+- Favicons, touch icons, PWA icons, and social-share artwork live under
+  `public/brand/`. Use those repository-owned exports instead of making new
+  derivatives in page code.
+
 ## Application rules
 
 1. Start with the existing semantic tokens. Do not create a page-local base

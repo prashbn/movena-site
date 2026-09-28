@@ -44,38 +44,27 @@ header.site-header {
 
 .site-logo {
   flex: none;
-  gap: 0.08em;
   color: var(--site-ink);
-  font-size: 1.12rem;
-  font-weight: 650;
-  letter-spacing: -0.045em;
 }
 
-.site-logo .dot {
-  width: 0.34rem;
-  height: 0.34rem;
-  margin-bottom: 0.28rem;
-  background: var(--site-blue);
+.site-logo__image {
+  width: 7.4rem;
+  height: auto;
+  display: block;
 }
 
 .site-header__logo {
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.18rem;
+  gap: 0.22rem;
   line-height: 1;
-}
-
-.site-logo__wordmark {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.08em;
 }
 
 .site-logo__tagline {
   color: var(--site-ink-faint);
-  font-size: 0.56rem;
-  font-weight: 520;
-  letter-spacing: 0.015em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.005em;
   line-height: 1.1;
   white-space: nowrap;
 }
@@ -237,7 +226,10 @@ footer.site-footer {
 
 .site-footer .site-footer__logo {
   color: var(--site-ink);
-  font-size: 1.45rem;
+}
+
+.site-footer .site-logo__image {
+  width: 10rem;
 }
 
 .site-footer__brand {
