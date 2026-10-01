@@ -84,7 +84,7 @@ export const commercialRoutes = [
     path: "/integrations/",
     title: "Integrations — Movena",
     description:
-      "Connect Movena with Xero and QuickBooks, bring in marketing leads from Facebook and Google, and use MYOB-ready exports, Kisi access control and health data integrations.",
+      "Connect Movena with ChatGPT, Xero and QuickBooks, bring in marketing leads from Facebook and Google, and use MYOB-ready exports, Kisi access control and health data integrations.",
     kind: "marketing",
   },
   {

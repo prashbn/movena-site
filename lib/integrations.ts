@@ -81,7 +81,7 @@ export const publicIntegrations = [
     },
   },
   {
-    name: "ChatGPT — In development",
+    name: "ChatGPT",
     description: "Beyond dashboards. Into conversation.",
     mark: {
       kind: "text",
