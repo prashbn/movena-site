@@ -48,6 +48,10 @@ export async function generateMetadata({
       authors: ["Movena"],
       images: [{ url: post.image, alt: post.imageAlt }],
     },
+    twitter: {
+      ...metadata.twitter,
+      images: [{ url: post.image, alt: post.imageAlt }],
+    },
   };
 }
 
