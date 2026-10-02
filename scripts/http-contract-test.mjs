@@ -30,6 +30,7 @@ const routes = [
   "/blog/card-becs-payto-for-gym-memberships/",
   "/blog/notice-member-drift-before-cancellation/",
   "/blog/questions-before-choosing-gym-software/",
+  "/blog/from-dashboards-to-conversations/",
 ];
 
 const frozenDocumentMarkers = new Map([

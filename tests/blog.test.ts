@@ -14,6 +14,8 @@ const allowedSourceHosts = new Set([
   "www.healthdirect.gov.au",
   "www.oaic.gov.au",
   "hyrox.com",
+  "developer.apple.com",
+  "learn.chatgpt.com",
 ]);
 
 test("the blog publishes distinct, static member and owner articles", () => {
@@ -28,10 +30,11 @@ test("the blog publishes distinct, static member and owner articles", () => {
       "card-becs-payto-for-gym-memberships",
       "notice-member-drift-before-cancellation",
       "questions-before-choosing-gym-software",
+      "from-dashboards-to-conversations",
     ],
   );
 
-  assert.equal(new Set(blogPosts.map((post) => post.slug)).size, 8);
+  assert.equal(new Set(blogPosts.map((post) => post.slug)).size, 9);
   assert.equal(blogPostBySlug("missing-article"), undefined);
 
   for (const post of blogPosts) {
@@ -53,6 +56,19 @@ test("the blog publishes distinct, static member and owner articles", () => {
       );
     }
   }
+});
+
+test("the ChatGPT and Siri announcement stays precise about access and availability", () => {
+  const announcement = blogPostBySlug("from-dashboards-to-conversations");
+
+  assert.ok(announcement);
+  assert.match(JSON.stringify(announcement), /authorised team members/);
+  assert.match(JSON.stringify(announcement), /supported booking actions/);
+  assert.match(JSON.stringify(announcement), /permissions and location boundaries/);
+  assert.doesNotMatch(
+    JSON.stringify(announcement),
+    /world['’]?s first|OpenAI (?:approved|endorsed)|official OpenAI partner/i,
+  );
 });
 
 test("owner articles keep product and supplier boundaries explicit", () => {

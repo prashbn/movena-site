@@ -134,7 +134,11 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
           <p>{post.excerpt}</p>
         </header>
 
-        <figure className="blog-article__media commercial-wrap">
+        <figure
+          className={`blog-article__media commercial-wrap${
+            post.imageFit === "contain" ? " blog-article__media--contain" : ""
+          }`}
+        >
           <Image
             alt={post.imageAlt}
             height={900}

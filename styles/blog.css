@@ -267,6 +267,11 @@
   box-shadow: var(--shadow-media-premium);
 }
 
+.blog-article__media--contain img {
+  object-fit: contain;
+  background: var(--site-paper-bright);
+}
+
 .blog-article-layout {
   max-width: 1000px;
   display: grid;

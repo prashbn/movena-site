@@ -19,6 +19,7 @@ export type BlogPost = {
     | "Operations"
     | "Payments"
     | "Retention"
+    | "Product"
     | "Buying guide";
   title: string;
   description: string;
@@ -28,6 +29,7 @@ export type BlogPost = {
   readingTime: string;
   image: string;
   imageAlt: string;
+  imageFit?: "cover" | "contain";
   introduction: readonly string[];
   sections: readonly BlogSection[];
   safetyNote: string;
@@ -621,6 +623,91 @@ export const blogPosts = [
         label: "Terms of Service",
         publisher: "Movena",
         url: "https://movena.com.au/legal/terms/",
+      },
+    ],
+  },
+  {
+    slug: "from-dashboards-to-conversations",
+    category: "Product",
+    title: "From dashboards to conversations",
+    description:
+      "Movena brings gym operations to ChatGPT and gives members native access to sessions and supported booking actions through Siri.",
+    excerpt:
+      "Ask your gym. Find what matters. Give your team more time for members.",
+    published: "2026-10-02",
+    publishedLabel: "2 October 2026",
+    readingTime: "4 minute read",
+    image: "/assets/blog/movena-chatgpt-plugin-published.png",
+    imageAlt:
+      "Movena shown as a published ChatGPT plugin among other app integrations",
+    imageFit: "contain",
+    introduction: [
+      "Running a gym means making decisions all day. What is happening with bookings? Which sessions need attention? What does the team need to know?",
+      "Until now, finding the answer usually meant opening a dashboard, choosing a report and working through filters. Movena gives you another way.",
+      "Gym owners and authorised team members can now talk to their gym through ChatGPT. Members can find sessions and begin supported booking actions through Siri.",
+      "Less searching. Fewer steps. More time for members.",
+    ],
+    sections: [
+      {
+        heading: "Ask your gym",
+        paragraphs: [
+          "Start with a question.",
+          "Ask about sessions. Understand booking patterns. Explore what is happening across your operation.",
+          "Movena brings the relevant information into the conversation, so you can find what matters without first working out where it lives.",
+          "The dashboard is still there when you need it. It just no longer needs to be the starting point.",
+        ],
+      },
+      {
+        heading: "Members can simply ask Siri",
+        paragraphs: [
+          "For members, getting to their next session should feel just as simple.",
+          "They can use Siri or an Apple device shortcut to find Movena sessions and begin supported booking actions through the native Movena experience.",
+          "It is a faster way to act when opening an app and moving through several screens feels unnecessary.",
+        ],
+      },
+      {
+        heading: "One platform. Two conversations.",
+        paragraphs: [
+          "ChatGPT helps gym teams understand the operation.",
+          "Siri helps members interact with their sessions.",
+          "Both are connected to the same Movena platform, making everyday actions feel more natural for everyone.",
+        ],
+      },
+      {
+        heading: "Access stays in your control",
+        paragraphs: [
+          "A simpler interface does not mean wider access.",
+          "Movena continues to respect the permissions and location boundaries attached to each account. Owners and staff only see the information their role permits. Member information remains connected to the individual member and the actions they have authorised.",
+          "The way you ask changes. The controls behind it do not.",
+        ],
+      },
+      {
+        heading: "Less admin. More time with members.",
+        paragraphs: [
+          "Movena keeps the technology in the background. Ask a question, find what matters, and get back to your gym.",
+          "Less time searching through reports. Fewer steps to manage the day. More time for your team to coach, connect and help members keep moving.",
+          "From dashboards to conversations.",
+          "Movena brings gym operations to ChatGPT and member sessions to Siri—all in one connected platform.",
+        ],
+      },
+    ],
+    safetyNote:
+      "General information only. ChatGPT availability depends on plugin availability, connection status and account permissions. Siri features require a compatible Apple device and supported settings. Movena permissions continue to apply.",
+    sources: [
+      {
+        label: "Plugins",
+        publisher: "ChatGPT Learn",
+        url: "https://learn.chatgpt.com/docs/plugins",
+      },
+      {
+        label: "App Intents",
+        publisher: "Apple Developer Documentation",
+        url: "https://developer.apple.com/documentation/appintents",
+      },
+      {
+        label: "Movena integrations",
+        publisher: "Movena",
+        url: "https://movena.com.au/integrations/",
       },
     ],
   },
