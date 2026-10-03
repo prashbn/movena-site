@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 import { businessTypes, supportedDisciplines } from "../lib/businesses.ts";
@@ -22,7 +22,7 @@ test("the business hub uses approved types and the existing discipline catalogue
   assert.ok(supportedDisciplines.includes("Personal Training"));
 });
 
-test("the business hub is text-led and gives owners clear next steps", () => {
+test("the business hub gives owners clear next steps", () => {
   const page = readFileSync("app/businesses/page.tsx", "utf8");
 
   assert.match(page, /Built for how your business trains\./);
@@ -42,6 +42,9 @@ test("the business hub follows the cool-white system and is responsive", () => {
   assert.match(css, /background: var\(--site-canvas\)/);
   assert.match(css, /background: var\(--site-surface-tint\)/);
   assert.match(css, /background: var\(--site-surface\)/);
+  assert.equal(existsSync("public/businesses-hero.jpg"), true);
+  assert.match(css, /url\("\/businesses-hero\.jpg"\)/);
+  assert.match(css, /background-position|73% center/);
   assert.match(css, /@media \(max-width: 860px\)/);
   assert.match(css, /@media \(max-width: 680px\)/);
   assert.match(css, /@media \(max-width: 480px\)/);

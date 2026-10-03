@@ -15,7 +15,7 @@ export default function BusinessesPage() {
   return (
     <CommercialPageShell activePath="/businesses/">
       <header className="businesses-hero">
-        <div className="commercial-wrap businesses-hero__inner">
+        <div className="businesses-hero__inner">
           <div className="businesses-hero__copy">
             <p className="commercial-kicker">Who Movena is for</p>
             <h1>Built for how your business trains.</h1>
@@ -33,6 +33,8 @@ export default function BusinessesPage() {
               </Link>
             </div>
           </div>
+        </div>
+        <div className="commercial-wrap businesses-hero__proof">
           <div className="businesses-hero__statement" aria-label="18 supported disciplines">
             <strong>18</strong>
             <span>disciplines already set up</span>
