@@ -30,22 +30,22 @@
 .home-page h1 {
   max-width: 13ch;
   margin-top: 1.1rem;
-  font-size: clamp(2.9rem, 4.6vw, 4.25rem);
-  font-weight: 580;
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+  font-size: clamp(3.1rem, 5.35vw, 5.35rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.06em;
 }
 
 .home-page h2 {
   max-width: 19ch;
   font-size: clamp(2.15rem, 3.8vw, 3.65rem);
-  font-weight: 550;
-  line-height: 1.03;
+  font-weight: 700;
+  line-height: 1;
   letter-spacing: -0.048em;
 }
 
 .home-page h3 {
-  font-weight: 580;
+  font-weight: 650;
 }
 
 .home-page .kicker,
@@ -70,7 +70,8 @@
 
 .home-page .lede,
 .home-page .sec-lede {
-  color: var(--site-ink-soft);
+  color: var(--site-ink);
+  font-weight: 500;
 }
 
 .home-page .sec-lede {
@@ -98,7 +99,7 @@
   padding: 0.68rem 1.15rem;
   border-radius: var(--radius-control-premium);
   font-size: 0.86rem;
-  font-weight: 610;
+  font-weight: 650;
 }
 
 .home-page .btn-primary {
@@ -138,16 +139,21 @@
 /* Hero */
 
 .home-page .hero {
-  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(3.75rem, 6vw, 5.5rem);
+  padding: clamp(0.75rem, 1.5vw, 1.5rem) 0 clamp(3.75rem, 6vw, 5.5rem);
   background: var(--site-canvas);
+}
+
+.home-page .hero > .wrap {
+  max-width: none;
+  padding-inline: clamp(0.75rem, 1.8vw, 2rem);
 }
 
 .home-page .hero .split {
   position: relative;
   display: block;
-  min-height: clamp(27rem, 39vw, 33rem);
+  min-height: clamp(34rem, 47vw, 48rem);
   overflow: hidden;
-  border-radius: var(--radius-media-premium);
+  border-radius: clamp(1.25rem, 2vw, 2rem);
   background:
     linear-gradient(90deg, rgba(8, 15, 24, 0.94) 0%, rgba(8, 15, 24, 0.78) 38%, rgba(8, 15, 24, 0.08) 70%),
     linear-gradient(0deg, rgba(8, 15, 24, 0.28), transparent 48%),
@@ -160,13 +166,13 @@
 }
 
 .home-page .hero .split > div:first-child {
-  width: min(53%, 39rem);
+  width: min(52%, 46rem);
   min-height: inherit;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  padding: clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(2.5rem, 6vw, 7rem);
   animation: home-enter 700ms var(--motion-standard) both;
 }
 
@@ -175,7 +181,7 @@
 }
 
 .home-page .hero .split h1 {
-  max-width: 11.5ch;
+  max-width: 10.5ch;
   margin-top: 0;
   color: var(--site-white);
 }
@@ -183,8 +189,9 @@
 .home-page .hero .lede {
   max-width: 39ch;
   margin-top: 1.4rem;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(1.05rem, 1.55vw, 1.22rem);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.08rem, 1.35vw, 1.3rem);
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -195,8 +202,9 @@
 
 .home-page .hero-note {
   margin-top: 1.05rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.74);
   font-size: 0.78rem;
+  font-weight: 500;
 }
 
 .home-page .hero .split .btn-ghost {
@@ -211,7 +219,9 @@
 }
 
 .home-page .hero > .wrap > .frame {
+  max-width: var(--container-media);
   margin-top: clamp(3.5rem, 5vw, 5rem);
+  margin-inline: auto;
 }
 
 /* Existing approved interface illustration; no UI or claims added in Slice 2. */

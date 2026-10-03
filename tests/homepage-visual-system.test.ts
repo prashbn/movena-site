@@ -43,6 +43,8 @@ test("the approved homepage banner stays inside the existing cool visual system"
   const shellCss = readFileSync("styles/premium-shell.css", "utf8");
 
   assert.match(homeCss, /\.home-page \.hero \.split/);
+  assert.match(homeCss, /\.home-page \.hero > \.wrap[\s\S]*max-width: none/);
+  assert.match(homeCss, /font-weight: 700/);
   assert.match(homeCss, /var\(--site-navy\) url\("\/home-hero-banner\.jpg"\)/);
   assert.match(homeCss, /\.home-page \.hero \.split \.btn-ghost/);
   assert.match(shellCss, /\.site-logo__tagline[\s\S]*font-size: 0\.72rem/);
