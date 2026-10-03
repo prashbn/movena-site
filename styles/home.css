@@ -30,7 +30,7 @@
 .home-page h1 {
   max-width: 13ch;
   margin-top: 1.1rem;
-  font-size: clamp(3.1rem, 5.35vw, 5.35rem);
+  font-size: clamp(2.85rem, 4.35vw, 4.65rem);
   font-weight: 700;
   line-height: 0.94;
   letter-spacing: -0.06em;
@@ -181,7 +181,7 @@
 }
 
 .home-page .hero .split h1 {
-  max-width: 10.5ch;
+  max-width: 12.5ch;
   margin-top: 0;
   color: var(--site-white);
 }
