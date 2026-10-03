@@ -139,12 +139,12 @@ function rewriteHomeAppShowcase(
 ): string {
   if (source !== "index.html") return markup;
 
-  const appShowcase = `<section class="home-app-showcase" aria-labelledby="home-app-heading">
+  const appShowcase = `<section id="members" class="home-app-showcase" aria-labelledby="home-app-heading">
   <div class="wrap-band">
     <div class="home-app-showcase__panel">
       <div class="home-app-showcase__intro">
         <span class="kicker">Movena member app</span>
-        <h2 id="home-app-heading">The gym goes with them.</h2>
+        <h2 id="home-app-heading">An app worth opening.</h2>
         <div class="home-app-showcase__copy">
           <p>Members book sessions, follow the workout and see progress and milestones build in one native app.</p>
           <div class="home-app-showcase__actions">
@@ -169,7 +169,9 @@ function rewriteHomeAppShowcase(
   </div>
 </section>`;
 
-  return markup.replace(
+  return markup.replace(/<section id="members">[\s\S]*?<\/section>/, "").replace(
+    '<span class="sec-num mono">06</span>', '<span class="sec-num mono">05</span>',
+  ).replace(
     '<section id="loop">',
     `${appShowcase}\n\n<section id="loop">`,
   );

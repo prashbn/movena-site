@@ -121,7 +121,7 @@ test("the homepage showcases the native member app with real product screens", (
 
   assert.doesNotMatch(homepage, /home-app\/milestones\.jpg/);
 
-  assert.match(homepage, /The gym goes with them\./);
+  assert.equal(homepage.match(/An app worth opening\./g)?.length, 1);
   assert.match(homepage, /Available for iPhone and Android\./);
   assert.match(homepage, /movena-app-page-qr\.png/);
   assert.match(homeCss, /\.home-app-showcase__stage/);
