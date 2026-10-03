@@ -114,11 +114,12 @@ test("the homepage showcases the native member app with real product screens", (
   for (const screen of [
     "movement-progress.jpg",
     "session-detail.jpg",
-    "milestones.jpg",
   ]) {
     assert.equal(existsSync(`public/home-app/${screen}`), true, screen);
     assert.match(homepage, new RegExp(`/home-app/${screen}`));
   }
+
+  assert.doesNotMatch(homepage, /home-app\/milestones\.jpg/);
 
   assert.match(homepage, /The gym goes with them\./);
   assert.match(homepage, /Available for iPhone and Android\./);

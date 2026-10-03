@@ -384,7 +384,7 @@
   min-width: 0;
   min-height: clamp(35rem, 46vw, 46rem);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 15.5rem));
+  grid-template-columns: repeat(2, minmax(0, 19rem));
   align-items: end;
   justify-content: end;
   gap: clamp(1rem, 2.2vw, 2.25rem);
@@ -408,17 +408,12 @@
   height: auto;
 }
 
-.home-page .home-app-showcase__screen--progress,
-.home-page .home-app-showcase__screen--milestones {
+.home-page .home-app-showcase__screen--progress {
   transform: translateY(4.5rem);
 }
 
 .home-page .home-app-showcase__screen--progress {
   rotate: -1.5deg;
-}
-
-.home-page .home-app-showcase__screen--milestones {
-  rotate: 1.5deg;
 }
 
 /* Loop */
@@ -948,8 +943,8 @@
 
   .home-page .home-app-showcase__stage {
     min-height: 38rem;
-    grid-template-columns: repeat(3, minmax(0, 12.5rem));
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 15.5rem));
+    gap: 1.25rem;
   }
 
   .home-page .fact {
@@ -1058,7 +1053,7 @@
 
   .home-page .home-app-showcase__stage {
     min-height: 0;
-    grid-template-columns: repeat(3, minmax(15rem, 72vw));
+    grid-template-columns: repeat(2, minmax(16.5rem, 76vw));
     justify-content: start;
     gap: 1rem;
     overflow-x: auto;
@@ -1073,8 +1068,7 @@
     scroll-snap-align: center;
   }
 
-  .home-page .home-app-showcase__screen--progress,
-  .home-page .home-app-showcase__screen--milestones {
+  .home-page .home-app-showcase__screen--progress {
     transform: none;
     rotate: 0deg;
   }
