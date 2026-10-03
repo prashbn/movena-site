@@ -306,12 +306,12 @@
 }
 
 .home-page .home-app-showcase__panel {
-  min-height: clamp(38rem, 50vw, 50rem);
   display: grid;
   grid-template-columns: minmax(21rem, 0.82fr) minmax(0, 1.18fr);
   align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
   overflow: hidden;
-  padding: clamp(3rem, 6vw, 6rem) 0 0 clamp(2.5rem, 6vw, 6rem);
+  padding: clamp(2.5rem, 5vw, 5rem);
   border: 1px solid rgba(49, 88, 226, 0.1);
   border-radius: var(--radius-media-premium);
   background:
@@ -325,7 +325,7 @@
   position: relative;
   z-index: 2;
   align-self: center;
-  padding-bottom: clamp(3rem, 6vw, 6rem);
+  min-width: 0;
 }
 
 .home-page .home-app-showcase__intro h2 {
@@ -382,13 +382,11 @@
 
 .home-page .home-app-showcase__stage {
   min-width: 0;
-  min-height: clamp(35rem, 46vw, 46rem);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 19rem));
-  align-items: end;
+  grid-template-columns: repeat(2, minmax(0, 18rem));
+  align-items: start;
   justify-content: end;
-  gap: clamp(1rem, 2.2vw, 2.25rem);
-  transform: translateX(clamp(1.5rem, 3.5vw, 4rem));
+  gap: clamp(1rem, 2vw, 2rem);
 }
 
 .home-page .home-app-showcase__screen {
@@ -396,8 +394,7 @@
   margin: 0;
   overflow: hidden;
   border: 0.45rem solid rgba(16, 24, 32, 0.94);
-  border-bottom: 0;
-  border-radius: 2.4rem 2.4rem 0 0;
+  border-radius: 2.4rem;
   background: var(--site-navy);
   box-shadow: 0 2rem 4rem -2rem rgba(16, 24, 32, 0.42);
 }
@@ -409,11 +406,7 @@
 }
 
 .home-page .home-app-showcase__screen--progress {
-  transform: translateY(4.5rem);
-}
-
-.home-page .home-app-showcase__screen--progress {
-  rotate: -1.5deg;
+  margin-top: 3rem;
 }
 
 /* Loop */
@@ -932,8 +925,8 @@
   }
 
   .home-page .home-app-showcase__panel {
-    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
-    padding-left: 2.25rem;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 2.5rem;
   }
 
   .home-page .home-app-showcase__intro h2 {
@@ -942,8 +935,8 @@
   }
 
   .home-page .home-app-showcase__stage {
-    min-height: 38rem;
-    grid-template-columns: repeat(2, minmax(0, 15.5rem));
+    grid-template-columns: repeat(2, minmax(0, 18rem));
+    justify-content: center;
     gap: 1.25rem;
   }
 
@@ -1039,7 +1032,7 @@
   }
 
   .home-page .home-app-showcase__intro {
-    padding: 0 1.25rem 2.5rem;
+    padding: 0 1.25rem;
   }
 
   .home-page .home-app-showcase__intro h2 {
@@ -1057,18 +1050,19 @@
     justify-content: start;
     gap: 1rem;
     overflow-x: auto;
-    padding: 2rem 1.25rem 0;
+    padding: 0 1.25rem 2.5rem;
     scroll-padding-inline: 1.25rem;
     scroll-snap-type: x mandatory;
     transform: none;
   }
 
   .home-page .home-app-showcase__screen {
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 2rem;
     scroll-snap-align: center;
   }
 
   .home-page .home-app-showcase__screen--progress {
+    margin-top: 0;
     transform: none;
     rotate: 0deg;
   }

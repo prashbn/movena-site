@@ -158,11 +158,11 @@ function rewriteHomeAppShowcase(
         </div>
       </div>
       <div class="home-app-showcase__stage" aria-label="Movena member app screens">
-        <figure class="home-app-showcase__screen home-app-showcase__screen--progress">
-          <img src="/home-app/movement-progress.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena movement progress showing a personal best and training history">
-        </figure>
         <figure class="home-app-showcase__screen home-app-showcase__screen--session">
           <img src="/home-app/session-detail.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena personal training session detail with a programmed workout and booking action">
+        </figure>
+        <figure class="home-app-showcase__screen home-app-showcase__screen--progress">
+          <img src="/home-app/movement-progress.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena movement progress showing a personal best and training history">
         </figure>
       </div>
     </div>
