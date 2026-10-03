@@ -48,7 +48,7 @@ test("the approved homepage banner stays inside the existing cool visual system"
   const shellCss = readFileSync("styles/premium-shell.css", "utf8");
 
   assert.match(homeCss, /\.home-page \.hero \.split/);
-  assert.match(homeCss, /\.home-page \.hero > \.wrap[\s\S]*max-width: none/);
+  assert.match(homeCss, /\.home-page \.hero > \.wrap[\s\S]*max-width: var\(--home-content-width\)/);
   assert.match(homeCss, /font-weight: 700/);
   assert.match(homeCss, /var\(--site-navy\) url\("\/home-hero-banner\.jpg"\)/);
   assert.match(homeCss, /\.home-page \.hero \.split \.btn-ghost/);
@@ -102,7 +102,7 @@ test("the homepage carries verified commercial proof without roadmap claims", ()
 
   assert.doesNotMatch(homepage, /Branded App|\bAI-powered\b/i);
   assert.match(homeCss, /\.home-page \.home-access/);
-  assert.match(homeCss, /\.home-page \.home-access__inner[\s\S]*max-width: 1280px/);
+  assert.match(homeCss, /\.home-page \.home-access__inner[\s\S]*max-width: var\(--home-content-width\)/);
   assert.match(homeCss, /\.home-page \.home-access__brand[\s\S]*justify-self: center/);
   assert.match(homeCss, /#platform \.featgrid[\s\S]*repeat\(4/);
 });

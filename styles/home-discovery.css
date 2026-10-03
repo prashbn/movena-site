@@ -4,7 +4,7 @@
 }
 
 .home-page .home-discovery-loop__surface {
-  padding: clamp(1.5rem, 4.5vw, 4rem);
+  padding: var(--home-panel-inset);
   border: 1px solid var(--site-line);
   border-radius: var(--radius-media-premium);
   background: linear-gradient(135deg, var(--site-blue-soft), var(--site-surface-tint));
@@ -36,7 +36,7 @@
   border: 1px solid var(--site-line);
   border-radius: 1.35rem;
   background: var(--site-white);
-  box-shadow: 0 12px 26px -24px var(--site-navy);
+  box-shadow: none;
 }
 
 .home-page .home-discovery-icon {
@@ -101,7 +101,7 @@
 }
 
 .home-page .home-discovery-platform {
-  padding-block: clamp(3.5rem, 6vw, 6rem);
+  padding-block: var(--home-section-gap);
   background: var(--site-canvas);
 }
 
