@@ -298,6 +298,123 @@
   background: #84a2ff;
 }
 
+/* Member app showcase */
+
+.home-page .home-app-showcase {
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
+  background: var(--site-canvas);
+}
+
+.home-page .home-app-showcase__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1.1fr);
+  align-items: start;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.home-page .home-app-showcase__intro h2 {
+  max-width: 10ch;
+  margin-top: 1rem;
+}
+
+.home-page .home-app-showcase__copy > p {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--site-ink);
+  font-size: clamp(1.08rem, 1.6vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.58;
+}
+
+.home-page .home-app-showcase__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.home-page .home-app-showcase__download {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.home-page .home-app-showcase__download img {
+  width: 5.75rem;
+  height: 5.75rem;
+  padding: 0.45rem;
+  border: 1px solid var(--site-line);
+  border-radius: 1rem;
+  background: var(--site-white);
+}
+
+.home-page .home-app-showcase__download p {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  color: var(--site-ink);
+  font-size: 0.88rem;
+}
+
+.home-page .home-app-showcase__download span {
+  color: var(--site-ink-soft);
+  font-size: 0.78rem;
+}
+
+.home-page .home-app-showcase .wrap-band {
+  margin-top: clamp(3rem, 6vw, 5.5rem);
+}
+
+.home-page .home-app-showcase__stage {
+  min-height: clamp(36rem, 48vw, 49rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 17.5rem));
+  align-items: end;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  overflow: hidden;
+  padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 6vw, 6rem) 0;
+  border: 1px solid rgba(49, 88, 226, 0.1);
+  border-radius: var(--radius-media-premium);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(164, 185, 255, 0.42), transparent 28rem),
+    radial-gradient(circle at 82% 72%, rgba(215, 222, 255, 0.72), transparent 32rem),
+    linear-gradient(145deg, #f8faff 0%, #edf1ff 100%);
+  box-shadow: var(--shadow-media-premium);
+}
+
+.home-page .home-app-showcase__screen {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 0.45rem solid rgba(16, 24, 32, 0.94);
+  border-bottom: 0;
+  border-radius: 2.4rem 2.4rem 0 0;
+  background: var(--site-navy);
+  box-shadow: 0 2rem 4rem -2rem rgba(16, 24, 32, 0.42);
+}
+
+.home-page .home-app-showcase__screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-page .home-app-showcase__screen--progress,
+.home-page .home-app-showcase__screen--milestones {
+  transform: translateY(4.5rem);
+}
+
+.home-page .home-app-showcase__screen--progress {
+  rotate: -1.5deg;
+}
+
+.home-page .home-app-showcase__screen--milestones {
+  rotate: 1.5deg;
+}
+
 /* Loop */
 
 .home-page #loop .steps {
@@ -813,6 +930,21 @@
     grid-template-columns: 1fr 1fr;
   }
 
+  .home-page .home-app-showcase__intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .home-page .home-app-showcase__intro h2 {
+    max-width: 13ch;
+  }
+
+  .home-page .home-app-showcase__stage {
+    min-height: 39rem;
+    grid-template-columns: repeat(3, minmax(0, 15rem));
+    gap: 1.5rem;
+  }
+
   .home-page .fact {
     border-bottom: 1px solid var(--site-line-light);
   }
@@ -890,6 +1022,34 @@
 
   .home-page .hero .split > div:first-child {
     padding: 10rem 1.35rem 1.5rem;
+  }
+
+  .home-page .home-app-showcase .wrap-band {
+    padding-inline: 0;
+  }
+
+  .home-page .home-app-showcase__stage {
+    min-height: 0;
+    grid-template-columns: repeat(3, minmax(15rem, 72vw));
+    justify-content: start;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 2rem 1.25rem 0;
+    border-inline: 0;
+    border-radius: 0;
+    scroll-padding-inline: 1.25rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .home-page .home-app-showcase__screen {
+    border-radius: 2rem 2rem 0 0;
+    scroll-snap-align: center;
+  }
+
+  .home-page .home-app-showcase__screen--progress,
+  .home-page .home-app-showcase__screen--milestones {
+    transform: none;
+    rotate: 0deg;
   }
 
   .home-page .home-access__brand {

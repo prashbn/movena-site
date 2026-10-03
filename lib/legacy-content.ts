@@ -133,6 +133,51 @@ function rewriteHomeAccessProof(
   );
 }
 
+function rewriteHomeAppShowcase(
+  markup: string,
+  source: LegacySource,
+): string {
+  if (source !== "index.html") return markup;
+
+  const appShowcase = `<section class="home-app-showcase" aria-labelledby="home-app-heading">
+  <div class="wrap home-app-showcase__intro">
+    <div>
+      <span class="kicker">Movena member app</span>
+      <h2 id="home-app-heading">The gym goes with them.</h2>
+    </div>
+    <div class="home-app-showcase__copy">
+      <p>Members book sessions, follow the workout and see progress and milestones build in one native app.</p>
+      <div class="home-app-showcase__actions">
+        <a class="btn btn-primary" href="/members/">See the member experience</a>
+        <a class="link-arrow" href="/app/">Get the app <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="home-app-showcase__download">
+        <img src="/assets/app/movena-app-page-qr.png" width="420" height="420" loading="lazy" decoding="async" alt="QR code for movena.com.au/app/">
+        <p><strong>Available for iPhone and Android.</strong><span>Scan to open movena.com.au/app/</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap-band">
+    <div class="home-app-showcase__stage" aria-label="Movena member app screens">
+      <figure class="home-app-showcase__screen home-app-showcase__screen--progress">
+        <img src="/home-app/movement-progress.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena movement progress showing a personal best and training history">
+      </figure>
+      <figure class="home-app-showcase__screen home-app-showcase__screen--session">
+        <img src="/home-app/session-detail.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena personal training session detail with a programmed workout and booking action">
+      </figure>
+      <figure class="home-app-showcase__screen home-app-showcase__screen--milestones">
+        <img src="/home-app/milestones.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena progress showing recent activity, milestones and completed challenges">
+      </figure>
+    </div>
+  </div>
+</section>`;
+
+  return markup.replace(
+    '<section id="loop">',
+    `${appShowcase}\n\n<section id="loop">`,
+  );
+}
+
 function rewriteHomeRetentionBadges(
   markup: string,
   source: LegacySource,
@@ -425,11 +470,14 @@ export function readLegacyMainMarkup(source: LegacySource): string {
   return rewriteInternalRouteHrefs(
     rewritePlatformProductProof(
       rewriteMemberProductImagery(
-        rewriteHomeAccessProof(
-          rewritePublicMarketingCopy(
-            rewriteHomeRetentionBadges(
-              rewriteSalesContactHrefs(
-                extractMainMarkup(readLegacyDocument(source), source),
+        rewriteHomeAppShowcase(
+          rewriteHomeAccessProof(
+            rewritePublicMarketingCopy(
+              rewriteHomeRetentionBadges(
+                rewriteSalesContactHrefs(
+                  extractMainMarkup(readLegacyDocument(source), source),
+                  source,
+                ),
                 source,
               ),
               source,

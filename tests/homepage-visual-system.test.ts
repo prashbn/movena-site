@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
@@ -105,4 +105,24 @@ test("the homepage carries verified commercial proof without roadmap claims", ()
   assert.match(homeCss, /\.home-page \.home-access__inner[\s\S]*max-width: 1280px/);
   assert.match(homeCss, /\.home-page \.home-access__brand[\s\S]*justify-self: center/);
   assert.match(homeCss, /#platform \.featgrid[\s\S]*repeat\(4/);
+});
+
+test("the homepage showcases the native member app with real product screens", () => {
+  const homepage = readLegacyMainMarkup("index.html");
+  const homeCss = readFileSync("styles/home.css", "utf8");
+
+  for (const screen of [
+    "movement-progress.jpg",
+    "session-detail.jpg",
+    "milestones.jpg",
+  ]) {
+    assert.equal(existsSync(`public/home-app/${screen}`), true, screen);
+    assert.match(homepage, new RegExp(`/home-app/${screen}`));
+  }
+
+  assert.match(homepage, /The gym goes with them\./);
+  assert.match(homepage, /Available for iPhone and Android\./);
+  assert.match(homepage, /movena-app-page-qr\.png/);
+  assert.match(homeCss, /\.home-app-showcase__stage/);
+  assert.match(homeCss, /scroll-snap-type: x mandatory/);
 });
