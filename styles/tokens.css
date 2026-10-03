@@ -53,10 +53,10 @@
   --space-10: 8rem;
 
   --container-text: 760px;
-  /* Preview direction: an edge-to-edge public site with a small safe gutter. */
-  --container-site: 2200px;
-  --container-media: 2560px;
-  --site-gutter: clamp(1rem, 2vw, 2.5rem);
+  /* Wide, controlled content inside edge-to-edge page bands. */
+  --container-site: 1480px;
+  --container-media: 1720px;
+  --site-gutter: clamp(1.25rem, 3vw, 3rem);
 
   --radius-control-premium: 999px;
   --radius-panel-premium: 1.5rem;

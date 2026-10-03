@@ -25,8 +25,9 @@ test("the visual system includes responsive and reduced-motion contracts", () =>
   assert.match(homeCss, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(homeCss, /\.home-page \.shot/);
   assert.match(shellCss, /\.marketing-page \.wrap[\s\S]*var\(--container-site\)/);
-  assert.match(tokensCss, /--container-site: 2200px/);
-  assert.match(tokensCss, /--site-gutter: clamp\(1rem, 2vw, 2\.5rem\)/);
+  assert.match(tokensCss, /--container-site: 1480px/);
+  assert.match(tokensCss, /--container-media: 1720px/);
+  assert.match(tokensCss, /--site-gutter: clamp\(1\.25rem, 3vw, 3rem\)/);
 });
 
 test("the shared shell uses the approved outlined brand lockup", () => {

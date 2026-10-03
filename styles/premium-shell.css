@@ -47,7 +47,7 @@ header.site-header {
 }
 
 .site-header .site-header__inner {
-  max-width: var(--container-site);
+  max-width: none;
   min-height: 68px;
   padding-inline: var(--site-gutter);
   gap: clamp(1rem, 2.5vw, 2.25rem);
@@ -226,7 +226,7 @@ footer.site-footer {
 }
 
 .site-footer .site-footer__inner {
-  max-width: var(--container-site);
+  max-width: none;
   display: grid;
   grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.7fr);
   align-items: start;
@@ -331,7 +331,7 @@ footer.site-footer {
 }
 
 .site-footer__meta {
-  max-width: var(--container-site);
+  max-width: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
