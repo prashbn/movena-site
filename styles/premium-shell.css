@@ -10,6 +10,17 @@
   flex: 1;
 }
 
+/* Legacy-backed marketing pages share the same wide canvas as the newer pages. */
+.marketing-page .wrap {
+  max-width: var(--container-site);
+  padding-inline: var(--site-gutter);
+}
+
+.marketing-page .wrap-band {
+  max-width: var(--container-media);
+  padding-inline: var(--site-gutter);
+}
+
 .visually-hidden:focus {
   width: auto;
   height: auto;

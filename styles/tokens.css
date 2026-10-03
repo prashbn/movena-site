@@ -53,9 +53,10 @@
   --space-10: 8rem;
 
   --container-text: 760px;
-  --container-site: 1180px;
-  --container-media: 1340px;
-  --site-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  /* Preview direction: an edge-to-edge public site with a small safe gutter. */
+  --container-site: 2200px;
+  --container-media: 2560px;
+  --site-gutter: clamp(1rem, 2vw, 2.5rem);
 
   --radius-control-premium: 999px;
   --radius-panel-premium: 1.5rem;
