@@ -127,6 +127,8 @@ test("blog routes provide static generation, metadata, structured data and respo
   assert.match(footer, /href="\/blog\/">Blog/);
   assert.match(css, /@media \(max-width: 760px\)/);
   assert.match(css, /@media \(max-width: 620px\)/);
+  assert.match(css, /\.blog-hero__inner[\s\S]*row-gap: 1\.25rem/);
+  assert.match(css, /\.blog-hero__inner[\s\S]*max-width: 1320px/);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.doesNotMatch(indexPage + articlePage, /fetch\s*\(|use client|CMS/i);
 });

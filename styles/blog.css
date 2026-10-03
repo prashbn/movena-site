@@ -9,14 +9,16 @@
 }
 
 .blog-hero {
-  padding: clamp(4.75rem, 9vw, 8.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+  padding: clamp(3.5rem, 5vw, 5.5rem) 0 clamp(3rem, 4vw, 4.25rem);
 }
 
 .blog-hero__inner {
+  max-width: 1320px;
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.55fr);
-  align-items: end;
-  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.8fr);
+  align-items: center;
+  column-gap: clamp(2rem, 5vw, 5rem);
+  row-gap: 1.25rem;
 }
 
 .blog-hero .commercial-kicker {
@@ -28,8 +30,8 @@
   max-width: 13ch;
   margin: 0;
   color: var(--site-ink);
-  font-size: clamp(3.2rem, 7vw, 6.6rem);
-  font-weight: 560;
+  font-size: clamp(3.2rem, 6vw, 5.8rem);
+  font-weight: 700;
   line-height: 0.94;
   letter-spacing: -0.065em;
 }
@@ -37,8 +39,9 @@
 .blog-hero__lede {
   max-width: 34rem;
   margin: 0;
-  color: var(--site-ink-soft);
+  color: var(--site-ink);
   font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 500;
   line-height: 1.65;
 }
 
@@ -135,7 +138,7 @@
   margin: 1rem 0 0;
   color: var(--site-ink);
   font-size: clamp(1.35rem, 2.25vw, 1.8rem);
-  font-weight: 580;
+  font-weight: 650;
   line-height: 1.08;
   letter-spacing: -0.04em;
 }
@@ -193,7 +196,7 @@
   margin: 0.9rem 0 0;
   color: var(--site-white);
   font-size: clamp(2.5rem, 5vw, 4.7rem);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.055em;
 }
@@ -241,7 +244,7 @@
   margin: 1rem 0 0;
   color: var(--site-ink);
   font-size: clamp(3rem, 6.5vw, 6rem);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 0.96;
   letter-spacing: -0.06em;
 }
@@ -309,7 +312,7 @@
   margin: 0 0 1.25rem;
   color: var(--site-ink);
   font-size: clamp(1.65rem, 3vw, 2.35rem);
-  font-weight: 580;
+  font-weight: 650;
   line-height: 1.08;
   letter-spacing: -0.045em;
 }

@@ -366,7 +366,7 @@
 /* Platform capability list */
 
 .home-page #platform .featgrid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
   margin-top: clamp(2.5rem, 4vw, 3.75rem);
   padding: 0;
@@ -377,7 +377,7 @@
 
 .home-page #platform .feat {
   min-height: 7.75rem;
-  padding: 1.5rem 1.5rem 1.65rem 0;
+  padding: 1.5rem;
   border: 0;
   border-bottom: 1px solid var(--site-line);
   border-radius: 0;
@@ -385,12 +385,7 @@
   box-shadow: none;
 }
 
-.home-page #platform .feat:nth-child(odd) {
-  padding-right: clamp(1.5rem, 5vw, 4.5rem);
-}
-
-.home-page #platform .feat:nth-child(even) {
-  padding-left: clamp(1.5rem, 5vw, 4.5rem);
+.home-page #platform .feat:not(:nth-child(4n + 1)) {
   border-left: 1px solid var(--site-line);
 }
 
@@ -415,23 +410,41 @@
   line-height: 1.55;
 }
 
+@media (max-width: 1100px) {
+  .home-page #platform .featgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-page #platform .feat,
+  .home-page #platform .feat:not(:nth-child(4n + 1)) {
+    border-left: 0;
+  }
+
+  .home-page #platform .feat:nth-child(even) {
+    border-left: 1px solid var(--site-line);
+  }
+}
+
 /* Verified 24/7 access path */
 
 .home-page .home-access {
-  margin-top: clamp(4.5rem, 8vw, 7rem);
-  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  padding: clamp(4rem, 6vw, 5.5rem) 0;
   border-block: 1px solid var(--site-line);
   background: var(--site-surface-tint);
 }
 
 .home-page .home-access__inner {
+  max-width: 1280px;
   display: grid;
-  grid-template-columns: minmax(14rem, 0.55fr) minmax(0, 1.45fr);
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr);
   align-items: center;
-  gap: clamp(3rem, 8vw, 7rem);
+  gap: clamp(3rem, 6vw, 6rem);
+  margin-inline: auto;
 }
 
 .home-page .home-access__brand {
+  width: min(100%, 27rem);
   min-height: 18rem;
   display: grid;
   place-items: center;
@@ -443,6 +456,7 @@
   background: var(--site-paper-bright);
   box-shadow: var(--shadow-media-premium);
   text-align: center;
+  justify-self: center;
 }
 
 .home-page .home-access__brand img {

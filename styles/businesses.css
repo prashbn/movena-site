@@ -1,5 +1,5 @@
 .businesses-hero {
-  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+  padding: clamp(3.5rem, 6vw, 6rem) 0;
   background: var(--site-canvas);
 }
 
@@ -15,7 +15,7 @@
   margin: 0.85rem 0 0;
   color: var(--site-ink);
   font-size: clamp(3.2rem, 6.5vw, 6rem);
-  font-weight: 570;
+  font-weight: 700;
   line-height: 0.94;
   letter-spacing: -0.06em;
 }
@@ -23,8 +23,9 @@
 .businesses-hero__copy > p:last-of-type {
   max-width: 41rem;
   margin: 1.6rem 0 0;
-  color: var(--site-ink-soft);
+  color: var(--site-ink);
   font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+  font-weight: 500;
   line-height: 1.58;
 }
 
@@ -105,7 +106,7 @@
   margin: 0;
   color: var(--site-ink);
   font-size: clamp(2.1rem, 4vw, 3.5rem);
-  font-weight: 560;
+  font-weight: 650;
   line-height: 1.04;
   letter-spacing: -0.05em;
 }
@@ -142,7 +143,7 @@
   margin: 0;
   color: var(--site-ink);
   font-size: clamp(1.45rem, 2.4vw, 2rem);
-  font-weight: 570;
+  font-weight: 650;
   line-height: 1.1;
   letter-spacing: -0.04em;
 }
@@ -189,7 +190,7 @@
   margin: 0.75rem 0 0;
   color: var(--site-ink);
   font-size: clamp(2.2rem, 4vw, 3.6rem);
-  font-weight: 560;
+  font-weight: 650;
   line-height: 1.02;
   letter-spacing: -0.05em;
 }
@@ -247,7 +248,7 @@
   margin: 0.7rem 0 0;
   color: var(--site-white);
   font-size: clamp(2.3rem, 5vw, 4.5rem);
-  font-weight: 560;
+  font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.055em;
 }

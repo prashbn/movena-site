@@ -21,6 +21,21 @@
   padding-inline: var(--site-gutter);
 }
 
+.marketing-page .hero {
+  padding: clamp(3.5rem, 5vw, 5rem) 0 clamp(2.75rem, 4vw, 4rem);
+}
+
+.marketing-page .hero h1,
+.marketing-page main h2 {
+  font-weight: 700;
+}
+
+.marketing-page .hero .lede,
+.marketing-page .sec-lede {
+  color: var(--site-ink);
+  font-weight: 500;
+}
+
 .visually-hidden:focus {
   width: auto;
   height: auto;
