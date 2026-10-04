@@ -100,7 +100,9 @@ async function runContract() {
   for (const marker of [
     "Unlimited members and team",
     "Card, BECS direct debit and PayTo",
-    "Xero-ready, QuickBooks-ready and MYOB-ready",
+    "Direct Xero and QuickBooks sync. MYOB-ready exports.",
+    "An app worth opening.",
+    "Everything a gym runs on.",
     "Memberships and bookings, carried through to the door.",
     "Movena is listed in Kisi’s integration marketplace",
   ]) {
