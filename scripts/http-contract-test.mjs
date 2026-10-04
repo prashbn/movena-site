@@ -92,6 +92,8 @@ async function runContract() {
   assert.match(homepageHtml, /class="site-shell home-page"/);
   assert.match(homepageHtml, /class="nav site-header"/);
   assert.match(homepageHtml, /class="site-footer"/);
+  assert.match(homepageHtml, /aria-label="Movena™ — Move for a better you\."/);
+  assert.match(homepageHtml, /Movena™ is a trade mark of Movena Holdings Pty Ltd\./);
   assert.match(
     homepageHtml,
     /Move for a better you\./,

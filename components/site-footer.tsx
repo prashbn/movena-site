@@ -86,6 +86,9 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
         <span className="foot-right">
           {siteConfig.legalName} (ACN {siteConfig.acn})
           {marketing ? " · Made in Australia" : ""}
+          <span className="site-footer__trademark">
+            Movena™ is a trade mark of Movena Holdings Pty Ltd.
+          </span>
         </span>
         <span>© {new Date().getFullYear()} Movena</span>
       </div>

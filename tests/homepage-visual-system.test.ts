@@ -43,6 +43,23 @@ test("the shared shell uses the approved outlined brand lockup", () => {
   assert.doesNotMatch(footer, /className="dot"/);
 });
 
+test("trade mark notice is limited to the shared header and footer", () => {
+  const header = readFileSync("components/site-header.tsx", "utf8");
+  const footer = readFileSync("components/site-footer.tsx", "utf8");
+  const config = readFileSync("lib/site-config.ts", "utf8");
+  const shellCss = readFileSync("styles/premium-shell.css", "utf8");
+
+  assert.match(header, /aria-label="Movena™ — Move for a better you\."/);
+  assert.match(header, /className="site-logo__trademark" aria-hidden="true">™<\/span>/);
+  assert.equal((header.match(/>™<\/span>/g) ?? []).length, 1);
+  assert.match(footer, /Movena™ is a trade mark of Movena Holdings Pty Ltd\./);
+  assert.equal((footer.match(/™/g) ?? []).length, 1);
+  assert.match(footer, /\{siteConfig\.legalName\} \(ACN \{siteConfig\.acn\}\)/);
+  assert.match(config, /legalName: "Movena Pty Ltd"/);
+  assert.doesNotMatch(header + footer, /®|registered trade ?mark/i);
+  assert.match(shellCss, /\.site-logo__trademark\s*\{[^}]*position: absolute;[^}]*font-size: 0\.5rem;/);
+});
+
 test("the approved homepage banner stays inside the existing cool visual system", () => {
   const homeCss = readFileSync("styles/home.css", "utf8");
   const shellCss = readFileSync("styles/premium-shell.css", "utf8");

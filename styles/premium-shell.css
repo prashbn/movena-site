@@ -95,6 +95,21 @@ header.site-header {
   white-space: nowrap;
 }
 
+.site-logo__wordmark {
+  position: relative;
+  display: block;
+}
+
+.site-logo__trademark {
+  position: absolute;
+  top: 0.15rem;
+  left: calc(100% + 0.08rem);
+  font-size: 0.5rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--site-ink-soft);
+}
+
 .site-header .site-navigation {
   display: flex;
   align-items: center;
@@ -361,6 +376,11 @@ footer.site-footer {
 .site-footer .foot-right {
   color: inherit;
   text-align: left;
+}
+
+.site-footer__trademark {
+  display: block;
+  margin-top: 0.35rem;
 }
 
 @media (max-width: 840px) {

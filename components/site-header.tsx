@@ -39,9 +39,12 @@ function Logo() {
     <Link
       href="/"
       className="logomark site-logo site-header__logo"
-      aria-label="Movena — Move for a better you."
+      aria-label="Movena™ — Move for a better you."
     >
-      <BrandLockup priority />
+      <span className="site-logo__wordmark">
+        <BrandLockup priority />
+        <span className="site-logo__trademark" aria-hidden="true">™</span>
+      </span>
       <span className="site-logo__tagline">Move for a better you.</span>
     </Link>
   );
