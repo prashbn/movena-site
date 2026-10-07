@@ -158,7 +158,7 @@
   background:
     linear-gradient(90deg, rgba(8, 15, 24, 0.94) 0%, rgba(8, 15, 24, 0.78) 38%, rgba(8, 15, 24, 0.08) 70%),
     linear-gradient(0deg, rgba(8, 15, 24, 0.28), transparent 48%),
-    var(--site-navy) url("/home-hero-banner.jpg") center / cover no-repeat;
+    var(--site-navy) url("/home-hero-banner.jpg") center top / cover no-repeat;
   box-shadow: var(--home-panel-shadow);
 }
 
@@ -894,9 +894,8 @@
   .home-page .hero .split {
     min-height: 39rem;
     background:
-      linear-gradient(0deg, rgba(8, 15, 24, 0.96) 0%, rgba(8, 15, 24, 0.62) 56%, rgba(8, 15, 24, 0.1) 88%),
-      linear-gradient(90deg, rgba(8, 15, 24, 0.26), transparent 68%),
-      var(--site-navy) url("/home-hero-banner.jpg") 67% center / cover no-repeat;
+      linear-gradient(0deg, rgb(8, 15, 24) 0%, rgb(8, 15, 24) 56%, rgba(8, 15, 24, 0.58) 70%, transparent 88%),
+      var(--site-navy) url("/home-hero-banner.jpg") center top / 100% auto no-repeat;
   }
 
   .home-page .hero .split > div:first-child {
