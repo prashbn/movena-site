@@ -20,6 +20,11 @@
     "mainSha256": "0bf1bcbc59742a7d4ae638198f3094af7945f0b18b6876df35bd486584a17bbe"
   },
   {
+    "source": "help/ai-assistants/index.html",
+    "documentSha256": "38bea425f22609fd58355653a2ce492187f89675eccfb9afb1a19c06c38712ff",
+    "mainSha256": "734e7ae6efa3c42b655afc749bcf7eff700a1c6a1d8b57f7b2fab977d902b386"
+  },
+  {
     "source": "integrations/kisi/index.html",
     "documentSha256": "bdd0be702e70c1f2c7176aee8d60c4d209a9ce868709e4e1b81ec17b3f8b0396",
     "mainSha256": "9a13c0abb9d9db12a6e616bdf30d6e506b8759028fe354b092256a3410eda2ae"

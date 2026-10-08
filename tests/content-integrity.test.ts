@@ -23,8 +23,8 @@ function sha256(value: string): string {
   return createHash("sha256").update(value).digest("hex");
 }
 
-test("all seven approved legacy documents match their frozen snapshots", () => {
-  assert.equal(snapshots.length, 7);
+test("all eight approved legacy documents match their frozen snapshots", () => {
+  assert.equal(snapshots.length, 8);
 
   for (const snapshot of snapshots) {
     const document = readLegacyDocument(snapshot.source);
@@ -58,6 +58,10 @@ test("immutable document dates remain unchanged", () => {
   assert.match(
     readLegacyDocument("help/index.html"),
     /Last updated: 2 August 2026/,
+  );
+  assert.match(
+    readLegacyDocument("help/ai-assistants/index.html"),
+    /Last updated: 8 October 2026/,
   );
   assert.match(
     readLegacyDocument("legal/privacy/index.html"),

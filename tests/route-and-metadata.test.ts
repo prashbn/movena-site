@@ -19,6 +19,7 @@ const expectedPaths = [
   "/platform/",
   "/members/",
   "/help/",
+  "/help/ai-assistants/",
   "/integrations/kisi/",
   "/legal/privacy/",
   "/legal/terms/",

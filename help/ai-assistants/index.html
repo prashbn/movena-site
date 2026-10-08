@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Connect Movena to Claude or ChatGPT — Movena Help</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="How to connect Movena to Claude or ChatGPT: what each assistant can show, who can connect, what is shared and what is not, and how to disconnect." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=ca300729" />
+</head>
+<body class="doc">
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a href="/" class="logomark">Movena<span class="dot"></span></a>
+    <a href="/help/" class="back">← Help &amp; Support</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow">Help · AI assistants</span>
+    <h1>Connect Movena to an AI assistant</h1>
+    <p class="updated">Last updated: 8 October 2026</p>
+    <p class="lede">Movena works with <strong>Claude</strong>, Anthropic's AI assistant, and <strong>ChatGPT</strong>, OpenAI's. Once connected, the assistant can report on your gym's bookings, explain how to do things in Movena and, only if you choose, summarise your own training.</p>
+
+    <h2>What you can ask</h2>
+    <ul>
+      <li><strong>Owners and Managers:</strong> weekly booking health across the locations you approve (bookings, occupancy, waitlists, capacity and fill for classes, personal training and open gym), and a daily trend from two weeks back to two weeks ahead, with upcoming sessions that still have places and links back to Movena.</li>
+      <li><strong>Coaches:</strong> bookings for the sessions assigned to you.</li>
+      <li><strong>Anyone with a staff role:</strong> step-by-step answers from Movena's reviewed help articles.</li>
+      <li><strong>Members aged 18 or over:</strong> a summary of your own training (personal records and the last 30 days of workout results) and, separately, your session health (duration, time in heart-rate zones, intensity, training load and data quality for the last 30 days).</li>
+    </ul>
+
+    <h2>Before you connect</h2>
+    <ul>
+      <li>For booking reports and help: an Owner, Manager, Coach or Staff role at a gym that uses Movena.</li>
+      <li>For your own training: a Movena member account, aged 18 or over, with a date of birth on your profile and the current Movena Terms accepted. Your date of birth is used only to check your age and is never sent to the assistant.</li>
+    </ul>
+
+    <h2 id="claude">Connect Claude</h2>
+    <ol>
+      <li>In Claude, open <strong>Settings → Connectors</strong>, find <strong>Movena</strong> and choose <strong>Connect</strong>. If Movena isn't listed yet, choose <strong>Add custom connector</strong> and enter <code>https://app.movena.com.au/api/mcp</code>.</li>
+      <li>Sign in to Movena.</li>
+      <li>Movena shows an approval screen naming Claude and the address it returns to (<code>claude.ai</code>). Gym team members choose the locations to share; members choose <strong>My training</strong> and/or <strong>My session health</strong>. Every choice starts unticked. Choose <strong>Approve</strong>.</li>
+      <li>You're back in Claude. Try “How is this week booking?” or “How do I set up a class in Movena?”</li>
+    </ol>
+
+    <h2 id="chatgpt">Connect ChatGPT</h2>
+    <ol>
+      <li>In ChatGPT, find the <strong>Movena</strong> app and choose <strong>Connect</strong>.</li>
+      <li>Sign in to Movena.</li>
+      <li>Movena shows an approval screen naming ChatGPT and the address it returns to. Make the same choices as above (each starts unticked) and choose <strong>Approve</strong>.</li>
+      <li>You're back in ChatGPT. Ask a question about your gym or about Movena.</li>
+    </ol>
+
+    <h2>What is shared, and what isn't</h2>
+    <ul>
+      <li><strong>Booking reports contain counts and totals only:</strong> no member or coach names, contact details, attendance lists, session titles, descriptions or notes.</li>
+      <li><strong>A member summary contains only the categories you ticked.</strong> It never includes your name, contact details, date of birth, coach notes, raw, average or peak heart rate, or anyone else's data.</li>
+      <li><strong>Your access is checked on every request.</strong> The assistant sees only what your Movena role and locations allow, and if your access changes, the connection follows it.</li>
+      <li><strong>The assistant can only read.</strong> It can't change bookings, memberships, payments or training records.</li>
+      <li><strong>Movena keeps a record of your consent and of each access or disclosure</strong>, never the content that was shared.</li>
+      <li>Answers are information, not medical advice.</li>
+    </ul>
+
+    <h2>Each assistant and each choice is separate</h2>
+    <ul>
+      <li>Approving one assistant never approves the other. A ChatGPT approval is not reused for Claude, or the other way round.</li>
+      <li>My training and My session health are separate choices. Both start off, and you can withdraw either at any time.</li>
+      <li>A connection lasts one hour. After that, the assistant asks you to connect again.</li>
+      <li>The assistant may ask you to confirm each report or help request, because each one is recorded in your gym's audit trail.</li>
+    </ul>
+
+    <h2>Disconnect</h2>
+    <p>In Movena, open <strong>Connections</strong> to withdraw either member category, or choose <strong>Disconnect</strong> to end the connection. Withdrawing stops future sharing. It can't delete what has already been sent: Anthropic or OpenAI handles that under your account plan, settings and their policies. You can also remove Movena in the assistant's own settings.</p>
+
+    <h2>Privacy and help</h2>
+    <p>How Movena handles assistant connections is set out in section 7A of our <a href="/legal/privacy/">Privacy Policy</a>. Questions? Write to <a href="mailto:support@movena.com.au">support@movena.com.au</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <a href="/" class="logomark" style="font-size:16px">Movena<span class="dot"></span></a>
+    <a href="/platform">Platform</a>
+    <a href="/members">For members</a>
+    <a href="/help">Help</a>
+    <a href="/legal/privacy">Privacy</a>
+    <a href="/legal/terms">Terms</a>
+    <span class="foot-right">Movena Pty Ltd (ACN 700 863 618)</span>
+  </div>
+</footer>
+
+</body>
+</html>

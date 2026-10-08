@@ -8,6 +8,7 @@ const internalRouteReplacements = new Map([
   ["/platform", "/platform/"],
   ["/members", "/members/"],
   ["/help", "/help/"],
+  ["/help/ai-assistants", "/help/ai-assistants/"],
   ["/integrations/kisi", "/integrations/kisi/"],
   ["/legal/privacy", "/legal/privacy/"],
   ["/legal/terms", "/legal/terms/"],

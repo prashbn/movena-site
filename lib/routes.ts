@@ -40,6 +40,14 @@ export const legacyRoutes = [
     kind: "document",
   },
   {
+    path: "/help/ai-assistants/",
+    source: "help/ai-assistants/index.html",
+    title: "Connect Movena to Claude or ChatGPT — Movena Help",
+    description:
+      "How to connect Movena to Claude or ChatGPT: what each assistant can show, who can connect, what is shared and what is not, and how to disconnect.",
+    kind: "document",
+  },
+  {
     path: "/integrations/kisi/",
     source: "integrations/kisi/index.html",
     title: "Movena + Kisi — access control for 24/7 and unstaffed gyms",

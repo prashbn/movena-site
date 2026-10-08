@@ -12,6 +12,7 @@ const routes = [
   "/platform/",
   "/members/",
   "/help/",
+  "/help/ai-assistants/",
   "/integrations/kisi/",
   "/legal/privacy/",
   "/legal/terms/",
@@ -35,6 +36,7 @@ const routes = [
 
 const frozenDocumentMarkers = new Map([
   ["/help/", ["Help &amp; Support", "Last updated: 2 August 2026"]],
+  ["/help/ai-assistants/", ["Connect Movena to an AI assistant", "Last updated: 8 October 2026"]],
   ["/integrations/kisi/", ["Movena + Kisi", "Ending the integration"]],
   ["/legal/privacy/", ["Privacy Policy", "Last updated: 8 October 2026"]],
   ["/legal/terms/", ["Terms of Service", "Last updated: 19 September 2026"]],
