@@ -125,6 +125,26 @@ async function runContract() {
   }
   assert.doesNotMatch(homepageHtml, /src="\/assets\/badges\/milestone-/);
 
+  assert.match(homepageHtml, /id="home-community-heading">A place to train\.<br\s*\/?>(?:<!-- -->)?A place to belong\./);
+  assert.match(homepageHtml, /id="home-closing-heading">Run your gym on Movena\./);
+  // Count visible markup, not Next's serialized copy of it in hydration data.
+  const homepageMain = homepageHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  assert.ok(homepageMain);
+  assert.equal(homepageMain.match(/Run your gym on Movena\./g)?.length, 1);
+  assert.doesNotMatch(homepageHtml, /after-session-(1000|1800)\.jpg/);
+  for (const path of [
+    "/home-closing/member-900.jpg",
+    "/home-closing/member-1800.jpg",
+    "/home-closing/member-mobile-900.jpg",
+    "/home-yoga/group-900.jpg",
+    "/home-yoga/group-1600.jpg",
+  ]) {
+    assert.ok(homepageHtml.includes(path), `Homepage includes ${path}`);
+    const image = await fetch(`${origin}${path}`);
+    assert.equal(image.status, 200, path);
+    assert.match(image.headers.get("content-type") ?? "", /image\/jpeg/, path);
+  }
+
   const contactHtml = await (await fetch(`${origin}/contact/`)).text();
   for (const marker of [
     "Tell us about your gym.",

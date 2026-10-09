@@ -31,12 +31,25 @@ function rewritePublicMarketingCopy(
         "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.",
       )
       .replace(
-        /<img src="\/assets\/photos\/class-floor-1600\.jpg"[\s\S]*?alt="A coach briefing a class on the gym floor, members gathered around a loaded barbell">/,
-        `<img src="/home-yoga/group-1600.jpg"
-         srcset="/home-yoga/group-900.jpg 900w, /home-yoga/group-1600.jpg 1600w"
-         sizes="(max-width: 1280px) 100vw, 1720px"
-         width="1600" height="900" loading="lazy" decoding="async"
-         alt="Four women chatting in a bright studio while holding rolled yoga mats">`,
+        /<div class="wrap-band" style="margin-top:80px">\s*<figure class="shot shot-wide">\s*<img src="\/assets\/photos\/class-floor-1600\.jpg"[\s\S]*?<\/figure>\s*<\/div>/,
+        `<section class="home-community" aria-labelledby="home-community-heading">
+  <div class="wrap-band">
+    <div class="home-photo-panel">
+      <picture class="home-photo-panel__photo">
+        <img src="/home-yoga/group-1600.jpg"
+             srcset="/home-yoga/group-900.jpg 900w, /home-yoga/group-1600.jpg 1600w"
+             sizes="(max-width: 1800px) 100vw, 1720px"
+             width="1600" height="900" loading="lazy" decoding="async"
+             alt="Four women chatting in a bright studio while holding rolled yoga mats">
+      </picture>
+      <div class="home-photo-panel__copy">
+        <span class="kicker">Community</span>
+        <h2 id="home-community-heading">A place to train.<br>A place to belong.</h2>
+        <p class="sec-lede">Shared sessions. Familiar faces. A community your members feel part of.</p>
+      </div>
+    </div>
+  </div>
+</section>`,
       )
       .replace(
         /<img src="\/assets\/photos\/pilates-class-1600\.jpg"[\s\S]*?alt="A reformer Pilates class in progress, an instructor moving between the machines">/,
@@ -45,6 +58,29 @@ function rewritePublicMarketingCopy(
            sizes="(max-width: 1120px) 100vw, 1720px"
            width="1600" height="900" loading="lazy" decoding="async"
            alt="A group Pilates class extending their arms with straps while kneeling on reformers">`,
+      )
+      .replace(
+        /<div class="wrap-band" style="margin-top:96px">\s*<figure class="shot"[\s\S]*?after-session-1800\.jpg[\s\S]*?<\/figure>\s*<\/div>\s*<div class="close-cta">[\s\S]*?<\/div>\s*<\/div>\s*$/,
+        `<section class="home-closing" aria-labelledby="home-closing-heading">
+  <div class="wrap-band">
+    <div class="home-photo-panel home-closing__panel">
+      <picture class="home-photo-panel__photo home-closing__photo">
+        <source media="(max-width: 700px)" srcset="/home-closing/member-mobile-900.jpg">
+        <img src="/home-closing/member-1800.jpg"
+             srcset="/home-closing/member-900.jpg 900w, /home-closing/member-1800.jpg 1800w"
+             sizes="(max-width: 1800px) 100vw, 1720px"
+             width="1800" height="1200" loading="lazy" decoding="async"
+             alt="A woman in blue activewear using her phone on the gym floor">
+      </picture>
+      <div class="home-photo-panel__copy home-closing__copy">
+        <span class="kicker">Built for Australian gyms</span>
+        <h2 id="home-closing-heading">Run your gym on Movena.</h2>
+        <p>Single sites and multi-location groups. Tell us about yours.</p>
+        <a class="btn btn-primary" href="/contact/">Talk to Movena</a>
+      </div>
+    </div>
+  </div>
+</section>`,
       )
       .replace(
         /<span class="kicker kicker-plain">Other gym software\? Yeah, nah\.<br>Movena\? Nah, yeah\.<\/span>\s*/,

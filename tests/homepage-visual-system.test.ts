@@ -40,6 +40,52 @@ test("the homepage uses its dedicated static shell", () => {
   assert.doesNotMatch(shells, /["']use client["']/);
 });
 
+test("the closing photo and sales action share one responsive accessible frame", () => {
+  const homepage = readLegacyMainMarkup("index.html");
+  const homeCss = readFileSync("styles/home.css", "utf8");
+  const closing = homepage.match(/<section class="home-closing"[\s\S]*?<\/section>/)?.[0];
+
+  assert.ok(closing);
+  assert.match(closing, /aria-labelledby="home-closing-heading"/);
+  assert.match(closing, /<h2 id="home-closing-heading">Run your gym on Movena\.<\/h2>/);
+  assert.match(closing, /Single sites and multi-location groups\. Tell us about yours\./);
+  assert.match(closing, /href="\/contact\/">Talk to Movena<\/a>/);
+  assert.match(closing, /loading="lazy"/);
+  assert.match(closing, /alt="A woman in blue activewear using her phone on the gym floor"/);
+  assert.match(closing, /<source media="\(max-width: 700px\)"/);
+  for (const name of ["member-900.jpg", "member-1800.jpg", "member-mobile-900.jpg"]) {
+    assert.equal(existsSync(`public/home-closing/${name}`), true);
+    assert.ok(closing.includes(`/home-closing/${name}`));
+  }
+  assert.equal(homepage.match(/Run your gym on Movena\./g)?.length, 1);
+  assert.doesNotMatch(homepage, /after-session-(1000|1800)\.jpg|class="close-cta"/);
+  assert.match(homeCss, /\.home-photo-panel__photo img\s*\{[^}]*object-fit: cover;/);
+  assert.match(homeCss, /\.home-photo-panel::after[\s\S]*linear-gradient/);
+  assert.match(homeCss, /@media \(max-width: 700px\)[\s\S]*\.home-photo-panel__copy\s*\{[^}]*width: 100%;/);
+  // Other pages retain their existing closing sections and photography.
+  assert.match(readLegacyMainMarkup("platform/index.html"), /class="close-cta"/);
+  assert.match(readLegacyMainMarkup("members/index.html"), /training-1000\.jpg/);
+});
+
+test("the yoga overlay speaks to community and leaves the Loop story intact", () => {
+  const loop = readFileSync("components/home-loop.tsx", "utf8");
+  const homepage = readLegacyMainMarkup("index.html");
+  const css = readFileSync("styles/home.css", "utf8");
+  const community = homepage.match(/<section class="home-community"[\s\S]*?<\/section>/)?.[0];
+
+  assert.ok(community);
+  assert.match(community, /aria-labelledby="home-community-heading"/);
+  assert.match(community, /<h2 id="home-community-heading">A place to train\.<br>A place to belong\.<\/h2>/);
+  assert.match(community, /Shared sessions\. Familiar faces\. A community your members feel part of\./);
+  assert.match(community, /class="home-photo-panel__copy"/);
+  assert.equal(homepage.match(/src="\/home-yoga\/group-1600\.jpg"/g)?.length, 1);
+  assert.match(loop, /id="home-loop-heading">One session\.<br \/>Everyone connected\./);
+  assert.match(loop, /Coaches capture it\./);
+  assert.match(loop, /The desk sees it\./);
+  assert.match(loop, /Members keep it\./);
+  assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.home-community \.home-photo-panel__photo img\s*\{[^}]*height: auto/);
+});
+
 test("the visual system includes responsive and reduced-motion contracts", () => {
   const shellCss = readFileSync("styles/premium-shell.css", "utf8");
   const homeCss = readFileSync("styles/home.css", "utf8");
