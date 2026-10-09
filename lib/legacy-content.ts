@@ -423,8 +423,8 @@ function rewriteMemberProductImagery(
     legacyPhone,
     `${memberScreenMarkup({
       className: "member-screen--home",
-      src: "/assets/members/movena-member-home.png",
-      alt: "The Movena member app home screen showing an upcoming session, training streak and recent progress",
+      src: "/members-screens/1.8.0/home.png",
+      alt: "The Movena member app home screen showing an upcoming session, a personal best and recent training activity",
       eager: true,
     })}
         <div class="phone app-dark member-legacy-phone" aria-hidden="true">`,
@@ -434,8 +434,8 @@ function rewriteMemberProductImagery(
     legacyPhone,
     `${memberScreenMarkup({
       className: "member-screen--movements",
-      src: "/assets/members/movena-member-movements.png",
-      alt: "The Movena member app progress screen showing movement history and a back squat result",
+      src: "/members-screens/1.8.0/progress.png",
+      alt: "The Movena member app progress screen showing a barbell bench press result and movement history",
     })}
         <div class="phone app-dark member-legacy-phone" aria-hidden="true">`,
   );
@@ -447,13 +447,13 @@ function rewriteMemberProductImagery(
     `<div class="member-screen-grid">
       ${memberScreenMarkup({
         className: "member-screen--book",
-        src: "/assets/members/movena-member-book.png",
+        src: "/members-screens/1.8.0/book.png",
         alt: "The Movena member app booking screen showing available classes and personal training sessions",
       })}
       ${memberScreenMarkup({
         className: "member-screen--session",
-        src: "/assets/members/movena-member-session-detail.png",
-        alt: "The Movena member app session detail screen showing a personal training workout",
+        src: "/members-screens/1.8.0/workout.png",
+        alt: "The Movena member app workout screen showing the day's movements, sets and repetitions",
       })}
     </div>`,
   );

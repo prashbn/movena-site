@@ -9,23 +9,48 @@ function sha256(path: string): string {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
 }
 
-test("the Members page presents all four supplied product screens", () => {
+test("the Members page presents the four selected 1.8.0 light-mode screens", () => {
   const markup = readLegacyMainMarkup("members/index.html");
 
   for (const asset of [
-    "movena-member-home.png",
-    "movena-member-book.png",
-    "movena-member-session-detail.png",
-    "movena-member-movements.png",
+    "home.png",
+    "book.png",
+    "workout.png",
+    "progress.png",
   ]) {
-    assert.match(markup, new RegExp(`/assets/members/${asset}`));
+    assert.ok(markup.includes(`/members-screens/1.8.0/${asset}`));
   }
 
+  assert.doesNotMatch(markup, /\/assets\/members\/movena-member-/);
   assert.equal(markup.match(/class="member-screen /g)?.length, 4);
+  assert.equal(markup.match(/width="1320" height="2868"/g)?.length, 4);
+  assert.match(markup, /barbell bench press result and movement history/);
+  assert.match(markup, /workout screen showing the day's movements, sets and repetitions/);
   assert.equal(markup.match(/member-legacy-phone/g)?.length, 2);
   assert.match(markup, /member-screen-grid/);
   assert.doesNotMatch(markup, /coaching-1254w\.jpg/);
   assert.match(markup, /phone-progress-1000\.jpg/);
+});
+
+test("the selected 1.8.0 screenshots retain their original pixels and proportions", () => {
+  const expectedHashes = new Map([
+    ["home.png", "beb6fc9e36fb22e310c823de606cfda0e5ded22f1251cb3acad51c2f30d7bdef"],
+    ["book.png", "2c4a6fd76fc481ed0931e7375ecc96e03aff0b26f73939d5be4f13615838ebda"],
+    ["workout.png", "3709d172221f7e78e9d0f18ca247ab259b68683a30ccd46927f028aaa11a84ba"],
+    ["progress.png", "349445f0b37b9e68fc6a0726ac528da690f146713ac246cee46aa3f503ba13f6"],
+  ]);
+  for (const [file, hash] of expectedHashes) {
+    const path = `public/members-screens/1.8.0/${file}`;
+    assert.equal(sha256(path), hash);
+    const png = readFileSync(path);
+    assert.equal(png.readUInt32BE(16), 1320);
+    assert.equal(png.readUInt32BE(20), 2868);
+  }
+  const styles = readFileSync("styles/members.css", "utf8");
+  assert.match(styles, /\.member-screen img\s*\{[^}]*height:\s*auto/);
+  for (const source of ["index.html", "platform/index.html"] as const) {
+    assert.doesNotMatch(readLegacyMainMarkup(source), /\/members-screens\/1\.8\.0\//);
+  }
 });
 
 test("the long-view photo uses the selected phone portrait without changing copy or frame", () => {

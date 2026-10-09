@@ -244,6 +244,17 @@ async function runContract() {
   }
 
   const membersHtml = await (await fetch(`${origin}/members/`)).text();
+  const membersMain = membersHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  assert.ok(membersMain);
+  assert.equal(membersMain.match(/class="member-screen /g)?.length, 4);
+  for (const screen of ["home", "book", "workout", "progress"]) {
+    const path = `/members-screens/1.8.0/${screen}.png`;
+    assert.ok(membersMain.includes(path));
+    const response = await fetch(`${origin}${path}`);
+    assert.equal(response.status, 200, path);
+    assert.match(response.headers.get("content-type") ?? "", /image\/png/, path);
+  }
+  assert.doesNotMatch(memberAppHtml, /\/members-screens\/1\.8\.0\//);
   assert.match(membersHtml, /A history that builds\./);
   assert.doesNotMatch(membersHtml, /training-(560|1000)\.jpg/);
   for (const size of [560, 1000]) {
