@@ -126,6 +126,8 @@ async function runContract() {
   assert.doesNotMatch(homepageHtml, /src="\/assets\/badges\/milestone-/);
 
   assert.match(homepageHtml, /id="home-community-heading">A place to train\.<br\s*\/?>(?:<!-- -->)?A place to belong\./);
+  assert.match(homepageHtml, /<span class="kicker">Hangout<\/span>/);
+  assert.ok(homepageHtml.includes("Keep your members connected between sessions. Share what’s on, useful advice and stories from your gym—all in Hangout, inside the Movena app."));
   assert.match(homepageHtml, /id="home-closing-heading">Run your gym on Movena\./);
   // Count visible markup, not Next's serialized copy of it in hydration data.
   const homepageMain = homepageHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];

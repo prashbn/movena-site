@@ -43,9 +43,9 @@ function rewritePublicMarketingCopy(
              alt="Four women chatting in a bright studio while holding rolled yoga mats">
       </picture>
       <div class="home-photo-panel__copy">
-        <span class="kicker">Community</span>
+        <span class="kicker">Hangout</span>
         <h2 id="home-community-heading">A place to train.<br>A place to belong.</h2>
-        <p class="sec-lede">Shared sessions. Familiar faces. A community your members feel part of.</p>
+        <p class="sec-lede">Keep your members connected between sessions. Share what’s on, useful advice and stories from your gym—all in Hangout, inside the Movena app.</p>
       </div>
     </div>
   </div>

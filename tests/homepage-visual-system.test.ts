@@ -67,7 +67,7 @@ test("the closing photo and sales action share one responsive accessible frame",
   assert.match(readLegacyMainMarkup("members/index.html"), /training-1000\.jpg/);
 });
 
-test("the yoga overlay speaks to community and leaves the Loop story intact", () => {
+test("the yoga overlay introduces Hangout and leaves the Loop story intact", () => {
   const loop = readFileSync("components/home-loop.tsx", "utf8");
   const homepage = readLegacyMainMarkup("index.html");
   const css = readFileSync("styles/home.css", "utf8");
@@ -76,7 +76,9 @@ test("the yoga overlay speaks to community and leaves the Loop story intact", ()
   assert.ok(community);
   assert.match(community, /aria-labelledby="home-community-heading"/);
   assert.match(community, /<h2 id="home-community-heading">A place to train\.<br>A place to belong\.<\/h2>/);
-  assert.match(community, /Shared sessions\. Familiar faces\. A community your members feel part of\./);
+  assert.match(community, /<span class="kicker">Hangout<\/span>/);
+  assert.ok(community.includes("Keep your members connected between sessions. Share what’s on, useful advice and stories from your gym—all in Hangout, inside the Movena app."));
+  assert.doesNotMatch(community, /Shared sessions\. Familiar faces\./);
   assert.match(community, /class="home-photo-panel__copy"/);
   assert.equal(homepage.match(/src="\/home-yoga\/group-1600\.jpg"/g)?.length, 1);
   assert.match(loop, /id="home-loop-heading">One session\.<br \/>Everyone connected\./);
