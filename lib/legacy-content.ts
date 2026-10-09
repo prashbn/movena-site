@@ -40,9 +40,10 @@ function rewritePublicMarketingCopy(
       )
       .replace(
         /<img src="\/assets\/photos\/pilates-class-1600\.jpg"[\s\S]*?alt="A reformer Pilates class in progress, an instructor moving between the machines">/,
-        `<img src="/home-pilates/istock-2211676552-preview.jpg"
+        `<img src="/home-pilates/class-1600.jpg"
+           srcset="/home-pilates/class-900.jpg 900w, /home-pilates/class-1600.jpg 1600w"
            sizes="(max-width: 1120px) 100vw, 1720px"
-           width="1024" height="683" loading="lazy" decoding="async"
+           width="1600" height="900" loading="lazy" decoding="async"
            alt="A group Pilates class extending their arms with straps while kneeling on reformers">`,
       )
       .replace(

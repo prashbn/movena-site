@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
@@ -22,13 +21,13 @@ test("the homepage leads with the approved feature copy and selected yoga and Pi
     assert.ok(homepage.includes(`/home-yoga/group-${size}.jpg`));
   }
   assert.doesNotMatch(homepage, /pilates-class-(900|1600)\.jpg/);
-  assert.match(homepage, /\/home-pilates\/istock-2211676552-preview\.jpg/);
+  for (const size of [900, 1600]) {
+    assert.equal(existsSync(`public/home-pilates/class-${size}.jpg`), true);
+    assert.ok(homepage.includes(`/home-pilates/class-${size}.jpg`));
+  }
+  assert.doesNotMatch(homepage, /istock-2211676552-preview\.jpg/);
+  assert.equal(existsSync("public/home-pilates/istock-2211676552-preview.jpg"), false);
   assert.match(homepage, /A group Pilates class extending their arms with straps while kneeling on reformers/);
-  assert.equal(
-    createHash("sha256").update(readFileSync("public/home-pilates/istock-2211676552-preview.jpg")).digest("hex"),
-    "a35a4fdb029e8f954eef3b45f85c063a8c613460cac9761dbdd19a7237f049dd",
-    "The stock preview must remain unchanged, including its watermark",
-  );
 });
 
 test("the homepage uses its dedicated static shell", () => {
