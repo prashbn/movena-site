@@ -462,6 +462,14 @@ function rewriteMemberProductImagery(
 
   return rewritten
     .replace(coachingPhoto, "")
+    .replace(
+      /<img src="\/assets\/photos\/training-1000\.jpg"[\s\S]*?alt="A member mid-lunge holding dumbbells on the gym floor">/,
+      `<img src="/members-photos/phone-progress-1000.jpg"
+               srcset="/members-photos/phone-progress-560.jpg 560w, /members-photos/phone-progress-1000.jpg 1000w"
+               sizes="(max-width: 900px) 100vw, 500px"
+               width="1000" height="1250" loading="lazy" decoding="async"
+               alt="A woman crouched beside her gym bag, smiling while using her phone">`,
+    )
     .replace('<div class="close-cta">', `${ownerCallToAction}\n\n<div class="close-cta">`);
 }
 

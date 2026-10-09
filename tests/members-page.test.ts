@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
@@ -25,7 +25,25 @@ test("the Members page presents all four supplied product screens", () => {
   assert.equal(markup.match(/member-legacy-phone/g)?.length, 2);
   assert.match(markup, /member-screen-grid/);
   assert.doesNotMatch(markup, /coaching-1254w\.jpg/);
-  assert.match(markup, /training-1000\.jpg/);
+  assert.match(markup, /phone-progress-1000\.jpg/);
+});
+
+test("the long-view photo uses the selected phone portrait without changing copy or frame", () => {
+  const markup = readLegacyMainMarkup("members/index.html");
+  const longView = markup.match(/<span class="kicker">The long view<\/span>[\s\S]*?<\/section>/)?.[0];
+
+  assert.ok(longView);
+  assert.match(longView, /<h2>A history that builds\.<\/h2>/);
+  assert.match(longView, /What your coach records becomes your record, not just the gym's\./);
+  assert.match(longView, /<figure class="shot shot-portrait">/);
+  assert.match(longView, /width="1000" height="1250" loading="lazy" decoding="async"/);
+  assert.match(longView, /alt="A woman crouched beside her gym bag, smiling while using her phone"/);
+  assert.doesNotMatch(markup, /training-(560|1000)\.jpg/);
+  for (const size of [560, 1000]) {
+    const path = `members-photos/phone-progress-${size}.jpg`;
+    assert.ok(longView.includes(`/${path}`));
+    assert.equal(existsSync(`public/${path}`), true);
+  }
 });
 
 test("the repository-owned member screenshots match the supplied masters", () => {

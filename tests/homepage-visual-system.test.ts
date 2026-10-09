@@ -62,9 +62,9 @@ test("the closing photo and sales action share one responsive accessible frame",
   assert.match(homeCss, /\.home-photo-panel__photo img\s*\{[^}]*object-fit: cover;/);
   assert.match(homeCss, /\.home-photo-panel::after[\s\S]*linear-gradient/);
   assert.match(homeCss, /@media \(max-width: 700px\)[\s\S]*\.home-photo-panel__copy\s*\{[^}]*width: 100%;/);
-  // Other pages retain their existing closing sections and photography.
+  // Other pages retain their existing closing sections.
   assert.match(readLegacyMainMarkup("platform/index.html"), /class="close-cta"/);
-  assert.match(readLegacyMainMarkup("members/index.html"), /training-1000\.jpg/);
+  assert.match(readLegacyMainMarkup("members/index.html"), /class="close-cta"/);
 });
 
 test("the yoga overlay introduces Hangout and leaves the Loop story intact", () => {

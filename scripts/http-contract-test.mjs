@@ -244,6 +244,15 @@ async function runContract() {
   }
 
   const membersHtml = await (await fetch(`${origin}/members/`)).text();
+  assert.match(membersHtml, /A history that builds\./);
+  assert.doesNotMatch(membersHtml, /training-(560|1000)\.jpg/);
+  for (const size of [560, 1000]) {
+    const path = `/members-photos/phone-progress-${size}.jpg`;
+    assert.ok(membersHtml.includes(path));
+    const image = await fetch(`${origin}${path}`);
+    assert.equal(image.status, 200, path);
+    assert.match(image.headers.get("content-type") ?? "", /image\/jpeg/, path);
+  }
   for (const marker of [
     "Available for iPhone and Android.",
     "https://apps.apple.com/au/app/movena/id6770032378",
