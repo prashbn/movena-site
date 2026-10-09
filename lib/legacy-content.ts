@@ -421,22 +421,37 @@ function rewriteMemberProductImagery(
   const legacyPhone = '<div class="phone app-dark">';
   rewritten = rewritten.replace(
     legacyPhone,
-    `${memberScreenMarkup({
-      className: "member-screen--home",
-      src: "/members-screens/1.8.0/home.png",
-      alt: "The Movena member app home screen showing an upcoming session, a personal best and recent training activity",
-      eager: true,
-    })}
+    `<div class="member-screen-stack" role="group" aria-label="Home in light and dark mode">
+        ${memberScreenMarkup({
+          className: "member-screen--home",
+          src: "/members-screens/1.8.0/home.png",
+          alt: "The Movena member app home screen showing an upcoming session, a personal best and recent training activity",
+          eager: true,
+        })}
+        ${memberScreenMarkup({
+          className: "member-screen--home-dark",
+          src: "/members-screens/1.8.0/home-dark.png",
+          alt: "The same Movena member app home screen in dark mode",
+          eager: true,
+        })}
+        </div>
         <div class="phone app-dark member-legacy-phone" aria-hidden="true">`,
   );
 
   rewritten = rewritten.replace(
     legacyPhone,
-    `${memberScreenMarkup({
-      className: "member-screen--movements",
-      src: "/members-screens/1.8.0/progress.png",
-      alt: "The Movena member app progress screen showing a barbell bench press result and movement history",
-    })}
+    `<div class="member-screen-stack" role="group" aria-label="Progress in light and dark mode">
+        ${memberScreenMarkup({
+          className: "member-screen--movements-light",
+          src: "/members-screens/1.8.0/progress.png",
+          alt: "The Movena member app progress screen in light mode showing a barbell bench press result and movement history",
+        })}
+        ${memberScreenMarkup({
+          className: "member-screen--movements",
+          src: "/members-screens/1.8.0/progress-dark.png",
+          alt: "The Movena member app progress screen showing a barbell bench press result and movement history",
+        })}
+        </div>
         <div class="phone app-dark member-legacy-phone" aria-hidden="true">`,
   );
 
@@ -452,7 +467,7 @@ function rewriteMemberProductImagery(
       })}
       ${memberScreenMarkup({
         className: "member-screen--session",
-        src: "/members-screens/1.8.0/workout.png",
+        src: "/members-screens/1.8.0/workout-dark.png",
         alt: "The Movena member app workout screen showing the day's movements, sets and repetitions",
       })}
     </div>`,
@@ -460,8 +475,59 @@ function rewriteMemberProductImagery(
 
   const coachingPhoto = /<div class="wrap-band" style="margin-top:80px">\s*<figure class="shot shot-feature">[\s\S]*?coaching-1254w\.jpg[\s\S]*?<\/figure>\s*<\/div>/;
 
+  const communityAndShop = `<section class="members-hangout" aria-labelledby="members-hangout-heading">
+    <div class="wrap">
+      <div class="sec-kicker"><span class="sec-num mono">04</span><span class="kicker">Hangout</span></div>
+      <h2 id="members-hangout-heading">A place to train. A place to belong.</h2>
+      <p class="sec-lede">Stay connected between sessions. Find what’s on, useful advice and stories from your gym—all in Hangout, inside the Movena app.</p>
+      <div class="member-screen-grid">
+        <div class="member-screen-feature">
+          <h3>What’s on</h3>
+          <p>Updates and stories from around your gym.</p>
+          ${memberScreenMarkup({
+            className: "member-screen--hangout-whats-on",
+            src: "/members-screens/1.8.0/hangout-whats-on.png",
+            alt: "The Movena Hangout What's On screen showing gym updates and a featured article",
+          })}
+        </div>
+        <div class="member-screen-feature">
+          <h3>Know How</h3>
+          <p>Useful articles and videos, with pinned advice easy to find.</p>
+          ${memberScreenMarkup({
+            className: "member-screen--hangout-know-how",
+            src: "/members-screens/1.8.0/hangout-know-how.png",
+            alt: "The Movena Hangout Know How screen showing a pinned article and videos to explore",
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="members-shop" aria-labelledby="members-shop-heading">
+    <div class="wrap">
+      <div class="sec-kicker"><span class="sec-num mono">05</span><span class="kicker">The shop</span></div>
+      <div class="split">
+        <div>
+          ${memberScreenMarkup({
+            className: "member-screen--shop",
+            src: "/members-screens/1.8.0/shop-dark.png",
+            alt: "The Movena member app Shop screen showing gym merchandise, products and an orders link",
+          })}
+        </div>
+        <div>
+          <h2 id="members-shop-heading">Your gym’s shop. In your pocket.</h2>
+          <p class="sec-lede">Browse merchandise and products from your gym, and find your orders in the same app you use to book and train.</p>
+        </div>
+      </div>
+    </div>
+  </section>`;
+
   return rewritten
     .replace(coachingPhoto, "")
+    .replace(
+      '<div class="band">\n  <section>\n    <div class="wrap">\n      <div class="sec-kicker"><span class="sec-num mono">04</span><span class="kicker">Yours</span></div>',
+      `${communityAndShop}\n\n<div class="band">\n  <section>\n    <div class="wrap">\n      <div class="sec-kicker"><span class="sec-num mono">06</span><span class="kicker">Yours</span></div>`,
+    )
     .replace(
       /<img src="\/assets\/photos\/training-1000\.jpg"[\s\S]*?alt="A member mid-lunge holding dumbbells on the gym floor">/,
       `<img src="/members-photos/phone-progress-1000.jpg"

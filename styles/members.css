@@ -1,7 +1,7 @@
 /* Real member-app imagery used on the legacy-backed Members page. */
 
 .marketing-page .member-screen {
-  width: min(100%, 22rem);
+  width: min(100%, 20rem);
   margin: 0 auto;
   padding: clamp(0.38rem, 0.8vw, 0.56rem);
   overflow: hidden;
@@ -18,18 +18,59 @@
   border-radius: clamp(1.2rem, 2.5vw, 1.65rem);
 }
 
-.marketing-page .hero .member-screen--home,
-.marketing-page .member-screen--movements {
-  width: min(100%, 23rem);
+.marketing-page .member-screen-stack {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  width: min(100%, 30rem);
+  margin: 0 auto;
+  isolation: isolate;
+}
+
+.marketing-page .member-screen-stack .member-screen {
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.marketing-page .member-screen-stack .member-screen:first-child {
+  grid-column: 1 / 8;
+  z-index: 1;
+}
+
+.marketing-page .member-screen-stack .member-screen:last-child {
+  grid-column: 6 / 13;
+  margin-top: 3rem;
+  z-index: 2;
 }
 
 .marketing-page .member-screen-grid {
-  max-width: 49rem;
+  max-width: 43rem;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 22rem));
+  grid-template-columns: repeat(2, minmax(0, 20rem));
   justify-content: center;
   gap: clamp(1.25rem, 3vw, 2.25rem);
   margin: clamp(2.75rem, 5vw, 4rem) auto 0;
+}
+
+.marketing-page .member-screen-feature {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.marketing-page .member-screen-feature h3 {
+  margin: 0 0 0.5rem;
+}
+
+.marketing-page .member-screen-feature p {
+  margin: 0 0 1.5rem;
+  color: var(--site-ink-soft);
+  line-height: 1.6;
+}
+
+.marketing-page .member-screen-feature .member-screen {
+  margin-top: auto;
 }
 
 .marketing-page .member-legacy-phone {
@@ -124,14 +165,20 @@
 }
 
 @media (max-width: 700px) {
-  .marketing-page .member-screen,
-  .marketing-page .hero .member-screen--home,
-  .marketing-page .member-screen--movements {
-    width: min(100%, 20rem);
+  .marketing-page .member-screen-stack {
+    width: min(100%, 26rem);
+  }
+
+  .marketing-page .member-screen-stack .member-screen:last-child {
+    margin-top: 2rem;
+  }
+
+  .marketing-page .member-screen {
+    width: min(100%, 18rem);
   }
 
   .marketing-page .member-screen-grid {
-    grid-template-columns: minmax(0, 20rem);
+    grid-template-columns: minmax(0, 18rem);
   }
 
   .marketing-page .members-owner-cta__inner,

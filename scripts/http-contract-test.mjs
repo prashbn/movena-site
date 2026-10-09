@@ -246,8 +246,11 @@ async function runContract() {
   const membersHtml = await (await fetch(`${origin}/members/`)).text();
   const membersMain = membersHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
   assert.ok(membersMain);
-  assert.equal(membersMain.match(/class="member-screen /g)?.length, 4);
-  for (const screen of ["home", "book", "workout", "progress"]) {
+  assert.equal(membersMain.match(/class="member-screen /g)?.length, 9);
+  assert.equal(membersMain.match(/class="member-screen-stack"/g)?.length, 2);
+  assert.match(membersMain, /id="members-hangout-heading"/);
+  assert.match(membersMain, /id="members-shop-heading"/);
+  for (const screen of ["home", "home-dark", "book", "workout-dark", "progress", "progress-dark", "hangout-whats-on", "hangout-know-how", "shop-dark"]) {
     const path = `/members-screens/1.8.0/${screen}.png`;
     assert.ok(membersMain.includes(path));
     const response = await fetch(`${origin}${path}`);
