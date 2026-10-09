@@ -6,9 +6,9 @@ export const legacyRoutes = [
     source: "index.html",
     title: "Movena — The gym platform that remembers the training.",
     description:
-      "Memberships, timetable, billing and check-in — plus a training history members keep. Movena is the performance intelligence platform for everyday gyms.",
+      "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep. Movena is built for everyday gyms.",
     socialDescription:
-      "Memberships, timetable, billing and check-in. Plus a training history members keep.",
+      "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.",
     kind: "marketing",
   },
   {

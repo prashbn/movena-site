@@ -1,8 +1,35 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
+import { legacyRoutes } from "../lib/routes.ts";
+
+test("the homepage leads with the approved feature copy and selected yoga and Pilates images", () => {
+  const homepage = readLegacyMainMarkup("index.html");
+  const copy = "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.";
+  const homeRoute = legacyRoutes.find((route) => route.path === "/");
+
+  assert.ok(homepage.includes(copy));
+  assert.ok(homeRoute?.description.startsWith(copy));
+  assert.equal(homeRoute?.socialDescription, copy);
+  assert.doesNotMatch(homepage, /Memberships, timetable, billing and check-in/);
+  assert.doesNotMatch(homepage, /class-floor-(900|1600)\.jpg/);
+  assert.match(homepage, /Four women chatting in a bright studio while holding rolled yoga mats/);
+  for (const size of [900, 1600]) {
+    assert.equal(existsSync(`public/home-yoga/group-${size}.jpg`), true);
+    assert.ok(homepage.includes(`/home-yoga/group-${size}.jpg`));
+  }
+  assert.doesNotMatch(homepage, /pilates-class-(900|1600)\.jpg/);
+  assert.match(homepage, /\/home-pilates\/istock-2211676552-preview\.jpg/);
+  assert.match(homepage, /A group Pilates class extending their arms with straps while kneeling on reformers/);
+  assert.equal(
+    createHash("sha256").update(readFileSync("public/home-pilates/istock-2211676552-preview.jpg")).digest("hex"),
+    "a35a4fdb029e8f954eef3b45f85c063a8c613460cac9761dbdd19a7237f049dd",
+    "The stock preview must remain unchanged, including its watermark",
+  );
+});
 
 test("the homepage uses its dedicated static shell", () => {
   const page = readFileSync("app/page.tsx", "utf8");

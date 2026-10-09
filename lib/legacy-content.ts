@@ -27,6 +27,25 @@ function rewritePublicMarketingCopy(
   if (source === "index.html") {
     return markup
       .replace(
+        /Memberships, timetable, billing and check-in\. Plus a training history\s+members keep\./,
+        "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.",
+      )
+      .replace(
+        /<img src="\/assets\/photos\/class-floor-1600\.jpg"[\s\S]*?alt="A coach briefing a class on the gym floor, members gathered around a loaded barbell">/,
+        `<img src="/home-yoga/group-1600.jpg"
+         srcset="/home-yoga/group-900.jpg 900w, /home-yoga/group-1600.jpg 1600w"
+         sizes="(max-width: 1280px) 100vw, 1720px"
+         width="1600" height="900" loading="lazy" decoding="async"
+         alt="Four women chatting in a bright studio while holding rolled yoga mats">`,
+      )
+      .replace(
+        /<img src="\/assets\/photos\/pilates-class-1600\.jpg"[\s\S]*?alt="A reformer Pilates class in progress, an instructor moving between the machines">/,
+        `<img src="/home-pilates/istock-2211676552-preview.jpg"
+           sizes="(max-width: 1120px) 100vw, 1720px"
+           width="1024" height="683" loading="lazy" decoding="async"
+           alt="A group Pilates class extending their arms with straps while kneeling on reformers">`,
+      )
+      .replace(
         /<span class="kicker kicker-plain">Other gym software\? Yeah, nah\.<br>Movena\? Nah, yeah\.<\/span>\s*/,
         "",
       )
