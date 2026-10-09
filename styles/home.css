@@ -158,7 +158,7 @@
   background:
     linear-gradient(90deg, rgba(8, 15, 24, 0.94) 0%, rgba(8, 15, 24, 0.78) 38%, rgba(8, 15, 24, 0.08) 70%),
     linear-gradient(0deg, rgba(8, 15, 24, 0.28), transparent 48%),
-    var(--site-navy) url("/home-hero-banner.jpg") center top / cover no-repeat;
+    var(--site-navy) url("/home-hero-banner.jpg") center 55% / cover no-repeat;
   box-shadow: var(--home-panel-shadow);
 }
 
