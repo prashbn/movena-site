@@ -809,10 +809,11 @@
   gap: 0;
   margin-top: clamp(2.5rem, 4vw, 3.75rem);
   border-top: 1px solid var(--site-line);
+  border-bottom: 1px solid var(--site-line);
 }
 
 .home-page .bound-grid .cap {
-  padding: 2rem clamp(1.25rem, 3vw, 2.5rem) 0;
+  padding: 2rem clamp(1.25rem, 3vw, 2.5rem);
   border: 0;
   border-right: 1px solid var(--site-line);
   border-radius: 0;
@@ -820,12 +821,7 @@
   box-shadow: none;
 }
 
-.home-page .bound-grid .cap:first-child {
-  padding-left: 0;
-}
-
 .home-page .bound-grid .cap:last-child {
-  padding-right: 0;
   border-right: 0;
 }
 
@@ -835,7 +831,12 @@
 }
 
 .home-page .bound-grid .cap p {
+  margin: 0;
   line-height: 1.6;
+}
+
+.home-page .bound-grid .cap h3 {
+  margin: 0 0 0.75rem;
 }
 
 /* Closing photo and CTA share one frame and the site's content width. */

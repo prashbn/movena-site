@@ -36,7 +36,9 @@
   --site-wash-blue: var(--tint-blue);
   --site-wash-violet: var(--tint-violet);
   --site-wash-slate: var(--tint-sage);
-  --site-wash-mint: var(--tint-mint);
+  /* Legacy closing-section names now reuse the site's violet wash. */
+  --tint-mint: var(--tint-violet);
+  --site-wash-mint: var(--site-wash-violet);
   --site-line: var(--line);
   --site-line-light: rgba(255, 255, 255, 0.16);
   --site-white: var(--bg);

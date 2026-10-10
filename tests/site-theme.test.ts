@@ -128,3 +128,21 @@ test("theme controls preserve static rendering, approved logos and unchanged ima
   assert.doesNotMatch(css, /invert\(|filter:/);
   assert.match(css, /@media print/);
 });
+
+test("closing sections reuse purple in both themes rather than decorative green", () => {
+  const tokens = readFileSync("styles/tokens.css", "utf8");
+  const themes = readFileSync("styles/themes.css", "utf8");
+  assert.match(tokens, /--tint-mint: var\(--tint-violet\)/);
+  assert.match(tokens, /--site-wash-mint: var\(--site-wash-violet\)/);
+  assert.equal(themes.match(/--tint-mint: var\(--tint-violet\)/g)?.length, 2);
+  assert.doesNotMatch(themes, /#142924|#eef7f1/i);
+});
+
+test("privacy columns have equal insets, bottom spacing and no dark-mode card fills", () => {
+  const home = readFileSync("styles/home.css", "utf8");
+  const themes = readFileSync("styles/themes.css", "utf8");
+  assert.match(home, /\.home-page \.bound-grid \.cap \{\s*padding: 2rem clamp\(1\.25rem, 3vw, 2\.5rem\);/);
+  assert.doesNotMatch(home, /\.home-page \.bound-grid \.cap:first-child/);
+  assert.match(home, /\.home-page \.bound-grid \.cap h3 \{\s*margin: 0 0 0\.75rem;/);
+  assert.match(themes, /:root\[data-theme="dark"\] \.home-page \.bound-grid \.cap \{ background: transparent; \}/);
+});

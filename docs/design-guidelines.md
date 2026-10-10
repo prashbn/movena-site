@@ -62,7 +62,7 @@ their matching `--site-*` aliases from `styles/tokens.css`.
 | Pale blue wash | `--tint-blue` / `--site-wash-blue` | `#eef2fd` | Fact strips and an isolated supporting surface. |
 | Pale violet wash | `--tint-violet` / `--site-wash-violet` | `#f6f3ff` | An isolated capability surface. |
 | Pale slate wash | `--tint-sage` / `--site-wash-slate` | `#f0f4fa` | Banded sections such as team or privacy. Despite the legacy primitive name, the value is a cool blue-grey. |
-| Pale mint wash | `--tint-mint` / `--site-wash-mint` | `#eef7f1` | A restrained closing call to action. |
+| Closing wash (legacy mint name) | `--tint-mint` / `--site-wash-mint` | Violet wash alias | Closing calls to action reuse the pale violet wash in light mode and its dark-violet equivalent in dark mode. No decorative green sections. |
 | Border | `--line` / `--site-line` | `#e8eaef` | Standard borders and separators on light surfaces. |
 | Strong border | `--line-2` | `#d3d8e2` | Hover borders and more visible section separators. |
 | Border on dark | `--site-line-light` | `rgba(255, 255, 255, 0.16)` | Separators on navy or other dark surfaces. |

@@ -20,7 +20,7 @@
   --tint-blue: #132036;
   --tint-violet: #1a2036;
   --tint-sage: #15202c;
-  --tint-mint: #142924;
+  --tint-mint: var(--tint-violet);
   --site-surface: #151c27;
   /* White foregrounds on photographs/navy panels must stay white. */
   --site-white: #ffffff;
@@ -66,6 +66,7 @@
   background: var(--site-surface);
 }
 :root[data-theme="dark"] :is(.facts, .band) { border-color: var(--site-line); }
+:root[data-theme="dark"] .home-page .bound-grid .cap { background: transparent; }
 :root[data-theme="dark"] .visually-hidden:focus { background: var(--site-surface); }
 
 /* Link accents are lighter in dark mode; filled actions keep cobalt/white
@@ -179,7 +180,7 @@
     --tint-blue: #eef2fd;
     --tint-violet: #f6f3ff;
     --tint-sage: #f0f4fa;
-    --tint-mint: #eef7f1;
+    --tint-mint: var(--tint-violet);
   }
   .site-theme-toggle { display: none; }
   :root[data-theme="dark"] .site-logo__image--dark { display: none; }
