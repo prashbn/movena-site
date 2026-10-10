@@ -1,0 +1,187 @@
+/* Optional site-wide theme. The approved light palette remains the default.
+   Photographs, app screenshots and official brand artwork are never inverted. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1018;
+  --bg-tint: #101923;
+  --bg-soft: #1a2432;
+  --ink: #f3f5fa;
+  --ink-2: #b8c1cf;
+  --ink-3: #a3afc0;
+  --line: #303e52;
+  --line-2: #63738a;
+  --accent: #9bb7ff;
+  --accent-ink: #bdd0ff;
+  --accent-soft: #1c2b49;
+  --good: #81e3ae;
+  --good-soft: #142d23;
+  --warn: #ffc58c;
+  --warn-soft: #34261b;
+  --tint-blue: #132036;
+  --tint-violet: #1a2036;
+  --tint-sage: #15202c;
+  --tint-mint: #142924;
+  --site-surface: #151c27;
+  /* White foregrounds on photographs/navy panels must stay white. */
+  --site-white: #ffffff;
+  --theme-action-bg: #2f54d0;
+  --theme-action-hover: #3f65e0;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.16);
+  --shadow-lift: 0 18px 40px -24px rgba(0, 0, 0, 0.5);
+  --shadow-deep: 0 28px 64px -34px rgba(0, 0, 0, 0.55);
+  --shadow-media-premium: 0 34px 80px -48px rgba(0, 0, 0, 0.65);
+}
+
+.site-logo__image--dark { display: none; }
+:root[data-theme="dark"] .site-logo__image--light { display: none; }
+:root[data-theme="dark"] .site-logo__image--dark { display: block; }
+
+.site-theme-toggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-control-premium);
+  background: transparent;
+  color: var(--site-ink);
+  font: inherit;
+  font-size: 0.79rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.site-theme-toggle svg { width: 1rem; height: 1rem; flex: none; }
+.site-theme-toggle:hover { background: var(--site-surface-tint); }
+.site-theme-toggle:focus-visible { outline: 2px solid var(--site-blue); outline-offset: 3px; }
+
+:root[data-theme="dark"] header.site-header {
+  background: rgba(11, 16, 24, 0.94);
+  border-bottom-color: var(--site-line);
+}
+:root[data-theme="dark"] :is(.card, .feat, .cap, .frame, .row, .chip-d, .btn-ghost) {
+  background: var(--site-surface);
+}
+:root[data-theme="dark"] :is(.facts, .band) { border-color: var(--site-line); }
+:root[data-theme="dark"] .visually-hidden:focus { background: var(--site-surface); }
+
+/* Link accents are lighter in dark mode; filled actions keep cobalt/white
+   contrast instead of using the pale link colour as their background. */
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .analytics-consent__allow {
+  background: var(--theme-action-bg);
+  border-color: var(--theme-action-bg);
+  color: var(--site-white);
+}
+:root[data-theme="dark"] :is(.btn-primary:hover, .analytics-consent__allow:hover,
+  .site-header .site-header__cta:hover, .contact-form__submit:hover,
+  .member-app-store-action:hover, .commercial-button:hover,
+  .marketing-page .members-store-actions a:hover,
+  .faq-contact a:hover) {
+  background: var(--theme-action-hover);
+  border-color: var(--theme-action-hover);
+  color: var(--site-white);
+}
+:root[data-theme="dark"] .site-header .site-header__cta,
+:root[data-theme="dark"] .contact-form__submit {
+  border-color: var(--line-2);
+}
+:root[data-theme="dark"] .site-mobile-menu__actions a {
+  border-color: var(--line-2);
+  color: var(--site-ink);
+}
+:root[data-theme="dark"] ::selection { background: var(--theme-action-bg); color: var(--site-white); }
+
+:root[data-theme="dark"] .home-page :is(.home-frame, .home-loop-journey > li,
+  .home-discovery-tabs button, .home-workflow) {
+  background: var(--site-surface);
+}
+:root[data-theme="dark"] .home-page .home-discovery-tabs button[aria-selected="true"] {
+  background: var(--site-navy);
+  border-color: var(--line-2);
+}
+:root[data-theme="dark"] .home-page .home-app-showcase__panel,
+:root[data-theme="dark"] .member-app-download-card {
+  border-color: var(--site-line);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(47, 84, 208, 0.24), transparent 28rem),
+    radial-gradient(circle at 84% 78%, rgba(47, 84, 208, 0.12), transparent 34rem),
+    linear-gradient(145deg, var(--site-surface-tint), var(--site-surface));
+}
+:root[data-theme="dark"] .home-page #disciplines .chip-d,
+:root[data-theme="dark"] .home-page #loop .mini {
+  border-color: var(--site-line);
+  background: var(--site-surface);
+}
+:root[data-theme="dark"] .home-page .link-arrow { text-decoration-color: var(--line-2); }
+:root[data-theme="dark"] .home-page .btn-ghost:hover {
+  border-color: var(--line-2);
+  background: var(--site-surface-soft);
+}
+
+:root[data-theme="dark"] .member-app-download-card__description { color: var(--site-ink-soft); }
+:root[data-theme="dark"] .member-app-qr,
+:root[data-theme="dark"] .analytics-consent { background: var(--site-surface); border-color: var(--site-line); }
+:root[data-theme="dark"] .contact-field :is(input, select, textarea) {
+  background: var(--site-surface-soft);
+  border-color: var(--line-2);
+}
+:root[data-theme="dark"] .contact-field [aria-invalid="true"] { border-color: #ffb4b4; }
+:root[data-theme="dark"] :is(.contact-field__error, .contact-form__status) { color: #ffb4b4; }
+:root[data-theme="dark"] .contact-form__status { background: #341f28; }
+
+:root[data-theme="dark"] :is(.commercial-cta, .businesses-cta) {
+  background: var(--theme-action-bg);
+}
+:root[data-theme="dark"] :is(.commercial-cta, .businesses-cta__actions) .commercial-button {
+  color: #2646b4;
+}
+:root[data-theme="dark"] .commercial-button:hover { color: var(--site-white); }
+:root[data-theme="dark"] .platform-fee span { color: var(--site-ink); }
+:root[data-theme="dark"] .marketing-page .members-store-actions a { border-color: var(--line-2); }
+:root[data-theme="dark"] .marketing-page .members-store-actions a:last-child { color: var(--site-ink); }
+
+/* Partner marks and machine-readable QR codes retain their original plates. */
+:root[data-theme="dark"] .integration-card__brand { background: #fafbfd; }
+:root[data-theme="dark"] .integration-card__brand span { color: #14161b; }
+:root[data-theme="dark"] :is(.member-app-qr img, .home-app-showcase__download img) { background: #ffffff; }
+
+@media (max-width: 840px) {
+  .site-header .site-header__inner { gap: 0.6rem; }
+  .site-header__inner > .site-theme-toggle { margin-left: auto; }
+  .site-header .site-mobile-menu__trigger { margin-left: 0; min-height: 44px; }
+}
+
+@media (max-width: 420px) {
+  .site-header .site-header__document-actions { gap: 0.6rem; }
+  .site-header__document-actions .site-theme-toggle span { display: none; }
+}
+
+/* Printed documents remain black-on-white regardless of the saved choice. */
+@media print {
+  :root[data-theme="dark"] {
+    color-scheme: light;
+    --bg: #ffffff;
+    --bg-tint: #f5f7fb;
+    --bg-soft: #fafbfd;
+    --site-surface: #ffffff;
+    --ink: #14161b;
+    --ink-2: #59606b;
+    --ink-3: #59606b;
+    --line: #e8eaef;
+    --line-2: #d3d8e2;
+    --accent: #2f54d0;
+    --accent-ink: #2646b4;
+    --accent-soft: #edf1fc;
+    --tint-blue: #eef2fd;
+    --tint-violet: #f6f3ff;
+    --tint-sage: #f0f4fa;
+    --tint-mint: #eef7f1;
+  }
+  .site-theme-toggle { display: none; }
+  :root[data-theme="dark"] .site-logo__image--dark { display: none; }
+  :root[data-theme="dark"] .site-logo__image--light { display: block; }
+}

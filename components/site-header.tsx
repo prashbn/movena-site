@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { BrandLockup } from "@/components/brand-lockup";
+import { ThemeToggle } from "@/components/theme-toggle";
 import type { PublicPath } from "@/lib/routes";
 import { siteConfig } from "@/lib/site-config";
 
@@ -138,6 +139,7 @@ export function SiteHeader(props: SiteHeaderProps) {
         <div className="wrap nav-row site-header__inner">
           <Logo />
           <div className="site-header__document-actions">
+            <ThemeToggle />
             <Link href="/" className="back site-header__back">
               ← Back to site
             </Link>
@@ -238,6 +240,8 @@ export function SiteHeader(props: SiteHeaderProps) {
             Talk to Movena
           </a>
         </div>
+
+        <ThemeToggle />
 
         <button
           ref={mobileButtonRef}

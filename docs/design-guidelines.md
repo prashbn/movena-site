@@ -31,6 +31,19 @@ all four roles into one continuous white surface.
 
 ## Approved palette
 
+### Optional dark-theme preview
+
+The user-requested light/dark switch is a development preview of the same
+visual system, not a new page-specific identity. Light remains the default;
+only an explicit choice saved in `movena-site-theme` enables dark mode.
+`styles/themes.css` maps the shared roles to near-black canvas, layered cool
+surfaces, pale text and blue accents. Review `/platform/` alongside the other
+pages before approving this preview for production. Keep photos, product
+screenshots, QR codes and partner artwork in their original colours, and use
+the existing `header-dark.svg` lockup on dark surfaces. Do not invert assets.
+
+### Approved light primitives
+
 The canonical primitives live in `assets/site.css`. Newer components consume
 their matching `--site-*` aliases from `styles/tokens.css`.
 

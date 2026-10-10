@@ -5,6 +5,7 @@ import { AnalyticsConsentManager } from "@/components/analytics-consent";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site-config";
 import { organizationStructuredData } from "@/lib/structured-data";
+import { THEME_INIT_SCRIPT } from "@/lib/site-theme";
 
 import "./globals.css";
 
@@ -50,8 +51,9 @@ type RootLayoutProps = Readonly<{
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang={siteConfig.language}>
+    <html lang={siteConfig.language} data-theme="light" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
