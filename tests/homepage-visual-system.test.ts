@@ -49,7 +49,7 @@ test("the closing photo and sales action share one responsive accessible frame",
   assert.match(closing, /aria-labelledby="home-closing-heading"/);
   assert.match(closing, /<h2 id="home-closing-heading">Run your gym on Movena\.<\/h2>/);
   assert.match(closing, /Single sites and multi-location groups\. Tell us about yours\./);
-  assert.match(closing, /href="\/contact\/">Talk to Movena<\/a>/);
+  assert.match(closing, /href="\/contact\/">Book a demo<\/a>/);
   assert.match(closing, /loading="lazy"/);
   assert.match(closing, /alt="A woman in blue activewear using her phone on the gym floor"/);
   assert.match(closing, /<source media="\(max-width: 700px\)"/);

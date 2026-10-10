@@ -100,7 +100,7 @@ async function runContract() {
     homepageHtml,
     /Move for a better you\./,
   );
-  assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a walkthrough<\/a>/);
+  assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a demo<\/a>/);
   for (const marker of [
     "Unlimited members and team",
     "Card, BECS direct debit and PayTo",

@@ -26,6 +26,7 @@ function rewritePublicMarketingCopy(
 ): string {
   if (source === "index.html") {
     return markup
+      .replace('href="/contact/">Book a walkthrough</a>', 'href="/contact/">Book a demo</a>')
       .replace(
         /Memberships, timetable, billing and check-in\. Plus a training history\s+members keep\./,
         "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.",
@@ -76,7 +77,7 @@ function rewritePublicMarketingCopy(
         <span class="kicker">Built for Australian gyms</span>
         <h2 id="home-closing-heading">Run your gym on Movena.</h2>
         <p>Single sites and multi-location groups. Tell us about yours.</p>
-        <a class="btn btn-primary" href="/contact/">Talk to Movena</a>
+        <a class="btn btn-primary" href="/contact/">Book a demo</a>
       </div>
     </div>
   </div>
