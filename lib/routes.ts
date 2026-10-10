@@ -26,9 +26,9 @@ export const legacyRoutes = [
     source: "members/index.html",
     title: "For members — Movena",
     description:
-      "Book classes, check in, follow your program, and watch a training history build with every session — badges, challenges and a record that's yours to keep.",
+      "One identity. Your training story. Keep your sessions, programs, results and milestones connected through one Movena identity, with a training history that's yours to keep.",
     socialDescription:
-      "Your training, remembered. Book, check in, follow a program, and keep the history.",
+      "One identity. Your training story. Sessions, programs, results and milestones—with a history that belongs to you, not just the gym.",
     kind: "marketing",
   },
   {
@@ -42,9 +42,9 @@ export const legacyRoutes = [
   {
     path: "/help/ai-assistants/",
     source: "help/ai-assistants/index.html",
-    title: "Connect Movena to Claude or ChatGPT — Movena Help",
+    title: "Connect Movena to ChatGPT — Movena Help",
     description:
-      "How to connect Movena to Claude or ChatGPT: what each assistant can show, who can connect, what is shared and what is not, and how to disconnect.",
+      "Connect Movena to ChatGPT: what you can ask, permissions, optional member sharing and how to disconnect. Claude integration is in review and not yet available.",
     kind: "document",
   },
   {
@@ -92,7 +92,7 @@ export const commercialRoutes = [
     path: "/integrations/",
     title: "Integrations — Movena",
     description:
-      "Connect Movena with ChatGPT, Xero and QuickBooks, bring in marketing leads from Facebook and Google, and use MYOB-ready exports, Kisi access control and health data integrations.",
+      "From the first enquiry to the gym floor: connect leads, memberships, Stripe payments, bookings and Kisi access. Explore booking patterns with permission-based ChatGPT answers.",
     kind: "marketing",
   },
   {

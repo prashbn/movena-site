@@ -4,6 +4,7 @@ import { join } from "node:path";
 import type { LegacySource } from "./routes.ts";
 import { siteConfig } from "./site-config.ts";
 import { rewriteWebsiteContactEmails } from "./website-contact-emails.ts";
+import { rewriteWebsiteCapabilityCopy } from "./website-capability-copy.ts";
 
 const internalRouteReplacements = new Map([
   ["/platform", "/platform/"],
@@ -611,7 +612,7 @@ export function readLegacyDocument(source: LegacySource): string {
 }
 
 export function readLegacyMainMarkup(source: LegacySource): string {
-  return rewriteInternalRouteHrefs(
+  const markup = rewriteInternalRouteHrefs(
     rewritePlatformProductProof(
       rewriteMemberProductImagery(
         removeHomeTimetableIllustration(
@@ -641,6 +642,7 @@ export function readLegacyMainMarkup(source: LegacySource): string {
       source,
     ),
   );
+  return rewriteWebsiteCapabilityCopy(markup, source);
 }
 
 export function readUnmodifiedLegacyMainMarkup(source: LegacySource): string {

@@ -36,7 +36,7 @@ const routes = [
 
 const frozenDocumentMarkers = new Map([
   ["/help/", ["Help &amp; Support", "Last updated: 2 August 2026"]],
-  ["/help/ai-assistants/", ["Connect Movena to an AI assistant", "Last updated: 8 October 2026"]],
+  ["/help/ai-assistants/", ["Connect Movena to an AI assistant", "Last updated: 11 October 2026", "Claude — in review"]],
   ["/integrations/kisi/", ["Movena + Kisi", "Ending the integration"]],
   ["/legal/privacy/", ["Privacy Policy", "Last updated: 8 October 2026"]],
   ["/legal/terms/", ["Terms of Service", "Last updated: 19 September 2026"]],
@@ -386,7 +386,7 @@ async function runContract() {
     "Unlimited members. Unlimited team. Choose by locations and capabilities—not by member count or seats.",
     "Card, BECS direct debit and PayTo",
     "Your own Stripe account",
-    "Xero-ready, QuickBooks-ready and MYOB-ready",
+    "Connect Xero or QuickBooks. Export for Xero, QuickBooks or MYOB.",
     "Unlimited members",
     "Unlimited owners, managers, staff &amp; coaches",
     "Access Control Integration",
@@ -406,6 +406,9 @@ async function runContract() {
 
   const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [
+    "From the first enquiry to the gym floor.",
+    "Find what needs attention.",
+    "Read-only, permission-based answers—not autonomous changes.",
     "Xero",
     "Connect Xero directly to Movena.",
     "QuickBooks®",

@@ -29,8 +29,8 @@ export function PaymentOperations() {
             <dd>Your own Stripe account</dd>
           </div>
           <div>
-            <dt>Accounting exports</dt>
-            <dd>Xero-ready, QuickBooks-ready and MYOB-ready</dd>
+            <dt>Accounting connections &amp; exports</dt>
+            <dd>Connect Xero or QuickBooks. Export for Xero, QuickBooks or MYOB.</dd>
           </div>
         </dl>
       </div>

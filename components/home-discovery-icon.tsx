@@ -1,6 +1,7 @@
-export type DiscoveryIconName = "session" | "desk" | "member" | "day" | "money" | "team";
+export type DiscoveryIconName = "session" | "desk" | "member" | "day" | "money" | "team" | "door";
 
 const paths: Record<DiscoveryIconName, string> = {
+  door: "M3 21h18 M6 21V4l10-2v19 M16 4h3v17 M12 12h1",
   session: "M9 5H5v16h14V5h-4 M9 3h6v4H9z M9 14l2 2 4-4",
   desk: "M3 4h18v13H3z M8 21h8 M12 17v4",
   member: "M7 2h10v20H7z M11 18h2",

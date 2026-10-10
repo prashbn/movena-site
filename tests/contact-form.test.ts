@@ -348,7 +348,7 @@ test("primary legacy sales links use the form while operational email remains", 
   assert.doesNotMatch(homepage, /mailto:info@movena\.com\.au\?subject=/);
   assert.doesNotMatch(platform, /mailto:info@movena\.com\.au\?subject=/);
   assert.equal(homepage.match(/href="\/contact\/">Book a demo<\/a>/g)?.length, 2);
-  assert.match(platform, /href="\/contact\/">Book a walkthrough<\/a>/);
+  assert.match(platform, /href="\/contact\/">Book a demo<\/a>/);
   assert.match(kisi, /href="\/contact\/">Talk to Movena<\/a>/);
   assert.match(kisi, /mailto:support@movena\.com\.au/);
   assert.match(privacy, /mailto:privacy@movena\.com\.au/);

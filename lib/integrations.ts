@@ -93,7 +93,7 @@ export const publicIntegrations = [
   },
   {
     name: "ChatGPT",
-    description: "Beyond dashboards. Into conversation.",
+    description: "Explore booking patterns and available capacity through conversation, within your account’s permissions.",
     mark: {
       kind: "image",
       src: "/integration-logos/openai-blossom.svg",

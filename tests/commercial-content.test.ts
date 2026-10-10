@@ -192,7 +192,7 @@ test("pricing explains Australian payments and accounting export boundaries", ()
   assert.match(components, /Your own Stripe account/);
   assert.match(
     components,
-    /Xero-ready, QuickBooks-ready and MYOB-ready/,
+    /Connect Xero or QuickBooks\. Export for Xero, QuickBooks or MYOB\./,
   );
 });
 
@@ -292,7 +292,7 @@ test("the public integrations surface remains exact and conservative", () => {
     },
     {
       name: "ChatGPT",
-      description: "Beyond dashboards. Into conversation.",
+      description: "Explore booking patterns and available capacity through conversation, within your account’s permissions.",
       mark: {
         kind: "image",
         src: "/integration-logos/openai-blossom.svg",
