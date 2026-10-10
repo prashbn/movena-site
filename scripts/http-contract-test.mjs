@@ -132,6 +132,31 @@ async function runContract() {
   // Count visible markup, not Next's serialized copy of it in hydration data.
   const homepageMain = homepageHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
   assert.ok(homepageMain);
+  for (const marker of ["Less switching.", "More coaching.", "The session doesn’t end at the gym door.", "Actual product screen · Demonstration data"]) {
+    assert.ok(homepageMain.includes(marker), marker);
+  }
+  assert.equal(homepageMain.match(/class="home-product-window"/g)?.length, 2);
+  assert.equal(homepageMain.match(/class="home-app-showcase__panel"/g)?.length, 1);
+  assert.equal(homepageMain.match(/class="chip-d"/g)?.length, 18);
+  assert.doesNotMatch(homepageMain, /app\.movena\.com\.au — (?:Timetable|Workout builder)|class="console"|class="builder"|\/home-app\//);
+  for (const id of ["home-app-heading", "home-loop-heading", "home-platform-heading", "home-disciplines-heading", "home-training-heading"]) {
+    assert.equal(homepageMain.match(new RegExp(`id="${id}"`, "g"))?.length, 1, id);
+  }
+  const disciplines = homepageMain.match(/<section id="disciplines"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(disciplines?.includes('id="home-training-heading"'));
+  for (const path of [
+    "/product-screenshots/movena-financials.png",
+    "/product-screenshots/movena-program-builder.png",
+    "/members-screens/1.8.0/home.png",
+    "/members-screens/1.8.0/progress-dark.png",
+    "/members-screens/1.8.0/workout-dark.png",
+  ]) {
+    assert.ok(homepageMain.includes(path), path);
+    const image = await fetch(`${origin}${path}`);
+    assert.equal(image.status, 200, path);
+    assert.match(image.headers.get("content-type") ?? "", /^image\//, path);
+    await image.arrayBuffer();
+  }
   assert.equal(homepageMain.match(/Run your gym on Movena\./g)?.length, 1);
   assert.doesNotMatch(homepageHtml, /after-session-(1000|1800)\.jpg/);
   for (const path of [
@@ -555,5 +580,12 @@ try {
       new Promise((resolve) => server.once("exit", resolve)),
       delay(5_000),
     ]);
+    // Next can wait indefinitely for keep-alive connections during shutdown.
+    // Only terminate the temporary test child we started, never another server.
+    if (server.exitCode === null && server.signalCode === null) {
+      const exited = new Promise((resolve) => server.once("exit", resolve));
+      server.kill("SIGKILL");
+      await exited;
+    }
   }
 }

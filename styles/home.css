@@ -2,7 +2,7 @@
 
 .home-page {
   --home-content-width: 1720px;
-  --home-section-gap: clamp(2.5rem, 5vw, 4.5rem);
+  --home-section-gap: clamp(2.5rem, 4vw, 3.75rem);
   --home-panel-inset: clamp(1.5rem, 4vw, 4rem);
   --home-panel-shadow: 0 18px 42px -30px rgba(12, 28, 44, 0.32);
   background: var(--site-canvas);
@@ -384,7 +384,7 @@
 .home-page .home-app-showcase__stage {
   min-width: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 18rem));
+  grid-template-columns: repeat(2, minmax(0, 15rem));
   align-items: start;
   justify-content: end;
   gap: clamp(1rem, 2vw, 2rem);
@@ -394,9 +394,9 @@
   min-width: 0;
   margin: 0;
   overflow: hidden;
-  border: 0.45rem solid rgba(16, 24, 32, 0.94);
-  border-radius: 2.4rem;
-  background: var(--site-navy);
+  border: 0.35rem solid var(--site-white);
+  border-radius: 1.8rem;
+  background: var(--site-white);
   box-shadow: 0 2rem 4rem -2rem rgba(16, 24, 32, 0.42);
 }
 
@@ -404,6 +404,7 @@
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 1.45rem;
 }
 
 .home-page .home-app-showcase__screen--progress {
@@ -1017,7 +1018,7 @@
   }
 
   .home-page .home-app-showcase__stage {
-    grid-template-columns: repeat(2, minmax(0, 18rem));
+    grid-template-columns: repeat(2, minmax(0, 15rem));
     justify-content: center;
     gap: 1.25rem;
   }
@@ -1126,23 +1127,24 @@
 
   .home-page .home-app-showcase__stage {
     min-height: 0;
-    grid-template-columns: repeat(2, 100%);
-    justify-content: start;
-    gap: 1rem;
-    overflow-x: auto;
-    padding: 0 0 0.5rem;
-    scroll-padding-inline: 0;
-    scroll-snap-type: x mandatory;
-    transform: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 26rem;
+    width: 100%;
+    margin-inline: auto;
+    gap: 0.75rem;
   }
 
   .home-page .home-app-showcase__screen {
-    border-radius: 2rem;
-    scroll-snap-align: center;
+    border-width: 0.25rem;
+    border-radius: 1.25rem;
+  }
+
+  .home-page .home-app-showcase__screen img {
+    border-radius: 1rem;
   }
 
   .home-page .home-app-showcase__screen--progress {
-    margin-top: 0;
+    margin-top: 2rem;
     transform: none;
     rotate: 0deg;
   }

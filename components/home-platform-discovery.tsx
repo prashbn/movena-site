@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { HomeDiscoveryIcon, type DiscoveryIconName } from "./home-discovery-icon";
+import { HomeProductWindow } from "./home-product-window";
 
 const areas: { id: string; label: string; title: string; icon: DiscoveryIconName; features: [string, string][] }[] = [
   { id: "day", label: "The day", title: "Keep the day moving.", icon: "day", features: [
@@ -33,6 +34,17 @@ export function HomePlatformDiscovery() {
         <span className="kicker">The platform</span>
         <h2 id="home-platform-heading">Everything a gym runs on.</h2>
         <p className="sec-lede">One platform. One member record. Every location.</p>
+        <div className="home-financials-proof">
+          <div className="home-financials-proof__copy">
+            <h3>Less switching.<br />More coaching.</h3>
+            <p>Memberships, payments, bookings and your team. Connected in one place, so the business keeps moving while you’re on the floor.</p>
+            <a className="link-arrow" href="/platform/">Explore the platform <span aria-hidden="true">→</span></a>
+            <p className="home-financials-proof__detail">Card · BECS direct debit · PayTo</p>
+          </div>
+          <HomeProductWindow label="Movena / Financials"
+            src="/product-screenshots/movena-financials.png" width={3350} height={1776}
+            alt="Movena Financials showing collected payments, fees, next payout and revenue by product and location" />
+        </div>
         <div className="home-discovery-tabs" role="tablist" aria-label="Explore the platform">
           {areas.map((area, index) => (
             <button key={area.id} ref={el => { tabs.current[index] = el; }} type="button" role="tab"
@@ -61,7 +73,6 @@ export function HomePlatformDiscovery() {
             </div>
           ))}
         </div>
-        <a className="link-arrow home-discovery-platform__link" href="/platform/">Explore the platform <span aria-hidden="true">→</span></a>
       </div>
     </section>
   );

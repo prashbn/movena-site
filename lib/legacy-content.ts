@@ -203,7 +203,7 @@ function rewriteHomeAppShowcase(
         <span class="kicker">Movena member app</span>
         <h2 id="home-app-heading">An app worth opening.</h2>
         <div class="home-app-showcase__copy">
-          <p>Members book sessions, follow the workout and see progress and milestones build in one native app.</p>
+          <p>Book the next session. Follow the workout. See the lifts, moments and milestones build into a history that belongs to them.</p>
           <div class="home-app-showcase__actions">
             <a class="btn btn-primary" href="/members/">See the member experience</a>
             <a class="link-arrow" href="/app/">Get the app <span aria-hidden="true">→</span></a>
@@ -216,10 +216,10 @@ function rewriteHomeAppShowcase(
       </div>
       <div class="home-app-showcase__stage" aria-label="Movena member app screens">
         <figure class="home-app-showcase__screen home-app-showcase__screen--session">
-          <img src="/home-app/session-detail.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena personal training session detail with a programmed workout and booking action">
+          <img src="/members-screens/1.8.0/home.png" width="1320" height="2868" loading="lazy" decoding="async" alt="Movena member app Home screen in light mode showing the next session, a personal best and recent training activity">
         </figure>
         <figure class="home-app-showcase__screen home-app-showcase__screen--progress">
-          <img src="/home-app/movement-progress.jpg" width="589" height="1280" loading="lazy" decoding="async" alt="Movena movement progress showing a personal best and training history">
+          <img src="/members-screens/1.8.0/progress-dark.png" width="1320" height="2868" loading="lazy" decoding="async" alt="Movena member app Progress screen in dark mode showing a bench press result and training history">
         </figure>
       </div>
     </div>
@@ -232,6 +232,14 @@ function rewriteHomeAppShowcase(
     '<section id="loop">',
     `${appShowcase}\n\n<section id="loop">`,
   );
+}
+
+function removeHomeTimetableIllustration(markup: string, source: LegacySource): string {
+  if (source !== "index.html") return markup;
+
+  // Financials proof now lives in the Platform section rather than repeating
+  // an illustrative timetable below the photo hero. Preserve the hero wrappers.
+  return markup.replace(/\s*<div class="frame">\s*<div class="chrome">[\s\S]*?app\.movena\.com\.au — Timetable[\s\S]*?<\/div>\s*<\/div>\s*<\/div>(?=\s*<\/div>\s*<\/div>\s*<div class="facts">)/, "");
 }
 
 function rewriteHomeRetentionBadges(
@@ -600,12 +608,15 @@ export function readLegacyMainMarkup(source: LegacySource): string {
   return rewriteInternalRouteHrefs(
     rewritePlatformProductProof(
       rewriteMemberProductImagery(
-        rewriteHomeAppShowcase(
-          rewriteHomeAccessProof(
-            rewritePublicMarketingCopy(
-              rewriteHomeRetentionBadges(
-                rewriteSalesContactHrefs(
-                  extractMainMarkup(readLegacyDocument(source), source),
+        removeHomeTimetableIllustration(
+          rewriteHomeAppShowcase(
+            rewriteHomeAccessProof(
+              rewritePublicMarketingCopy(
+                rewriteHomeRetentionBadges(
+                  rewriteSalesContactHrefs(
+                    extractMainMarkup(readLegacyDocument(source), source),
+                    source,
+                  ),
                   source,
                 ),
                 source,

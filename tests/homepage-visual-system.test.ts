@@ -203,18 +203,49 @@ test("the homepage showcases the native member app with real product screens", (
   const homeCss = readFileSync("styles/home.css", "utf8");
 
   for (const screen of [
-    "movement-progress.jpg",
-    "session-detail.jpg",
+    "home.png",
+    "progress-dark.png",
   ]) {
-    assert.equal(existsSync(`public/home-app/${screen}`), true, screen);
-    assert.match(homepage, new RegExp(`/home-app/${screen}`));
+    assert.equal(existsSync(`public/members-screens/1.8.0/${screen}`), true, screen);
+    assert.ok(homepage.includes(`/members-screens/1.8.0/${screen}`));
   }
 
-  assert.doesNotMatch(homepage, /home-app\/milestones\.jpg/);
+  assert.doesNotMatch(homepage, /home-app\/(?:milestones|session-detail|movement-progress)\.jpg/);
+  assert.match(homepage, /Home screen in light mode/);
+  assert.match(homepage, /Progress screen in dark mode/);
+  assert.match(homepage, /Book the next session\. Follow the workout\./);
 
   assert.equal(homepage.match(/An app worth opening\./g)?.length, 1);
   assert.match(homepage, /Available for iPhone and Android\./);
   assert.match(homepage, /movena-app-page-qr\.png/);
   assert.match(homeCss, /\.home-app-showcase__stage/);
-  assert.match(homeCss, /scroll-snap-type: x mandatory/);
+  assert.match(homeCss, /\.home-app-showcase__stage\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.doesNotMatch(homeCss, /scroll-snap-type/);
+});
+
+test("real product proof is integrated into the original homepage sections", () => {
+  const homepage = readLegacyMainMarkup("index.html");
+  const platform = readFileSync("components/home-platform-discovery.tsx", "utf8");
+  const training = readFileSync("components/home-training-connection.tsx", "utf8");
+  const window = readFileSync("components/home-product-window.tsx", "utf8");
+  const renderer = readFileSync("components/legacy-main.tsx", "utf8");
+  const css = readFileSync("styles/home-discovery.css", "utf8");
+
+  assert.doesNotMatch(homepage, /app\.movena\.com\.au — Timetable|class="console"/);
+  assert.match(homepage, /<div class="hero">[\s\S]*<\/div>\s*<\/div>\s*<div class="facts">/);
+  assert.match(platform, /Everything a gym runs on\./);
+  assert.match(platform, /Less switching\.<br \/>More coaching\./);
+  assert.match(platform, /movena-financials\.png/);
+  assert.match(platform, /role="tablist"/);
+  assert.match(training, /id="disciplines"/);
+  assert.match(training, /Built for how your gym trains\./);
+  assert.match(training, /The session doesn’t end at the gym door\./);
+  assert.match(training, /movena-program-builder\.png/);
+  assert.match(training, /workout-dark\.png/);
+  assert.match(training, /home-pilates\/class-1600\.jpg/);
+  assert.equal(training.match(/"(?:CrossFit|Yoga|Personal Training)"/g)?.length, 3);
+  assert.match(renderer, /<HomeTrainingDisciplines/);
+  assert.match(window, /Actual product screen · Demonstration data/);
+  assert.match(css, /\.home-product-window img,[\s\S]*height: auto;/);
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.home-training-connection__flow \{ grid-template-columns: minmax\(0, 1fr\)/);
 });

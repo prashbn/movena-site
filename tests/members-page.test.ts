@@ -66,9 +66,7 @@ test("the selected 1.8.0 screenshots retain their original pixels and proportion
   }
   const styles = readFileSync("styles/members.css", "utf8");
   assert.match(styles, /\.member-screen img\s*\{[^}]*height:\s*auto/);
-  for (const source of ["index.html", "platform/index.html"] as const) {
-    assert.doesNotMatch(readLegacyMainMarkup(source), /\/members-screens\/1\.8\.0\//);
-  }
+  assert.doesNotMatch(readLegacyMainMarkup("platform/index.html"), /\/members-screens\/1\.8\.0\//);
 });
 
 test("the long-view photo uses the selected phone portrait without changing copy or frame", () => {
