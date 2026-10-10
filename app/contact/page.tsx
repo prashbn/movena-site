@@ -23,6 +23,18 @@ export default function ContactPage() {
               are building and start the right conversation.
             </p>
             <div className="contact-intro__note">
+              <p>Sales, demos and gym onboarding</p>
+              <a href={`mailto:${siteConfig.salesEmail}`}>
+                {siteConfig.salesEmail}
+              </a>
+            </div>
+            <div className="contact-intro__note">
+              <p>General enquiries and partnerships</p>
+              <a href={`mailto:${siteConfig.email}`}>
+                {siteConfig.email}
+              </a>
+            </div>
+            <div className="contact-intro__note">
               <p>Looking for product support?</p>
               <a href={`mailto:${siteConfig.supportEmail}`}>
                 {siteConfig.supportEmail}

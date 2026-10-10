@@ -2,13 +2,13 @@ import {
   type ContactSubmission,
   isEmailAddress,
 } from "./contact-schema.ts";
+import { siteConfig } from "./site-config.ts";
 
 const brevoApiOrigin = "https://api.brevo.com/v3";
 
 export type BrevoConfiguration = {
   apiKey: string;
   senderEmail: string;
-  notificationEmail: string;
   contactListId?: number;
 };
 
@@ -41,7 +41,7 @@ type FetchLike = (
 
 function requiredEnvironmentValue(
   environment: Record<string, string | undefined>,
-  name: "BREVO_API_KEY" | "BREVO_SENDER_EMAIL" | "BREVO_NOTIFICATION_EMAIL",
+  name: "BREVO_API_KEY" | "BREVO_SENDER_EMAIL",
 ): string {
   const value = environment[name]?.trim();
   if (!value) {
@@ -58,14 +58,9 @@ export function readBrevoConfiguration(
     environment,
     "BREVO_SENDER_EMAIL",
   );
-  const notificationEmail = requiredEnvironmentValue(
-    environment,
-    "BREVO_NOTIFICATION_EMAIL",
-  );
-
-  if (!isEmailAddress(senderEmail) || !isEmailAddress(notificationEmail)) {
+  if (!isEmailAddress(senderEmail)) {
     throw new BrevoConfigurationError(
-      "Brevo sender and notification addresses must be valid email addresses",
+      "Brevo sender address must be a valid email address",
     );
   }
 
@@ -83,7 +78,6 @@ export function readBrevoConfiguration(
   return {
     apiKey,
     senderEmail,
-    notificationEmail,
     ...(contactListId ? { contactListId } : {}),
   };
 }
@@ -106,6 +100,14 @@ export function buildBrevoContactPayload(
 
 function line(label: string, value: string | undefined): string {
   return `${label}: ${value || "—"}`;
+}
+
+// The server chooses an official inbox from the validated enquiry category.
+// Never accept a recipient from the visitor or the legacy single-inbox setting.
+export function contactRecipientEmail(submission: ContactSubmission): string {
+  return submission.interest === "General enquiry"
+    ? siteConfig.email
+    : siteConfig.salesEmail;
 }
 
 export function buildBrevoNotificationPayload(
@@ -140,7 +142,7 @@ export function buildBrevoNotificationPayload(
       name: "Movena",
       email: configuration.senderEmail,
     },
-    to: [{ email: configuration.notificationEmail }],
+    to: [{ email: contactRecipientEmail(submission) }],
     replyTo: {
       name: submission.name,
       email: submission.workEmail,
@@ -175,7 +177,7 @@ export function buildBrevoAcknowledgementPayload(
     to: [{ email: submission.workEmail, name: submission.name }],
     replyTo: {
       name: "Movena",
-      email: configuration.notificationEmail,
+      email: contactRecipientEmail(submission),
     },
     subject: "We’ve received your Movena enquiry",
     textContent,

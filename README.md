@@ -34,7 +34,10 @@ The `/contact/` form posts to the server-only `/api/contact/` route. The route
 creates or updates the visitor as a Brevo contact and sends a Brevo
 transactional notification to Movena. It also sends the visitor one
 transactional acknowledgement confirming that the enquiry was received, with
-replies directed to the Movena notification inbox. It does not add marketing
+replies directed to the same inbox as the enquiry: `info@movena.com.au` for
+“General enquiry”, and `sales@movena.com.au` for gym, pricing, demo and onboarding
+enquiries. Recipients are chosen server-side from the validated interest; visitors
+cannot supply an arbitrary recipient. It does not add marketing
 consent or enrol the visitor in an email sequence.
 
 Configure these variables in both Vercel Preview and Production before testing
@@ -43,7 +46,10 @@ or releasing the form:
 - `BREVO_API_KEY` — Brevo API key with contact and transactional-email access.
 - `BREVO_SENDER_EMAIL` — a sender address verified for Brevo transactional
   email.
-- `BREVO_NOTIFICATION_EMAIL` — the fixed Movena inbox that receives enquiries.
+
+The former `BREVO_NOTIFICATION_EMAIL` setting is no longer used. Existing values
+can remain in Vercel without affecting routing. Do not change the verified sender,
+API key, domain authentication or other transactional-email settings for this update.
 
 Optional:
 

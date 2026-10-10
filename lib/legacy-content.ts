@@ -3,6 +3,7 @@ import { join } from "node:path";
 
 import type { LegacySource } from "./routes.ts";
 import { siteConfig } from "./site-config.ts";
+import { rewriteWebsiteContactEmails } from "./website-contact-emails.ts";
 
 const internalRouteReplacements = new Map([
   ["/platform", "/platform/"],
@@ -619,7 +620,10 @@ export function readLegacyMainMarkup(source: LegacySource): string {
               rewritePublicMarketingCopy(
                 rewriteHomeRetentionBadges(
                   rewriteSalesContactHrefs(
-                    extractMainMarkup(readLegacyDocument(source), source),
+                    rewriteWebsiteContactEmails(
+                      extractMainMarkup(readLegacyDocument(source), source),
+                      source,
+                    ),
                     source,
                   ),
                   source,

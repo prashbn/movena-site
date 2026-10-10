@@ -7,11 +7,13 @@ import {
   buildBrevoAcknowledgementPayload,
   buildBrevoContactPayload,
   buildBrevoNotificationPayload,
+  contactRecipientEmail,
   readBrevoConfiguration,
   submitContactToBrevo,
 } from "../lib/brevo-contact.ts";
 import {
   contactFieldLimits,
+  contactInterestOptions,
   type ContactSubmission,
   validateContactPayload,
 } from "../lib/contact-schema.ts";
@@ -179,7 +181,6 @@ test("Brevo configuration is explicit and contains no invented values", () => {
     {
       apiKey: "secret",
       senderEmail: "sender@example.com",
-      notificationEmail: "notify@example.com",
       contactListId: 42,
     },
   );
@@ -220,7 +221,7 @@ test("Brevo receives one contact update, one notification and one acknowledgemen
   });
 
   const notification = JSON.parse(String(calls[1]?.init?.body));
-  assert.deepEqual(notification.to, [{ email: "movena@example.com" }]);
+  assert.deepEqual(notification.to, [{ email: "sales@movena.com.au" }]);
   assert.deepEqual(notification.replyTo, {
     name: "Prash Test",
     email: "hello@example.com",
@@ -235,7 +236,7 @@ test("Brevo receives one contact update, one notification and one acknowledgemen
   ]);
   assert.deepEqual(acknowledgement.replyTo, {
     name: "Movena",
-    email: "movena@example.com",
+    email: "sales@movena.com.au",
   });
   assert.equal(
     acknowledgement.subject,
@@ -265,7 +266,7 @@ test("Brevo receives one contact update, one notification and one acknowledgemen
       configuration,
       new Date("2026-08-31T00:00:00.000Z"),
     ).to[0]?.email,
-    "movena@example.com",
+    "sales@movena.com.au",
   );
   assert.deepEqual(
     buildBrevoAcknowledgementPayload(validSubmission, configuration),
@@ -350,5 +351,32 @@ test("primary legacy sales links use the form while operational email remains", 
   assert.match(platform, /href="\/contact\/">Book a walkthrough<\/a>/);
   assert.match(kisi, /href="\/contact\/">Talk to Movena<\/a>/);
   assert.match(kisi, /mailto:support@movena\.com\.au/);
-  assert.match(privacy, /mailto:info@movena\.com\.au/);
+  assert.match(privacy, /mailto:privacy@movena\.com\.au/);
+});
+
+test("every validated enquiry category uses its official inbox and acknowledgement reply address", async () => {
+  const configuration = {
+    apiKey: "test-key",
+    senderEmail: "verified@example.com",
+    // A stale deployed single-inbox setting must not override functional routing.
+    notificationEmail: "old-inbox@example.com",
+  };
+
+  for (const interest of contactInterestOptions) {
+    const submission = { ...validSubmission, interest };
+    const expected = interest === "General enquiry"
+      ? "info@movena.com.au"
+      : "sales@movena.com.au";
+    assert.equal(contactRecipientEmail(submission), expected);
+    const calls: Array<Record<string, unknown>> = [];
+    await submitContactToBrevo(submission, configuration, async (_url, init) => {
+      calls.push(JSON.parse(String(init?.body)));
+      return { ok: true, status: 201 };
+    });
+    assert.equal(calls.length, 3);
+    assert.deepEqual(calls[1]?.to, [{ email: expected }]);
+    assert.deepEqual(calls[2]?.replyTo, { name: "Movena", email: expected });
+    assert.deepEqual(calls[1]?.sender, { name: "Movena", email: "verified@example.com" });
+    assert.deepEqual(calls[2]?.sender, { name: "Movena", email: "verified@example.com" });
+  }
 });

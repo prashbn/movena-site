@@ -6,6 +6,8 @@ export const siteConfig = {
   locale: "en_AU",
   language: "en-AU",
   email: "info@movena.com.au",
+  salesEmail: "sales@movena.com.au",
+  privacyEmail: "privacy@movena.com.au",
   supportEmail: "support@movena.com.au",
   businessSignInUrl: "https://app.movena.com.au/sign-in",
   memberApp: {

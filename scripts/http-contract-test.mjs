@@ -194,6 +194,19 @@ async function runContract() {
   }
 
   const contactHtml = await (await fetch(`${origin}/contact/`)).text();
+  for (const email of ["sales@movena.com.au", "info@movena.com.au", "support@movena.com.au"]) {
+    assert.ok(contactHtml.includes(`href="mailto:${email}"`), `Contact page links to ${email}`);
+  }
+  for (const path of ["/legal/privacy/", "/legal/terms/", "/help/", "/help/ai-assistants/"]) {
+    const html = await (await fetch(`${origin}${path}`)).text();
+    const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? "";
+    assert.ok(main.includes('href="mailto:privacy@movena.com.au"'), `${path} has a privacy contact`);
+    if (path !== "/help/ai-assistants/") {
+      assert.ok(main.includes('href="mailto:info@movena.com.au"'), `${path} retains general legal contact`);
+      assert.ok(main.includes('href="mailto:support@movena.com.au"'), `${path} retains support contact`);
+    }
+    assert.doesNotMatch(main, /prashan@movena\.com\.au/);
+  }
   for (const marker of [
     "Tell us about your gym.",
     "Start the conversation.",
