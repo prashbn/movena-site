@@ -13,16 +13,21 @@ export const publicIntegrations = [
     name: "QuickBooks®",
     description: "Connect QuickBooks directly to Movena.",
     mark: {
-      kind: "text",
-      label: "QuickBooks®",
+      kind: "image",
+      src: "/integration-logos/quickbooks-logo.png",
+      width: 196,
+      height: 196,
     },
   },
   {
     name: "MYOB",
     description: "MYOB-ready exports.",
     mark: {
-      kind: "text",
-      label: "MYOB",
+      kind: "image",
+      src: "/integration-logos/myob-logo.png",
+      width: 994,
+      height: 488,
+      layout: "wordmark",
     },
   },
   {
@@ -39,8 +44,10 @@ export const publicIntegrations = [
     name: "Google",
     description: "Bring Google marketing leads into Movena.",
     mark: {
-      kind: "text",
-      label: "Google",
+      kind: "image",
+      src: "/integration-logos/google-g-logo.png",
+      width: 2820,
+      height: 2820,
     },
   },
   {
@@ -58,8 +65,11 @@ export const publicIntegrations = [
     name: "Apple Health",
     description: "Member-controlled workout and health data from iPhone.",
     mark: {
-      kind: "text",
-      label: "Apple Health",
+      kind: "image",
+      src: "/integration-logos/apple-health-badge.svg",
+      width: 122.747,
+      height: 34.016,
+      layout: "wordmark",
     },
   },
   {
@@ -73,19 +83,36 @@ export const publicIntegrations = [
     },
   },
   {
-    name: "Payments built in",
-    description: "Payments and billing, built into Movena.",
+    name: "Stripe",
+    description: "Payments and billing through Stripe, built into Movena.",
     mark: {
-      kind: "text",
-      label: "Movena",
+      kind: "image",
+      src: "/integration-logos/stripe-logo.svg",
+      width: 360,
+      height: 150,
+      layout: "wordmark",
     },
   },
   {
     name: "ChatGPT",
     description: "Beyond dashboards. Into conversation.",
     mark: {
-      kind: "text",
-      label: "ChatGPT",
+      kind: "image",
+      src: "/integration-logos/openai-blossom.svg",
+      width: 716,
+      height: 716,
+      layout: "blossom",
+    },
+  },
+  {
+    name: "Claude by Anthropic",
+    status: "In review",
+    description: "The Claude integration is in review and is not yet available.",
+    mark: {
+      kind: "image",
+      src: "/integration-logos/anthropic-symbol.svg",
+      width: 92.2,
+      height: 65,
     },
   },
   {

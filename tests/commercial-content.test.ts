@@ -212,16 +212,21 @@ test("the public integrations surface remains exact and conservative", () => {
       name: "QuickBooks®",
       description: "Connect QuickBooks directly to Movena.",
       mark: {
-        kind: "text",
-        label: "QuickBooks®",
+        kind: "image",
+        src: "/integration-logos/quickbooks-logo.png",
+        width: 196,
+        height: 196,
       },
     },
     {
       name: "MYOB",
       description: "MYOB-ready exports.",
       mark: {
-        kind: "text",
-        label: "MYOB",
+        kind: "image",
+        src: "/integration-logos/myob-logo.png",
+        width: 994,
+        height: 488,
+        layout: "wordmark",
       },
     },
     {
@@ -238,8 +243,10 @@ test("the public integrations surface remains exact and conservative", () => {
       name: "Google",
       description: "Bring Google marketing leads into Movena.",
       mark: {
-        kind: "text",
-        label: "Google",
+        kind: "image",
+        src: "/integration-logos/google-g-logo.png",
+        width: 2820,
+        height: 2820,
       },
     },
     {
@@ -257,8 +264,11 @@ test("the public integrations surface remains exact and conservative", () => {
       name: "Apple Health",
       description: "Member-controlled workout and health data from iPhone.",
       mark: {
-        kind: "text",
-        label: "Apple Health",
+        kind: "image",
+        src: "/integration-logos/apple-health-badge.svg",
+        width: 122.747,
+        height: 34.016,
+        layout: "wordmark",
       },
     },
     {
@@ -272,19 +282,36 @@ test("the public integrations surface remains exact and conservative", () => {
       },
     },
     {
-      name: "Payments built in",
-      description: "Payments and billing, built into Movena.",
+      name: "Stripe",
+      description: "Payments and billing through Stripe, built into Movena.",
       mark: {
-        kind: "text",
-        label: "Movena",
+        kind: "image",
+        src: "/integration-logos/stripe-logo.svg",
+        width: 360,
+        height: 150,
+        layout: "wordmark",
       },
     },
     {
       name: "ChatGPT",
       description: "Beyond dashboards. Into conversation.",
       mark: {
-        kind: "text",
-        label: "ChatGPT",
+        kind: "image",
+        src: "/integration-logos/openai-blossom.svg",
+        width: 716,
+        height: 716,
+        layout: "blossom",
+      },
+    },
+    {
+      name: "Claude by Anthropic",
+      status: "In review",
+      description: "The Claude integration is in review and is not yet available.",
+      mark: {
+        kind: "image",
+        src: "/integration-logos/anthropic-symbol.svg",
+        width: 92.2,
+        height: 65,
       },
     },
     {
@@ -319,12 +346,12 @@ test("the public integrations surface remains exact and conservative", () => {
     ),
     /booking health|fill rate|waitlist|MCP|owner|coach|member name|member ID/i,
   );
-  assert.doesNotMatch(
-    JSON.stringify(
-      publicIntegrations.filter(({ name }) => /QuickBooks|MYOB/.test(name)),
-    ),
-    /kind":"image"|logo/i,
-  );
+  assert.ok(publicIntegrations.every(({ mark }) => mark.kind === "image"));
+  const claude = publicIntegrations.find(({ name }) => name === "Claude by Anthropic");
+  assert.ok(claude && claude.name === "Claude by Anthropic");
+  assert.equal(claude.status, "In review");
+  assert.ok(!("href" in claude));
+  assert.match(claude.description, /not yet available/);
 
   const paidAddOns = optionalAddOns.map((addOn) => addOn.name);
   assert.doesNotMatch(paidAddOns.join(" "), /Apple Health|Health Connect/);

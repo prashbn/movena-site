@@ -424,8 +424,11 @@ async function runContract() {
     "Member-controlled workout and health data from iPhone.",
     "Health Connect",
     "Member-controlled health and fitness data from Android.",
-    "Payments built in",
-    "Payments and billing, built into Movena.",
+    "Stripe",
+    "Payments and billing through Stripe, built into Movena.",
+    "Claude by Anthropic",
+    "In review",
+    "The Claude integration is in review and is not yet available.",
     "Brevo — Available shortly",
     "https://www.facebook.com/profile.php?id=61594035146486",
     "https://www.instagram.com/movena_au/",
@@ -437,6 +440,22 @@ async function runContract() {
     integrationsHtml,
     /Siri|Gemini|Apple Intelligence|App Intents|HealthKit|GymMaster|Mindbody|Hapana/i,
   );
+
+  for (const logo of [
+    "quickbooks-logo.png",
+    "myob-logo.png",
+    "google-g-logo.png",
+    "apple-health-badge.svg",
+    "stripe-logo.svg",
+    "openai-blossom.svg",
+    "anthropic-symbol.svg",
+  ]) {
+    assert.ok(integrationsHtml.includes(`/integration-logos/${logo}`), logo);
+    const response = await fetch(`${origin}/integration-logos/${logo}`);
+    assert.equal(response.status, 200, logo);
+    assert.match(response.headers.get("content-type") ?? "", /image\//, logo);
+    assert.ok((await response.arrayBuffer()).byteLength > 0, logo);
+  }
 
   const faqHtml = await (await fetch(`${origin}/faq/`)).text();
   for (const marker of [

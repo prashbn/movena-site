@@ -86,24 +86,32 @@ export default function IntegrationsPage() {
           <div className="integrations-grid">
             {publicIntegrations.map((integration, index) => (
               <article className="integration-card" key={integration.name}>
-                <div className="integration-card__brand" aria-hidden="true">
-                  {integration.mark.kind === "image" ? (
-                    <Image
-                      alt=""
-                      height={integration.mark.height}
-                      src={integration.mark.src}
-                      unoptimized
-                      width={integration.mark.width}
-                    />
-                  ) : (
-                    <span>{integration.mark.label}</span>
-                  )}
+                <div
+                  className={`integration-card__brand${
+                    "layout" in integration.mark
+                      ? ` integration-card__brand--${integration.mark.layout}`
+                      : ""
+                  }`}
+                  aria-hidden="true"
+                >
+                  <Image
+                    alt=""
+                    height={integration.mark.height}
+                    src={integration.mark.src}
+                    unoptimized
+                    width={integration.mark.width}
+                  />
                 </div>
                 <span className="integration-card__number" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
                   <h3>{integration.name}</h3>
+                  {"status" in integration ? (
+                    <span className="integration-card__status">
+                      {integration.status}
+                    </span>
+                  ) : null}
                   {"description" in integration ? (
                     <p>{integration.description}</p>
                   ) : null}
@@ -118,11 +126,13 @@ export default function IntegrationsPage() {
           </div>
           <p className="integrations-trademarks">
             Third-party product names and marks belong to their respective
-            owners. Their display identifies compatibility and does not imply
+            owners. Their display identifies compatibility or the stated
+            review/availability status and does not imply
             endorsement. Intuit and QuickBooks are trademarks of Intuit Inc.,
             registered in the US and other countries. Movena is not endorsed
             or sponsored by Intuit. MYOB is a registered trademark of MYOB
-            Technology Pty Ltd.
+            Technology Pty Ltd. Apple and iPhone are trademarks of Apple Inc.,
+            registered in the U.S. and other countries.
           </p>
         </div>
       </section>

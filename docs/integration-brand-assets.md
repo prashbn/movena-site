@@ -1,8 +1,9 @@
 # Integration brand assets
 
-The integrations page uses unmodified logo files retrieved from each product's
-official website. The logos identify compatibility; they do not imply
-endorsement.
+The integrations page uses official artwork from product websites or the
+Movena team's supplied Partner Asset folder. Brand colours, proportions and
+vector path geometry are preserved. The marks identify compatibility or the
+explicitly stated review/availability status; they do not imply endorsement.
 
 | Asset | Official source | SHA-256 |
 | --- | --- | --- |
@@ -12,7 +13,39 @@ endorsement.
 | `brevo-logo.svg` | `https://corp-backend.brevo.com/wp-content/uploads/2025/07/Brevo_logo.svg` | `b6a8f454586580a1d79f86cb10b694f316c6bcc0af6e8b88d813d23d85f81f67` |
 | `facebook-logo.png` | Meta Facebook Brand Asset Pack, `Logo/Primary Logo/Facebook_Logo_Primary.png` (provided locally) | `2adfd474d91fd20c51084309ed000c1ae6cc7f5f70af14d375930f5a71301308` |
 
-Apple Health remains a text-only mark until the Movena team downloads the
-official Works with Apple Health artwork after accepting Apple's Developer
-Artwork License Agreement. Do not substitute an Apple Fitness logo or a
-third-party recreation of the Apple Health icon.
+## Additional artwork (10 October 2026)
+
+New files are under `public/integration-logos/`; existing approved assets above
+are retained. Supplied files come from iCloud Drive:
+`Final Images for CRM/Partner Asset/`.
+
+| Asset | Source | SHA-256 |
+| --- | --- | --- |
+| `quickbooks-logo.png` | Official QuickBooks website: `https://quickbooks.intuit.com/cas/dam/IMAGE/A7mjJ5rpg/apple-touch-icon-196x196.png` | `fbb9a774485736d868563505d849ce6fb080cf6019bc0161402f3df7f4616095` |
+| `myob-logo.png` | Current official MYOB homepage artwork: `https://images.ctfassets.net/aguk64kkrmhj/6aLJU5QIuBxOq9vpV8nTBJ/4e546919254e41d9f0e938ed4556c11c/MYOB_Logo_Purple_RGB__1_.png` | `789224f0306d9e5b0a1748397eceef5055f374f21649b454bd273bebe024ad85` |
+| `google-g-logo.png` | Supplied `Google/GoogleG_FullColor_RGB.png` | `4d5cfbd85af19c003770a74f8de210156ca42c54ac0a4cb0d95572c286c882a6` |
+| `apple-health-badge.svg` | Supplied `Works with Apple Health/SVG_onscreen/ENGLISH/Apple_Health_badge_US-UK_blk_sRGB.svg` | `31782111fb788796a204688ac9eaba0a0b5d33c9711c14f4f9f60fd03b81bb13` |
+| `stripe-logo.svg` | Supplied `asset-wordmark/Stripe wordmark - Blurple.svg` | `4448c4b4f954285d2b2aeb6d92391c85fdc290e008c2679d2c006d6d72ae1ae9` |
+| `openai-blossom.svg` | Supplied `OpenAI-logos/SVGs/OAI_OpenAI-Blossom_Black.svg`; Blossom selected by the Movena team | `75c1e9fffa5e8c437bec1d67197a73992bca45d166c6ff23215185dea8fae92a` |
+| `anthropic-symbol.svg` | Supplied `Anthropic/Anthropic_Symbol_6.svg`; black symbol | `ec4b07d5814fe6171bb21cc074f5f56bcd358f38cacd31773e1d37777df09907` |
+
+The supplied Health Connect PNG is byte-identical to the existing official
+asset, so it is not duplicated. Google G replaces the plain-text Google tile.
+The payment card uses the supplied Stripe wordmark and is titled Stripe, as
+requested by the Movena team. Claude by Anthropic is explicitly **In review**,
+not yet available, and has no connection CTA.
+
+The ChatGPT card uses OpenAI's black Blossom, with its built-in clear space
+preserved. Claude uses the supplied black Anthropic symbol. Neither is a
+co-branded partnership lockup or a claim of endorsement.
+
+Apple's badge is used unchanged, associated with the published Movena iPhone
+app integration, on a light plate in both themes. It exceeds Apple's 30px
+onscreen minimum height with clear space exceeding one quarter of its height.
+Apple's credit line is included below the grid. Do not substitute an Apple
+Fitness logo or recreate the Apple Health icon.
+
+Reference guidelines:
+- [Apple Health badge](https://developer.apple.com/licensing-trademarks/works-with-apple-health/)
+- [Health Connect assets](https://developer.android.com/health-and-fitness/health-connect/ui/guidelines)
+- [OpenAI marks](https://openai.com/brand/)
