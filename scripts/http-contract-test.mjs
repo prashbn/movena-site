@@ -89,6 +89,27 @@ function canonicalFromHtml(html) {
 async function runContract() {
   await waitForServer();
 
+  const conceptResponse = await fetch(`${origin}/concept/`);
+  assert.equal(conceptResponse.status, 200);
+  const conceptHtml = await conceptResponse.text();
+  const conceptMain = conceptHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  assert.ok(conceptMain);
+  assert.match(conceptHtml, /name="robots" content="noindex, nofollow"/);
+  for (const marker of ["Homepage concept", "Run the gym", "Remember the training", "In their pocket", "Hangout", "demonstration data"]) {
+    assert.ok(conceptMain.toLowerCase().includes(marker.toLowerCase()), marker);
+  }
+  assert.equal(conceptMain.match(/<h1\b/g)?.length, 1);
+  const conceptIds = new Set([...conceptMain.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
+  for (const [, href] of conceptMain.matchAll(/href="(#[^"]+)"/g)) {
+    assert.ok(conceptIds.has(href.slice(1)), href);
+  }
+  for (const [, path] of conceptMain.matchAll(/<img\b[^>]*\bsrc="(\/[^"?]+)"/g)) {
+    const image = await fetch(`${origin}${path}`);
+    assert.equal(image.status, 200, path);
+    assert.match(image.headers.get("content-type") ?? "", /^image\//, path);
+    await image.arrayBuffer();
+  }
+
   const homepageResponse = await fetch(`${origin}/`);
   const homepageHtml = await homepageResponse.text();
   assert.match(homepageHtml, /class="site-shell home-page"/);
@@ -540,6 +561,7 @@ async function runContract() {
     assert.match(sitemapXml, new RegExp(`https://movena\\.com\\.au${route}`));
   }
   assert.doesNotMatch(sitemapXml, /product-comparison/);
+  assert.doesNotMatch(sitemapXml, /\/concept\//);
 
   process.stdout.write(
     `HTTP contract passed: ${routes.length} routes, ${routes.length - 1} redirects, 404, ${allInternalLinks.size} internal links, robots and sitemap.\n`,
