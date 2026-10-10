@@ -9,8 +9,8 @@ export function HomeLoop() {
           <ol className="home-loop-journey">
             <li>
               <span className="home-loop-journey__step mono">01 / Record</span>
-              <h3>Coaches capture it.</h3>
-              <p>Mark attendance and log movements, sets, reps and loads. Members can log their assigned workouts too—their results appear in the coach’s session view.</p>
+              <h3>Coaches and members record it.</h3>
+              <p>Coaches record session results. Members can log their assigned workouts in the app, with those results appearing in the coach’s session view.</p>
               <div className="home-loop-example">
                 <span className="home-loop-example__label">A session record</span>
                 <strong>Back squat · 5RM</strong>
@@ -21,7 +21,7 @@ export function HomeLoop() {
             <li>
               <span className="home-loop-journey__connector" aria-hidden="true">→</span>
               <span className="home-loop-journey__step mono">02 / Keep</span>
-              <h3>Members keep it.</h3>
+              <h3>Members keep their history.</h3>
               <p>Movement history builds with logged results. Eligible logs update personal bests; marked attendance earns milestone badges automatically.</p>
               <div className="home-loop-example">
                 <span className="home-loop-example__label">Their training history</span>
@@ -33,7 +33,7 @@ export function HomeLoop() {
             <li>
               <span className="home-loop-journey__connector" aria-hidden="true">→</span>
               <span className="home-loop-journey__step mono">03 / Act</span>
-              <h3>The desk can act on it.</h3>
+              <h3>Your team follows up.</h3>
               <p>Attendance-drop segments and milestone reward queues give staff somewhere to start. Your team chooses who to contact or congratulate.</p>
               <div className="home-loop-example">
                 <span className="home-loop-example__label">Reasons to check in</span>

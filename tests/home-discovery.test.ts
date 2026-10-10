@@ -41,6 +41,10 @@ test("the Loop connects three equal steps without implying front-desk retention 
   assert.match(loop, /02 \/ Keep/);
   assert.match(loop, /03 \/ Act/);
   assert.match(loop, /Members can log their assigned workouts/);
+  assert.match(loop, /Coaches and members record it\./);
+  assert.match(loop, /assigned workouts in the app, with those results appearing in the coach’s session view/);
+  assert.match(loop, /Members keep their history\./);
+  assert.match(loop, /Your team follows up\./);
   assert.match(loop, /Eligible logs update personal bests/);
   assert.match(loop, /marked attendance earns milestone badges automatically/);
   assert.match(loop, /Attendance-drop segments and milestone reward queues/);

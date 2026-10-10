@@ -135,6 +135,9 @@ async function runContract() {
   const loop = homepageMain.match(/<section id="loop"[\s\S]*?<\/section>/)?.[0];
   assert.ok(loop);
   assert.equal(loop.match(/class="home-loop-journey__step mono"/g)?.length, 3);
+  for (const heading of ["Coaches and members record it.", "Members keep their history.", "Your team follows up."]) {
+    assert.ok(loop.includes(heading), heading);
+  }
   assert.match(loop, /Illustrative workflow with example results/);
   assert.match(loop, /Attendance-drop segments and milestone reward queues/);
   assert.doesNotMatch(loop, /Who hasn’t trained in a fortnight/);

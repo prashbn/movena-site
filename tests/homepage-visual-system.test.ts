@@ -82,9 +82,9 @@ test("the yoga overlay introduces Hangout and leaves the Loop story intact", () 
   assert.match(community, /class="home-photo-panel__copy"/);
   assert.equal(homepage.match(/src="\/home-yoga\/group-1600\.jpg"/g)?.length, 1);
   assert.match(loop, /id="home-loop-heading">One session\.<br \/>Everyone connected\./);
-  assert.match(loop, /Coaches capture it\./);
-  assert.match(loop, /The desk can act on it\./);
-  assert.match(loop, /Members keep it\./);
+  assert.match(loop, /Coaches and members record it\./);
+  assert.match(loop, /Your team follows up\./);
+  assert.match(loop, /Members keep their history\./);
   assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.home-community \.home-photo-panel__photo img\s*\{[^}]*height: auto/);
 });
 
