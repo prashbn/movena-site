@@ -443,7 +443,6 @@ async function runContract() {
 
   for (const logo of [
     "quickbooks-logo.png",
-    "myob-logo.png",
     "google-g-logo.png",
     "apple-health-badge.svg",
     "stripe-logo.svg",
@@ -456,6 +455,8 @@ async function runContract() {
     assert.match(response.headers.get("content-type") ?? "", /image\//, logo);
     assert.ok((await response.arrayBuffer()).byteLength > 0, logo);
   }
+  assert.doesNotMatch(integrationsHtml, /myob-logo\.png/);
+  assert.equal((await fetch(`${origin}/integration-logos/myob-logo.png`)).status, 404);
 
   const faqHtml = await (await fetch(`${origin}/faq/`)).text();
   for (const marker of [

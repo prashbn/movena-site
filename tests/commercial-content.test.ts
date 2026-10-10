@@ -222,11 +222,8 @@ test("the public integrations surface remains exact and conservative", () => {
       name: "MYOB",
       description: "MYOB-ready exports.",
       mark: {
-        kind: "image",
-        src: "/integration-logos/myob-logo.png",
-        width: 994,
-        height: 488,
-        layout: "wordmark",
+        kind: "text",
+        text: "MYOB",
       },
     },
     {
@@ -247,6 +244,7 @@ test("the public integrations surface remains exact and conservative", () => {
         src: "/integration-logos/google-g-logo.png",
         width: 2820,
         height: 2820,
+        layout: "google",
       },
     },
     {
@@ -346,7 +344,9 @@ test("the public integrations surface remains exact and conservative", () => {
     ),
     /booking health|fill rate|waitlist|MCP|owner|coach|member name|member ID/i,
   );
-  assert.ok(publicIntegrations.every(({ mark }) => mark.kind === "image"));
+  assert.ok(publicIntegrations.every(({ name, mark }) =>
+    name === "MYOB" ? mark.kind === "text" : mark.kind === "image",
+  ));
   const claude = publicIntegrations.find(({ name }) => name === "Claude by Anthropic");
   assert.ok(claude && claude.name === "Claude by Anthropic");
   assert.equal(claude.status, "In review");

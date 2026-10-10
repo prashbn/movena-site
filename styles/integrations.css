@@ -157,6 +157,30 @@
   width: clamp(9rem, 15vw, 11.5rem);
 }
 
+/* The supplied Google canvas is about three times the visible G's width.
+   Scale the unchanged artwork; only excess transparent canvas is clipped. */
+.integration-card__brand--google {
+  position: relative;
+  overflow: hidden;
+}
+
+.integration-card__brand--google img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(14.56rem, 21.46vw, 18.4rem);
+  max-width: none;
+  max-height: none;
+}
+
+.integration-card__brand > span {
+  color: var(--site-ink);
+  font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
 /* The official Blossom includes generous built-in clear space; retain it. */
 .integration-card__brand--blossom {
   position: relative;

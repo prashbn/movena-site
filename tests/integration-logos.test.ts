@@ -10,18 +10,22 @@ const approvedAssets = {
   "openai-blossom.svg": "75c1e9fffa5e8c437bec1d67197a73992bca45d166c6ff23215185dea8fae92a",
   "anthropic-symbol.svg": "ec4b07d5814fe6171bb21cc074f5f56bcd358f38cacd31773e1d37777df09907",
   "google-g-logo.png": "4d5cfbd85af19c003770a74f8de210156ca42c54ac0a4cb0d95572c286c882a6",
-  "myob-logo.png": "789224f0306d9e5b0a1748397eceef5055f374f21649b454bd273bebe024ad85",
   "quickbooks-logo.png": "fbb9a774485736d868563505d849ce6fb080cf6019bc0161402f3df7f4616095",
   "stripe-logo.svg": "4448c4b4f954285d2b2aeb6d92391c85fdc290e008c2679d2c006d6d72ae1ae9",
 };
 
-test("every integration has local logo artwork with positive dimensions", () => {
+test("integrations use local artwork except MYOB's plain-text export label", () => {
   assert.equal(publicIntegrations.length, 12);
-  for (const { mark } of publicIntegrations) {
-    assert.equal(mark.kind, "image");
+  for (const { name, mark } of publicIntegrations) {
+    if (mark.kind === "text") {
+      assert.equal(name, "MYOB");
+      assert.equal(mark.text, "MYOB");
+      continue;
+    }
     assert.ok(mark.width > 0 && mark.height > 0);
     assert.ok(existsSync(`public${mark.src}`), mark.src);
   }
+  assert.ok(!existsSync("public/integration-logos/myob-logo.png"));
 });
 
 test("approved integration artwork retains its recorded geometry and colours", () => {
@@ -45,6 +49,16 @@ test("logo sizing preserves aspect ratio and native contrast in both themes", ()
   const themes = readFileSync("styles/themes.css", "utf8");
   assert.match(css, /object-fit: contain/);
   assert.match(css, /integration-card__brand--wordmark img/);
+  assert.match(css, /integration-card__brand--google img/);
   assert.match(themes, /\.integration-card__brand \{ background: #fafbfd/);
   assert.doesNotMatch(css, /filter:\s*(?:invert|grayscale)/);
+});
+
+test("Google compensates for transparent margins without changing card geometry", () => {
+  const google = publicIntegrations.find(({ name }) => name === "Google");
+  assert.ok(google && google.name === "Google");
+  assert.equal(google.mark.layout, "google");
+  const css = readFileSync("styles/integrations.css", "utf8");
+  assert.match(css, /\.integration-card__brand--google \{\s*position: relative;\s*overflow: hidden;/);
+  assert.match(css, /\.integration-card__brand--google img \{\s*position: absolute;[\s\S]*?width: clamp\(14\.56rem, 21\.46vw, 18\.4rem\);\s*max-width: none;\s*max-height: none;/);
 });

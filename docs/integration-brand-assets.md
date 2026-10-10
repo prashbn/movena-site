@@ -22,7 +22,6 @@ are retained. Supplied files come from iCloud Drive:
 | Asset | Source | SHA-256 |
 | --- | --- | --- |
 | `quickbooks-logo.png` | Official QuickBooks website: `https://quickbooks.intuit.com/cas/dam/IMAGE/A7mjJ5rpg/apple-touch-icon-196x196.png` | `fbb9a774485736d868563505d849ce6fb080cf6019bc0161402f3df7f4616095` |
-| `myob-logo.png` | Current official MYOB homepage artwork: `https://images.ctfassets.net/aguk64kkrmhj/6aLJU5QIuBxOq9vpV8nTBJ/4e546919254e41d9f0e938ed4556c11c/MYOB_Logo_Purple_RGB__1_.png` | `789224f0306d9e5b0a1748397eceef5055f374f21649b454bd273bebe024ad85` |
 | `google-g-logo.png` | Supplied `Google/GoogleG_FullColor_RGB.png` | `4d5cfbd85af19c003770a74f8de210156ca42c54ac0a4cb0d95572c286c882a6` |
 | `apple-health-badge.svg` | Supplied `Works with Apple Health/SVG_onscreen/ENGLISH/Apple_Health_badge_US-UK_blk_sRGB.svg` | `31782111fb788796a204688ac9eaba0a0b5d33c9711c14f4f9f60fd03b81bb13` |
 | `stripe-logo.svg` | Supplied `asset-wordmark/Stripe wordmark - Blurple.svg` | `4448c4b4f954285d2b2aeb6d92391c85fdc290e008c2679d2c006d6d72ae1ae9` |
@@ -31,6 +30,9 @@ are retained. Supplied files come from iCloud Drive:
 
 The supplied Health Connect PNG is byte-identical to the existing official
 asset, so it is not duplicated. Google G replaces the plain-text Google tile.
+Its supplied 2820px canvas has a visible G approximately 920px wide. A dedicated
+centred sizing rule compensates for that transparent margin without editing
+the PNG, stretching the mark or changing the tile dimensions.
 The payment card uses the supplied Stripe wordmark and is titled Stripe, as
 requested by the Movena team. Claude by Anthropic is explicitly **In review**,
 not yet available, and has no connection CTA.
@@ -45,7 +47,17 @@ onscreen minimum height with clear space exceeding one quarter of its height.
 Apple's credit line is included below the grid. Do not substitute an Apple
 Fitness logo or recreate the Apple Health icon.
 
+## MYOB text-only treatment (11 October 2026)
+
+The MYOB logo has been removed from the page and public assets. Its public
+availability on MYOB's website did not establish permission to publish it.
+The tile now uses ordinary text, "MYOB", with the existing factual description
+"MYOB-ready exports." It does not claim a direct connection or partnership.
+Obtain the required written branding approval before restoring MYOB artwork.
+
 Reference guidelines:
+
+- [MYOB developer branding terms, sections 55–56](https://developer.myob.com/program/terms-conditions/business-api-tandcs/)
 - [Apple Health badge](https://developer.apple.com/licensing-trademarks/works-with-apple-health/)
 - [Health Connect assets](https://developer.android.com/health-and-fitness/health-connect/ui/guidelines)
 - [OpenAI marks](https://openai.com/brand/)

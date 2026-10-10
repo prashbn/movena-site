@@ -23,11 +23,8 @@ export const publicIntegrations = [
     name: "MYOB",
     description: "MYOB-ready exports.",
     mark: {
-      kind: "image",
-      src: "/integration-logos/myob-logo.png",
-      width: 994,
-      height: 488,
-      layout: "wordmark",
+      kind: "text",
+      text: "MYOB",
     },
   },
   {
@@ -48,6 +45,7 @@ export const publicIntegrations = [
       src: "/integration-logos/google-g-logo.png",
       width: 2820,
       height: 2820,
+      layout: "google",
     },
   },
   {

@@ -94,13 +94,17 @@ export default function IntegrationsPage() {
                   }`}
                   aria-hidden="true"
                 >
-                  <Image
-                    alt=""
-                    height={integration.mark.height}
-                    src={integration.mark.src}
-                    unoptimized
-                    width={integration.mark.width}
-                  />
+                  {integration.mark.kind === "image" ? (
+                    <Image
+                      alt=""
+                      height={integration.mark.height}
+                      src={integration.mark.src}
+                      unoptimized
+                      width={integration.mark.width}
+                    />
+                  ) : (
+                    <span>{integration.mark.text}</span>
+                  )}
                 </div>
                 <span className="integration-card__number" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
