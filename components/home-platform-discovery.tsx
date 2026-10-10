@@ -1,29 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { HomeDiscoveryIcon, type DiscoveryIconName } from "./home-discovery-icon";
 import { HomeProductWindow } from "./home-product-window";
-
-const areas: { id: string; label: string; title: string; icon: DiscoveryIconName; features: [string, string][] }[] = [
-  { id: "day", label: "The day", title: "Keep the day moving.", icon: "day", features: [
-    ["Timetable & bookings", "Templates, capacity and waitlists."],
-    ["Kiosk check-in", "Members check themselves in."],
-    ["Digital waivers", "Signed, versioned, stored."],
-  ] },
-  { id: "money", label: "The money", title: "Keep the money in view.", icon: "money", features: [
-    ["Memberships & billing", "Card, BECS direct debit and PayTo. Or track payments made in person."],
-    ["Accounting", "Direct Xero and QuickBooks sync. MYOB-ready exports."],
-    ["Retail", "Merchandise for collection at your gym."],
-  ] },
-  { id: "member", label: "The member", title: "Stay close to your members.", icon: "member", features: [
-    ["Leads & enquiries", "A form for your site. A pipeline for your desk."],
-    ["Messaging", "Threads and broadcasts. Moderated."],
-  ] },
-  { id: "team", label: "The team", title: "Work as one team.", icon: "team", features: [
-    ["Programming", "A builder and catalogue, straight to the app."],
-    ["Team & locations", "Set access by role and location."],
-  ] },
-];
+import { homeWorkflows as areas } from "@/lib/home-workflows";
 
 export function HomePlatformDiscovery() {
   const [active, setActive] = useState(0);
@@ -64,12 +43,24 @@ export function HomePlatformDiscovery() {
         <div className="home-discovery-panels">
           {areas.map((area, index) => (
             <div key={area.id} className="home-discovery-panel" id={`home-area-${area.id}`} role="tabpanel"
-              aria-labelledby={`home-tab-${area.id}`} hidden={index !== active} tabIndex={0}>
-              <div className="home-discovery-panel__heading">
-                <span className="home-discovery-icon"><HomeDiscoveryIcon name={area.icon} /></span>
+              aria-labelledby={`home-tab-${area.id}`} hidden={index !== active} inert={index !== active ? true : undefined} tabIndex={0}>
+              <div className="home-discovery-panel__copy">
+                <span className="home-workflow-kicker">{area.label} / In practice</span>
                 <h3>{area.title}</h3>
+                <p className="home-discovery-panel__description">{area.description}</p>
+                <ul>{area.features.map(([title, description]) => <li key={title}><h4>{title}</h4><p>{description}</p></li>)}</ul>
               </div>
-              <ul>{area.features.map(([title, description]) => <li key={title}><h4>{title}</h4><p>{description}</p></li>)}</ul>
+              <div className="home-workflow">
+                <span className="home-workflow-kicker">Illustrative workflow · Not a product screen</span>
+                <h4>{area.example}</h4>
+                <ol>{area.steps.map((step, stepIndex) => (
+                  <li key={step.title}>
+                    <span className="home-workflow__number" aria-hidden="true">{stepIndex + 1}</span>
+                    <div><span className="home-workflow__mode">{step.mode}</span><strong>{step.title}</strong><p>{step.detail}</p></div>
+                  </li>
+                ))}</ol>
+                <p className="home-workflow__note">{area.note}</p>
+              </div>
             </div>
           ))}
         </div>

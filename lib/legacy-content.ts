@@ -27,6 +27,10 @@ function rewritePublicMarketingCopy(
   if (source === "index.html") {
     return markup
       .replace('href="/contact/">Book a walkthrough</a>', 'href="/contact/">Book a demo</a>')
+      .replace(/Fourteen days without\s+attendance puts a member on your list\./,
+        "Owners can refresh the inactivity list to flag members with no attendance in 14 days.")
+      .replace("See every member with no attendance in 14 days. Your team decides what happens next.",
+        "An owner refreshes the list. Owners, managers and coaches can log a follow-up, snooze or resolve a flag.")
       .replace(
         /Memberships, timetable, billing and check-in\. Plus a training history\s+members keep\./,
         "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.",

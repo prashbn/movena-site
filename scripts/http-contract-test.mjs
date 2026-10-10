@@ -103,8 +103,8 @@ async function runContract() {
   assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a demo<\/a>/);
   for (const marker of [
     "Unlimited members and team",
-    "Card, BECS direct debit and PayTo",
-    "Direct Xero and QuickBooks sync. MYOB-ready exports.",
+    "Card · BECS direct debit · PayTo",
+    "Owner-only Xero connection, plus Xero CSV and MYOB exports.",
     "An app worth opening.",
     "Everything a gym runs on.",
     "Memberships and bookings, carried through to the door.",
@@ -132,6 +132,24 @@ async function runContract() {
   // Count visible markup, not Next's serialized copy of it in hydration data.
   const homepageMain = homepageHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
   assert.ok(homepageMain);
+  const loop = homepageMain.match(/<section id="loop"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(loop);
+  assert.equal(loop.match(/class="home-loop-journey__step mono"/g)?.length, 3);
+  assert.match(loop, /Illustrative workflow with example results/);
+  assert.match(loop, /Attendance-drop segments and milestone reward queues/);
+  assert.doesNotMatch(loop, /Who hasn’t trained in a fortnight/);
+  const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(discovery);
+  assert.equal(discovery.match(/role="tab"/g)?.length, 4);
+  assert.equal(discovery.match(/role="tabpanel"/g)?.length, 4);
+  assert.equal(discovery.match(/aria-selected="true"/g)?.length, 1);
+  assert.equal(discovery.match(/hidden="" inert=""/g)?.length, 3);
+  assert.equal(discovery.match(/Illustrative workflow · Not a product screen/g)?.length, 4);
+  for (const marker of ["auto-promote enabled", "Stripe retries", "40% fewer visits", "Recompute", "Removing a role takes effect immediately"]) {
+    assert.ok(discovery.includes(marker), marker);
+  }
+  assert.doesNotMatch(discovery, /QuickBooks|Claude|AI-powered|automatic first reply/i);
+  assert.ok(homepageMain.includes("Owners can refresh the inactivity list"));
   for (const marker of ["Less switching.", "More coaching.", "The session doesn’t end at the gym door.", "Actual product screen · Demonstration data"]) {
     assert.ok(homepageMain.includes(marker), marker);
   }
