@@ -1,7 +1,7 @@
 export const publicIntegrations = [
   {
     name: "Xero",
-    description: "Connect Xero directly as an owner, or use a Xero-format export.",
+    description: "Connect directly to Xero, with exports also available.",
     mark: {
       kind: "image",
       src: "/assets/integrations/xero-logo.svg",
@@ -82,7 +82,7 @@ export const publicIntegrations = [
   },
   {
     name: "Stripe",
-    description: "Payments and billing through Stripe, built into Movena.",
+    description: "Take payments for memberships, bookings and gym purchases.",
     mark: {
       kind: "image",
       src: "/integration-logos/stripe-logo.svg",
@@ -93,7 +93,7 @@ export const publicIntegrations = [
   },
   {
     name: "ChatGPT",
-    description: "Explore booking patterns and available capacity through conversation, within your account’s permissions.",
+    description: "Explore your gym’s performance and your own approved training information.",
     mark: {
       kind: "image",
       src: "/integration-logos/openai-blossom.svg",
@@ -105,7 +105,7 @@ export const publicIntegrations = [
   {
     name: "Claude by Anthropic",
     status: "Directory listing in review",
-    description: "The Claude connector is enabled in production. Its Anthropic directory listing is in review.",
+    description: "Connect Claude with approved Movena information. Connector enabled in production; directory listing in review.",
     mark: {
       kind: "image",
       src: "/integration-logos/anthropic-symbol.svg",

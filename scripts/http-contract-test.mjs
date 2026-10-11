@@ -104,7 +104,7 @@ async function runContract() {
   for (const marker of [
     "Unlimited members and team",
     "Card · BECS direct debit · PayTo",
-    "Owner-only Xero connection, plus Xero, QuickBooks CSV and MYOB OFX exports.",
+    "Connect Xero directly, or export financial data for Xero, QuickBooks and MYOB.",
     "An app worth opening.",
     "Everything a gym runs on.",
     "Memberships and bookings, carried through to the door.",
@@ -135,11 +135,11 @@ async function runContract() {
   const loop = homepageMain.match(/<section id="loop"[\s\S]*?<\/section>/)?.[0];
   assert.ok(loop);
   assert.equal(loop.match(/class="home-loop-journey__step mono"/g)?.length, 3);
-  for (const heading of ["Coaches and members record it.", "Members keep their history.", "Your team follows up."]) {
+  for (const heading of ["Coaches and members record it.", "Members see their progress.", "Your team has context."]) {
     assert.ok(loop.includes(heading), heading);
   }
   assert.match(loop, /Illustrative workflow with example results/);
-  assert.match(loop, /Attendance-drop segments and milestone reward queues/);
+  assert.match(loop, /Attendance changes and milestone rewards/);
   assert.doesNotMatch(loop, /Who hasn’t trained in a fortnight/);
   const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];
   assert.ok(discovery);
@@ -148,11 +148,17 @@ async function runContract() {
   assert.equal(discovery.match(/aria-selected="true"/g)?.length, 1);
   assert.equal(discovery.match(/hidden="" inert=""/g)?.length, 3);
   assert.equal(discovery.match(/Illustrative workflow · Not a product screen/g)?.length, 4);
-  for (const marker of ["auto-promote enabled", "Stripe retries", "at least four classes", "Recompute", "only owners and coaches resolve", "Removing a role takes effect immediately"]) {
+  for (const marker of ["auto-promote enabled", "Stripe retries", "Make the next conversation count", "Your team stays in control", "Removing a role takes effect immediately"]) {
     assert.ok(discovery.includes(marker), marker);
   }
   assert.doesNotMatch(discovery, /40%|Claude|AI-powered|automatic first reply|check in from their account/i);
-  assert.ok(homepageMain.includes("Owners can refresh inactivity flags based on attendance records"));
+  assert.ok(homepageMain.includes("Give members reasons to keep coming back"));
+  assert.doesNotMatch(homepageMain, /Recompute|Absent mark|four classes|only owners and coaches resolve/);
+  const ai = homepageMain.match(/<section id="ai-connections"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(ai);
+  for (const marker of ["ChatGPT", "Claude", "/integration-logos/openai-blossom.svg", "/integration-logos/anthropic-symbol.svg", "Directory listing in review", "read-only answers", "permissions and member consent"]) {
+    assert.ok(ai.includes(marker), marker);
+  }
   for (const marker of ["Less switching.", "More coaching.", "The session doesn’t end at the gym door.", "Actual product screen · Demonstration data"]) {
     assert.ok(homepageMain.includes(marker), marker);
   }
@@ -345,7 +351,7 @@ async function runContract() {
     "Offer card, BECS direct debit or PayTo",
     "Accounting exports",
     "Member status",
-    "Sell physical merchandise without separating the shop",
+    "Let members browse and pay in the Movena app, then collect their purchase at the gym",
     "Know what changed. Know what to do next.",
     "/product-screenshots/movena-financials.png",
     "/product-screenshots/movena-program-builder.png",
@@ -407,10 +413,10 @@ async function runContract() {
   const integrationsHtml = await (await fetch(`${origin}/integrations/`)).text();
   for (const marker of [
     "From the first enquiry to the gym floor.",
-    "Find what needs attention.",
-    "Read-only, permission-based answers—not autonomous changes.",
+    "A conversation away.",
+    "AI connections provide read-only answers.",
     "Xero",
-    "Connect Xero directly as an owner, or use a Xero-format export.",
+    "Connect directly to Xero, with exports also available.",
     "QuickBooks®",
     "Export CSV statements for QuickBooks. No direct connection.",
     "MYOB",
@@ -428,10 +434,10 @@ async function runContract() {
     "Health Connect",
     "Member-controlled health and fitness data from Android.",
     "Stripe",
-    "Payments and billing through Stripe, built into Movena.",
+    "Take payments for memberships, bookings and gym purchases.",
     "Claude by Anthropic",
     "Directory listing in review",
-    "The Claude connector is enabled in production. Its Anthropic directory listing is in review.",
+    "Connect Claude with approved Movena information. Connector enabled in production; directory listing in review.",
     "https://www.facebook.com/profile.php?id=61594035146486",
     "https://www.instagram.com/movena_au/",
     "https://www.linkedin.com/company/movena-au/",

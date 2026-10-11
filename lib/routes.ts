@@ -26,9 +26,9 @@ export const legacyRoutes = [
     source: "members/index.html",
     title: "For members — Movena",
     description:
-      "One Movena account goes with you. Book sessions, follow your gym’s programs and keep your personal bests—with sharing controlled by you, per gym.",
+      "One account across participating Movena gyms. Book sessions, follow your gym’s programs and keep your personal progress connected—with sharing controlled by you.",
     socialDescription:
-      "One identity. Your training story. Your personal bests stay yours; a new gym sees a summary only if you choose to share.",
+      "One member. One Movena identity. Keep your personal progress connected, with personal-best sharing controlled by you.",
     kind: "marketing",
   },
   {
@@ -42,7 +42,7 @@ export const legacyRoutes = [
   {
     path: "/help/ai-assistants/",
     source: "help/ai-assistants/index.html",
-    title: "Connect Movena to ChatGPT — Movena Help",
+    title: "Connect Movena to ChatGPT and Claude — Movena Help",
     description:
       "Movena AI connections: ChatGPT setup, permissions, optional member sharing and disconnecting. The Claude connector is enabled; its Anthropic directory listing is in review.",
     kind: "document",

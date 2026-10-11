@@ -83,8 +83,8 @@ test("the yoga overlay introduces Hangout and leaves the Loop story intact", () 
   assert.equal(homepage.match(/src="\/home-yoga\/group-1600\.jpg"/g)?.length, 1);
   assert.match(loop, /id="home-loop-heading">One session\.<br \/>Everyone connected\./);
   assert.match(loop, /Coaches and members record it\./);
-  assert.match(loop, /Your team follows up\./);
-  assert.match(loop, /Members keep their history\./);
+  assert.match(loop, /Your team has context\./);
+  assert.match(loop, /Members see their progress\./);
   assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.home-community \.home-photo-panel__photo img\s*\{[^}]*height: auto/);
 });
 
@@ -213,7 +213,7 @@ test("the homepage showcases the native member app with real product screens", (
   assert.doesNotMatch(homepage, /home-app\/(?:milestones|session-detail|movement-progress)\.jpg/);
   assert.match(homepage, /Home screen in light mode/);
   assert.match(homepage, /Progress screen in dark mode/);
-  assert.match(homepage, /Book the next session\. Follow the workout\./);
+  assert.match(homepage, /Book the next session, follow the workout/);
 
   assert.equal(homepage.match(/An app worth opening\./g)?.length, 1);
   assert.match(homepage, /Available for iPhone and Android\./);

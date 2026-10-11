@@ -7,13 +7,13 @@ import { rewriteWebsiteCapabilityCopy } from "../lib/website-capability-copy.ts"
 
 test("member identity is prominent without promising universal gym access", () => {
   const members = readLegacyMainMarkup("members/index.html");
-  assert.match(members, /<h1>One identity\.<br>Your training story\.<\/h1>/);
-  assert.match(members, /One Movena account goes with you/);
+  assert.match(members, /<h1>One member\.<br>One Movena identity\.<\/h1>/);
+  assert.match(members, /One account across participating Movena gyms/);
   assert.match(members, /Raw workout logs aren’t shared across gyms/);
   assert.match(members, /You join through their invite/);
   assert.match(members, /If your gym enables automatic promotion/);
   assert.doesNotMatch(members, /Different gyms\. Still you|access to every gym/i);
-  assert.match(readLegacyMainMarkup("index.html"), /One identity\. Their training story\./);
+  assert.match(readLegacyMainMarkup("index.html"), /One Movena identity\./);
 });
 
 test("platform copy separates connections, exports and gym-enabled automation", () => {
@@ -22,7 +22,8 @@ test("platform copy separates connections, exports and gym-enabled automation", 
   assert.match(platform, /Book a demo/);
   assert.match(platform, /automatic promotion when your gym enables it/);
   assert.match(platform, /classes attended, minutes attended or daily streaks/);
-  assert.match(platform, /an owner refreshes flags/);
+  assert.match(platform, /attendance-based goals/);
+  assert.doesNotMatch(platform, /an owner refreshes flags|Recompute/);
   assert.match(platform, /owners connect Xero directly/);
   assert.match(platform, /QuickBooks and MYOB use exports, not direct connections/);
 });
@@ -47,10 +48,12 @@ test("integration outcomes describe a connected journey without promising autono
   for (const title of ["New lead", "Membership", "Booking", "Gym access"]) {
     assert.ok(page.includes(`title: "${title}"`));
   }
-  assert.match(page, /Read-only, permission-based answers—not autonomous changes/);
-  assert.match(page, /separate, optional choices for eligible adult members/);
+  const ai = readFileSync("components/ai-connections.tsx", "utf8");
+  assert.match(page, /<AiConnections \/>/);
+  assert.match(ai, /role, permissions and member consent/);
+  assert.match(ai, /read-only answers/);
   assert.doesNotMatch(page, /AI responds to leads|AI assigns|AI checks completion|AI escalates|api\/mcp/i);
-  assert.match(page, /href="\/help\/ai-assistants\/#chatgpt"/);
+  assert.match(ai, /href="\/help\/ai-assistants\/#chatgpt"/);
 });
 
 test("capability refresh never rewrites legal policies or unrelated source pages", () => {

@@ -9,11 +9,11 @@ const platform = readFileSync("components/home-platform-discovery.tsx", "utf8");
 const loop = readFileSync("components/home-loop.tsx", "utf8");
 const css = readFileSync("styles/home-discovery.css", "utf8");
 
-test("each discovery category has a concrete three-step workflow and two benefits", () => {
+test("each discovery category has a concrete three-step workflow and concise benefits", () => {
   assert.deepEqual(homeWorkflows.map(area => area.id), ["day", "money", "member", "team"]);
   for (const area of homeWorkflows) {
     assert.equal(area.steps.length, 3);
-    assert.equal(area.features.length, 2);
+    assert.equal(area.features.length, area.id === "member" ? 3 : 2);
     assert.ok(area.description && area.example && area.note);
     for (const step of area.steps) assert.ok(step.title && step.detail && step.mode);
   }
@@ -26,16 +26,13 @@ test("workflow copy keeps automatic behaviour, permissions and prerequisites exp
   assert.match(day.note, /auto-promote enabled/);
   assert.match(money.steps[1].title, /Stripe retries/);
   assert.match(money.steps[2].detail, /gym’s settings/);
-  assert.match(money.features[1][1], /Owner-only Xero/);
+  assert.match(money.features[1][1], /Connect Xero directly.*export.*QuickBooks and MYOB/);
   assert.equal(member.steps[1].mode, "Your team");
   assert.equal(member.steps[2].mode, "Your team");
-  assert.match(member.features[0][1], /active members.*four classes.*six weeks.*none.*14 days/);
+  assert.match(member.features[0][1], /regular members who have stopped coming/);
   assert.doesNotMatch(JSON.stringify(homeWorkflows), /40%|check in from their account/);
-  assert.match(member.note, /Absent mark prevents a new flag/);
-  assert.match(member.note, /only owners and coaches resolve/);
-  assert.match(member.note, /Logging an email or SMS does not send it/);
-  assert.match(member.note, /owner must press Recompute/);
-  assert.match(member.note, /Front desk staff use Members segments instead/);
+  assert.match(member.note, /Your team chooses when and how/);
+  assert.doesNotMatch(JSON.stringify(member), /Recompute|Absent|six weeks|14 days|only owners/);
   assert.equal(team.steps[0].mode, "Owner");
   assert.match(team.note, /Removing a role takes effect immediately/);
 });
@@ -44,14 +41,12 @@ test("the Loop connects three equal steps without implying front-desk retention 
   assert.match(loop, /01 \/ Record/);
   assert.match(loop, /02 \/ Keep/);
   assert.match(loop, /03 \/ Act/);
-  assert.match(loop, /Members can log their assigned workouts/);
+  assert.match(loop, /whether recorded by the coach or the member/);
   assert.match(loop, /Coaches and members record it\./);
-  assert.match(loop, /assigned workouts in the app, with those results appearing in the coach’s session view/);
-  assert.match(loop, /Members keep their history\./);
-  assert.match(loop, /Your team follows up\./);
-  assert.match(loop, /Eligible logs update personal bests/);
-  assert.match(loop, /marked attendance earns milestone badges automatically/);
-  assert.match(loop, /Attendance-drop segments and milestone reward queues/);
+  assert.match(loop, /Members see their progress\./);
+  assert.match(loop, /Your team has context\./);
+  assert.match(loop, /logged results build a training history/);
+  assert.match(loop, /Attendance changes and milestone rewards/);
   assert.match(loop, /Illustrative workflow with example results/);
   assert.doesNotMatch(loop, /fortnight|Retention page|home-discovery-loop__member/);
   assert.match(css, /\.home-page \.home-loop-journey\s*\{[^}]*repeat\(3, minmax\(0, 1fr\)\)/);
@@ -71,10 +66,11 @@ test("tab discovery preserves keyboard navigation and stable accessible hidden p
   assert.match(css, /focus-visible/);
 });
 
-test("homepage inactivity copy is manual while existing Kisi promotion remains", () => {
+test("homepage retention leads with benefits while preserving team choice and Kisi proof", () => {
   const homepage = readLegacyMainMarkup("index.html");
-  assert.match(homepage, /Owners can refresh inactivity flags based on attendance records/);
-  assert.match(homepage, /An owner refreshes the flags/);
+  assert.match(homepage, /Give members reasons to keep coming back/);
+  assert.match(homepage, /Your team chooses the conversation/);
+  assert.doesNotMatch(homepage, /Recompute|An owner refreshes|no attendance in 14 days/);
   assert.doesNotMatch(homepage, /attendance puts a member on your list/);
   assert.match(homepage, /Movena is listed in Kisi’s integration marketplace/);
 });

@@ -22,7 +22,7 @@ export const homeWorkflows = [
     description: "See who is past due and what needs attention, without losing the member in a separate payment system.",
     features: [
       ["Recover the payment", "Find overdue members in Payment past due and Billing recovery. Staff can collect or waive the amount, or restore access."],
-      ["Keep accounting connected", "Owner-only Xero connection, plus Xero, QuickBooks CSV and MYOB OFX exports."],
+      ["Keep accounting connected", "Connect Xero directly, or export financial data for Xero, QuickBooks and MYOB."],
     ],
     example: "When a card payment fails",
     steps: [
@@ -33,19 +33,20 @@ export const homeWorkflows = [
     note: "Your team can also intervene. A retry does not guarantee recovery.",
   },
   {
-    id: "member", label: "The member", title: "Notice the change. Start a conversation.",
-    description: "Spot a change in attendance and give your team the context to reach out—not another generic reminder.",
+    id: "member", label: "The member", title: "Notice the change. Make the next conversation count.",
+    description: "See which regular members have stopped attending, recognise milestones worth celebrating, and give your team the context to follow up personally.",
     features: [
-      ["See who has stopped coming", "See active members who attended at least four classes in the preceding six weeks, then none in the last 14 days."],
-      ["Choose the follow-up", "Open the member’s record and message them or their segment. Your team decides whether and how to reach out."],
+      ["Spot the change", "Find regular members who have stopped coming."],
+      ["Understand the member", "Open their record for the context behind your next conversation."],
+      ["Choose the follow-up", "Reach out personally or celebrate an achievement. Your team stays in control."],
     ],
     example: "When someone’s attendance drops",
     steps: [
-      { title: "They appear in Attendance drop", detail: "The segment updates when the Members page loads.", mode: "Automatic" },
-      { title: "Your team opens the member’s record", detail: "Check the context before deciding what to do.", mode: "Your team" },
-      { title: "Send a personal check-in", detail: "Message the member or their segment.", mode: "Your team" },
+      { title: "Spot an attendance change", detail: "Find regular members who have stopped attending.", mode: "Insight" },
+      { title: "Understand the member", detail: "Review their record before reaching out.", mode: "Your team" },
+      { title: "Choose the follow-up", detail: "Start a personal conversation.", mode: "Your team" },
     ],
-    note: "Separate inactivity flags check for no attendance record in 14 days—even an Absent mark prevents a new flag. An owner must press Recompute; flags never clear themselves. Owners, managers and coaches can log or snooze; only owners and coaches resolve. Front desk staff use Members segments instead. Logging an email or SMS does not send it.",
+    note: "Your team chooses when and how to reach out.",
   },
   {
     id: "team", label: "The team", title: "The right role. The right location.",

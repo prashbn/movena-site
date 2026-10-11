@@ -7,6 +7,7 @@ import { HomeDiscoveryIcon } from "@/components/home-discovery-icon";
 import { publicIntegrations } from "@/lib/integrations";
 import { createRouteMetadata } from "@/lib/metadata";
 import { routeByPath } from "@/lib/routes";
+import { AiConnections } from "@/components/ai-connections";
 
 const route = routeByPath("/integrations/");
 
@@ -26,8 +27,8 @@ export default function IntegrationsPage() {
         <div className="commercial-wrap commercial-hero__inner">
           <div>
             <p className="commercial-kicker">Movena</p>
-            <h1>Integrations</h1>
-            <p className="integrations-hero__lede">Connect the tools your gym relies on. Fewer manual handoffs, more time for your members.</p>
+            <h1>Your tools.<br />One connected business.</h1>
+            <p className="integrations-hero__lede">Connect the services your gym relies on—from lead capture and payments to access control and accounting.</p>
           </div>
         </div>
       </header>
@@ -44,28 +45,10 @@ export default function IntegrationsPage() {
               </li>
             ))}
           </ol>
-          <p className="integrations-journey__note">Availability depends on the connections and settings your gym enables. MYOB uses accounting-ready exports, rather than a direct connection.</p>
+          <p className="integrations-journey__note">Availability depends on the connections and settings your gym enables. QuickBooks and MYOB use accounting exports, not direct connections.</p>
         </div>
       </section>
-      <section className="integrations-ai" aria-labelledby="integrations-ai-heading">
-        <div className="commercial-wrap integrations-ai__inner">
-          <div>
-            <p className="commercial-kicker">Movena + ChatGPT</p>
-            <h2 id="integrations-ai-heading">Ask your gym.<br />Find what needs attention.</h2>
-            <p>Explore booking patterns and available capacity through conversation, within your account’s permissions. Less hunting through reports, a clearer place to start.</p>
-            <Link className="integration-card__link" href="/help/ai-assistants/#chatgpt">See what you can ask and how to connect <span aria-hidden="true">→</span></Link>
-          </div>
-          <div className="integrations-ai__examples">
-            <p className="commercial-kicker">Questions you can ask</p>
-            <ul>
-              <li>“How are this week’s sessions booking?”</li>
-              <li>“Which upcoming sessions still have places?”</li>
-              <li>“How have bookings changed over time?”</li>
-            </ul>
-            <p className="integrations-ai__boundary">Read-only, permission-based answers—not autonomous changes. Member training and session-health sharing are separate, optional choices for eligible adult members. The Claude connector is enabled in production; its Anthropic directory listing is in review.</p>
-          </div>
-        </div>
-      </section>
+      <AiConnections />
       <section
         className="integrations-partner"
         aria-labelledby="kisi-partner-heading"
