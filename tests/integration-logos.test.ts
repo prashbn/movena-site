@@ -15,7 +15,7 @@ const approvedAssets = {
 };
 
 test("integrations use local artwork except MYOB's plain-text export label", () => {
-  assert.equal(publicIntegrations.length, 12);
+  assert.equal(publicIntegrations.length, 11);
   for (const { name, mark } of publicIntegrations) {
     if (mark.kind === "text") {
       assert.equal(name, "MYOB");

@@ -62,7 +62,7 @@ export default function IntegrationsPage() {
               <li>“Which upcoming sessions still have places?”</li>
               <li>“How have bookings changed over time?”</li>
             </ul>
-            <p className="integrations-ai__boundary">Read-only, permission-based answers—not autonomous changes. Member training and session-health sharing are separate, optional choices for eligible adult members. Claude remains in review and is not yet available.</p>
+            <p className="integrations-ai__boundary">Read-only, permission-based answers—not autonomous changes. Member training and session-health sharing are separate, optional choices for eligible adult members. The Claude connector is enabled in production; its Anthropic directory listing is in review.</p>
           </div>
         </div>
       </section>

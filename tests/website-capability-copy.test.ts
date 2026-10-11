@@ -8,7 +8,8 @@ import { rewriteWebsiteCapabilityCopy } from "../lib/website-capability-copy.ts"
 test("member identity is prominent without promising universal gym access", () => {
   const members = readLegacyMainMarkup("members/index.html");
   assert.match(members, /<h1>One identity\.<br>Your training story\.<\/h1>/);
-  assert.match(members, /sessions, programs, results and milestones—connected through one Movena identity/);
+  assert.match(members, /One Movena account goes with you/);
+  assert.match(members, /Raw workout logs aren’t shared across gyms/);
   assert.match(members, /You join through their invite/);
   assert.match(members, /If your gym enables automatic promotion/);
   assert.doesNotMatch(members, /Different gyms\. Still you|access to every gym/i);
@@ -20,17 +21,18 @@ test("platform copy separates connections, exports and gym-enabled automation", 
   assert.doesNotMatch(platform, /Book a walkthrough|attendance, minutes, or streaks|promotion happens automatically/);
   assert.match(platform, /Book a demo/);
   assert.match(platform, /automatic promotion when your gym enables it/);
-  assert.match(platform, /attendance-based challenges, scored from marked attendance/);
-  assert.match(platform, /owners refresh the list/);
-  assert.match(platform, /connect Xero or QuickBooks directly/);
-  assert.match(platform, /MYOB uses exports, not a direct connection/);
+  assert.match(platform, /classes attended, minutes attended or daily streaks/);
+  assert.match(platform, /an owner refreshes flags/);
+  assert.match(platform, /owners connect Xero directly/);
+  assert.match(platform, /QuickBooks and MYOB use exports, not direct connections/);
 });
 
 test("AI help agrees with Claude availability and preserves sharing safeguards", () => {
   const help = readLegacyMainMarkup("help/ai-assistants/index.html");
   assert.match(help, /Last updated: 11 October 2026/);
-  assert.match(help, /id="claude">Claude — in review/);
-  assert.match(help, /not yet available/);
+  assert.match(help, /id="claude">Claude — directory listing in review/);
+  assert.match(help, /Claude connector is enabled in production/);
+  assert.doesNotMatch(help, /not yet available/);
   assert.doesNotMatch(help, /Add custom connector|api\/mcp|Make the same choices as above/);
   assert.match(help, /Every choice starts unticked/);
   assert.match(help, /The assistant can only read/);

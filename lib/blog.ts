@@ -497,27 +497,35 @@ export const blogPosts = [
       "Three gym members sitting together and talking after a training session",
     introduction: [
       "Cancellation is often the first clear administrative event, but it may not be the first sign that a member’s routine has changed. Attendance can make that change visible sooner without claiming to explain why it happened.",
-      "Movena places members with no attendance in fourteen days on a retention list. That list is a prompt for the team—not an automated judgement about the member.",
+      "Movena gives your team two distinct ways to review a change in attendance: a live Attendance drop segment and owner-refreshed inactivity flags. Neither predicts cancellation or contacts a member automatically.",
     ],
     sections: [
       {
-        heading: "Use a simple signal",
+        heading: "See which regular members have stopped coming",
         paragraphs: [
-          "A clear interval is easier to operate than a mysterious score. Fourteen days without attendance creates a consistent point at which staff can look, understand the context and decide whether contact is appropriate.",
-          "The signal should remain visible alongside the member record, not disappear into a separate marketing tool that the coaching team never opens.",
+          "The Attendance drop segment includes active members who attended at least four classes in the six weeks preceding the last fourteen days, then attended none in those fourteen days. It counts classes marked Present, not bookings or workout logs. Members with fewer than four earlier classes do not appear.",
+          "The segment updates when the Members page loads. Owners, managers, front-desk staff and coaches can review it within their location permissions, open a member’s record or choose to message the segment. This is an attendance rule, not an AI assessment.",
+        ],
+      },
+      {
+        heading: "Refresh inactivity flags separately",
+        paragraphs: [
+          "On the Retention page, an owner presses Recompute to flag active members with no attendance record of any kind marked in the last fourteen days. A Present, Absent or Late mark prevents a new flag. New active members with no attendance records can be flagged too, so this is not the same as the Attendance drop segment.",
+          "Owners, managers and coaches can log a follow-up or snooze a flag; only owners and coaches can resolve it. Front-desk staff use Members segments instead. Flags never clear automatically—even when a member returns—so staff review and resolve them.",
         ],
       },
       {
         heading: "Read the record before reaching out",
         paragraphs: [
           "Check the member’s recent bookings, messages, membership status and training history. A holiday, injury note, planned break or already-resolved conversation changes what a helpful follow-up looks like.",
-          "Do not turn absence into a diagnosis. The system can show that somebody has not attended; it cannot know their reason or whether they want to discuss it.",
+          "Do not turn a flag into a diagnosis. Check whether it reflects no classes attended or simply no recent attendance records. Neither tells you why the member’s routine changed or whether they want to discuss it.",
         ],
       },
       {
         heading: "Make contact human",
         paragraphs: [
           "A useful message sounds like it came from someone who knows the member. Keep it brief, acknowledge the gap without pressure, and give the member an easy way to say what they need.",
+          "Movena does not send retention messages or reminders automatically. Logging an email or SMS follow-up records what your team did; it does not send that email or SMS.",
         ],
         bullets: [
           "Assign follow-up to a named staff member.",

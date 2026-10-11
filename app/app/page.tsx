@@ -31,8 +31,8 @@ export default function MemberAppPage() {
               </p>
               <h2>Your gym. Your training. One app.</h2>
               <p className="member-app-download-card__description">
-                Book classes, check in, follow your program and watch your
-                training history build with every session.
+                Book classes, follow your program, track your progress and buy
+                your gym’s merchandise for collection. Check in on the gym’s kiosk.
               </p>
               <AppStoreActions />
             </div>

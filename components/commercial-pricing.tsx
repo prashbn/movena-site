@@ -30,7 +30,7 @@ export function PaymentOperations() {
           </div>
           <div>
             <dt>Accounting connections &amp; exports</dt>
-            <dd>Connect Xero or QuickBooks. Export for Xero, QuickBooks or MYOB.</dd>
+            <dd>Connect Xero directly. Export for Xero, QuickBooks or MYOB—QuickBooks and MYOB are export-only.</dd>
           </div>
         </dl>
       </div>

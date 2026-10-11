@@ -66,7 +66,7 @@ export const faqItems = [
     content: [
       {
         type: "paragraph",
-        text: "Yes. Movena has a native app on the App Store and Google Play. Members can book classes, check in at the door, follow their training and buy merchandise from their phone.",
+        text: "Yes. Movena has a native app on the App Store and Google Play. Members can book classes, follow their training and buy merchandise from their phone for collection at the gym. Check-in is on the gym’s kiosk, not in the phone app.",
       },
     ],
   },
@@ -146,7 +146,7 @@ export const faqItems = [
       },
       {
         type: "paragraph",
-        text: "Challenges use the same data. Choose a goal and a date range, and scoring runs from check-ins and logged sessions—no spreadsheet on the wall and no manual tallying.",
+        text: "Challenges score from attendance: classes attended, minutes attended or a daily streak. Choose a goal and date range, with a live leaderboard and an optional finish line that awards a finisher badge. Workout results don’t count, and there’s no manual tallying.",
       },
     ],
   },

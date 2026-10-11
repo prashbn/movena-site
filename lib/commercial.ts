@@ -11,6 +11,8 @@ export const movenaPackages = [
       "Membership, billing, timetable & bookings",
       "Member app, programming & messaging",
       "Check-in, waivers & core reporting",
+      "Native Retail / Shop",
+      "Physical merchandise collected in person",
     ],
   },
   {
@@ -56,7 +58,7 @@ export const packageComparisonRows = [
   ["Messaging", "Included", "Included", "Included"],
   ["Check-in & waivers", "Included", "Included", "Included"],
   ["Core reporting", "Included", "Included", "Included"],
-  ["Native Retail / Shop", "—", "Included", "Included"],
+  ["Native Retail / Shop", "Included", "Included", "Included"],
   ["Multi-location management", "—", "Included", "Included"],
   ["Advanced analytics", "—", "—", "Included"],
   ["Organisation-wide insights", "—", "—", "Included"],

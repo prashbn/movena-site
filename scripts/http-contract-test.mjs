@@ -36,7 +36,7 @@ const routes = [
 
 const frozenDocumentMarkers = new Map([
   ["/help/", ["Help &amp; Support", "Last updated: 2 August 2026"]],
-  ["/help/ai-assistants/", ["Connect Movena to an AI assistant", "Last updated: 11 October 2026", "Claude — in review"]],
+  ["/help/ai-assistants/", ["Connect Movena to an AI assistant", "Last updated: 11 October 2026", "Claude — directory listing in review"]],
   ["/integrations/kisi/", ["Movena + Kisi", "Ending the integration"]],
   ["/legal/privacy/", ["Privacy Policy", "Last updated: 8 October 2026"]],
   ["/legal/terms/", ["Terms of Service", "Last updated: 19 September 2026"]],
@@ -104,7 +104,7 @@ async function runContract() {
   for (const marker of [
     "Unlimited members and team",
     "Card · BECS direct debit · PayTo",
-    "Owner-only Xero connection, plus Xero CSV and MYOB exports.",
+    "Owner-only Xero connection, plus Xero, QuickBooks CSV and MYOB OFX exports.",
     "An app worth opening.",
     "Everything a gym runs on.",
     "Memberships and bookings, carried through to the door.",
@@ -148,11 +148,11 @@ async function runContract() {
   assert.equal(discovery.match(/aria-selected="true"/g)?.length, 1);
   assert.equal(discovery.match(/hidden="" inert=""/g)?.length, 3);
   assert.equal(discovery.match(/Illustrative workflow · Not a product screen/g)?.length, 4);
-  for (const marker of ["auto-promote enabled", "Stripe retries", "40% fewer visits", "Recompute", "Removing a role takes effect immediately"]) {
+  for (const marker of ["auto-promote enabled", "Stripe retries", "at least four classes", "Recompute", "only owners and coaches resolve", "Removing a role takes effect immediately"]) {
     assert.ok(discovery.includes(marker), marker);
   }
-  assert.doesNotMatch(discovery, /QuickBooks|Claude|AI-powered|automatic first reply/i);
-  assert.ok(homepageMain.includes("Owners can refresh the inactivity list"));
+  assert.doesNotMatch(discovery, /40%|Claude|AI-powered|automatic first reply|check in from their account/i);
+  assert.ok(homepageMain.includes("Owners can refresh inactivity flags based on attendance records"));
   for (const marker of ["Less switching.", "More coaching.", "The session doesn’t end at the gym door.", "Actual product screen · Demonstration data"]) {
     assert.ok(homepageMain.includes(marker), marker);
   }
@@ -386,7 +386,7 @@ async function runContract() {
     "Unlimited members. Unlimited team. Choose by locations and capabilities—not by member count or seats.",
     "Card, BECS direct debit and PayTo",
     "Your own Stripe account",
-    "Connect Xero or QuickBooks. Export for Xero, QuickBooks or MYOB.",
+    "Connect Xero directly. Export for Xero, QuickBooks or MYOB—QuickBooks and MYOB are export-only.",
     "Unlimited members",
     "Unlimited owners, managers, staff &amp; coaches",
     "Access Control Integration",
@@ -410,11 +410,11 @@ async function runContract() {
     "Find what needs attention.",
     "Read-only, permission-based answers—not autonomous changes.",
     "Xero",
-    "Connect Xero directly to Movena.",
+    "Connect Xero directly as an owner, or use a Xero-format export.",
     "QuickBooks®",
-    "Connect QuickBooks directly to Movena.",
+    "Export CSV statements for QuickBooks. No direct connection.",
     "MYOB",
-    "MYOB-ready exports.",
+    "Export OFX statements for MYOB. No direct connection.",
     "Facebook",
     "New Facebook leads arrive in Movena automatically.",
     "Google",
@@ -430,9 +430,8 @@ async function runContract() {
     "Stripe",
     "Payments and billing through Stripe, built into Movena.",
     "Claude by Anthropic",
-    "In review",
-    "The Claude integration is in review and is not yet available.",
-    "Brevo — Available shortly",
+    "Directory listing in review",
+    "The Claude connector is enabled in production. Its Anthropic directory listing is in review.",
     "https://www.facebook.com/profile.php?id=61594035146486",
     "https://www.instagram.com/movena_au/",
     "https://www.linkedin.com/company/movena-au/",

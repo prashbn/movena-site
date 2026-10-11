@@ -18,7 +18,7 @@ test("each discovery category has a concrete three-step workflow and two benefit
     for (const step of area.steps) assert.ok(step.title && step.detail && step.mode);
   }
   assert.match(platform, /Illustrative workflow · Not a product screen/);
-  assert.doesNotMatch(JSON.stringify(homeWorkflows), /\b(?:Claude|AI|QuickBooks|Kisi|readiness|injury risk)\b/i);
+  assert.doesNotMatch(JSON.stringify(homeWorkflows), /\b(?:Claude|AI|Kisi|readiness|injury risk)\b/i);
 });
 
 test("workflow copy keeps automatic behaviour, permissions and prerequisites explicit", () => {
@@ -29,9 +29,13 @@ test("workflow copy keeps automatic behaviour, permissions and prerequisites exp
   assert.match(money.features[1][1], /Owner-only Xero/);
   assert.equal(member.steps[1].mode, "Your team");
   assert.equal(member.steps[2].mode, "Your team");
-  assert.match(member.features[0][1], /40%.*14 days.*six weeks/);
+  assert.match(member.features[0][1], /active members.*four classes.*six weeks.*none.*14 days/);
+  assert.doesNotMatch(JSON.stringify(homeWorkflows), /40%|check in from their account/);
+  assert.match(member.note, /Absent mark prevents a new flag/);
+  assert.match(member.note, /only owners and coaches resolve/);
+  assert.match(member.note, /Logging an email or SMS does not send it/);
   assert.match(member.note, /owner must press Recompute/);
-  assert.match(member.note, /front desk staff use Members segments instead/);
+  assert.match(member.note, /Front desk staff use Members segments instead/);
   assert.equal(team.steps[0].mode, "Owner");
   assert.match(team.note, /Removing a role takes effect immediately/);
 });
@@ -69,8 +73,8 @@ test("tab discovery preserves keyboard navigation and stable accessible hidden p
 
 test("homepage inactivity copy is manual while existing Kisi promotion remains", () => {
   const homepage = readLegacyMainMarkup("index.html");
-  assert.match(homepage, /Owners can refresh the inactivity list/);
-  assert.match(homepage, /An owner refreshes the list/);
+  assert.match(homepage, /Owners can refresh inactivity flags based on attendance records/);
+  assert.match(homepage, /An owner refreshes the flags/);
   assert.doesNotMatch(homepage, /attendance puts a member on your list/);
   assert.match(homepage, /Movena is listed in Kisi’s integration marketplace/);
 });

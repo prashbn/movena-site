@@ -32,7 +32,7 @@ test("the FAQ preserves every supplied commercial and operational fact", () => {
     /emergency access, monitoring, incident response, insurance/,
     /complete unstaffed-gym security and operating plan/,
     /workouts and programs/,
-    /check-ins and logged sessions/,
+    /classes attended, minutes attended or a daily streak/,
     /submissions go straight to your Leads page/,
     /hosted in Sydney, Australia/,
     /subject to the Australian Privacy Act/,

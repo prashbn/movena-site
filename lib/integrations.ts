@@ -1,7 +1,7 @@
 export const publicIntegrations = [
   {
     name: "Xero",
-    description: "Connect Xero directly to Movena.",
+    description: "Connect Xero directly as an owner, or use a Xero-format export.",
     mark: {
       kind: "image",
       src: "/assets/integrations/xero-logo.svg",
@@ -11,7 +11,7 @@ export const publicIntegrations = [
   },
   {
     name: "QuickBooks®",
-    description: "Connect QuickBooks directly to Movena.",
+    description: "Export CSV statements for QuickBooks. No direct connection.",
     mark: {
       kind: "image",
       src: "/integration-logos/quickbooks-logo.png",
@@ -21,7 +21,7 @@ export const publicIntegrations = [
   },
   {
     name: "MYOB",
-    description: "MYOB-ready exports.",
+    description: "Export OFX statements for MYOB. No direct connection.",
     mark: {
       kind: "text",
       text: "MYOB",
@@ -104,22 +104,13 @@ export const publicIntegrations = [
   },
   {
     name: "Claude by Anthropic",
-    status: "In review",
-    description: "The Claude integration is in review and is not yet available.",
+    status: "Directory listing in review",
+    description: "The Claude connector is enabled in production. Its Anthropic directory listing is in review.",
     mark: {
       kind: "image",
       src: "/integration-logos/anthropic-symbol.svg",
       width: 92.2,
       height: 65,
-    },
-  },
-  {
-    name: "Brevo — Available shortly",
-    mark: {
-      kind: "image",
-      src: "/assets/integrations/brevo-logo.svg",
-      width: 32,
-      height: 32,
     },
   },
 ] as const;

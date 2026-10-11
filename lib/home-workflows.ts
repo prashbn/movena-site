@@ -1,5 +1,5 @@
 // Website-only descriptions, confirmed against the supplied shipped-feature
-// review dated 10 October 2026 (product master 1cfa2f54, v0.39.0).
+// verification dated 11 October 2026 (product master 1cfa2f54, v0.39.0).
 // These are explanatory workflows, not replicas of product interfaces.
 export const homeWorkflows = [
   {
@@ -7,7 +7,7 @@ export const homeWorkflows = [
     description: "A cancellation doesn’t have to leave an empty spot. Keep bookings moving while your team runs the floor.",
     features: [
       ["Build the week", "Copy a timetable week and bulk publish classes."],
-      ["Support the booking", "Book on a member’s behalf and mark attendance. Booked members can check in from their account or the kiosk."],
+      ["Support the booking", "Book on a member’s behalf and mark attendance. Booked members check in on the gym’s kiosk."],
     ],
     example: "When a spot opens",
     steps: [
@@ -15,14 +15,14 @@ export const homeWorkflows = [
       { title: "The first person on the waitlist moves in", detail: "Their booking is promoted and they’re told.", mode: "Automatic*" },
       { title: "Your team keeps the class moving", detail: "Mark attendance; coaches record the training.", mode: "Your team" },
     ],
-    note: "*Waitlist promotion runs when your gym has auto-promote enabled.",
+    note: "*Waitlist promotion runs when your gym has auto-promote enabled, booking is still open and an eligible place becomes available before class starts.",
   },
   {
     id: "money", label: "The money", title: "A failed payment. A clear next step.",
     description: "See who is past due and what needs attention, without losing the member in a separate payment system.",
     features: [
       ["Recover the payment", "Find overdue members in Payment past due and Billing recovery. Staff can collect or waive the amount, or restore access."],
-      ["Keep accounting connected", "Owner-only Xero connection, plus Xero CSV and MYOB exports."],
+      ["Keep accounting connected", "Owner-only Xero connection, plus Xero, QuickBooks CSV and MYOB OFX exports."],
     ],
     example: "When a card payment fails",
     steps: [
@@ -36,8 +36,8 @@ export const homeWorkflows = [
     id: "member", label: "The member", title: "Notice the change. Start a conversation.",
     description: "Spot a change in attendance and give your team the context to reach out—not another generic reminder.",
     features: [
-      ["See attendance changes", "Attendance drop means at least 40% fewer visits in the last 14 days than the member’s previous six weeks."],
-      ["Choose the follow-up", "Message a member or segment. Owners, managers and coaches can log, snooze or resolve inactivity flags."],
+      ["See who has stopped coming", "See active members who attended at least four classes in the preceding six weeks, then none in the last 14 days."],
+      ["Choose the follow-up", "Open the member’s record and message them or their segment. Your team decides whether and how to reach out."],
     ],
     example: "When someone’s attendance drops",
     steps: [
@@ -45,7 +45,7 @@ export const homeWorkflows = [
       { title: "Your team opens the member’s record", detail: "Check the context before deciding what to do.", mode: "Your team" },
       { title: "Send a personal check-in", detail: "Message the member or their segment.", mode: "Your team" },
     ],
-    note: "Separate inactivity flags use 14 days without attendance. An owner must press Recompute to refresh them; front desk staff use Members segments instead.",
+    note: "Separate inactivity flags check for no attendance record in 14 days—even an Absent mark prevents a new flag. An owner must press Recompute; flags never clear themselves. Owners, managers and coaches can log or snooze; only owners and coaches resolve. Front desk staff use Members segments instead. Logging an email or SMS does not send it.",
   },
   {
     id: "team", label: "The team", title: "The right role. The right location.",

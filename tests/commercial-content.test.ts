@@ -23,7 +23,7 @@ const expectedComparisonRows = [
   ["Messaging", "Included", "Included", "Included"],
   ["Check-in & waivers", "Included", "Included", "Included"],
   ["Core reporting", "Included", "Included", "Included"],
-  ["Native Retail / Shop", "—", "Included", "Included"],
+  ["Native Retail / Shop", "Included", "Included", "Included"],
   ["Multi-location management", "—", "Included", "Included"],
   ["Advanced analytics", "—", "—", "Included"],
   ["Organisation-wide insights", "—", "—", "Included"],
@@ -45,7 +45,7 @@ test("locked package prices and comparison allocation remain exact", () => {
   const [one, collective, enterprise] = movenaPackages;
   assert.match(one.highlights.join(" "), /Unlimited members/);
   assert.match(one.highlights.join(" "), /Unlimited owners, managers, staff & coaches/);
-  assert.doesNotMatch(one.highlights.join(" "), /Native Retail \/ Shop/);
+  assert.match(one.highlights.join(" "), /Native Retail \/ Shop/);
   assert.match(collective.highlights.join(" "), /Unlimited members and team users/);
   assert.match(collective.highlights.join(" "), /Native Retail \/ Shop/);
   assert.match(
@@ -192,7 +192,7 @@ test("pricing explains Australian payments and accounting export boundaries", ()
   assert.match(components, /Your own Stripe account/);
   assert.match(
     components,
-    /Connect Xero or QuickBooks\. Export for Xero, QuickBooks or MYOB\./,
+    /Connect Xero directly\. Export for Xero, QuickBooks or MYOB—QuickBooks and MYOB are export-only\./,
   );
 });
 
@@ -200,7 +200,7 @@ test("the public integrations surface remains exact and conservative", () => {
   assert.deepEqual(publicIntegrations, [
     {
       name: "Xero",
-      description: "Connect Xero directly to Movena.",
+      description: "Connect Xero directly as an owner, or use a Xero-format export.",
       mark: {
         kind: "image",
         src: "/assets/integrations/xero-logo.svg",
@@ -210,7 +210,7 @@ test("the public integrations surface remains exact and conservative", () => {
     },
     {
       name: "QuickBooks®",
-      description: "Connect QuickBooks directly to Movena.",
+      description: "Export CSV statements for QuickBooks. No direct connection.",
       mark: {
         kind: "image",
         src: "/integration-logos/quickbooks-logo.png",
@@ -220,7 +220,7 @@ test("the public integrations surface remains exact and conservative", () => {
     },
     {
       name: "MYOB",
-      description: "MYOB-ready exports.",
+      description: "Export OFX statements for MYOB. No direct connection.",
       mark: {
         kind: "text",
         text: "MYOB",
@@ -303,22 +303,13 @@ test("the public integrations surface remains exact and conservative", () => {
     },
     {
       name: "Claude by Anthropic",
-      status: "In review",
-      description: "The Claude integration is in review and is not yet available.",
+      status: "Directory listing in review",
+      description: "The Claude connector is enabled in production. Its Anthropic directory listing is in review.",
       mark: {
         kind: "image",
         src: "/integration-logos/anthropic-symbol.svg",
         width: 92.2,
         height: 65,
-      },
-    },
-    {
-      name: "Brevo — Available shortly",
-      mark: {
-        kind: "image",
-        src: "/assets/integrations/brevo-logo.svg",
-        width: 32,
-        height: 32,
       },
     },
   ]);
@@ -349,9 +340,10 @@ test("the public integrations surface remains exact and conservative", () => {
   ));
   const claude = publicIntegrations.find(({ name }) => name === "Claude by Anthropic");
   assert.ok(claude && claude.name === "Claude by Anthropic");
-  assert.equal(claude.status, "In review");
+  assert.equal(claude.status, "Directory listing in review");
   assert.ok(!("href" in claude));
-  assert.match(claude.description, /not yet available/);
+  assert.match(claude.description, /connector is enabled in production/);
+  assert.match(claude.description, /directory listing is in review/);
 
   const paidAddOns = optionalAddOns.map((addOn) => addOn.name);
   assert.doesNotMatch(paidAddOns.join(" "), /Apple Health|Health Connect/);

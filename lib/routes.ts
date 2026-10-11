@@ -26,9 +26,9 @@ export const legacyRoutes = [
     source: "members/index.html",
     title: "For members — Movena",
     description:
-      "One identity. Your training story. Keep your sessions, programs, results and milestones connected through one Movena identity, with a training history that's yours to keep.",
+      "One Movena account goes with you. Book sessions, follow your gym’s programs and keep your personal bests—with sharing controlled by you, per gym.",
     socialDescription:
-      "One identity. Your training story. Sessions, programs, results and milestones—with a history that belongs to you, not just the gym.",
+      "One identity. Your training story. Your personal bests stay yours; a new gym sees a summary only if you choose to share.",
     kind: "marketing",
   },
   {
@@ -44,7 +44,7 @@ export const legacyRoutes = [
     source: "help/ai-assistants/index.html",
     title: "Connect Movena to ChatGPT — Movena Help",
     description:
-      "Connect Movena to ChatGPT: what you can ask, permissions, optional member sharing and how to disconnect. Claude integration is in review and not yet available.",
+      "Movena AI connections: ChatGPT setup, permissions, optional member sharing and disconnecting. The Claude connector is enabled; its Anthropic directory listing is in review.",
     kind: "document",
   },
   {
@@ -99,7 +99,7 @@ export const commercialRoutes = [
     path: "/app/",
     title: "Movena member app — Movena",
     description:
-      "Native Movena member apps for iPhone and Android. Book classes, check in, follow your program, and watch a training history build with every session.",
+      "Native Movena apps for iPhone and Android. Book classes, follow your program, track progress and shop for merchandise to collect at your gym.",
     kind: "marketing",
   },
   {
