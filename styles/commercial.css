@@ -192,6 +192,15 @@
   letter-spacing: -0.04em;
 }
 
+/* The offer, from the catalogue: "30-day free trial for new gyms". Absent when
+   the app is unreachable or the plan has no trial. */
+.pricing-card__trial {
+  margin: 0.45rem 0 0;
+  color: var(--site-blue);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 .pricing-card--enterprise .pricing-card__price,
 .pricing-card--enterprise .pricing-card__positioning {
   color: var(--site-white);

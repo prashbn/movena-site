@@ -9,6 +9,8 @@ export const siteConfig = {
   salesEmail: "sales@movena.com.au",
   privacyEmail: "privacy@movena.com.au",
   supportEmail: "support@movena.com.au",
+  /** The Movena app. The pricing page reads its public catalogue at build (lib/live-pricing.ts). */
+  appOrigin: "https://app.movena.com.au",
   businessSignInUrl: "https://app.movena.com.au/sign-in",
   memberApp: {
     path: "/app/",

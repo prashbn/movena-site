@@ -1,10 +1,12 @@
-import {
-  movenaPackages,
-  optionalAddOns,
-  packageComparisonRows,
-  platformAdministrationFee,
-} from "@/lib/commercial";
+import { cache } from "react";
+
+import { resolveCommercialPricing } from "@/lib/live-pricing";
 import { siteConfig } from "@/lib/site-config";
+
+// Money and trial days come from the Movena catalogue, read once per build
+// (lib/live-pricing.ts); the committed strings in lib/commercial.ts are the
+// fallback and the copy. One fetch is shared by every section on the page.
+const getPricing = cache(() => resolveCommercialPricing());
 
 export function PaymentOperations() {
   return (
@@ -38,7 +40,8 @@ export function PaymentOperations() {
   );
 }
 
-export function PackageCards() {
+export async function PackageCards() {
+  const { packages } = await getPricing();
   return (
     <section className="commercial-section" aria-labelledby="packages-heading">
       <div className="commercial-wrap">
@@ -47,7 +50,7 @@ export function PackageCards() {
           <h2 id="packages-heading">Movena packages</h2>
         </div>
         <div className="pricing-grid">
-          {movenaPackages.map((movenaPackage) => (
+          {packages.map((movenaPackage) => (
             <article
               className={`pricing-card pricing-card--${movenaPackage.id}`}
               key={movenaPackage.id}
@@ -55,6 +58,9 @@ export function PackageCards() {
               <div>
                 <p className="pricing-card__name">{movenaPackage.name}</p>
                 <p className="pricing-card__price">{movenaPackage.price}</p>
+                {movenaPackage.trial ? (
+                  <p className="pricing-card__trial">{movenaPackage.trial} for new gyms</p>
+                ) : null}
                 <p className="pricing-card__positioning">
                   {movenaPackage.positioning}
                 </p>
@@ -75,18 +81,20 @@ export function PackageCards() {
   );
 }
 
-export function PlatformFee() {
+export async function PlatformFee() {
+  const { platformFeeLabel, platformAdministrationFee } = await getPricing();
   return (
     <div className="commercial-wrap">
       <aside className="platform-fee" aria-label="Platform administration fee">
-        <span>0.30%</span>
+        <span>{platformFeeLabel}</span>
         <p>{platformAdministrationFee}</p>
       </aside>
     </div>
   );
 }
 
-export function OptionalAddOns() {
+export async function OptionalAddOns() {
+  const { addOns } = await getPricing();
   return (
     <section
       className="commercial-section commercial-section--addons"
@@ -98,7 +106,7 @@ export function OptionalAddOns() {
           <h2 id="addons-heading">Optional add-ons</h2>
         </div>
         <div className="addons-grid">
-          {optionalAddOns.map((addOn) => (
+          {addOns.map((addOn) => (
             <article className="addon-card" key={addOn.name}>
               <p className="addon-card__name">{addOn.name}</p>
               <p className="addon-card__price">{addOn.price}</p>
@@ -113,7 +121,8 @@ export function OptionalAddOns() {
   );
 }
 
-export function PackageComparison() {
+export async function PackageComparison() {
+  const { comparisonRows } = await getPricing();
   const plans = ["Movena One", "Movena Collective", "Movena Enterprise"];
 
   return (
@@ -143,7 +152,7 @@ export function PackageComparison() {
               </tr>
             </thead>
             <tbody>
-              {packageComparisonRows.map(([capability, ...values]) => (
+              {comparisonRows.map(([capability, ...values]) => (
                 <tr key={capability}>
                   <th scope="row">{capability}</th>
                   {values.map((value, index) => (

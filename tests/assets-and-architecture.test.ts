@@ -133,7 +133,12 @@ test("the runtime backend surface is limited to the server-side contact endpoint
   const fetchSources = sourceFiles.filter((sourceFile) =>
     /\bfetch\s*\(/.test(readFileSync(sourceFile, "utf8")),
   );
-  assert.deepEqual(fetchSources, ["components/contact-form.tsx"]);
+  // lib/live-pricing.ts fetches the Movena catalogue at BUILD time only
+  // (`cache: "force-cache"`, no `revalidate`): the runtime surface is unchanged.
+  // The app host it reads comes from siteConfig.appOrigin, the one place the
+  // SaaS host may appear (asserted below).
+  assert.deepEqual(fetchSources, ["components/contact-form.tsx", "lib/live-pricing.ts"]);
+  assert.match(readFileSync("lib/live-pricing.ts", "utf8"), /cache: "force-cache"/);
 
   const brevoSource = readFileSync("lib/brevo-contact.ts", "utf8");
   assert.match(brevoSource, /api\.brevo\.com\/v3/);
