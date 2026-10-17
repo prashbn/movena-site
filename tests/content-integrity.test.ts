@@ -65,7 +65,7 @@ test("immutable document dates remain unchanged", () => {
   );
   assert.match(
     readLegacyDocument("legal/privacy/index.html"),
-    /Last updated: 8 October 2026/,
+    /Last updated: 17 October 2026/,
   );
   assert.match(
     readLegacyDocument("legal/terms/index.html"),
