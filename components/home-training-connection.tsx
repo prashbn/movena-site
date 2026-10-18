@@ -13,7 +13,7 @@ export function HomeTrainingDisciplines({ ownerFirst = false }: { ownerFirst?: b
       <div className="wrap">
         <div className="sec-kicker"><span className="sec-num mono">03</span><span className="kicker">Your kind of gym</span></div>
         {ownerFirst ? <h2 id="home-disciplines-heading">The gym platform that remembers the training.</h2> : <h2 id="home-disciplines-heading">Built for how your gym trains.</h2>}
-        <p className="sec-lede">{ownerFirst ? "Build programs and session types for how your gym trains. Eighteen disciplines, already set up in the same builder." : "Eighteen disciplines, already set up. Programme any of them in the same builder."}</p>
+        <p className="sec-lede">{ownerFirst ? "From Pilates to powerlifting, build programs for the way your gym trains. Eighteen disciplines. One builder." : "Eighteen disciplines, already set up. Programme any of them in the same builder."}</p>
         <div className="chips">{disciplines.map(discipline => <span className="chip-d" key={discipline}>{discipline}</span>)}</div>
         <figure className="shot shot-wide">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -35,7 +35,7 @@ export function HomeTrainingConnection({ ownerFirst = false }: { ownerFirst?: bo
       <div className="home-training-connection__intro">
         <span className="kicker">{ownerFirst ? "From your coaches to the class" : "From the coach to the member"}</span>
         <h3 id="home-training-heading">{ownerFirst ? "Programs your coaches run." : "The session doesn’t end at the gym door."}</h3>
-        <p>{ownerFirst ? "Your coaches build the program, run it in class and record the training. Members follow along and see their progress in the app. This is where your class and coach numbers come from." : "Build the program. Record the movements, loads and results. The day’s training is there for members to follow in the app."}</p>
+        <p>{ownerFirst ? "Coaches build programs and session types, run the class and record the training. Members follow along in the app and see their progress. Those records give you the class and coach numbers." : "Build the program. Record the movements, loads and results. The day’s training is there for members to follow in the app."}</p>
       </div>
       <div className="home-training-connection__flow">
         <HomeProductWindow label="For the coach / Program builder"

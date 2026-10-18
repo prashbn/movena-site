@@ -14,11 +14,11 @@ export function HomePlatformDiscovery({ ownerFirst = false }: { ownerFirst?: boo
       <div className="wrap">
         <span className="kicker">The platform</span>
         <h2 id="home-platform-heading">{ownerFirst ? "See every location." : "Everything a gym runs on."}</h2>
-        <p className="sec-lede">{ownerFirst ? "One location or many. One view of your business." : "One platform. One member record. Every location."}</p>
+        <p className="sec-lede">{ownerFirst ? "One gym or five. Keep the whole business in view." : "One platform. One member record. Every location."}</p>
         <div className="home-financials-proof">
           <div className="home-financials-proof__copy">
             {ownerFirst ? <h3>Every location.<br />Every dollar.</h3> : <h3>Less switching.<br />More coaching.</h3>}
-            <p>{ownerFirst ? "Switch locations across members, billing, your dashboard and analytics. See financials by location, with managers scoped to the locations they run." : "Memberships, payments, bookings and your team. Connected in one place, so the business keeps moving while you’re on the floor."}</p>
+            <p>{ownerFirst ? "See each location’s members, billing and financials. Switch between sites in your dashboard and analytics. Your managers see their locations. You see them all." : "Memberships, payments, bookings and your team. Connected in one place, so the business keeps moving while you’re on the floor."}</p>
             <a className="link-arrow" href="/platform/">Explore the platform <span aria-hidden="true">→</span></a>
             <p className="home-financials-proof__detail">{ownerFirst ? "Stripe payments + Direct Debit · Xero · Kiosk check-in · Retail" : "Card · BECS direct debit · PayTo"}</p>
           </div>
@@ -61,7 +61,7 @@ export function HomePlatformDiscovery({ ownerFirst = false }: { ownerFirst?: boo
                     <div><span className="home-workflow__mode">{step.mode}</span><strong>{step.title}</strong><p>{step.detail}</p></div>
                   </li>
                 ))}</ol>
-                <p className="home-workflow__note">{area.note}{ownerFirst && area.id === "member" && <> <a href="/legal/privacy/">How drafting uses information.</a></>}</p>
+                <p className="home-workflow__note">{area.note}{ownerFirst && area.id === "member" && <> <a href="/legal/privacy/">How we use your information.</a></>}</p>
               </div>
             </div>
           ))}

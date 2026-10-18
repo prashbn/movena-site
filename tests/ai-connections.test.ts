@@ -5,7 +5,7 @@ import test from "node:test";
 test("homepage and integrations give both AI connections a prominent branded section", () => {
   const component = readFileSync("components/ai-connections.tsx", "utf8");
   for (const page of ["components/legacy-main.tsx", "app/integrations/page.tsx"]) {
-    assert.match(readFileSync(page, "utf8"), /<AiConnections \/>/);
+    assert.match(readFileSync(page, "utf8"), /<AiConnections(?: ownerFirst=\{ownerHomepage\})? \/>/);
   }
   assert.match(component, /Your gym\.<br \/>A conversation away\./);
   assert.equal((component.match(/<article className="ai-connection">/g) ?? []).length, 2);
