@@ -23,6 +23,8 @@ const objectSelector = [
   ".platform-page .frame",
   ".platform-page .caps > .cap",
   ".member-app-product-stage",
+  ".owner-home .owner-proof",
+  ".owner-home .owner-support-card",
 ].join(", ");
 
 export function SiteMotion() {

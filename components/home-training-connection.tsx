@@ -29,14 +29,14 @@ export function HomeTrainingDisciplines() {
   );
 }
 
-export function HomeTrainingConnection() {
+export function HomeTrainingConnection({ showIntro = true }: { showIntro?: boolean } = {}) {
   return (
-    <div className="home-training-connection" aria-labelledby="home-training-heading">
-      <div className="home-training-connection__intro">
+    <div className="home-training-connection" aria-labelledby={showIntro ? "home-training-heading" : undefined}>
+      {showIntro && <div className="home-training-connection__intro">
         <span className="kicker">From the coach to the member</span>
         <h3 id="home-training-heading">The session doesn’t end at the gym door.</h3>
         <p>Build the program. Record the movements, loads and results. The day’s training is there for members to follow in the app.</p>
-      </div>
+      </div>}
       <div className="home-training-connection__flow">
         <HomeProductWindow label="For the coach / Program builder"
           src="/product-screenshots/movena-program-builder.png" width={3352} height={1922}

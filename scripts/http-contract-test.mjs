@@ -101,104 +101,51 @@ async function runContract() {
     /Move for a better you\./,
   );
   assert.match(homepageHtml, /href="\/contact\/"[^>]*>Book a demo<\/a>/);
-  for (const marker of [
-    "Unlimited members and team",
-    "Card · BECS direct debit · PayTo",
-    "Connect Xero directly, or export financial data for Xero, QuickBooks and MYOB.",
-    "An app worth opening.",
-    "Everything a gym runs on.",
-    "Memberships and bookings, carried through to the door.",
-    "Movena is listed in Kisi’s integration marketplace",
-  ]) {
-    assert.match(
-      homepageHtml,
-      new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
-    );
-  }
-  for (const badge of [
-    "retention-milestone-005.png",
-    "retention-milestone-500.png",
-    "retention-challenge-weekly.png",
-    "retention-challenge-winner.png",
-  ]) {
-    assert.match(homepageHtml, new RegExp(`/assets/badges/${badge}`));
-  }
-  assert.doesNotMatch(homepageHtml, /src="\/assets\/badges\/milestone-/);
-
-  assert.match(homepageHtml, /id="home-community-heading">A place to train\.<br\s*\/?>(?:<!-- -->)?A place to belong\./);
-  assert.match(homepageHtml, /<span class="kicker">Hangout<\/span>/);
-  assert.ok(homepageHtml.includes("Keep your members connected between sessions. Share what’s on, useful advice and stories from your gym—all in Hangout, inside the Movena app."));
-  assert.match(homepageHtml, /id="home-closing-heading">Run your gym on Movena\./);
-  // Count visible markup, not Next's serialized copy of it in hydration data.
+  // Check the rendered owner homepage, rather than its preserved legacy source.
   const homepageMain = homepageHtml.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
   assert.ok(homepageMain);
-  const loop = homepageMain.match(/<section id="loop"[\s\S]*?<\/section>/)?.[0];
-  assert.ok(loop);
-  assert.equal(loop.match(/class="home-loop-journey__step mono"/g)?.length, 3);
-  assert.doesNotMatch(loop, /holo-scene|holographic-ribbons/);
-  for (const heading of ["Coaches and members record it.", "Members see their progress.", "Your team has context."]) {
-    assert.ok(loop.includes(heading), heading);
+  assert.equal(homepageMain.match(/<h1\b/g)?.length, 1);
+  assert.match(homepageMain, /<h1>Run every location from one place\.<\/h1>/);
+  assert.ok(homepageMain.includes("One location or many. Five spreadsheets. No idea what&#x27;s working.") || homepageMain.includes("One location or many. Five spreadsheets. No idea what's working."));
+  const sectionIds = ["locations", "coaches", "needs-you", "enquiries", "team", "programs", "sign-up", "access", "growth", "included", "next-step"];
+  let previousSection = -1;
+  for (const id of sectionIds) {
+    const index = homepageMain.indexOf(`id="${id}"`);
+    assert.ok(index > previousSection, `Owner section order: ${id}`);
+    previousSection = index;
   }
-  assert.match(loop, /Illustrative workflow with example results/);
-  assert.match(loop, /Attendance changes and milestone rewards/);
-  assert.doesNotMatch(loop, /Who hasn’t trained in a fortnight/);
-  const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];
-  assert.ok(discovery);
-  assert.equal(discovery.match(/role="tab"/g)?.length, 4);
-  assert.equal(discovery.match(/role="tabpanel"/g)?.length, 4);
-  assert.equal(discovery.match(/aria-selected="true"/g)?.length, 1);
-  assert.equal(discovery.match(/hidden="" inert=""/g)?.length, 3);
-  assert.equal(discovery.match(/Illustrative workflow · Not a product screen/g)?.length, 4);
-  for (const marker of ["auto-promote enabled", "Stripe retries", "Make the next conversation count", "Your team stays in control", "Removing a role takes effect immediately"]) {
-    assert.ok(discovery.includes(marker), marker);
-  }
-  assert.doesNotMatch(discovery, /40%|Claude|AI-powered|automatic first reply|check in from their account/i);
-  assert.ok(homepageMain.includes("Give members reasons to keep coming back"));
-  assert.doesNotMatch(homepageMain, /Recompute|Absent mark|four classes|only owners and coaches resolve/);
-  const ai = homepageMain.match(/<section id="ai-connections"[\s\S]*?<\/section>/)?.[0];
-  assert.ok(ai);
-  for (const marker of ["ChatGPT", "Claude", "/integration-logos/openai-blossom.svg", "/integration-logos/anthropic-symbol.svg", "Directory listing in review", "read-only answers", "permissions and member consent"]) {
-    assert.ok(ai.includes(marker), marker);
-  }
-  for (const marker of ["Less switching.", "More coaching.", "The session doesn’t end at the gym door.", "Actual product screen · Demonstration data"]) {
-    assert.ok(homepageMain.includes(marker), marker);
-  }
-  assert.equal(homepageMain.match(/class="home-product-window"/g)?.length, 2);
-  assert.equal(homepageMain.match(/class="home-app-showcase__panel"/g)?.length, 1);
-  assert.equal(homepageMain.match(/class="chip-d"/g)?.length, 18);
-  assert.doesNotMatch(homepageMain, /app\.movena\.com\.au — (?:Timetable|Workout builder)|class="console"|class="builder"|\/home-app\//);
-  for (const id of ["home-app-heading", "home-loop-heading", "home-platform-heading", "home-disciplines-heading", "home-training-heading"]) {
-    assert.equal(homepageMain.match(new RegExp(`id="${id}"`, "g"))?.length, 1, id);
-  }
-  const disciplines = homepageMain.match(/<section id="disciplines"[\s\S]*?<\/section>/)?.[0];
-  assert.ok(disciplines?.includes('id="home-training-heading"'));
+  for (const marker of [
+    "Run every location from one place.", "See every location.", "Know what needs you.",
+    "Turn enquiries into members.", "Keep your team on track.",
+    "The gym platform that remembers the training.", "Sign-up without the paperwork.",
+    "Grows with you.", "Illustrative example · Not a product screen",
+    "escalates overdue follow-ups to you", "approve it before anything is sent",
+    "Facebook and Instagram lead ads", "Google lead forms", "Kisi hardware at each site",
+    "Past-due memberships", "Actual product screen · Demonstration data",
+  ]) assert.ok(homepageMain.includes(marker), marker);
+  assert.doesNotMatch(homepageMain, /ChatGPT|Claude|OpenAI|Anthropic|AI-powered|enterprise-grade|payroll|commissions|on autopilot|never lose a lead|staff performance scores|readiness score/i);
+  assert.equal(homepageMain.match(/aria-pressed="true"/g)?.length, 2);
+  assert.match(homepageMain, /aria-label="Example location"/);
+  assert.match(homepageMain, /aria-label="Example workspace"/);
+  assert.match(homepageMain, /aria-live="polite"/);
+  assert.ok(homepageMain.includes('href="/legal/privacy/"'));
   for (const path of [
     "/product-screenshots/movena-financials.png",
     "/product-screenshots/movena-program-builder.png",
-    "/members-screens/1.8.0/home.png",
-    "/members-screens/1.8.0/progress-dark.png",
     "/members-screens/1.8.0/workout-dark.png",
   ]) {
     assert.ok(homepageMain.includes(path), path);
-    const image = await fetch(`${origin}${path}`);
-    assert.equal(image.status, 200, path);
-    assert.match(image.headers.get("content-type") ?? "", /^image\//, path);
-    await image.arrayBuffer();
+    const asset = await fetch(`${origin}${path}`);
+    assert.equal(asset.status, 200, path);
+    assert.match(asset.headers.get("content-type") ?? "", /^image\//);
+    await asset.arrayBuffer();
   }
-  assert.equal(homepageMain.match(/Run your gym on Movena\./g)?.length, 1);
-  assert.doesNotMatch(homepageHtml, /after-session-(1000|1800)\.jpg/);
-  for (const path of [
-    "/home-closing/member-900.jpg",
-    "/home-closing/member-1800.jpg",
-    "/home-closing/member-mobile-900.jpg",
-    "/home-yoga/group-900.jpg",
-    "/home-yoga/group-1600.jpg",
-  ]) {
-    assert.ok(homepageHtml.includes(path), `Homepage includes ${path}`);
-    const image = await fetch(`${origin}${path}`);
-    assert.equal(image.status, 200, path);
-    assert.match(image.headers.get("content-type") ?? "", /image\/jpeg/, path);
-  }
+  const preserved = await (await fetch(`${origin}/review/home-before/`)).text();
+  assert.match(preserved, /<meta name="robots" content="noindex, nofollow"/);
+  assert.match(preserved, /<h1>The gym platform that remembers the training\.<\/h1>/);
+  assert.ok(preserved.includes("An app worth opening."));
+  assert.ok(preserved.includes("Coaches and members record it."));
+  assert.ok(preserved.includes("ChatGPT"));
 
   const contactHtml = await (await fetch(`${origin}/contact/`)).text();
   for (const email of ["sales@movena.com.au", "info@movena.com.au", "support@movena.com.au"]) {
@@ -627,7 +574,7 @@ async function runContract() {
   for (const route of routes) {
     assert.match(sitemapXml, new RegExp(`https://movena\\.com\\.au${route}`));
   }
-  assert.doesNotMatch(sitemapXml, /product-comparison/);
+  assert.doesNotMatch(sitemapXml, /product-comparison|\/review\//);
 
   process.stdout.write(
     `HTTP contract passed: ${routes.length} routes, ${routes.length - 1} redirects, 404, ${allInternalLinks.size} internal links, robots and sitemap.\n`,

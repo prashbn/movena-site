@@ -14,14 +14,15 @@ type MarketingPageShellProps = {
 
 export function HomePageShell({
   source,
-}: Pick<MarketingPageShellProps, "source">) {
+  preserved = false,
+}: Pick<MarketingPageShellProps, "source"> & { preserved?: boolean }) {
   return (
     <div className="site-shell home-page">
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>
       <SiteHeader />
-      <LegacyMain source={source} />
+      <LegacyMain source={source} ownerHomepage={!preserved} />
       <SiteMotion />
       <SiteFooter marketing />
     </div>

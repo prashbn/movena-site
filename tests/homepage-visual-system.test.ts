@@ -5,14 +5,15 @@ import test from "node:test";
 import { readLegacyMainMarkup } from "../lib/legacy-content.ts";
 import { legacyRoutes } from "../lib/routes.ts";
 
-test("the homepage leads with the approved feature copy and selected yoga and Pilates images", () => {
+test("the preserved homepage retains its copy and assets while metadata follows owner positioning", () => {
   const homepage = readLegacyMainMarkup("index.html");
   const copy = "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.";
   const homeRoute = legacyRoutes.find((route) => route.path === "/");
 
   assert.ok(homepage.includes(copy));
-  assert.ok(homeRoute?.description.startsWith(copy));
-  assert.equal(homeRoute?.socialDescription, copy);
+  assert.equal(homeRoute?.title, "Movena — Run every location from one place.");
+  assert.match(homeRoute?.description ?? "", /Run your gym business from one place/);
+  assert.match(homeRoute?.socialDescription ?? "", /Run every location from one place/);
   assert.doesNotMatch(homepage, /Memberships, timetable, billing and check-in/);
   assert.doesNotMatch(homepage, /class-floor-(900|1600)\.jpg/);
   assert.match(homepage, /Four women chatting in a bright studio while holding rolled yoga mats/);

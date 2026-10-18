@@ -4,11 +4,11 @@ export const legacyRoutes = [
   {
     path: "/",
     source: "index.html",
-    title: "Movena — The gym platform that remembers the training.",
+    title: "Movena — Run every location from one place.",
     description:
-      "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep. Movena is built for everyday gyms.",
+      "Run your gym business from one place. See every location, coach’s classes, member and dollar. Start with one location; add the next on the same system.",
     socialDescription:
-      "Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.",
+      "Run every location from one place. Start with one location; add the next on the same system.",
     kind: "marketing",
   },
   {
