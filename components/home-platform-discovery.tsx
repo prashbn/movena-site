@@ -2,23 +2,25 @@
 
 import { useRef, useState } from "react";
 import { HomeProductWindow } from "./home-product-window";
-import { homeWorkflows as areas } from "@/lib/home-workflows";
+import { homeWorkflows as originalAreas } from "@/lib/home-workflows";
+import { ownerHomeWorkflows } from "@/lib/home-owner-workflows";
 
-export function HomePlatformDiscovery() {
+export function HomePlatformDiscovery({ ownerFirst = false }: { ownerFirst?: boolean } = {}) {
+  const areas = ownerFirst ? ownerHomeWorkflows : originalAreas;
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   return (
     <section id="platform" className="home-discovery-platform" aria-labelledby="home-platform-heading">
       <div className="wrap">
         <span className="kicker">The platform</span>
-        <h2 id="home-platform-heading">Everything a gym runs on.</h2>
-        <p className="sec-lede">One platform. One member record. Every location.</p>
+        <h2 id="home-platform-heading">{ownerFirst ? "See every location." : "Everything a gym runs on."}</h2>
+        <p className="sec-lede">{ownerFirst ? "One location or many. One view of your business." : "One platform. One member record. Every location."}</p>
         <div className="home-financials-proof">
           <div className="home-financials-proof__copy">
-            <h3>Less switching.<br />More coaching.</h3>
-            <p>Memberships, payments, bookings and your team. Connected in one place, so the business keeps moving while you’re on the floor.</p>
+            {ownerFirst ? <h3>Every location.<br />Every dollar.</h3> : <h3>Less switching.<br />More coaching.</h3>}
+            <p>{ownerFirst ? "Switch locations across members, billing, your dashboard and analytics. See financials by location, with managers scoped to the locations they run." : "Memberships, payments, bookings and your team. Connected in one place, so the business keeps moving while you’re on the floor."}</p>
             <a className="link-arrow" href="/platform/">Explore the platform <span aria-hidden="true">→</span></a>
-            <p className="home-financials-proof__detail">Card · BECS direct debit · PayTo</p>
+            <p className="home-financials-proof__detail">{ownerFirst ? "Stripe payments + Direct Debit · Xero · Kiosk check-in · Retail" : "Card · BECS direct debit · PayTo"}</p>
           </div>
           <HomeProductWindow label="Movena / Financials"
             src="/product-screenshots/movena-financials.png" width={3350} height={1776}
@@ -59,7 +61,7 @@ export function HomePlatformDiscovery() {
                     <div><span className="home-workflow__mode">{step.mode}</span><strong>{step.title}</strong><p>{step.detail}</p></div>
                   </li>
                 ))}</ol>
-                <p className="home-workflow__note">{area.note}</p>
+                <p className="home-workflow__note">{area.note}{ownerFirst && area.id === "member" && <> <a href="/legal/privacy/">How drafting uses information.</a></>}</p>
               </div>
             </div>
           ))}

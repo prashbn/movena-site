@@ -7,13 +7,13 @@ const disciplines = [
   "Swimming", "Dance & Movement", "Sports Performance", "Personal Training",
 ];
 
-export function HomeTrainingDisciplines() {
+export function HomeTrainingDisciplines({ ownerFirst = false }: { ownerFirst?: boolean } = {}) {
   return (
     <section id="disciplines" aria-labelledby="home-disciplines-heading">
       <div className="wrap">
         <div className="sec-kicker"><span className="sec-num mono">03</span><span className="kicker">Your kind of gym</span></div>
-        <h2 id="home-disciplines-heading">Built for how your gym trains.</h2>
-        <p className="sec-lede">Eighteen disciplines, already set up. Programme any of them in the same builder.</p>
+        {ownerFirst ? <h2 id="home-disciplines-heading">The gym platform that remembers the training.</h2> : <h2 id="home-disciplines-heading">Built for how your gym trains.</h2>}
+        <p className="sec-lede">{ownerFirst ? "Build programs and session types for how your gym trains. Eighteen disciplines, already set up in the same builder." : "Eighteen disciplines, already set up. Programme any of them in the same builder."}</p>
         <div className="chips">{disciplines.map(discipline => <span className="chip-d" key={discipline}>{discipline}</span>)}</div>
         <figure className="shot shot-wide">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -22,21 +22,21 @@ export function HomeTrainingDisciplines() {
             sizes="(max-width: 1800px) 100vw, 1720px" width="1600" height="900"
             loading="lazy" decoding="async" alt="A group Pilates class extending their arms with straps while kneeling on reformers" />
         </figure>
-        <HomeTrainingConnection />
+        <HomeTrainingConnection ownerFirst={ownerFirst} />
         <a className="link-arrow home-training-connection__link" href="/platform/">See the workout builder <span aria-hidden="true">→</span></a>
       </div>
     </section>
   );
 }
 
-export function HomeTrainingConnection({ showIntro = true }: { showIntro?: boolean } = {}) {
+export function HomeTrainingConnection({ ownerFirst = false }: { ownerFirst?: boolean } = {}) {
   return (
-    <div className="home-training-connection" aria-labelledby={showIntro ? "home-training-heading" : undefined}>
-      {showIntro && <div className="home-training-connection__intro">
-        <span className="kicker">From the coach to the member</span>
-        <h3 id="home-training-heading">The session doesn’t end at the gym door.</h3>
-        <p>Build the program. Record the movements, loads and results. The day’s training is there for members to follow in the app.</p>
-      </div>}
+    <div className="home-training-connection" aria-labelledby="home-training-heading">
+      <div className="home-training-connection__intro">
+        <span className="kicker">{ownerFirst ? "From your coaches to the class" : "From the coach to the member"}</span>
+        <h3 id="home-training-heading">{ownerFirst ? "Programs your coaches run." : "The session doesn’t end at the gym door."}</h3>
+        <p>{ownerFirst ? "Your coaches build the program, run it in class and record the training. Members follow along and see their progress in the app. This is where your class and coach numbers come from." : "Build the program. Record the movements, loads and results. The day’s training is there for members to follow in the app."}</p>
+      </div>
       <div className="home-training-connection__flow">
         <HomeProductWindow label="For the coach / Program builder"
           src="/product-screenshots/movena-program-builder.png" width={3352} height={1922}

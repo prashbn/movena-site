@@ -107,33 +107,44 @@ async function runContract() {
   assert.equal(homepageMain.match(/<h1\b/g)?.length, 1);
   assert.match(homepageMain, /<h1>Run every location from one place\.<\/h1>/);
   assert.ok(homepageMain.includes("One location or many. Five spreadsheets. No idea what&#x27;s working.") || homepageMain.includes("One location or many. Five spreadsheets. No idea what's working."));
-  const sectionIds = ["locations", "coaches", "needs-you", "enquiries", "team", "programs", "sign-up", "access", "growth", "included", "next-step"];
+  const sectionMarkers = [
+    'class="hero"', 'id="members"', 'id="loop"', 'class="home-community"',
+    'id="platform"', 'id="owner-follow-up"', 'class="home-access"',
+    'id="disciplines"', 'id="retention"', 'id="boundaries"', 'class="home-closing"',
+  ];
   let previousSection = -1;
-  for (const id of sectionIds) {
-    const index = homepageMain.indexOf(`id="${id}"`);
-    assert.ok(index > previousSection, `Owner section order: ${id}`);
+  for (const marker of sectionMarkers) {
+    const index = homepageMain.indexOf(marker);
+    assert.ok(index > previousSection, `Original homepage section order: ${marker}`);
     previousSection = index;
   }
   for (const marker of [
     "Run every location from one place.", "See every location.", "Know what needs you.",
     "Turn enquiries into members.", "Keep your team on track.",
-    "The gym platform that remembers the training.", "Sign-up without the paperwork.",
-    "Grows with you.", "Illustrative example · Not a product screen",
+    "The gym platform that remembers the training.", "Sign-up without the paperwork",
+    "Grows with you", "Illustrative workflow · Not a product screen",
     "escalates overdue follow-ups to you", "approve it before anything is sent",
     "Facebook and Instagram lead ads", "Google lead forms", "Kisi hardware at each site",
-    "Past-due memberships", "Actual product screen · Demonstration data",
+    "past-due amounts", "Actual product screen · Demonstration data",
   ]) assert.ok(homepageMain.includes(marker), marker);
   assert.doesNotMatch(homepageMain, /ChatGPT|Claude|OpenAI|Anthropic|AI-powered|enterprise-grade|payroll|commissions|on autopilot|never lose a lead|staff performance scores|readiness score/i);
-  const hero = homepageMain.match(/<header class="hero owner-photo-hero"[\s\S]*?<\/header>/)?.[0];
-  assert.ok(hero);
-  assert.doesNotMatch(hero, /movena-financials|home-product-window/);
-  assert.match(homepageMain, /home-pilates\/class-1600\.jpg/);
-  assert.match(homepageMain, /home-closing\/member-1800\.jpg/);
+  const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(discovery);
+  assert.equal(discovery.match(/role="tab"/g)?.length, 4);
+  assert.equal(discovery.match(/role="tabpanel"/g)?.length, 4);
+  assert.equal(discovery.match(/aria-selected="true"/g)?.length, 1);
+  assert.equal(discovery.match(/hidden="" inert=""/g)?.length, 3);
+  assert.equal(homepageMain.match(/class="home-loop-journey__step mono"/g)?.length, 3);
+  assert.equal(homepageMain.match(/class="home-app-showcase__screen /g)?.length, 2);
+  assert.equal(homepageMain.match(/class="ai-connection"/g)?.length, 2);
+  assert.equal(homepageMain.match(/class="chip-d"/g)?.length, 18);
   assert.ok(homepageMain.includes('href="/legal/privacy/"'));
+  assert.doesNotMatch(homepageMain, /owner-section|owner-proof|owner-task-board|owner-location-switcher/);
   for (const path of [
-    "/product-screenshots/movena-financials.png",
-    "/product-screenshots/movena-program-builder.png",
-    "/members-screens/1.8.0/workout-dark.png",
+    "/product-screenshots/movena-financials.png", "/product-screenshots/movena-program-builder.png",
+    "/members-screens/1.8.0/workout-dark.png", "/members-screens/1.8.0/home.png", "/members-screens/1.8.0/progress-dark.png",
+    "/home-yoga/group-1600.jpg", "/home-pilates/class-1600.jpg", "/home-closing/member-1800.jpg",
+    "/assets/badges/retention-milestone-005.png", "/assets/badges/retention-challenge-winner.png",
   ]) {
     assert.ok(homepageMain.includes(path), path);
     const asset = await fetch(`${origin}${path}`);
@@ -141,6 +152,7 @@ async function runContract() {
     assert.match(asset.headers.get("content-type") ?? "", /^image\//);
     await asset.arrayBuffer();
   }
+
   const preserved = await (await fetch(`${origin}/review/home-before/`)).text();
   assert.match(preserved, /<meta name="robots" content="noindex, nofollow"/);
   assert.match(preserved, /<h1>The gym platform that remembers the training\.<\/h1>/);
