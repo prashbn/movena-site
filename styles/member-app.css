@@ -214,6 +214,41 @@
   transform: rotate(4deg);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .member-app-product-stage[data-motion="visible"] .member-app-product-shot--home {
+    animation: member-app-centre-enter 900ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .member-app-product-shot--book {
+    /* Align the side screen's centre with the Home screen before fanning out. */
+    --app-fan-start: 98.4375%;
+    --app-fan-angle: -4deg;
+  }
+
+  .member-app-product-shot--progress {
+    --app-fan-start: -95.3125%;
+    --app-fan-angle: 4deg;
+  }
+
+  .member-app-product-stage[data-motion="visible"] :is(.member-app-product-shot--book, .member-app-product-shot--progress) {
+    animation: member-app-fan-out 1400ms cubic-bezier(0.22, 1, 0.36, 1) 180ms backwards;
+  }
+
+  .member-app-product-stage[data-motion="visible"] .member-app-product-shot--progress {
+    animation-delay: 300ms;
+  }
+}
+
+@keyframes member-app-centre-enter {
+  from { transform: translateY(28px) scale(0.96); }
+  to { transform: translateY(0) scale(1); }
+}
+
+@keyframes member-app-fan-out {
+  from { transform: translateX(var(--app-fan-start)) rotate(0deg) scale(0.94); }
+  to { transform: translateX(0) rotate(var(--app-fan-angle)) scale(1); }
+}
+
 .member-app-qr {
   display: flex;
   align-items: center;

@@ -22,6 +22,7 @@ const objectSelector = [
   ".platform-page .platform-product-window",
   ".platform-page .frame",
   ".platform-page .caps > .cap",
+  ".member-app-product-stage",
 ].join(", ");
 
 export function SiteMotion() {
@@ -75,7 +76,7 @@ export function SiteMotion() {
           element.setAttribute("data-motion", "visible");
           // Detail sequences wait until their own content can be seen, even
           // when a tall card's heading entered the mobile viewport earlier.
-          if (element.matches(".home-loop-example")) continue;
+          if (element.matches(".home-loop-example, .member-app-product-stage")) continue;
           const animation = element.animate([
             { opacity: 0.15, transform: "translateY(44px) scale(0.97)" },
             { opacity: 1, transform: "translateY(0) scale(1)" },
