@@ -134,7 +134,11 @@ async function runContract() {
   assert.ok(homepageMain);
   const loop = homepageMain.match(/<section id="loop"[\s\S]*?<\/section>/)?.[0];
   assert.ok(loop);
-  assert.equal(loop.match(/class="home-loop-journey__step mono"/g)?.length, 3);
+  assert.equal(loop.match(/aria-label="Step [1-3]: (?:Record|Keep|Act)"/g)?.length, 3);
+  assert.ok(loop.includes("/loop/holographic-ribbons.webp"));
+  const loopArtwork = await fetch(`${origin}/loop/holographic-ribbons.webp`);
+  assert.equal(loopArtwork.status, 200);
+  assert.match(loopArtwork.headers.get("content-type") ?? "", /image\/webp/);
   for (const heading of ["Coaches and members record it.", "Members see their progress.", "Your team has context."]) {
     assert.ok(loop.includes(heading), heading);
   }
