@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 // Content stays visible without JavaScript. Motion starts after the object is
 // clearly on screen, and can replay after it has fully left the viewport.
 const objectSelector = [
+  ".home-loop-journey > li",
   ".home-app-showcase__screen",
   ".home-product-window",
   ".home-training-connection__member",

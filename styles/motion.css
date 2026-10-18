@@ -1,4 +1,4 @@
-/* Supporting motion stays quiet; the Loop owns the main animated story. */
+/* Restrained entrances and interaction feedback on existing content. */
 @media (prefers-reduced-motion: no-preference) {
   .home-page .home-discovery-panel:not([hidden]) > * {
     animation: movena-panel-enter 320ms var(--motion-standard) backwards;

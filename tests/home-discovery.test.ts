@@ -38,9 +38,9 @@ test("workflow copy keeps automatic behaviour, permissions and prerequisites exp
 });
 
 test("the Loop connects three equal steps without implying front-desk retention access", () => {
-  assert.match(loop, /aria-label="Step 1: Record"/);
-  assert.match(loop, /aria-label="Step 2: Keep"/);
-  assert.match(loop, /aria-label="Step 3: Act"/);
+  assert.match(loop, /01 \/ Record/);
+  assert.match(loop, /02 \/ Keep/);
+  assert.match(loop, /03 \/ Act/);
   assert.match(loop, /whether recorded by the coach or the member/);
   assert.match(loop, /Coaches and members record it\./);
   assert.match(loop, /Members see their progress\./);
