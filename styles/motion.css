@@ -1,0 +1,58 @@
+/* Small movements on existing objects. No layout changes or idle loops. */
+@media (prefers-reduced-motion: no-preference) {
+  .home-page .home-discovery-panel:not([hidden]) > * {
+    animation: movena-panel-enter 360ms var(--motion-standard) backwards;
+  }
+
+  .home-page .home-discovery-panel:not([hidden]) > .home-workflow {
+    animation-delay: 45ms;
+  }
+
+  .home-page .home-discovery-tabs button {
+    transition: background-color 180ms var(--motion-standard),
+      border-color 180ms var(--motion-standard),
+      color 180ms var(--motion-standard);
+  }
+
+  .ai-connection a span[aria-hidden="true"] {
+    transition: transform 180ms var(--motion-standard);
+  }
+
+  .ai-connection a:is(:hover, :focus-visible) span[aria-hidden="true"] {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .ai-connection,
+  .home-page .home-product-window {
+    transition: translate 220ms var(--motion-standard);
+  }
+
+  .ai-connection:hover,
+  .home-page .home-product-window:hover {
+    translate: 0 -3px;
+  }
+}
+
+@keyframes movena-panel-enter {
+  from { opacity: 0.65; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-shell .btn,
+  .site-shell .link-arrow span,
+  .site-shell .badge-tile,
+  .site-shell .chip-d {
+    transition: none;
+    transform: none;
+  }
+
+  .site-shell .btn:is(:hover, :active),
+  .site-shell .link-arrow:is(:hover, :focus-visible) span,
+  .site-shell .badge-tile:hover,
+  .site-shell .chip-d:hover {
+    transform: none;
+  }
+}

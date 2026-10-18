@@ -5,6 +5,7 @@ import type { LegacySource, PublicPath } from "@/lib/routes";
 import { LegacyMain } from "@/components/legacy-main";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SiteMotion } from "@/components/site-motion";
 
 type MarketingPageShellProps = {
   source: LegacySource;
@@ -21,6 +22,7 @@ export function HomePageShell({
       </a>
       <SiteHeader />
       <LegacyMain source={source} />
+      <SiteMotion />
       <SiteFooter marketing />
     </div>
   );
@@ -37,6 +39,7 @@ export function MarketingPageShell({
       </a>
       <SiteHeader activePath={activePath} />
       <LegacyMain source={source} />
+      <SiteMotion />
       <SiteFooter marketing />
     </div>
   );
@@ -65,6 +68,7 @@ export function CommercialPageShell({
       </a>
       <SiteHeader activePath={activePath} />
       <main id="main">{children}</main>
+      <SiteMotion />
       <SiteFooter marketing />
     </div>
   );
