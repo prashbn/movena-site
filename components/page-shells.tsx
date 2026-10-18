@@ -33,7 +33,7 @@ export function MarketingPageShell({
   activePath,
 }: MarketingPageShellProps) {
   return (
-    <div className="site-shell marketing-page">
+    <div className={`site-shell marketing-page${source === "members/index.html" ? " members-page" : ""}`}>
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>

@@ -16,11 +16,15 @@
   }
 
   .home-page .home-app-showcase__screen[data-motion="visible"],
-  .home-page .home-training-connection__member[data-motion="visible"] .home-product-phone {
+  .home-page .home-training-connection__member[data-motion="visible"] .home-product-phone,
+  .members-page .member-screen[data-motion="visible"] {
     animation: movena-phone-float 4400ms ease-in-out backwards;
   }
 
-  .home-page .home-app-showcase__screen--progress[data-motion="visible"] {
+  .home-page .home-app-showcase__screen--progress[data-motion="visible"],
+  .members-page .member-screen-stack > .member-screen:last-child[data-motion="visible"],
+  .members-page .member-screen-grid > .member-screen:nth-child(2)[data-motion="visible"],
+  .members-page .member-screen-feature:nth-child(2) .member-screen[data-motion="visible"] {
     animation-delay: 300ms;
   }
 
