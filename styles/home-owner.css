@@ -8,10 +8,3 @@
   font-weight: 550;
   line-height: 1.55;
 }
-.home-owner-copy .owner-copy-mark {
-  background: var(--site-surface-soft);
-  color: var(--site-blue);
-  font-size: 2.5rem;
-  font-weight: 600;
-  letter-spacing: -.06em;
-}

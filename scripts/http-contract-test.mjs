@@ -109,7 +109,7 @@ async function runContract() {
   assert.ok(homepageMain.includes("One location or many. Five spreadsheets. No idea what&#x27;s working.") || homepageMain.includes("One location or many. Five spreadsheets. No idea what's working."));
   const sectionMarkers = [
     'class="hero"', 'id="members"', 'id="loop"', 'class="home-community"',
-    'id="platform"', 'id="owner-follow-up"', 'class="home-access"',
+    'id="platform"', 'id="ai-connections"', 'class="home-access"',
     'id="disciplines"', 'id="retention"', 'id="boundaries"', 'class="home-closing"',
   ];
   let previousSection = -1;
@@ -126,8 +126,11 @@ async function runContract() {
     "escalates overdue follow-ups to you", "approve it before anything is sent",
     "Facebook and Instagram lead ads", "Google lead forms", "Kisi hardware at each site",
     "past-due amounts", "Actual product screen · Demonstration data",
+    "Your gym.", "A conversation away.", "ChatGPT", "Claude",
+    'href="/help/ai-assistants/#chatgpt"', 'href="/help/ai-assistants/#claude"',
+    "Access respects your role, permissions and member consent",
   ]) assert.ok(homepageMain.includes(marker), marker);
-  assert.doesNotMatch(homepageMain, /ChatGPT|Claude|OpenAI|Anthropic|AI-powered|enterprise-grade|payroll|commissions|on autopilot|never lose a lead|staff performance scores|readiness score/i);
+  assert.doesNotMatch(homepageMain, /AI-powered|enterprise-grade|payroll|commissions|on autopilot|never lose a lead|staff performance scores|readiness score/i);
   const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];
   assert.ok(discovery);
   assert.equal(discovery.match(/role="tab"/g)?.length, 4);
@@ -144,6 +147,7 @@ async function runContract() {
     "/product-screenshots/movena-financials.png", "/product-screenshots/movena-program-builder.png",
     "/members-screens/1.8.0/workout-dark.png", "/members-screens/1.8.0/home.png", "/members-screens/1.8.0/progress-dark.png",
     "/home-yoga/group-1600.jpg", "/home-pilates/class-1600.jpg", "/home-closing/member-1800.jpg",
+    "/integration-logos/openai-blossom.svg", "/integration-logos/anthropic-symbol.svg",
     "/assets/badges/retention-milestone-005.png", "/assets/badges/retention-challenge-winner.png",
   ]) {
     assert.ok(homepageMain.includes(path), path);

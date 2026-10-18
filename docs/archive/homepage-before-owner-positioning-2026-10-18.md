@@ -26,9 +26,11 @@ Prash subsequently requested the original layout throughout, with owner wording
 only. Both renderings now use the original section sequence, media, phone
 showcase, Loop, discovery tabs, two-card section, photography and badges.
 Owner copy is applied through `home-owner-copy.ts` and optional component copy
-variants. The provider-branded two-card block uses owner follow-up/task wording
-in the active homepage, keeping the same card structure and animations; the
-preserved homepage retains its original provider text and artwork.
+variants. Prash then confirmed ChatGPT and Claude are a headline feature. The
+original connections section is restored on the active homepage, including both
+provider cards, logos, links and animations. Lead follow-up and staff tasks remain
+in the owner discovery tabs. This is an explicit exception to the earlier brief’s
+restriction on naming providers; the owner hero stays unchanged.
 
 ## Content to consider moving later
 
@@ -39,7 +41,7 @@ preserved homepage retains its original provider text and artwork.
 | Hangout photography and community story | Members |
 | Milestones, challenges and badges | Members; owner retention detail on Platform |
 | Training disciplines and Pilates photo | Businesses or Platform |
-| Provider-branded connections | Review separately; no provider promotion on the owner homepage |
+| ChatGPT and Claude connections | Keep on the homepage as a headline feature, per Prash’s correction |
 | Member ownership and sharing detail | Members; legal pages remain untouched |
 
 These are candidates, not approved relocations. This change does not modify
