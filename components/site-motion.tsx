@@ -6,15 +6,12 @@ import { usePathname } from "next/navigation";
 // Content stays visible without JavaScript. Motion starts after the object is
 // clearly on screen, and can replay after it has fully left the viewport.
 const objectSelector = [
-  ".home-loop-journey > li",
-  ".home-loop-example",
   ".home-app-showcase__screen",
   ".home-product-window",
   ".home-training-connection__member",
   ".home-photo-panel",
   ".shot",
   ".ai-connection",
-  ".home-workflow",
 ].join(", ");
 
 export function SiteMotion() {
@@ -27,8 +24,7 @@ export function SiteMotion() {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const objects = Array.from(main.querySelectorAll<HTMLElement>(objectSelector))
       .filter(element => !element.closest(".hero") &&
-        (element.matches(".home-loop-example") ||
-          !element.parentElement?.closest(objectSelector)));
+        !element.parentElement?.closest(objectSelector));
     const visible = new Set<Element>();
     const animations = new Map<Element, Animation>();
     let observer: IntersectionObserver | undefined;
@@ -65,15 +61,12 @@ export function SiteMotion() {
           if (element.contains(document.activeElement)) continue;
 
           element.setAttribute("data-motion", "visible");
-          // Detail sequences wait until their own content can be seen, even
-          // when a tall card's heading entered the mobile viewport earlier.
-          if (element.matches(".home-loop-example")) continue;
           const animation = element.animate([
-            { opacity: 0.15, transform: "translateY(44px) scale(0.97)" },
-            { opacity: 1, transform: "translateY(0) scale(1)" },
+            { opacity: 0.65, transform: "translateY(14px)" },
+            { opacity: 1, transform: "translateY(0)" },
           ], {
-            duration: 950,
-            delay: Math.min(sequence++, 2) * 160,
+            duration: 600,
+            delay: Math.min(sequence++, 2) * 80,
             easing: "cubic-bezier(0.22, 1, 0.36, 1)",
             fill: "backwards",
           });

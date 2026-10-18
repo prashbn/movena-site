@@ -1,75 +1,12 @@
-/* Finite object animations, triggered in view. All settle within five seconds. */
+/* Supporting motion stays quiet; the Loop owns the main animated story. */
 @media (prefers-reduced-motion: no-preference) {
-  /* Move the existing photo independently of the readable hero copy. */
-  .home-page .hero .split::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: inherit;
-    pointer-events: none;
-    animation: movena-photo-settle 4400ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .home-page .hero .split > div:first-child {
-    position: relative;
-    z-index: 1;
-  }
-
-  .home-page .home-app-showcase__screen[data-motion="visible"],
-  .home-page .home-training-connection__member[data-motion="visible"] .home-product-phone {
-    animation: movena-phone-float 4400ms ease-in-out backwards;
-  }
-
-  .home-page .home-app-showcase__screen--progress[data-motion="visible"] {
-    animation-delay: 300ms;
-  }
-
-  /* The existing result tiles lift in turn: record, history, team context. */
-  .home-page .home-loop-example[data-motion="visible"] {
-    animation: movena-loop-step 3000ms ease-in-out backwards;
-  }
-
-  .home-page .home-loop-journey > li:nth-child(2) .home-loop-example {
-    animation-delay: 650ms;
-  }
-
-  .home-page .home-loop-journey > li:nth-child(3) .home-loop-example {
-    animation-delay: 1300ms;
-  }
-
-  .home-page .home-loop-example[data-motion="visible"] .home-loop-result b,
-  .home-page .home-loop-example[data-motion="visible"] .home-loop-task {
-    animation: movena-result-enter 850ms var(--motion-standard) 500ms backwards;
-  }
-
-  .home-page .home-loop-journey > li:nth-child(2) .home-loop-example[data-motion="visible"] .home-loop-result b {
-    animation-delay: 1150ms;
-  }
-
-  .home-page .home-loop-example[data-motion="visible"] .home-loop-task + .home-loop-task {
-    animation-delay: 850ms;
-  }
-
   .home-page .home-discovery-panel:not([hidden]) > * {
-    animation: movena-panel-enter 650ms var(--motion-standard) backwards;
-  }
-
-  .home-page .home-discovery-panel:not([hidden]) .home-workflow[data-motion="visible"] li {
-    animation: movena-step-enter 650ms var(--motion-standard) 180ms backwards;
-  }
-
-  .home-page .home-discovery-panel:not([hidden]) .home-workflow[data-motion="visible"] li:nth-child(2) {
-    animation-delay: 440ms;
-  }
-
-  .home-page .home-discovery-panel:not([hidden]) .home-workflow[data-motion="visible"] li:nth-child(3) {
-    animation-delay: 700ms;
+    animation: movena-panel-enter 320ms var(--motion-standard) backwards;
   }
 
   .home-page .home-discovery-tabs button {
     transition: background-color 180ms var(--motion-standard),
-      border-color 180ms var(--motion-standard),
-      color 180ms var(--motion-standard);
+      border-color 180ms var(--motion-standard), color 180ms var(--motion-standard);
   }
 
   .ai-connection a span[aria-hidden="true"] {
@@ -81,59 +18,14 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) and (max-width: 1000px) {
-  /* Stacked cards each start their own sequence when they enter view. */
-  .home-page .home-loop-journey > li:nth-child(n) .home-loop-example,
-  .home-page .home-loop-journey > li:nth-child(n) .home-loop-example[data-motion="visible"] .home-loop-result b {
-    animation-delay: 300ms;
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
-  .ai-connection,
-  .home-page .home-product-window {
-    transition: translate 220ms var(--motion-standard);
-  }
-
-  .ai-connection:hover,
-  .home-page .home-product-window:hover {
-    translate: 0 -5px;
-  }
-}
-
-@keyframes movena-photo-settle {
-  from { transform: scale(1.07); }
-  to { transform: scale(1); }
-}
-
-@keyframes movena-phone-float {
-  0%, 100% { translate: 0 0; }
-  25% { translate: 0 -18px; }
-  60% { translate: 0 9px; }
-  82% { translate: 0 -7px; }
-}
-
-@keyframes movena-loop-step {
-  0%, 100% { translate: 0 0; box-shadow: 0 0 0 0 transparent; }
-  18%, 55% {
-    translate: 0 -10px;
-    box-shadow: 0 12px 28px -18px var(--site-blue);
-  }
-}
-
-@keyframes movena-result-enter {
-  from { opacity: 0.2; transform: translateY(16px) scale(0.88); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  .ai-connection { transition: translate 220ms var(--motion-standard); }
+  .ai-connection:hover { translate: 0 -3px; }
 }
 
 @keyframes movena-panel-enter {
-  from { opacity: 0.2; transform: translateY(22px); }
+  from { opacity: 0.7; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes movena-step-enter {
-  from { opacity: 0.1; transform: translateX(24px); }
-  to { opacity: 1; transform: translateX(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
