@@ -1,4 +1,3 @@
-import { HomeLocationOverview } from "./home-location-overview";
 import { HomeProductWindow } from "./home-product-window";
 import { HomeTrainingConnection } from "./home-training-connection";
 
@@ -11,27 +10,24 @@ const coaches = [
 export function HomeOwnerPage() {
   return (
     <main id="main" className="owner-home">
-      <header className="owner-hero">
-        <div className="wrap owner-hero__grid">
-          <div className="owner-hero__copy">
-            <p className="owner-eyebrow">One location or many. Five spreadsheets. No idea what&apos;s working.</p>
-            <h1>Run every location from one place.</h1>
-            <p className="lede">Memberships, bookings, payments, programs, waivers, check-ins and door access, with every coach&apos;s classes and every task in view. Start with one location; add the next on the same system.</p>
-            <div className="owner-hero__actions">
-              <a className="btn btn-primary" href="/contact/">Book a demo</a>
-              <a className="link-arrow" href="#locations">See how it works <span aria-hidden="true">↓</span></a>
+      <header className="hero owner-photo-hero">
+        <div className="wrap">
+          <div className="split">
+            <div>
+              <p className="owner-eyebrow">One location or many. Five spreadsheets. No idea what&apos;s working.</p>
+              <h1>Run every location from one place.</h1>
+              <p className="lede">Memberships, bookings, payments, programs, waivers, check-ins and door access, with every coach&apos;s classes and every task in view. Start with one location; add the next on the same system.</p>
+              <div className="hero-ctas">
+                <a className="btn btn-primary" href="/contact/">Book a demo</a>
+                <a className="btn btn-ghost" href="#locations">See how it works</a>
+              </div>
+              <p className="hero-note">Built for Australian gym owners. One location through to multi-site.</p>
             </div>
-            <p className="owner-hero__note">Built for Australian gym owners. One location through to multi-site.</p>
-          </div>
-          <div className="owner-hero__proof">
-            <span className="kicker">Your business, in view</span>
-            <HomeProductWindow label="Movena / Financials"
-              src="/product-screenshots/movena-financials.png" width={3350} height={1776}
-              alt="Movena Financials with a location filter, collected payments, next payout and revenue breakdowns" />
-            <p>Every location. Every coach. Every member. Every dollar.</p>
+            <div aria-hidden="true" />
           </div>
         </div>
       </header>
+      <div className="facts"><div className="wrap facts-in"><span className="fact">Built in Australia</span><span className="fact">One account, every location</span><span className="fact">Location-scoped team access</span><span className="fact">Unlimited members and team</span></div></div>
 
       <section id="locations" className="owner-section" aria-labelledby="owner-locations-heading">
         <div className="wrap owner-split">
@@ -41,7 +37,9 @@ export function HomeOwnerPage() {
             <p>Stop rebuilding the picture in a spreadsheet. Switch locations across members, billing, your dashboard and analytics. See financials for one location or the whole business.</p>
             <p>Your managers see the locations they run. You keep the full view.</p>
           </div>
-          <HomeLocationOverview />
+          <HomeProductWindow label="Movena / Financials"
+            src="/product-screenshots/movena-financials.png" width={3350} height={1776}
+            alt="Movena Financials with a location filter, collected payments, next payout and revenue breakdowns" />
         </div>
       </section>
 
@@ -51,6 +49,12 @@ export function HomeOwnerPage() {
             <span className="kicker">02 / The coaching floor</span>
             <h2 id="owner-coaches-heading">See every coach&apos;s classes.</h2>
             <p>See sessions run, booked places against capacity, attendance and cancellations. Look by location and by coach, so you can see where classes are filling and where there is room.</p>
+            <figure className="shot owner-coaching-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/home-pilates/class-1600.jpg" srcSet="/home-pilates/class-900.jpg 900w, /home-pilates/class-1600.jpg 1600w"
+                sizes="(max-width: 1000px) 100vw, 44vw" width="1600" height="900" loading="lazy" decoding="async"
+                alt="A group Pilates class extending their arms with straps while kneeling on reformers" />
+            </figure>
           </div>
           <figure className="owner-proof owner-coaches-example">
             <figcaption className="owner-example-label">Illustrative example · Not a product screen</figcaption>
@@ -161,8 +165,24 @@ export function HomeOwnerPage() {
         <div className="wrap owner-included"><h2 id="owner-included-heading">Also included.</h2><ul><li>Online payments and Direct Debit through Stripe</li><li>Xero accounting connection</li><li>Kiosk check-in</li><li>Retail at the front desk</li><li>Member messaging</li><li>Challenges</li><li>Member app for iOS and Android</li></ul></div>
       </section>
 
-      <section id="next-step" className="owner-section owner-closing" aria-labelledby="owner-closing-heading">
-        <div className="wrap owner-closing__inner"><div><span className="kicker">Built for Australian gym owners</span><h2 id="owner-closing-heading">See your business on Movena.</h2><p>Tell us about your locations, your team and where you want to go.</p></div><div className="owner-closing__actions"><a className="btn btn-primary" href="/contact/">Book a demo</a><div><a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a><a href="/contact/">Contact</a></div></div></div>
+      <section id="next-step" className="home-closing owner-photo-closing" aria-labelledby="owner-closing-heading">
+        <div className="wrap-band">
+          <div className="home-photo-panel home-closing__panel">
+            <picture className="home-photo-panel__photo home-closing__photo">
+              <source media="(max-width: 700px)" srcSet="/home-closing/member-mobile-900.jpg" />
+              <img src="/home-closing/member-1800.jpg" srcSet="/home-closing/member-900.jpg 900w, /home-closing/member-1800.jpg 1800w"
+                sizes="(max-width: 1800px) 100vw, 1720px" width="1800" height="1200" loading="lazy" decoding="async"
+                alt="A woman in blue activewear using her phone on the gym floor" />
+            </picture>
+            <div className="home-photo-panel__copy home-closing__copy">
+              <span className="kicker">Built for Australian gym owners</span>
+              <h2 id="owner-closing-heading">See your business on Movena.</h2>
+              <p>Tell us about your locations, your team and where you want to go.</p>
+              <a className="btn btn-primary" href="/contact/">Book a demo</a>
+            </div>
+          </div>
+          <nav className="owner-closing-links" aria-label="Explore Movena"><a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a><a href="/contact/">Contact</a></nav>
+        </div>
       </section>
     </main>
   );

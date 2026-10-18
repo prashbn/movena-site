@@ -124,10 +124,11 @@ async function runContract() {
     "Past-due memberships", "Actual product screen · Demonstration data",
   ]) assert.ok(homepageMain.includes(marker), marker);
   assert.doesNotMatch(homepageMain, /ChatGPT|Claude|OpenAI|Anthropic|AI-powered|enterprise-grade|payroll|commissions|on autopilot|never lose a lead|staff performance scores|readiness score/i);
-  assert.equal(homepageMain.match(/aria-pressed="true"/g)?.length, 2);
-  assert.match(homepageMain, /aria-label="Example location"/);
-  assert.match(homepageMain, /aria-label="Example workspace"/);
-  assert.match(homepageMain, /aria-live="polite"/);
+  const hero = homepageMain.match(/<header class="hero owner-photo-hero"[\s\S]*?<\/header>/)?.[0];
+  assert.ok(hero);
+  assert.doesNotMatch(hero, /movena-financials|home-product-window/);
+  assert.match(homepageMain, /home-pilates\/class-1600\.jpg/);
+  assert.match(homepageMain, /home-closing\/member-1800\.jpg/);
   assert.ok(homepageMain.includes('href="/legal/privacy/"'));
   for (const path of [
     "/product-screenshots/movena-financials.png",
