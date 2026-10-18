@@ -16,9 +16,9 @@ export const legacyRoutes = [
     source: "platform/index.html",
     title: "The platform — Movena",
     description:
-      "Memberships and billing, timetable and bookings, kiosk check-in, waivers, leads, messaging, programming, roles and locations — everything a gym runs on, in one platform.",
+      "Run the day and see the whole business. Memberships, bookings, payments, programs and your team, connected across every location.",
     socialDescription:
-      "Everything a gym runs on, in one place — and one member record behind all of it.",
+      "Run the day. See the whole business. One system for your first location and the next.",
     kind: "marketing",
   },
   {
@@ -26,9 +26,9 @@ export const legacyRoutes = [
     source: "members/index.html",
     title: "For members — Movena",
     description:
-      "One account across participating Movena gyms. Book sessions, follow your gym’s programs and keep your personal progress connected—with sharing controlled by you.",
+      "Book your next class, follow your coach’s program and see your progress build. Your gym, training and progress in the Movena member app.",
     socialDescription:
-      "One member. One Movena identity. Keep your personal progress connected, with personal-best sharing controlled by you.",
+      "Your gym. Your training. Your progress. Book classes and follow your training with Movena.",
     kind: "marketing",
   },
   {

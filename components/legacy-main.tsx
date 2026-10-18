@@ -5,6 +5,7 @@ import { HomePlatformDiscovery } from "./home-platform-discovery";
 import { HomeTrainingDisciplines } from "./home-training-connection";
 import { AiConnections } from "./ai-connections";
 import { rewriteHomepageForOwners } from "@/lib/home-owner-copy";
+import { rewriteMarketingPageCopy } from "@/lib/marketing-page-copy";
 
 type LegacyMainProps = {
   source: LegacySource;
@@ -14,7 +15,7 @@ type LegacyMainProps = {
 export function LegacyMain({ source, ownerHomepage = false }: LegacyMainProps) {
   const originalMarkup = readLegacyMainMarkup(source);
   const markup = source === "index.html" && ownerHomepage
-    ? rewriteHomepageForOwners(originalMarkup) : originalMarkup;
+    ? rewriteHomepageForOwners(originalMarkup) : rewriteMarketingPageCopy(originalMarkup, source);
   if (source === "index.html") {
     // Keep the frozen source; render interactive discovery and real product proof natively.
     const sections = markup.split(/(<section id="(?:loop|platform|disciplines)">[\s\S]*?<\/section>)/g);

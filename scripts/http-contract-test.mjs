@@ -288,7 +288,7 @@ async function runContract() {
     assert.match(response.headers.get("content-type") ?? "", /image\/png/, path);
   }
   assert.doesNotMatch(memberAppHtml, /\/members-screens\/1\.8\.0\//);
-  assert.match(membersHtml, /A history that builds\./);
+  assert.match(membersMain, /Look back\.<br\s*\/?>See what’s changed\./);
   assert.doesNotMatch(membersHtml, /training-(560|1000)\.jpg/);
   for (const size of [560, 1000]) {
     const path = `/members-photos/phone-progress-${size}.jpg`;
@@ -302,7 +302,7 @@ async function runContract() {
     "https://apps.apple.com/au/app/movena/id6770032378",
     "https://play.google.com/store/apps/details?id=au.com.movena.member&amp;pli=1",
     "For gym owners",
-    "Run the experience behind the app.",
+    "Bring this experience to your gym.",
     'href="/businesses/"',
   ]) {
     assert.match(
@@ -317,7 +317,7 @@ async function runContract() {
     "Accounting exports",
     "Member status",
     "Let members browse and pay in the Movena app, then collect their purchase at the gym",
-    "Know what changed. Know what to do next.",
+    "The numbers behind your next decision.",
     "/product-screenshots/movena-financials.png",
     "/product-screenshots/movena-program-builder.png",
     "/product-screenshots/movena-exercise-library.png",
