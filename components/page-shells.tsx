@@ -32,8 +32,11 @@ export function MarketingPageShell({
   source,
   activePath,
 }: MarketingPageShellProps) {
+  const pageClass = source === "members/index.html" ? " members-page"
+    : source === "platform/index.html" ? " platform-page" : "";
+
   return (
-    <div className={`site-shell marketing-page${source === "members/index.html" ? " members-page" : ""}`}>
+    <div className={`site-shell marketing-page${pageClass}`}>
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>

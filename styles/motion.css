@@ -17,7 +17,8 @@
 
   .home-page .home-app-showcase__screen[data-motion="visible"],
   .home-page .home-training-connection__member[data-motion="visible"] .home-product-phone,
-  .members-page .member-screen[data-motion="visible"] {
+  .members-page .member-screen[data-motion="visible"],
+  .platform-page .platform-product-window[data-motion="visible"] {
     animation: movena-phone-float 4400ms ease-in-out backwards;
   }
 
@@ -26,6 +27,31 @@
   .members-page .member-screen-grid > .member-screen:nth-child(2)[data-motion="visible"],
   .members-page .member-screen-feature:nth-child(2) .member-screen[data-motion="visible"] {
     animation-delay: 300ms;
+  }
+
+  .platform-page .hero .shot[data-motion="visible"] img {
+    animation: movena-photo-settle 4400ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  /* Reveal the existing member, timetable and team examples in reading order. */
+  .platform-page .frame[data-motion="visible"] .console-main > .row,
+  .platform-page .frame[data-motion="visible"] .tt-row {
+    animation: movena-step-enter 650ms var(--motion-standard) 180ms backwards;
+  }
+
+  .platform-page .frame[data-motion="visible"] .console-main > .row:nth-of-type(2),
+  .platform-page .frame[data-motion="visible"] .tt-row:nth-of-type(3) {
+    animation-delay: 440ms;
+  }
+
+  .platform-page .frame[data-motion="visible"] .console-main > .row:nth-of-type(3),
+  .platform-page .frame[data-motion="visible"] .tt-row:nth-of-type(4) {
+    animation-delay: 700ms;
+  }
+
+  .platform-page .frame[data-motion="visible"] .console-main > .row:nth-of-type(4),
+  .platform-page .frame[data-motion="visible"] .tt-row:nth-of-type(5) {
+    animation-delay: 960ms;
   }
 
   /* The existing result tiles lift in turn: record, history, team context. */
@@ -95,12 +121,14 @@
 
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
   .ai-connection,
-  .home-page .home-product-window {
+  .home-page .home-product-window,
+  .platform-page .platform-product-window {
     transition: translate 220ms var(--motion-standard);
   }
 
   .ai-connection:hover,
-  .home-page .home-product-window:hover {
+  .home-page .home-product-window:hover,
+  .platform-page .platform-product-window:hover {
     translate: 0 -5px;
   }
 }

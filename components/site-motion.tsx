@@ -19,6 +19,9 @@ const objectSelector = [
   ".members-page .caps > .cap",
   ".members-page .steps > .card",
   ".members-page .bound-grid > .cap",
+  ".platform-page .platform-product-window",
+  ".platform-page .frame",
+  ".platform-page .caps > .cap",
 ].join(", ");
 
 export function SiteMotion() {
@@ -30,7 +33,8 @@ export function SiteMotion() {
 
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const objects = Array.from(main.querySelectorAll<HTMLElement>(objectSelector))
-      .filter(element => (!element.closest(".hero") || element.matches(".members-page .member-screen")) &&
+      .filter(element => (!element.closest(".hero") ||
+        element.matches(".members-page .member-screen, .platform-page .shot, .platform-page .frame")) &&
         (element.matches(".home-loop-example") ||
           !element.parentElement?.closest(objectSelector)));
     const visible = new Set<Element>();
@@ -77,7 +81,7 @@ export function SiteMotion() {
             { opacity: 1, transform: "translateY(0) scale(1)" },
           ], {
             duration: 950,
-            delay: Math.min(sequence++, element.closest(".members-page") ? 3 : 2) * 160,
+            delay: Math.min(sequence++, element.closest(".members-page, .platform-page") ? 3 : 2) * 160,
             easing: "cubic-bezier(0.22, 1, 0.36, 1)",
             fill: "backwards",
           });
