@@ -8,6 +8,7 @@ const customStylePaths = [
   "styles/home.css",
   "styles/members.css",
   "styles/platform-proof.css",
+  "styles/platform-features.css",
   "styles/commercial.css",
   "styles/businesses.css",
   "styles/integrations.css",

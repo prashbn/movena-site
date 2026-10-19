@@ -23,6 +23,8 @@ const expectedPaths = [
   "/integrations/kisi/",
   "/legal/privacy/",
   "/legal/terms/",
+  "/gym-crm/",
+  "/multi-location-gym-management/",
   "/businesses/",
   "/pricing/",
   "/integrations/",
@@ -32,7 +34,7 @@ const expectedPaths = [
   "/faq/",
 ];
 
-test("the explicit route manifest contains the seven legacy and seven commercial routes", () => {
+test("the explicit route manifest contains every public page", () => {
   assert.deepEqual(
     publicRoutes.map((route) => route.path),
     expectedPaths,

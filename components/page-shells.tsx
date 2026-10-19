@@ -50,23 +50,20 @@ export function MarketingPageShell({
 }
 
 type CommercialPageShellProps = {
-  activePath:
-    | "/businesses/"
-    | "/pricing/"
-    | "/integrations/"
-    | "/app/"
-    | "/contact/"
-    | "/blog/"
-    | "/faq/";
+  activePath: PublicPath;
+  variant?: "commercial" | "platform";
   children: ReactNode;
 };
 
 export function CommercialPageShell({
   activePath,
+  variant = "commercial",
   children,
 }: CommercialPageShellProps) {
   return (
-    <div className="site-shell commercial-page">
+    <div className={variant === "platform"
+      ? "site-shell marketing-page platform-page feature-page"
+      : "site-shell commercial-page"}>
       <a className="visually-hidden" href="#main">
         Skip to content
       </a>

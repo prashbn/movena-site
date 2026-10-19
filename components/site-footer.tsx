@@ -30,6 +30,8 @@ export function SiteFooter({ marketing = false }: SiteFooterProps) {
           <div className="site-footer__column">
             <p>For business</p>
             <Link href="/platform/">Platform</Link>
+            <Link href="/gym-crm/">Gym CRM</Link>
+            <Link href="/multi-location-gym-management/">Multi-location</Link>
             <Link href="/businesses/">Who it’s for</Link>
             <Link href="/pricing/">Pricing</Link>
             <Link href="/integrations/">Integrations</Link>

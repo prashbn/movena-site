@@ -1,6 +1,8 @@
 import { siteConfig } from "./site-config.ts";
 import { blogPath, type BlogPost } from "./blog.ts";
 import { faqAnswerText, faqItems } from "./faq.ts";
+import type { FeatureQuestion } from "./platform-features.ts";
+import type { PublicRoute } from "./routes.ts";
 
 export type JsonLdValue = Record<string, unknown>;
 
@@ -54,6 +56,38 @@ export const softwareStructuredData = {
     "Staff tasks and comments on a Kanban board",
   ],
 } satisfies JsonLdValue;
+
+export function featurePageStructuredData(route: PublicRoute, questions: readonly FeatureQuestion[]): JsonLdValue {
+  const url = `${siteConfig.origin}${route.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": `${url}#page`,
+        url,
+        name: route.title,
+        description: route.description,
+        about: { "@id": softwareStructuredData["@id"] },
+        isPartOf: { "@id": websiteStructuredData["@id"] },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        mainEntity: questions.map(({ question, answer }) => ({
+          "@type": "Question", name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Movena", item: `${siteConfig.origin}/` },
+          { "@type": "ListItem", position: 2, name: "Platform", item: `${siteConfig.origin}/platform/` },
+          { "@type": "ListItem", position: 3, name: route.path === "/gym-crm/" ? "Gym CRM" : "Multi-location", item: url },
+        ],
+      },
+    ],
+  };
+}
 
 export const blogStructuredData = {
   "@context": "https://schema.org",

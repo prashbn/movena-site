@@ -10,6 +10,8 @@ const nextBin = "node_modules/next/dist/bin/next";
 const routes = [
   "/",
   "/platform/",
+  "/gym-crm/",
+  "/multi-location-gym-management/",
   "/members/",
   "/help/",
   "/help/ai-assistants/",
@@ -334,6 +336,43 @@ async function runContract() {
   }
   assert.ok(structuredDataFromHtml(homepageHtml).some((entity) => entity["@type"] === "WebSite"));
   assert.match(platformHtml, /<h3>Gym CRM and lead management<\/h3>/);
+  for (const path of ["/gym-crm/", "/multi-location-gym-management/"]) {
+    const html = await (await fetch(`${origin}${path}`)).text();
+    const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+    assert.ok(main, path);
+    assert.equal(main.match(/<h1\b/g)?.length, 1, `${path} has one H1`);
+    assert.match(html, /site-shell marketing-page platform-page feature-page/);
+    assert.match(html, /href="\/gym-crm\/"/);
+    assert.match(html, /href="\/multi-location-gym-management\/"/);
+    assert.match(main, /Illustrative workflow · Not a product screenshot/);
+    assert.equal(main.match(/<details\b/g)?.length, 4);
+    const data = structuredDataFromHtml(html);
+    const graph = data.find(entity => entity["@graph"])?.["@graph"];
+    assert.ok(graph, `${path} structured data`);
+    const faq = graph.find(entity => entity["@type"] === "FAQPage");
+    assert.equal(faq.mainEntity.length, 4);
+    for (const question of faq.mainEntity) {
+      assert.ok(main.includes(question.name), `${path} FAQ question is in the document`);
+      assert.ok(main.includes(question.acceptedAnswer.text), `${path} FAQ answer is in the document`);
+    }
+    const breadcrumb = graph.find(entity => entity["@type"] === "BreadcrumbList");
+    assert.equal(breadcrumb.itemListElement.at(-1).item, `https://movena.com.au${path}`);
+    assert.ok(data.some(entity => entity["@id"] === "https://movena.com.au/#software"));
+    assert.doesNotMatch(main, /payroll|commissions|performance scores|emails sent automatically|on autopilot|never lose a lead|enterprise-grade|white-label|SSO|legally binding/i);
+    if (path === "/gym-crm/") {
+      assert.match(main, /approve it before anything is sent/);
+      assert.match(main, /Facebook and Instagram lead ads/);
+      assert.match(main, /Google lead forms/);
+      assert.match(main, /escalates to you/);
+      assert.match(main, /href="\/legal\/privacy\/"/);
+    } else {
+      assert.match(main, /Location allowances and reporting capabilities depend on your plan/);
+      assert.match(main, /Kisi door access is an optional add-on/);
+      assert.match(main, /Each site needs Kisi hardware/);
+      assert.match(main, /Actual product screen · Demonstration data/);
+      assert.match(main, /bookings against capacity, attendance and cancellations/);
+    }
+  }
   for (const marker of [
     "Offer card, BECS direct debit or PayTo",
     "Accounting exports",

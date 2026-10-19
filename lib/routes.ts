@@ -75,6 +75,20 @@ export const legacyRoutes = [
 
 export const commercialRoutes = [
   {
+    path: "/gym-crm/",
+    title: "Gym CRM and lead management software Australia — Movena",
+    description:
+      "Bring gym enquiries together, assign follow-ups and see conversions by location. Movena drafts emails for your team to review and approve before sending.",
+    kind: "marketing",
+  },
+  {
+    path: "/multi-location-gym-management/",
+    title: "Multi-location gym management software — Movena",
+    description:
+      "Manage members, billing, classes and your team across locations in one Movena account. Give managers a local view and keep the whole gym business in sight.",
+    kind: "marketing",
+  },
+  {
     path: "/businesses/",
     title: "Gym and studio software — Who Movena is for",
     description:

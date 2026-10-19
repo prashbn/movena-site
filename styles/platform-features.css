@@ -1,0 +1,70 @@
+/* Product detail pages reuse the Platform layout, cards, media and motion. */
+.feature-page .feature-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.65rem;
+  margin-bottom: 2rem;
+  color: var(--site-ink-soft);
+  font-size: 0.75rem;
+}
+
+.feature-page .feature-breadcrumb a:hover {
+  color: var(--site-blue);
+}
+
+.feature-page .split > .frame {
+  margin-top: 0;
+}
+
+.feature-page .feature-example figcaption {
+  padding: 0.8rem 1.35rem;
+  border-top: 1px solid var(--site-line);
+  color: var(--site-ink-soft);
+  font-size: 0.75rem;
+}
+
+.feature-page .feature-example .sec-num {
+  flex: none;
+}
+
+.feature-page .feature-example .row > span:last-child {
+  min-width: 0;
+}
+
+.feature-page .feature-copy p {
+  color: var(--site-ink-soft);
+  line-height: 1.65;
+}
+
+.feature-page .feature-copy .link-arrow {
+  margin-top: 1rem;
+}
+
+.feature-page .feature-questions {
+  padding-bottom: clamp(4.25rem, 7vw, 6rem);
+}
+
+.feature-page .feature-questions h2 {
+  margin-top: 0.7rem;
+}
+
+.feature-page .faq-list {
+  max-width: none;
+  margin-top: 2.5rem;
+}
+
+.feature-page .feature-related {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .feature-page .hero .shot {
+    max-width: 25rem;
+    margin-inline: auto;
+  }
+
+  .feature-page .chrome .url {
+    font-size: 0.65rem;
+    overflow-wrap: anywhere;
+  }
+}
