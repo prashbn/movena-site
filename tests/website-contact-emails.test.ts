@@ -25,7 +25,7 @@ test("the rendered privacy policy has dedicated privacy and general legal contac
     .replace(`<li>Privacy enquiries: ${privacy}</li>\n      <li>General legal enquiries: ${general}</li>`, `<li>Privacy and legal enquiries: ${privacy}</li>`)
     .replaceAll(privacy, general);
   assert.equal(restored, original);
-  assert.match(updated, /Last updated: 17 October 2026/);
+  assert.match(updated, /Last updated: 19 October 2026/);
 });
 
 test("the rendered terms change only contact details and keep legal correspondence at info", () => {

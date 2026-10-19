@@ -26,7 +26,7 @@ test("Google Analytics stays disabled until a visitor grants consent", () => {
   assert.match(consentSource, /ga-disable-/);
   assert.match(consentSource, /removeGoogleAnalyticsCookies/);
   assert.match(consentSource, /Allow analytics/);
-  assert.match(consentSource, /Not now/);
+  assert.match(consentSource, /Reject optional/);
   assert.match(consentSource, /window\.location\.reload\(\)/);
   assert.doesNotMatch(layoutSource, /G-[A-Z0-9]{6,}/);
   assert.ok(packageJson.dependencies?.["@next/third-parties"]);
@@ -38,7 +38,7 @@ test("analytics can be reopened and the privacy policy explains the choice", () 
   assert.match(privacySource, /Optional website analytics:/);
   assert.match(privacySource, /Google Analytics remains off until you allow it/);
   assert.match(privacySource, /Analytics settings/);
-  assert.match(privacySource, /Last updated: 17 October 2026/);
+  assert.match(privacySource, /Last updated: 19 October 2026/);
 });
 
 test("a successful enquiry sends one consent-gated event without form data", () => {

@@ -10,6 +10,11 @@ import {
   analyticsConsentStorageKey,
   analyticsMeasurementId,
 } from "@/lib/analytics";
+import {
+  adMeasurementConsentKey,
+  initializeAdMeasurement,
+  revokeAdMeasurement,
+} from "@/lib/ad-measurement";
 
 type ConsentState = AnalyticsConsent | "unset" | "loading";
 
@@ -19,9 +24,9 @@ declare global {
   }
 }
 
-function storedConsent(): ConsentState {
+function storedConsent(key = analyticsConsentStorageKey): ConsentState {
   try {
-    const value = window.localStorage.getItem(analyticsConsentStorageKey);
+    const value = window.localStorage.getItem(key);
     return value === "granted" || value === "denied" ? value : "unset";
   } catch {
     return "unset";
@@ -41,16 +46,24 @@ function removeGoogleAnalyticsCookies() {
 export function AnalyticsConsentManager() {
   const measurementId = analyticsMeasurementId();
   const [consent, setConsent] = useState<ConsentState>("loading");
+  const [adConsent, setAdConsent] = useState<ConsentState>("loading");
+  const [allowAnalyticsChoice, setAllowAnalyticsChoice] = useState(false);
+  const [allowAdsChoice, setAllowAdsChoice] = useState(false);
   const [preferencesOpen, setPreferencesOpen] = useState(false);
   const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!measurementId) return;
-
     const initialConsent = storedConsent();
-    window[`ga-disable-${measurementId}`] = initialConsent !== "granted";
+    const initialAdConsent = storedConsent(adMeasurementConsentKey);
+    if (measurementId) {
+      window[`ga-disable-${measurementId}`] = initialConsent !== "granted";
+    }
+    if (initialAdConsent === "granted") initializeAdMeasurement();
     const initialisationFrame = window.requestAnimationFrame(() => {
       setConsent(initialConsent);
+      setAdConsent(initialAdConsent);
+      setAllowAnalyticsChoice(initialConsent === "granted");
+      setAllowAdsChoice(initialAdConsent === "granted");
     });
 
     function openPreferences() {
@@ -65,19 +78,17 @@ export function AnalyticsConsentManager() {
   }, [measurementId]);
 
   useEffect(() => {
-    if (consent === "unset" || preferencesOpen) {
+    if (consent === "unset" || adConsent === "unset" || preferencesOpen) {
       panelRef.current?.focus();
     }
-  }, [consent, preferencesOpen]);
+  }, [consent, adConsent, preferencesOpen]);
 
-  if (!measurementId) return null;
+  const panelOpen = consent === "unset" || adConsent === "unset" || preferencesOpen;
 
-  const panelOpen = consent === "unset" || preferencesOpen;
-
-  function rememberConsent(nextConsent: AnalyticsConsent) {
+  function rememberConsent(key: string, nextConsent: AnalyticsConsent) {
     try {
       window.localStorage.setItem(
-        analyticsConsentStorageKey,
+        key,
         nextConsent,
       );
     } catch {
@@ -85,29 +96,32 @@ export function AnalyticsConsentManager() {
     }
   }
 
-  function allowAnalytics() {
-    rememberConsent("granted");
-    window[`ga-disable-${measurementId}`] = false;
-    setConsent("granted");
+  function saveChoices(analyticsAllowed: boolean, adsAllowed: boolean) {
+    const reloadNeeded =
+      (consent === "granted" && !analyticsAllowed) ||
+      (adConsent === "granted" && !adsAllowed);
+    const nextAnalytics = analyticsAllowed ? "granted" : "denied";
+    const nextAds = adsAllowed ? "granted" : "denied";
+    rememberConsent(analyticsConsentStorageKey, nextAnalytics);
+    rememberConsent(adMeasurementConsentKey, nextAds);
+    if (measurementId) window[`ga-disable-${measurementId}`] = !analyticsAllowed;
+    if (!analyticsAllowed) removeGoogleAnalyticsCookies();
+    if (adsAllowed) initializeAdMeasurement();
+    else revokeAdMeasurement();
+    setConsent(nextAnalytics);
+    setAdConsent(nextAds);
+    setAllowAnalyticsChoice(analyticsAllowed);
+    setAllowAdsChoice(adsAllowed);
     setPreferencesOpen(false);
-  }
 
-  function declineAnalytics() {
-    const analyticsWasLoaded = consent === "granted";
-    rememberConsent("denied");
-    window[`ga-disable-${measurementId}`] = true;
-    removeGoogleAnalyticsCookies();
-    setConsent("denied");
-    setPreferencesOpen(false);
-
-    if (analyticsWasLoaded) {
+    if (reloadNeeded) {
       window.location.reload();
     }
   }
 
   return (
     <>
-      {consent === "granted" ? (
+      {consent === "granted" && measurementId ? (
         <GoogleAnalytics gaId={measurementId} />
       ) : null}
 
@@ -121,28 +135,44 @@ export function AnalyticsConsentManager() {
         >
           <div className="analytics-consent__copy">
             <p className="analytics-consent__eyebrow">Your privacy</p>
-            <h2>Help us improve the Movena website?</h2>
+            <h2>Choose your privacy settings</h2>
             <p>
-              If you allow it, Google Analytics will show us which pages are
-              useful. We do not send your contact-form details, and analytics
-              stays off until you choose.
+              Optional measurement stays off until you choose. You can change
+              these choices through Analytics settings in the footer.
             </p>
+            {measurementId ? (
+              <label className="analytics-consent__choice">
+                <input type="checkbox" checked={allowAnalyticsChoice}
+                  onChange={(event) => setAllowAnalyticsChoice(event.target.checked)} />
+                <span><strong>Allow analytics</strong> — Google Analytics helps us
+                  understand website use. We do not send your enquiry details to Google.</span>
+              </label>
+            ) : null}
+            <label className="analytics-consent__choice">
+              <input type="checkbox" checked={allowAdsChoice}
+                onChange={(event) => setAllowAdsChoice(event.target.checked)} />
+              <span><strong>Allow ad measurement</strong> — OpenAI measures whether
+                ChatGPT ads lead to enquiries using a click identifier and cookies.
+                Its pixel may detect and hash supported contact details in your
+                browser for matching. Raw contact details are not sent through
+                this matching feature.</span>
+            </label>
             <Link href="/legal/privacy/">Read our privacy policy</Link>
           </div>
           <div className="analytics-consent__actions">
             <button
               className="analytics-consent__allow"
-              onClick={allowAnalytics}
+              onClick={() => saveChoices(allowAnalyticsChoice, allowAdsChoice)}
               type="button"
             >
-              Allow analytics
+              Save choices
             </button>
             <button
               className="analytics-consent__decline"
-              onClick={declineAnalytics}
+              onClick={() => saveChoices(false, false)}
               type="button"
             >
-              {consent === "granted" ? "Turn off analytics" : "Not now"}
+              Reject optional
             </button>
           </div>
         </section>

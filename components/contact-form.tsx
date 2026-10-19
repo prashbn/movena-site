@@ -16,6 +16,7 @@ import {
   validateContactPayload,
 } from "@/lib/contact-schema";
 import { trackContactEnquiry } from "@/lib/client-analytics";
+import { trackAdEnquiry } from "@/lib/ad-measurement";
 
 type FormValues = {
   name: string;
@@ -154,6 +155,7 @@ export function ContactForm() {
 
       if (response.ok && isRecord(body) && body.ok === true) {
         trackContactEnquiry();
+        if (!clientValidation.bot) trackAdEnquiry();
         setStatus("success");
         setStatusMessage(
           apiMessage(body) ||

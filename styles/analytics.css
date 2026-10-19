@@ -8,6 +8,8 @@
   gap: 1rem;
   width: min(560px, calc(100vw - 2rem));
   padding: 1rem;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
   color: var(--site-ink);
   background: rgba(255, 255, 255, 0.98);
   border: 1px solid var(--site-line);
@@ -23,6 +25,20 @@
 
 .analytics-consent__copy {
   max-width: 380px;
+}
+
+.analytics-consent__choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0.75rem 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.analytics-consent__choice input {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
 }
 
 .analytics-consent__eyebrow {
