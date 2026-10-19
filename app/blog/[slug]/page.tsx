@@ -45,6 +45,7 @@ export async function generateMetadata({
       ...metadata.openGraph,
       type: "article",
       publishedTime: post.published,
+      modifiedTime: "modified" in post ? post.modified : post.published,
       authors: ["Movena"],
       images: [{ url: post.image, alt: post.imageAlt }],
     },
@@ -130,7 +131,13 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
             <span aria-hidden="true">·</span>
             <span>By Movena</span>
             <span aria-hidden="true">·</span>
-            <time dateTime={post.published}>{post.publishedLabel}</time>
+            {"modified" in post ? (
+              <time dateTime={post.modified}>
+                Updated {new Date(`${post.modified}T00:00:00Z`).toLocaleDateString("en-AU", {
+                  day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+                })}
+              </time>
+            ) : <time dateTime={post.published}>{post.publishedLabel}</time>}
             <span aria-hidden="true">·</span>
             <span>{post.readingTime}</span>
           </div>

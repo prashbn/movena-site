@@ -4,7 +4,7 @@ export function rewriteHomepageForOwners(original: string): string {
   const replacements = [
     ["<h1>The gym platform that remembers the training.</h1>", "<p class=\"owner-eyebrow\">One location or many. Five spreadsheets. No idea what's working.</p>\n        <h1>Run every location from one place.</h1>"],
     ["Memberships, payments, bookings, team management and workout programming. Plus a training history members keep.", "Memberships, bookings, payments, programs, waivers, check-ins and door access, with every coach's classes and every task in view. Start with one location; add the next on the same system."],
-    ["Available now for Australian gyms.", "Built in Australia. For the business you’re building."],
+    ["Available now for Australian gyms.", "Gym CRM and management software. Built in Australia."],
     ["<span class=\"kicker\">Movena member app</span>", "<span class=\"kicker\">For your members</span>"],
     ["An app worth opening.", "Your gym. In their pocket."],
     ["One Movena identity. Book the next session, follow the workout and see personal progress build. Each gym’s memberships and training records stay in the right place.", "Bookings, your coaches’ programs and a record of their progress. Give members one place to stay connected to your gym."],

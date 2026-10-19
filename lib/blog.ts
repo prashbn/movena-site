@@ -25,6 +25,7 @@ export type BlogPost = {
   description: string;
   excerpt: string;
   published: string;
+  modified?: string;
   publishedLabel: string;
   readingTime: string;
   image: string;
@@ -566,12 +567,13 @@ export const blogPosts = [
     category: "Buying guide",
     title: "What to ask before choosing gym software",
     description:
-      "A practical checklist covering pricing, payments, migration, member apps, access control, data portability and the capabilities that are not yet available.",
+      "Choosing gym software in Australia: compare CRM and lead management, pricing, payments, migration, member apps, access control and data portability.",
     excerpt:
       "A feature list is easy to scan. The better questions reveal what the software costs, who controls the surrounding services and how you leave.",
     published: "2026-09-02",
+    modified: "2026-10-20",
     publishedLabel: "2 September 2026",
-    readingTime: "7 minute read",
+    readingTime: "8 minute read",
     image: "/assets/photos/class-floor-1600.jpg",
     imageAlt:
       "A coach briefing members around a loaded barbell on a gym floor",
@@ -580,6 +582,14 @@ export const blogPosts = [
       "This checklist is written by Movena, so verify our answers as closely as any other provider’s. A clear limitation is more useful than a broad claim that changes meaning after the contract is signed.",
     ],
     sections: [
+      {
+        heading: "Choose a gym CRM before opening day",
+        paragraphs: [
+          "If you are opening a gym in Sydney or elsewhere in Australia, start with how an enquiry becomes a member. A gym CRM keeps the person, next step and due time together, then carries the record into membership.",
+          "Ask for a demo of the whole conversation: capture an enquiry from your website or lead ads, assign a follow-up, see a reminder and record the reply. Check what happens when a follow-up is overdue and who approves an email before it is sent.",
+          "Movena brings website forms, Facebook and Instagram lead ads, and Google lead forms into one lead list. Your team gets follow-up reminders, overdue follow-ups escalate to you, and replies stay with the lead. Movena drafts follow-up emails for a person to read, edit and approve. The funnel shows contacted, trialled, converted and lost by location.",
+        ],
+      },
       {
         heading: "How does the price grow?",
         paragraphs: [
@@ -617,6 +627,11 @@ export const blogPosts = [
     safetyNote:
       "General information only. Verify current pricing, contract terms, integrations and product availability with each supplier. Requirements differ between fitness businesses and jurisdictions.",
     sources: [
+      {
+        label: "Movena platform — gym CRM and lead management",
+        publisher: "Movena",
+        url: "https://movena.com.au/platform/",
+      },
       {
         label: "Movena pricing",
         publisher: "Movena",

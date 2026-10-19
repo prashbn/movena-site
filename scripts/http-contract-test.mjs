@@ -86,6 +86,11 @@ function canonicalFromHtml(html) {
   return match?.[1] ?? match?.[2] ?? null;
 }
 
+function structuredDataFromHtml(html) {
+  return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1]));
+}
+
 async function runContract() {
   await waitForServer();
 
@@ -312,6 +317,23 @@ async function runContract() {
   }
 
   const platformHtml = await (await fetch(`${origin}/platform/`)).text();
+  // Check the actual prerendered documents: the product description must be
+  // readable without JavaScript, use production IDs and preserve claim limits.
+  for (const html of [homepageHtml, platformHtml]) {
+    assert.match(html, /Gym CRM and management software/);
+    const entities = structuredDataFromHtml(html);
+    const software = entities.find((entity) => entity["@type"] === "WebApplication");
+    const organization = entities.find((entity) => entity["@type"] === "Organization");
+    assert.ok(software);
+    assert.ok(organization);
+    assert.equal(software["@id"], "https://movena.com.au/#software");
+    assert.equal(software.publisher["@id"], organization["@id"]);
+    assert.equal(software.applicationCategory, "BusinessApplication");
+    assert.match(software.featureList.join(" "), /reviewed and approved before sending/);
+    assert.ok(!("aggregateRating" in software || "review" in software || "offers" in software));
+  }
+  assert.ok(structuredDataFromHtml(homepageHtml).some((entity) => entity["@type"] === "WebSite"));
+  assert.match(platformHtml, /<h3>Gym CRM and lead management<\/h3>/);
   for (const marker of [
     "Offer card, BECS direct debit or PayTo",
     "Accounting exports",
@@ -446,6 +468,14 @@ async function runContract() {
     assert.match(faqHtml, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
   assert.match(faqHtml, /FAQPage/);
+
+  const buyingGuideHtml = await (await fetch(`${origin}/blog/questions-before-choosing-gym-software/`)).text();
+  assert.match(buyingGuideHtml, /Choose a gym CRM before opening day/);
+  assert.match(buyingGuideHtml, /opening a gym in Sydney or elsewhere in Australia/);
+  assert.match(buyingGuideHtml.replace(/<!--[\s\S]*?-->/g, ""), /Updated 20 October 2026/);
+  const buyingGuideArticle = structuredDataFromHtml(buyingGuideHtml).find((entity) => entity["@type"] === "Article");
+  assert.equal(buyingGuideArticle?.datePublished, "2026-09-02");
+  assert.equal(buyingGuideArticle?.dateModified, "2026-10-20");
 
   const blogHtml = await (await fetch(`${origin}/blog/`)).text();
   for (const marker of [
@@ -584,6 +614,9 @@ async function runContract() {
   const robotsText = await robots.text();
   assert.match(robotsText, /Content-Signal: search=yes,ai-train=no,use=reference/);
   assert.match(robotsText, /Sitemap: https:\/\/movena\.com\.au\/sitemap\.xml/);
+  assert.match(robotsText, /User-agent: OAI-SearchBot\s+Allow: \/(?:\s|$)/);
+  assert.match(robotsText, /User-agent: GPTBot\s+Disallow: \/(?:\s|$)/);
+  assert.match(robotsText, /User-agent: \*\s+Content-Signal: search=yes,ai-train=no,use=reference\s+Allow: \/(?:\s|$)/);
 
   const sitemap = await fetch(`${origin}/sitemap.xml`);
   assert.equal(sitemap.status, 200);
@@ -592,6 +625,7 @@ async function runContract() {
     assert.match(sitemapXml, new RegExp(`https://movena\\.com\\.au${route}`));
   }
   assert.doesNotMatch(sitemapXml, /product-comparison|\/review\//);
+  assert.match(sitemapXml, /questions-before-choosing-gym-software\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
 
   process.stdout.write(
     `HTTP contract passed: ${routes.length} routes, ${routes.length - 1} redirects, 404, ${allInternalLinks.size} internal links, robots and sitemap.\n`,

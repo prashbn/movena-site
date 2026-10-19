@@ -1,8 +1,12 @@
-# Repository-owned equivalent of the Cloudflare-managed production policy.
-# Cloudflare may continue to serve its managed version until the future hosting cutover.
+# Public marketing site: allow search and reference use, opt out of training.
+# Search access and training access are independent policies.
 
 User-agent: *
 Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+
+# ChatGPT search is allowed explicitly; GPTBot training remains blocked below.
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: Amazonbot

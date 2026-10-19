@@ -11,8 +11,8 @@ test("the preserved homepage retains its copy and assets while metadata follows 
   const homeRoute = legacyRoutes.find((route) => route.path === "/");
 
   assert.ok(homepage.includes(copy));
-  assert.equal(homeRoute?.title, "Movena — Run every location from one place.");
-  assert.match(homeRoute?.description ?? "", /Run your gym business from one place/);
+  assert.equal(homeRoute?.title, "Gym CRM and management software Australia — Movena");
+  assert.match(homeRoute?.description ?? "", /Australian gym CRM and management software/);
   assert.match(homeRoute?.socialDescription ?? "", /Run every location from one place/);
   assert.doesNotMatch(homepage, /Memberships, timetable, billing and check-in/);
   assert.doesNotMatch(homepage, /class-floor-(900|1600)\.jpg/);

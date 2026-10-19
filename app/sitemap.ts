@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...blogPosts.map((post) => ({
       url: canonicalUrl(blogPath(post.slug)),
-      lastModified: post.published,
+      lastModified: "modified" in post ? post.modified : post.published,
     })),
   ];
 }

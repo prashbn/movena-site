@@ -5,7 +5,7 @@ type CopyPair = readonly [string, string];
 // Editorial copy only. Keep the existing sections, media, links and motion hooks.
 const platformCopy: readonly CopyPair[] = [
   ["<h1>Everything a gym runs on, in one place.</h1>", "<h1>Run the day.<br>See the whole business.</h1>"],
-  ["Front desk, office and floor work from the same system — one member record behind memberships, bookings, check-in, waivers, payments and messages. One record moves with each member, so owners, staff and coaches see the same operation without rebuilding it in spreadsheets.", "Memberships, bookings, payments and programs, connected across your locations. Give your team one place to work and keep every coach, member and dollar in view."],
+  ["Front desk, office and floor work from the same system — one member record behind memberships, bookings, check-in, waivers, payments and messages. One record moves with each member, so owners, staff and coaches see the same operation without rebuilding it in spreadsheets.", "Gym CRM and management software for your leads, memberships, bookings, payments and programs. Give your team one place to work across every location."],
   ["Memberships, packs and the awkward parts of billing.", "Memberships change.<br>Keep the record clear."],
   ["Selling a membership is the easy half. Movena is built for the other half — the refund, the make-good, the member who wants to pay at the desk, the plan that has to change.", "The first payment is only the start. Plans change. Payments fail. Refunds need following up. Keep it all with the member, so your team knows where things stand."],
   ["Build a membership or a class pack once and sell it everywhere it applies.", "Set up your memberships and class packs, then choose the classes and locations they cover."],
@@ -27,6 +27,7 @@ const platformCopy: readonly CopyPair[] = [
   ["A private line between your team and your members — never member-to-member.", "Keep member conversations with the people who can help. Private threads connect each member with your team."],
   ["<b>Push notifications</b> — so it actually gets read", "<b>Push notifications</b> — send updates to members’ phones"],
   ["The CRM half: enquiries in, members kept.", "From the first enquiry.<br>To the next milestone."],
+  ["<h3>Leads and enquiries</h3>", "<h3>Gym CRM and lead management</h3>"],
   ["A gym's pipeline is short and personal — someone walks in, or fills in a form, and somebody has to follow up. Movena keeps that honest without turning your desk into a sales floor.", "Someone asks about joining. Someone else hasn’t been in for a while. Give your team the context to follow up, welcome people in and recognise their progress."],
   ["Everyone who asked about joining, in one list — including the ones who found you on your own website.", "Keep every enquiry in one place, with a person to follow up and a due time. See where the conversation goes next."],
   ["<b>A form for your own site</b> — copy the snippet, paste it into your website, and enquiries land in your pipeline", "<b>Lead capture</b> — website forms, Facebook and Instagram lead ads, and Google lead forms"],

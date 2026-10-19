@@ -4,9 +4,9 @@ export const legacyRoutes = [
   {
     path: "/",
     source: "index.html",
-    title: "Movena — Run every location from one place.",
+    title: "Gym CRM and management software Australia — Movena",
     description:
-      "Run your gym business from one place. See every location, coach’s classes, member and dollar. Start with one location; add the next on the same system.",
+      "Australian gym CRM and management software for leads, memberships, bookings, payments and programs. Start with one location; grow on the same system.",
     socialDescription:
       "Run every location from one place. Start with one location; add the next on the same system.",
     kind: "marketing",
@@ -14,9 +14,9 @@ export const legacyRoutes = [
   {
     path: "/platform/",
     source: "platform/index.html",
-    title: "The platform — Movena",
+    title: "Gym CRM, bookings and memberships — Movena",
     description:
-      "Run the day and see the whole business. Memberships, bookings, payments, programs and your team, connected across every location.",
+      "Gym CRM and lead management, connected to memberships, bookings, payments and programs. Run your team and every location from the same system.",
     socialDescription:
       "Run the day. See the whole business. One system for your first location and the next.",
     kind: "marketing",
