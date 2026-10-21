@@ -7,6 +7,10 @@ import { enquiryExampleDraft, enquiryStoryReducer, enquiryStorySteps, initialEnq
 
 const stepIcons: DiscoveryIconName[] = ["enquiry", "team", "alert", "approval"];
 
+function ClickCue() {
+  return <span className="enquiry-story__cursor" aria-hidden="true"><HomeDiscoveryIcon name="cursor" /></span>;
+}
+
 function Sarah() {
   return <div className="enquiry-story__person"><span className="enquiry-story__avatar" aria-hidden="true">SC</span><div><strong>Sarah Chen</strong><span>Newtown · Interested in a trial</span></div></div>;
 }
@@ -19,6 +23,7 @@ export function HomeEnquiryStory() {
   const [state, dispatch] = useReducer(enquiryStoryReducer, initialEnquiryStory);
   const [visible, setVisible] = useState(false);
   const [draft, setDraft] = useState(enquiryExampleDraft);
+  const [showCue, setShowCue] = useState(true);
   const frame = useRef<HTMLDivElement>(null);
   const draftInput = useRef<HTMLTextAreaElement>(null);
   const hasStarted = useRef(false);
@@ -76,7 +81,8 @@ export function HomeEnquiryStory() {
   }
 
   return (
-    <section id="enquiries" className="home-enquiry-story" aria-labelledby="enquiry-story-heading">
+    <section id="enquiries" className="home-enquiry-story" aria-labelledby="enquiry-story-heading" data-show-cue={showCue || undefined}
+      onPointerDownCapture={() => setShowCue(false)} onKeyDownCapture={() => setShowCue(false)}>
       <div className="wrap">
         <div className="enquiry-story__intro">
           <span className="kicker">Enquiries, connected</span>
@@ -90,6 +96,7 @@ export function HomeEnquiryStory() {
             </button>
           </li>)}
         </ol>
+        <p className="enquiry-story__interaction-hint"><HomeDiscoveryIcon name="cursor" />Choose a step or try the buttons</p>
         <div ref={frame} className="enquiry-story__window" data-playing={state.playing && visible || undefined}
           onFocusCapture={() => { userControlled.current = true; dispatch({ type: "pause" }); }}>
           <div className="enquiry-story__chrome"><span className="enquiry-story__brand" aria-label="Movena"><BrandLockup /></span><span className="enquiry-story__location">Newtown</span><span className="enquiry-story__example">Example workspace</span></div>
@@ -97,14 +104,14 @@ export function HomeEnquiryStory() {
             <div id="enquiry-story-scene-0" className="enquiry-story__scene" hidden={state.step !== 0} inert={state.step !== 0}>
               <ScreenHeading title="A new enquiry" subtitle="Enquiries / Website form" status="Just arrived" />
               <div className="enquiry-story__enquiry"><Sarah /><blockquote>“Hi, I’m looking to try a class. Do you have anything on Monday evenings?”</blockquote><p className="enquiry-story__origin"><HomeDiscoveryIcon name="enquiry" /> Captured from your website</p></div>
-              <div className="enquiry-story__foot"><p>The enquiry is in one place.</p><button className="btn btn-primary enquiry-story__action" type="button" onClick={() => select(1)}>Give it a next step <span aria-hidden="true">→</span></button></div>
+              <div className="enquiry-story__foot"><p>The enquiry is in one place.</p><button className="btn btn-primary enquiry-story__action" type="button" onClick={() => select(1)}>Give it a next step <span aria-hidden="true">→</span><ClickCue /></button></div>
             </div>
             <div id="enquiry-story-scene-1" className="enquiry-story__scene" hidden={state.step !== 1} inert={state.step !== 1}>
               <ScreenHeading title="A person. A due time." subtitle="Enquiries / Sarah Chen" status="Follow-up set" />
               <Sarah />
               <dl className="enquiry-story__assignment"><div><dt>Assigned to</dt><dd>Dana · Front desk</dd></div><div><dt>Follow up by</dt><dd>Today, 2:00 pm</dd></div></dl>
               <ul className="enquiry-story__next-steps"><li><HomeDiscoveryIcon name="approval" /> Arrange a trial class</li><li><HomeDiscoveryIcon name="alert" /> Movena reminds Dana</li></ul>
-              <div className="enquiry-story__foot"><p>A clear next step for your team.</p><button className="btn btn-primary enquiry-story__action" type="button" onClick={() => select(2)}>If it’s overdue <span aria-hidden="true">→</span></button></div>
+              <div className="enquiry-story__foot"><p>A clear next step for your team.</p><button className="btn btn-primary enquiry-story__action" type="button" onClick={() => select(2)}>If it’s overdue <span aria-hidden="true">→</span><ClickCue /></button></div>
             </div>
             <div id="enquiry-story-scene-2" className="enquiry-story__scene" hidden={state.step !== 2} inert={state.step !== 2}>
               <ScreenHeading title="Know what needs you." subtitle="Overview / Newtown" status="3 need attention" warning />
@@ -113,7 +120,7 @@ export function HomeEnquiryStory() {
                 <li><span className="enquiry-story__attention-icon"><HomeDiscoveryIcon name="money" /></span><div><strong>Alex Morgan</strong><span>Membership payment past due</span></div><span>$142 owed</span></li>
                 <li><span className="enquiry-story__attention-icon"><HomeDiscoveryIcon name="reply" /></span><div><strong>Jamie Lee</strong><span>Refund didn’t reach the member</span></div><span>Review</span></li>
               </ul>
-              <div className="enquiry-story__foot"><p>Overdue follow-up comes to you.</p><button className="btn btn-primary enquiry-story__action" type="button" onClick={() => select(3)}>Open Sarah’s lead <span aria-hidden="true">→</span></button></div>
+              <div className="enquiry-story__foot"><p>Overdue follow-up comes to you.</p><button className="btn btn-primary enquiry-story__action" type="button" onClick={() => select(3)}>Open Sarah’s lead <span aria-hidden="true">→</span><ClickCue /></button></div>
             </div>
             <div id="enquiry-story-scene-3" className="enquiry-story__scene" hidden={state.step !== 3} inert={state.step !== 3}>
               <ScreenHeading title="Your words. Your approval." subtitle="Enquiries / Sarah Chen" status={state.approved ? "Example approved" : "Draft · Not sent"} />
@@ -123,7 +130,7 @@ export function HomeEnquiryStory() {
               <textarea ref={draftInput} id="enquiry-story-draft" className="enquiry-story__draft" value={draft} readOnly={state.approved} onChange={event => setDraft(event.target.value)} />
               <div className="enquiry-story__foot">
                 <p>{state.approved ? "Example draft approved. No email has been sent." : "Movena drafts. You read, edit and approve."}</p>
-                {state.approved ? <button className="btn btn-ghost enquiry-story__action" type="button" onClick={() => { userControlled.current = true; dispatch({ type: "play" }); }}>Replay story <span aria-hidden="true">↻</span></button> : <button className="btn btn-primary enquiry-story__action" type="button" onClick={() => dispatch({ type: "approve" })}>Approve example draft <span aria-hidden="true">✓</span></button>}
+                {state.approved ? <button className="btn btn-ghost enquiry-story__action" type="button" onClick={() => { userControlled.current = true; dispatch({ type: "play" }); }}>Replay story <span aria-hidden="true">↻</span></button> : <button className="btn btn-primary enquiry-story__action" type="button" onClick={() => dispatch({ type: "approve" })}>Approve example draft <span aria-hidden="true">✓</span><ClickCue /></button>}
               </div>
             </div>
           </div>

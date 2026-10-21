@@ -1,6 +1,7 @@
-export type DiscoveryIconName = "session" | "desk" | "member" | "day" | "money" | "team" | "door" | "enquiry" | "alert" | "approval" | "reply" | "play" | "pause";
+export type DiscoveryIconName = "session" | "desk" | "member" | "day" | "money" | "team" | "door" | "enquiry" | "alert" | "approval" | "reply" | "play" | "pause" | "cursor";
 
 const paths: Record<DiscoveryIconName, string> = {
+  cursor: "M4 3l7 18 3-7 7-3z",
   enquiry: "M3 5h18v14H3z M3 5l9 7 9-7",
   alert: "M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9 M10 21h4",
   approval: "M4 12l5 5L20 6",
