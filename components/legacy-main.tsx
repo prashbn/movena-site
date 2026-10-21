@@ -2,6 +2,7 @@ import { readLegacyMainMarkup } from "@/lib/legacy-content";
 import type { LegacySource } from "@/lib/routes";
 import { HomeLoop } from "./home-loop";
 import { HomePlatformDiscovery } from "./home-platform-discovery";
+import { HomeEnquiryStory } from "./home-enquiry-story";
 import { HomeTrainingDisciplines } from "./home-training-connection";
 import { AiConnections } from "./ai-connections";
 import { rewriteHomepageForOwners } from "@/lib/home-owner-copy";
@@ -21,7 +22,7 @@ export function LegacyMain({ source, ownerHomepage = false }: LegacyMainProps) {
     const sections = markup.split(/(<section id="(?:loop|platform|disciplines)">[\s\S]*?<\/section>)/g);
     return <main id="main" className={ownerHomepage ? "home-owner-copy" : undefined}>{sections.map((section, index) => {
       if (section.startsWith('<section id="loop">')) return <HomeLoop key="loop" ownerFirst={ownerHomepage} />;
-      if (section.startsWith('<section id="platform">')) return <div key="platform"><HomePlatformDiscovery ownerFirst={ownerHomepage} /><AiConnections ownerFirst={ownerHomepage} /></div>;
+      if (section.startsWith('<section id="platform">')) return <div key="platform"><HomePlatformDiscovery ownerFirst={ownerHomepage} />{ownerHomepage && <HomeEnquiryStory />}<AiConnections ownerFirst={ownerHomepage} /></div>;
       if (section.startsWith('<section id="disciplines">')) return <HomeTrainingDisciplines key="disciplines" ownerFirst={ownerHomepage} />;
       return <div key={index} dangerouslySetInnerHTML={{ __html: section }} />;
     })}</main>;

@@ -138,6 +138,13 @@ async function runContract() {
     "Access respects your role, permissions and member consent",
   ]) assert.ok(homepageMain.includes(marker), marker);
   assert.doesNotMatch(homepageMain, /AI-powered|enterprise-grade|payroll|commissions|on autopilot|never lose a lead|staff performance scores|readiness score/i);
+  const enquiryStory = homepageMain.match(/<section id="enquiries"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(enquiryStory, "Homepage enquiry story is server rendered");
+  for (const marker of ["Enquiry arrives", "Team follows up", "You see what needs you", "You approve", "Edit the example follow-up draft", "Approve example draft", "No email is sent.", 'href="/gym-crm/"']) assert.ok(enquiryStory.includes(marker), marker);
+  assert.equal(enquiryStory.match(/aria-current="step"/g)?.length, 1);
+  assert.equal(enquiryStory.match(/hidden="" inert=""/g)?.length, 3);
+  assert.ok(homepageMain.indexOf('id="enquiries"') > homepageMain.indexOf('id="platform"'));
+  assert.ok(homepageMain.indexOf('id="enquiries"') < homepageMain.indexOf('id="ai-connections"'));
   const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];
   assert.ok(discovery);
   assert.equal(discovery.match(/role="tab"/g)?.length, 4);

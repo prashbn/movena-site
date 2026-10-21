@@ -1,6 +1,12 @@
-export type DiscoveryIconName = "session" | "desk" | "member" | "day" | "money" | "team" | "door";
+export type DiscoveryIconName = "session" | "desk" | "member" | "day" | "money" | "team" | "door" | "enquiry" | "alert" | "approval" | "reply" | "play" | "pause";
 
 const paths: Record<DiscoveryIconName, string> = {
+  enquiry: "M3 5h18v14H3z M3 5l9 7 9-7",
+  alert: "M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9 M10 21h4",
+  approval: "M4 12l5 5L20 6",
+  reply: "M9 5l-6 6 6 6 M3 11h11a6 6 0 0 1 6 6v3",
+  play: "M7 4l13 8-13 8z",
+  pause: "M8 4v16 M16 4v16",
   door: "M3 21h18 M6 21V4l10-2v19 M16 4h3v17 M12 12h1",
   session: "M9 5H5v16h14V5h-4 M9 3h6v4H9z M9 14l2 2 4-4",
   desk: "M3 4h18v13H3z M8 21h8 M12 17v4",
