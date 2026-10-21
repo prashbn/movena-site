@@ -32,7 +32,7 @@ const platformCopy: readonly CopyPair[] = [
   ["Everyone who asked about joining, in one list — including the ones who found you on your own website.", "Keep every enquiry in one place, with a person to follow up and a due time. See where the conversation goes next."],
   ["<b>A form for your own site</b> — copy the snippet, paste it into your website, and enquiries land in your pipeline", "<b>Lead capture</b> — website forms, Facebook and Instagram lead ads, and Google lead forms"],
   ["<b>Tagged on arrival</b> — website enquiries are marked as such, so you can see what your site is actually bringing in", "<b>Follow-up</b> — reminders for your team; overdue follow-ups escalate to you"],
-  ["<b>Where they came from</b> — walk-in, referral, website, campaign", "<b>Email drafts</b> — Movena drafts from the enquiry and latest reply. Read, edit and approve before anything is sent. <a href=\"/legal/privacy/\">How your information is used.</a>"],
+  ["<b>Where they came from</b> — walk-in, referral, website, campaign", "<b>Email drafts</b> — optional drafting uses approved gym facts and may include a screened latest email reply. Read, edit and approve before anything is sent. <a href=\"/legal/privacy/\">How your information is used.</a>"],
   ["<b>Status history</b> — who moved it, and when", "<b>Replies and funnel</b> — replies stay with the lead. See contacted, trialled, converted and lost by location"],
   ["The record behind every conversation at the desk.", "Know who you’re talking to, from the first trial to the regular at the front desk."],
   ["<b>Invites</b> — one email, and they're in the app", "<b>Invites</b> — invite members to join your gym in the app"],

@@ -66,6 +66,9 @@
 .home-page .enquiry-story__attention div > span { display: block; margin-top: 0.25rem; color: var(--site-ink-soft); font-size: 0.76rem; }
 .home-page .enquiry-story__attention li > span:last-child { margin-left: auto; color: var(--site-ink-soft); font-size: 0.75rem; text-align: right; max-width: 8ch; }
 .home-page .enquiry-story__context { margin: 0 0 1rem; padding: 0.85rem 1rem; border-radius: 8px; background: var(--site-surface-tint); color: var(--site-ink-soft); font-size: 0.78rem; }
+.home-page .enquiry-story__context p { margin: 0; }
+.home-page .enquiry-story__context p + p { margin-top: 0.45rem; }
+.home-page .enquiry-story__policy { margin: 1rem 0 0; color: var(--site-ink-soft); font-size: 0.78rem; line-height: 1.6; }
 .home-page .enquiry-story__email { margin: 0; }
 .home-page .enquiry-story__email > div { display: flex; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--site-line); font-size: 0.8rem; }
 .home-page .enquiry-story__email dt { min-width: 3rem; color: var(--site-ink-soft); }

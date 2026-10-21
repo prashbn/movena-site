@@ -7,7 +7,7 @@ export const crmQuestions: readonly FeatureQuestion[] = [
   },
   {
     question: "Who approves a follow-up email?",
-    answer: "You or the person following up reads, edits and approves the draft before anything is sent. Movena drafts from the enquiry and the lead’s latest reply.",
+    answer: "You or the person following up reads, edits and approves the draft before anything is sent. Optional drafting uses approved gym facts and may include a screened latest email reply. Enquiry form answers are not used for drafting.",
   },
   {
     question: "What happens when a follow-up is overdue?",

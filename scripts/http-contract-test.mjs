@@ -143,6 +143,8 @@ async function runContract() {
   for (const marker of ["Enquiry arrives", "Team follows up", "You see what needs you", "You approve", "Edit the example follow-up draft", "Approve example draft", "No email is sent.", 'href="/gym-crm/"']) assert.ok(enquiryStory.includes(marker), marker);
   assert.equal(enquiryStory.match(/aria-current="step"/g)?.length, 1);
   assert.equal(enquiryStory.match(/hidden="" inert=""/g)?.length, 3);
+  for (const marker of ["Action center", "2 leads awaiting follow-up", "No reply in over 24 hours", "1 membership past due", "1 refund didn’t reach the member", "configured business hours and business-day escalation timers", "Approved gym fact:", "Screened latest email reply:", "Drafting is optional."]) assert.ok(enquiryStory.includes(marker), marker);
+  assert.doesNotMatch(enquiryStory, /30 min overdue|From Sarah’s enquiry|Alex Morgan|Jamie Lee|Open Sarah’s lead/);
   assert.ok(homepageMain.indexOf('id="enquiries"') > homepageMain.indexOf('id="platform"'));
   assert.ok(homepageMain.indexOf('id="enquiries"') < homepageMain.indexOf('id="ai-connections"'));
   const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];

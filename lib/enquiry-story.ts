@@ -5,7 +5,7 @@ export const enquiryStorySteps = [
   "You approve",
 ] as const;
 
-export const enquiryExampleDraft = "Hi Sarah,\n\nThanks for getting in touch. We’d love to help you find a class at Newtown. What time on Monday evening would suit you?\n\nDana";
+export const enquiryExampleDraft = "Hi Sarah,\n\nThanks for your reply. We’d love to help you find a class at Newtown. What time on Monday evening would suit you?\n\nDana";
 
 export type EnquiryStoryState = {
   step: number;

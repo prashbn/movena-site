@@ -59,10 +59,10 @@ export default function GymCrmPage() {
       <section aria-labelledby="crm-drafts-heading">
         <div className="wrap">
           <FeatureIntro id="crm-drafts-heading" number="03" label="Your conversation" title="A draft you have the final say on.">
-            Movena drafts the follow-up email from the enquiry and the lead’s latest reply. You read it, edit it and approve it before anything is sent.
+            Optional drafting uses your approved gym facts and may include a screened version of the lead’s latest email reply. Enquiry form answers are not used for drafting. You read it, edit it and approve it before anything is sent.
           </FeatureIntro>
           <div className="steps">
-            <article className="card"><span className="n">01 / Context</span><h3>Start with the enquiry.</h3><p>The enquiry and latest reply give the draft its starting point.</p></article>
+            <article className="card"><span className="n">01 / Context</span><h3>Start with what’s approved.</h3><p>Your approved gym facts and, when permitted, a screened latest email reply give the draft its starting point.</p></article>
             <article className="card"><span className="n">02 / Review</span><h3>Make it sound like you.</h3><p>Read the draft and edit it for the person you’re speaking with.</p></article>
             <article className="card"><span className="n">03 / Approval</span><h3>You decide when it’s ready.</h3><p>Approve the email before it is sent. Your team stays in control of the conversation.</p></article>
           </div>

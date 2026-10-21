@@ -42,7 +42,7 @@ export const ownerHomeWorkflows = [
     example: "A follow-up you approve",
     steps: [
       { title: "Set the next step", detail: "Assign the person and a due time.", mode: "Your team" },
-      { title: "Review Movena’s draft", detail: "Movena drafts the email from the enquiry and latest reply. Read it, edit it and approve it before anything is sent.", mode: "You approve" },
+      { title: "Review Movena’s draft", detail: "Optional drafting uses approved gym facts and may include a screened latest email reply. Read it, edit it and approve it before anything is sent.", mode: "You approve" },
       { title: "Keep the conversation together", detail: "Replies return to the lead, alongside their place in your funnel.", mode: "Your team" },
     ],
     note: "The draft is a starting point. You have the final say before it is sent.",
