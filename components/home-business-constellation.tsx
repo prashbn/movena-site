@@ -115,8 +115,9 @@ export function HomeBusinessConstellation() {
             <div className="business-constellation__board">
               <div className="business-constellation__rings" aria-hidden="true">{Array.from({ length: 13 }, (_, index) => <span key={index} style={{ width: `${12 + index * 2}rem`, height: `${12 + index * 2}rem`, opacity: 0.9 - index * 0.055 }} />)}</div>
               <div className="business-constellation__hub">
-                <Image src="/brand/light/favicon.svg" width={80} height={80} alt="Movena" className="business-constellation__mark site-logo__image--light" />
-                <Image src="/brand/dark/favicon.svg" width={80} height={80} alt="Movena" className="business-constellation__mark site-logo__image--dark" />
+                {/* Contrast the central brand tile with the surrounding theme. */}
+                <Image src="/brand/dark/favicon.svg" width={80} height={80} alt="Movena" className="business-constellation__mark site-logo__image--light" />
+                <Image src="/brand/light/favicon.svg" width={80} height={80} alt="Movena" className="business-constellation__mark site-logo__image--dark" />
               </div>
               <ul className="business-constellation__nodes" aria-label="Connected Movena capabilities">
                 {businessCapabilities.map(capability => <li key={capability.label} className="business-constellation__node" data-emphasis={capability.emphasis} data-mark={capability.icon}>
