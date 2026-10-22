@@ -41,27 +41,35 @@ are factual staff prompts, not cancellation predictions. The gym website article
 explicitly says website booking is not available and the joining journey still
 needs approval before promotion; no new website-booking claim is included.
 
-The scroll visual settles into a six-column desktop/four-column phone grid.
-Reduced-motion and short screens use the complete grid in normal page flow.
-Circle borders now use the existing stronger border token; orbit lines have
-slightly higher opacity. The approved palette, photos and existing animations stay.
+## CRM reveal for dev review
 
-Hierarchy refinement: the orbit uses three sizes, with Movena largest in the
-centre. Memberships, bookings, payments, programs, leads, financial reports,
-locations and the assistant connection have 100px circles on desktop; supporting
-tools are 68px and detail capabilities 42px. Phone sizes are 72px, 48px and 34px.
-Positions are composed separately for desktop and phone, rather than repeating
-an evenly spaced ring. As they settle, all capability circles converge to one
-size: 64px on desktop and 52px on phones. The static/reduced-motion grid uses
-those same uniform sizes; Movena remains the central brand mark.
+The orbit now opens into two banks of capabilities as the owner scrolls. Movena
+moves to the top and changes from its symbol tile to the approved wordmark.
+The centre reveals an illustrative Leads workspace. It is explicitly labelled
+“Illustrative workspace · Example data”, not presented as a product screenshot.
 
-The thin outline symbols in this section have been replaced with a dedicated
-filled symbol system and existing official OpenAI/Anthropic artwork for the
-assistant connection. Thirteen fine concentric lines replace the three broad
-rings. Only the visual stage pins during scrolling; the heading and footer use
-normal flow. All 24 capabilities, reduced-motion fallback and reverse motion stay.
+The three sample stages — New, Contacted and Trial scheduled — are checked
+against `src/app/(owner)/leads/page.tsx`. Converted is deliberately absent from
+the active board. Board/Table/Follow-ups, location, assignee and next action/time
+are checked against `docs/help/owner-guide/leads/working-with-leads.md`,
+`src/components/leads/leads-kanban.tsx` and `lead-card.tsx`. The compact mobile
+view shows the same three example people as a list. No new product actions or
+outbound integrations are introduced by the illustration.
 
-The upper orbit now forms a balanced crown: locations and bookings mirror each
-other, flanked by door access and team tasks, with smaller packs and exports at
-the outer edges and the timetable centred above. The phone layout uses the same
-paired hierarchy. The lower orbit retains its more organic spacing.
+Desktop has twelve capabilities on either side, each bank in two columns.
+Phones use two slim icon rails to leave space for the CRM. The complete labelled
+capability list and CRM remain in normal flow without JavaScript, with reduced
+motion, or on short landscape screens. The portrait scene uses small-viewport
+units so Safari's browser bars do not disable it or change its scroll travel.
+
+Movement begins immediately, with short frame-rate-independent damping rather
+than a long gather phase. The animation changes transforms and opacity; it no
+longer resizes twenty-four circles during every frame. Reverse scrolling restores
+the orbit. There are no timers, autoplay loops or scroll interception.
+
+The initial orbit keeps its approved three-size hierarchy, balanced upper crown,
+filled capability symbols, fine concentric rings and official partner marks.
+All capability circles converge to equal sizes at either side of the CRM. The
+central Movena tile remains light in dark mode and dark in light mode; partner
+marks use light silhouettes on their dark surface. Existing photos, phones,
+Loop animation, other pages and production are unchanged by this dev review.

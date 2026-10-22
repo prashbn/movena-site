@@ -3,13 +3,16 @@
 .home-page .business-constellation__intro { text-align: center; }
 .home-page .business-constellation__intro h2 { max-width: none; margin: 0.8rem auto; font-size: clamp(2.15rem, 3.3vw, 2.65rem); line-height: 1.06; letter-spacing: -0.05em; }
 .home-page .business-constellation__intro p { max-width: 51ch; margin: 0 auto; color: var(--site-ink-soft); font-size: 0.96rem; line-height: 1.6; }
-.home-page .business-constellation__board { position: relative; width: min(100%, 880px); margin: 1.25rem auto 0; }
-.home-page .business-constellation__hub { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; width: 184px; height: 184px; margin: 0 auto 2rem; border: 1px solid var(--line-2); border-radius: 50%; background: var(--site-surface); box-shadow: var(--home-panel-shadow); }
+.home-page .business-constellation__board { position: relative; width: min(100%, 1200px); margin: 1.25rem auto 0; }
+.home-page .business-constellation__hub { position: relative; z-index: 5; width: 184px; height: 184px; margin: 0 auto 2rem; }
+.home-page .business-constellation__hub-tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border: 1px solid var(--line-2); border-radius: 50%; background: var(--site-surface); box-shadow: var(--home-panel-shadow); }
+.home-page .business-constellation__wordmark { display: none; position: absolute; top: 50%; left: 50%; width: 140px; transform: translate(-50%, -50%); }
+.home-page .business-constellation__wordmark img { width: 100%; height: auto; }
 .home-page .business-constellation__mark { width: 108px; height: 108px; }
 .home-page .business-constellation__rings { display: none; position: absolute; inset: 0; pointer-events: none; }
 .home-page .business-constellation__rings > span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid var(--line-2); border-radius: 50%; }
 .home-page .business-constellation__nodes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.5rem 0.75rem; margin: 0 auto; padding: 0; list-style: none; }
-.home-page .business-constellation__node { --orbit-size: 68px; --grid-size: 64px; --node-size: var(--grid-size); --node-face: var(--site-surface-soft); position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 0; min-height: 108px; text-align: center; }
+.home-page .business-constellation__node { --orbit-size: 68px; --grid-size: 64px; --dock-size: 44px; --node-size: var(--grid-size); --node-face: var(--site-surface-soft); position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 0; min-height: 108px; text-align: center; }
 .home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 100px; --node-face: var(--site-surface); z-index: 4; }
 .home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 42px; }
 .home-page .business-constellation__icon { display: grid; place-items: center; flex: none; width: var(--node-size); height: var(--node-size); color: var(--site-ink); border: 1px solid var(--line-2); border-radius: 50%; background: var(--node-face); box-shadow: var(--shadow-card); }
@@ -32,21 +35,73 @@
 .home-page .business-constellation__foot { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 1.25rem; }
 .home-page .business-constellation__scroll-note { display: none; align-items: center; gap: 0.6rem; margin-top: 0.65rem; white-space: nowrap; color: var(--site-ink-soft); font-size: 0.76rem; }
 .home-page .business-constellation__foot .link-arrow { font-size: 0.85rem; }
-/* Enhancement only: without JavaScript (or with reduced motion), the complete
-   capability grid above remains visible in ordinary document flow. */
+/* With no JavaScript, reduced motion or a short landscape viewport, the CRM
+   and the complete capability list remain readable in ordinary page flow. */
+.home-page .business-crm { position: relative; z-index: 2; width: min(100%, 800px); margin: 0 auto 2rem; font-size: 12px; line-height: 1.35; }
+.home-page .business-crm__window { overflow: hidden; border: 1px solid var(--line-2); border-radius: 12px; background: var(--site-surface); box-shadow: var(--home-panel-shadow); }
+.home-page .business-crm__chrome { display: flex; align-items: center; gap: 12px; height: 38px; padding: 0 14px; background: var(--site-surface-soft); border-bottom: 1px solid var(--site-line); color: var(--site-ink-soft); font-size: 10px; }
+.home-page .business-crm__traffic { display: flex; gap: 4px; }
+.home-page .business-crm__traffic i { width: 6px; height: 6px; border: 1px solid var(--line-2); border-radius: 50%; }
+.home-page .business-crm__location { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.home-page .business-crm__location svg { width: 12px; height: 12px; }
+.home-page .business-crm__workspace { display: grid; grid-template-columns: 110px minmax(0, 1fr); min-height: 326px; }
+.home-page .business-crm__sidebar { display: flex; flex-direction: column; gap: 3px; padding: 18px 8px 12px; border-right: 1px solid var(--site-line); background: var(--site-surface-soft); }
+.home-page .business-crm__sidebar > span { display: flex; align-items: center; gap: 7px; padding: 8px 7px; color: var(--site-ink-soft); font-size: 10px; white-space: nowrap; }
+.home-page .business-crm__sidebar svg { width: 13px; height: 13px; }
+.home-page .business-crm__sidebar > .business-crm__gym { padding-top: 0; font-size: 7px; letter-spacing: 0.08em; }
+.home-page .business-crm__sidebar > span[data-selected] { color: var(--site-blue-deep); border-radius: 5px; background: var(--site-blue-soft); font-weight: 600; }
+.home-page .business-crm__sidebar > .business-crm__sidebar-foot { margin-top: auto; padding-top: 22px; line-height: 1.6; font-size: 9px; }
+.home-page .business-crm__main { min-width: 0; padding: 20px 18px 12px; }
+.home-page .business-crm__heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.home-page .business-crm__heading h3 { margin: 0 0 5px; font-size: 22px; line-height: 1; letter-spacing: -0.04em; text-align: left; }
+.home-page .business-crm__heading p { margin: 0; font-size: 10px; color: var(--site-ink-soft); }
+.home-page .business-crm__total { align-self: flex-start; font-size: 9px; color: var(--site-ink-soft); }
+.home-page .business-crm__views { display: flex; align-items: center; gap: 14px; margin-block: 14px 12px; padding-bottom: 8px; border-bottom: 1px solid var(--site-line); font-size: 10px; color: var(--site-ink-soft); }
+.home-page .business-crm__board-tab { color: var(--site-blue-deep); font-weight: 600; }
+.home-page .business-crm__filter { display: flex; gap: 10px; margin-left: auto; font-size: 9px; }
+.home-page .business-crm__pipeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.home-page .business-crm__column { min-width: 0; padding: 7px; background: var(--site-surface-soft); border: 1px solid var(--site-line); border-radius: 7px; }
+.home-page .business-crm__column-title { display: flex; justify-content: space-between; gap: 4px; margin-bottom: 9px; color: var(--site-ink-soft); font-size: 9px; }
+.home-page .business-crm__column-title > span { display: flex; gap: 4px; align-items: center; }
+.home-page .business-crm__column-title i { flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--site-blue); }
+.home-page .business-crm__column[data-stage="1"] .business-crm__column-title i { background: var(--ink-3); }
+.home-page .business-crm__column[data-stage="2"] .business-crm__column-title i { background: var(--good); }
+.home-page .business-crm__column-title small { font-size: 8px; }
+.home-page .business-crm__lead { margin-top: 7px; padding: 9px 7px 7px; background: var(--site-surface); border: 1px solid var(--site-line); border-radius: 5px; }
+.home-page .business-crm__person { display: flex; align-items: center; gap: 5px; line-height: 1; }
+.home-page .business-crm__person strong { font-size: 11px; font-weight: 600; line-height: 1.3; }
+.home-page .business-crm__avatar { flex: none; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--site-surface-tint); color: var(--site-ink-soft); font-size: 7px; }
+.home-page .business-crm__source { margin: 7px 0; color: var(--site-ink-soft); font-size: 9px; line-height: 1.5; }
+.home-page .business-crm__source > span { padding-inline: 2px; }
+.home-page .business-crm__next { display: flex; flex-direction: column; gap: 4px; padding-top: 7px; border-top: 1px solid var(--site-line); font-size: 9px; line-height: 1.25; }
+.home-page .business-crm__next strong { color: var(--site-blue-deep); font-size: 9px; font-weight: 500; }
+.home-page .business-crm__owner { display: flex; gap: 4px; align-items: center; margin: 8px 0 0; font-size: 8px; color: var(--site-ink-soft); }
+.home-page .business-crm__owner > span:first-child { display: grid; place-items: center; width: 13px; height: 13px; border-radius: 50%; background: var(--site-surface-tint); font-size: 7px; }
+.home-page .business-crm__mobile-status { display: none; }
+.home-page .business-crm__summary { display: flex; align-items: center; gap: 5px; margin: 12px 0 0; font-size: 9px; color: var(--site-ink-soft); }
+.home-page .business-crm__summary svg { width: 12px; height: 12px; color: var(--good); }
+.home-page .business-crm figcaption { margin-top: 10px; text-align: center; font-size: 10px; color: var(--site-ink-soft); }
 .home-page .home-business-constellation[data-scroll-motion] { padding-block: 2rem; }
-.home-page [data-scroll-motion] .business-constellation__stage { height: calc(var(--constellation-sticky-height, 572px) + var(--constellation-distance, 440px)); }
+.home-page [data-scroll-motion] .business-constellation__stage { height: calc(var(--constellation-sticky-height, 612px) + var(--constellation-distance, 448px)); }
 .home-page [data-scroll-motion] .business-constellation__sticky { position: sticky; top: 80px; }
 .home-page [data-scroll-motion] .business-constellation__board { height: 560px; }
 .home-page [data-scroll-motion] .business-constellation__hub { position: absolute; top: 0; left: 0; margin: 0; will-change: transform; }
+.home-page [data-scroll-motion] .business-constellation__hub-tile { will-change: transform, opacity; }
+.home-page [data-scroll-motion] .business-constellation__wordmark { display: block; opacity: 0; }
 .home-page [data-scroll-motion] .business-constellation__rings { display: block; }
 .home-page [data-scroll-motion] .business-constellation__nodes { display: block; max-width: none; }
-.home-page [data-scroll-motion] .business-constellation__node { --node-size: calc(var(--orbit-size) + (var(--grid-size) - var(--orbit-size)) * var(--constellation-spread, 0)); position: absolute; top: 0; left: 0; width: 160px; height: var(--node-size); min-height: 0; will-change: transform; }
-.home-page [data-scroll-motion] .business-constellation__label { position: absolute; top: calc(100% + 0.5rem); width: 100%; opacity: var(--label-opacity, 1); }
+.home-page [data-scroll-motion] .business-constellation__node { --node-size: var(--orbit-size); position: absolute; top: 0; left: 0; width: 94px; height: 0; min-height: 0; will-change: transform; }
+.home-page [data-scroll-motion] .business-constellation__icon { position: absolute; top: 0; left: 50%; will-change: transform; }
+.home-page [data-scroll-motion] .business-constellation__label { position: absolute; top: 0; left: 0; width: 100%; font-size: 10.5px; line-height: 1.25; opacity: 0; }
 .home-page [data-scroll-motion] .business-constellation__scroll-note { display: inline-flex; opacity: calc(1 - var(--constellation-progress, 0)); }
+.home-page [data-scroll-motion] .business-crm { position: absolute; top: 18%; left: 50%; width: 60%; margin: 0; transform-origin: top center; opacity: 0; will-change: transform, opacity; }
 @media (max-width: 1000px) {
   .home-page .business-constellation__nodes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .home-page [data-scroll-motion] .business-constellation__board { height: 720px; }
+  .home-page [data-scroll-motion] .business-constellation__board { height: clamp(500px, calc(100vh - 132px), 720px); height: clamp(500px, calc(100svh - 132px), 720px); }
+  .home-page [data-scroll-motion] .business-constellation__node { --dock-size: 32px; }
+  .home-page [data-scroll-motion] .business-crm { width: calc(100% - 124px); }
+  .home-page .business-crm__workspace { grid-template-columns: 1fr; }
+  .home-page .business-crm__sidebar { display: none; }
 }
 @media (max-width: 640px) {
   .home-page .home-business-constellation { padding-block: 1.2rem; }
@@ -57,24 +112,46 @@
   .home-page .business-constellation__board { margin-top: 1rem; }
   .home-page .business-constellation__hub { width: 140px; height: 140px; }
   .home-page .business-constellation__mark { width: 80px; height: 80px; }
+  .home-page .business-constellation__wordmark { width: 116px; }
   .home-page .business-constellation__node { --orbit-size: 48px; --grid-size: 52px; min-height: 94px; }
   .home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 72px; }
   .home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 34px; }
   .home-page .business-constellation__label { font-size: 0.78rem; line-height: 1.25; }
   .home-page .business-constellation__nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 0.5rem; }
-  /* Size for Safari with its toolbars visible; scrolling them away must not
-     change the scene's geometry. Keep short phones readable as it releases. */
   .home-page [data-scroll-motion] .business-constellation__board { height: clamp(500px, calc(100vh - 124px), 720px); height: clamp(500px, calc(100svh - 124px), 720px); }
   .home-page [data-scroll-motion] .business-constellation__hub { width: clamp(112px, 20svh, 140px); height: clamp(112px, 20svh, 140px); }
   .home-page [data-scroll-motion] .business-constellation__mark { width: clamp(64px, 11.5svh, 80px); height: clamp(64px, 11.5svh, 80px); }
-  .home-page [data-scroll-motion] .business-constellation__node { --orbit-size: clamp(40px, 7svh, 48px); --grid-size: clamp(40px, calc((100svh - 124px) * 0.082), 52px); }
+  .home-page [data-scroll-motion] .business-constellation__node { --orbit-size: clamp(40px, 7svh, 48px); --dock-size: 24px; width: min(84px, 22vw); min-height: 0; }
   .home-page [data-scroll-motion] .business-constellation__node[data-emphasis="core"] { --orbit-size: clamp(58px, 10svh, 72px); }
   .home-page [data-scroll-motion] .business-constellation__node[data-emphasis="detail"] { --orbit-size: clamp(28px, 5svh, 34px); }
-  .home-page [data-scroll-motion] .business-constellation__label { top: calc(100% + 4px); font-size: clamp(10px, 1.65svh, 0.78rem); line-height: 1.2; }
-  .home-page [data-scroll-motion] .business-constellation__node { width: min(84px, 22vw); min-height: 0; }
   .home-page .business-constellation__rings { transform: scale(0.64); }
-  .home-page .business-constellation__foot { flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+  .home-page .business-constellation__foot { flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
   .home-page .business-constellation__scroll-note, .home-page .business-constellation__foot .link-arrow { font-size: 0.72rem; }
+  .home-page [data-scroll-motion] .business-crm { width: calc(100% - 64px); }
+  .home-page .business-crm__traffic { display: none; }
+  .home-page .business-crm__chrome { gap: 5px; height: 34px; padding-inline: 10px; font-size: 9px; }
+  .home-page .business-crm__workspace { min-height: 0; }
+  .home-page .business-crm__main { padding: 14px 10px 10px; }
+  .home-page .business-crm__heading h3 { font-size: 20px; }
+  .home-page .business-crm__heading p { max-width: 22ch; font-size: 9px; line-height: 1.5; }
+  .home-page .business-crm__total { white-space: nowrap; font-size: 8px; }
+  .home-page .business-crm__views { gap: 12px; margin-block: 12px 4px; font-size: 9px; }
+  .home-page .business-crm__filter { display: none; }
+  .home-page .business-crm__board-tab { color: var(--site-ink-soft); font-weight: 400; }
+  .home-page .business-crm__table-tab { color: var(--site-blue-deep); font-weight: 600; }
+  .home-page .business-crm__pipeline { display: block; }
+  .home-page .business-crm__column { padding: 0; background: transparent; border: 0; }
+  .home-page .business-crm__column-title, .home-page .business-crm__lead ~ .business-crm__lead { display: none; }
+  .home-page .business-crm__lead { position: relative; margin: 0; padding: 9px 0; border: 0; border-bottom: 1px solid var(--site-line); border-radius: 0; }
+  .home-page .business-crm__person strong { font-size: 11px; }
+  .home-page .business-crm__source { margin: 3px 0 6px; font-size: 8px; }
+  .home-page .business-crm__avatar { width: 20px; height: 20px; }
+  .home-page .business-crm__next { flex-direction: row; justify-content: space-between; gap: 5px; padding: 0; border: 0; font-size: 9px; }
+  .home-page .business-crm__next strong { font-size: 9px; }
+  .home-page .business-crm__owner { margin-top: 6px; }
+  .home-page .business-crm__mobile-status { display: block; margin-left: auto; color: var(--site-blue-deep); }
+  .home-page .business-crm__summary { display: none; }
+  .home-page .business-crm figcaption { font-size: 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .home-page .home-business-constellation[data-scroll-motion] { height: auto; padding-block: 2rem; }
@@ -83,9 +160,11 @@
   .home-page [data-scroll-motion] .business-constellation__board { height: auto; }
   .home-page [data-scroll-motion] .business-constellation__hub, .home-page [data-scroll-motion] .business-constellation__node { position: relative; top: auto; left: auto; transform: none !important; will-change: auto; }
   .home-page [data-scroll-motion] .business-constellation__hub { margin: 0 auto 2rem; }
+  .home-page [data-scroll-motion] .business-constellation__hub-tile { transform: none !important; opacity: 1 !important; }
+  .home-page [data-scroll-motion] .business-constellation__wordmark { display: none; }
   .home-page [data-scroll-motion] .business-constellation__nodes { display: grid; }
   .home-page [data-scroll-motion] .business-constellation__node { --node-size: var(--grid-size); width: auto; height: auto; }
-  .home-page [data-scroll-motion] .business-constellation__label { position: static; }
-  .home-page [data-scroll-motion] .business-constellation__label { opacity: 1; }
+  .home-page [data-scroll-motion] .business-constellation__icon, .home-page [data-scroll-motion] .business-constellation__label { position: static; transform: none !important; opacity: 1 !important; }
+  .home-page [data-scroll-motion] .business-crm { position: relative; top: auto; left: auto; width: min(100%, 800px); margin: 0 auto 2rem; transform: none !important; opacity: 1 !important; }
   .home-page [data-scroll-motion] .business-constellation__rings, .home-page [data-scroll-motion] .business-constellation__scroll-note { display: none; }
 }

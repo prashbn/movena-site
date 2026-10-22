@@ -32,31 +32,37 @@ const clamp = (value: number) => Math.max(0, Math.min(1, value));
 const ease = (value: number) => { const t = clamp(value); return t * t * (3 - 2 * t); };
 const mix = (a: number, b: number, progress: number) => progress <= 0 ? a : progress >= 1 ? b : a + (b - a) * progress;
 
-/** Normalised geometry keeps all positions reversible and independent of
- * frame rate. Art-directed positions preserve the visual hierarchy before
- * settling into a responsive grid with every capability. */
+// Each bank has twelve capabilities. Desktop uses two columns per side;
+// phones keep a single quiet rail so the CRM remains readable in the centre.
+const leftBank: readonly DiscoveryIconName[] = ["pack", "location", "day", "session", "desk", "membership", "door", "money", "waiver", "chart", "export", "shop"];
+const rightBank: readonly DiscoveryIconName[] = ["program", "workout", "enquiry", "followup", "tasks", "chat", "assistant", "member", "community", "badge", "progress", "trophy"];
+
+/** Reversible scroll geometry. Motion starts immediately and uses transforms
+ * rather than resizing 24 elements on every frame. The product is the endpoint. */
 export function constellationFrame(progress: number, columns: 4 | 6 = 6) {
   const t = clamp(progress);
-  const gather = ease(t / 0.38);
-  const spread = ease((t - 0.38) / 0.52);
+  const compact = columns === 4;
+  const spread = ease(t / 0.86);
+  const reveal = ease((t - 0.16) / 0.66);
   return {
     spread,
-    hubY: mix(0.5, 0.07, spread),
-    hubScale: mix(1 - gather * 0.04, 0.56, spread),
+    reveal,
+    hubY: mix(0.5, 0.065, spread),
+    hubScale: mix(1, 0.38, spread),
+    brandOpacity: ease((t - 0.35) / 0.3),
     ringOpacity: (1 - spread) * 0.85,
-    nodes: businessCapabilities.map((capability, index) => {
-      const radius = mix(1, 0.9, gather);
-      const position = columns === 4 ? capability.phoneOrbit : capability.orbit;
-      const orbitX = mix(0.5, position[0], radius);
-      const orbitY = mix(0.5, position[1], radius);
-      const rows = Math.ceil(businessCapabilities.length / columns);
-      const gridX = columns === 6 ? 0.08 + (index % columns) * 0.84 / (columns - 1) : 0.1 + (index % columns) * 0.8 / (columns - 1);
-      const gridY = (columns === 6 ? 0.25 : 0.21) + Math.floor(index / columns) * (columns === 6 ? 0.6 : 0.69) / (rows - 1);
+    nodes: businessCapabilities.map(capability => {
+      const left = leftBank.includes(capability.icon);
+      const slot = (left ? leftBank : rightBank).indexOf(capability.icon);
+      const position = compact ? capability.phoneOrbit : capability.orbit;
+      const orbitX = compact ? position[0] : 0.5 + (position[0] - 0.5) * 0.74;
+      const dockX = compact ? (left ? 0.04 : 0.96) : left ? (slot % 2 ? 0.135 : 0.04) : (slot % 2 ? 0.96 : 0.865);
+      const dockY = compact ? 0.22 + slot * 0.7 / 11 : 0.19 + Math.floor(slot / 2) * 0.72 / 5;
       return {
-        x: mix(orbitX, gridX, spread),
-        y: mix(orbitY, gridY, spread),
-        scale: mix(mix(1, 0.94, gather), 1, spread),
-        labelOpacity: ease((t - 0.5) / 0.35),
+        x: mix(orbitX, dockX, spread),
+        y: mix(position[1], dockY, spread),
+        sizeProgress: spread,
+        labelOpacity: compact ? 0 : ease((t - 0.42) / 0.38),
       };
     }),
   };
