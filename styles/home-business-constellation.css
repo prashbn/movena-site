@@ -9,9 +9,9 @@
 .home-page .business-constellation__rings { display: none; position: absolute; inset: 0; pointer-events: none; }
 .home-page .business-constellation__rings > span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid var(--line-2); border-radius: 50%; }
 .home-page .business-constellation__nodes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.5rem 0.75rem; margin: 0 auto; padding: 0; list-style: none; }
-.home-page .business-constellation__node { --orbit-size: 68px; --grid-size: 58px; --node-size: var(--grid-size); --node-face: var(--site-surface-soft); position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 0; min-height: 108px; text-align: center; }
-.home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 100px; --grid-size: 76px; --node-face: var(--site-surface); z-index: 4; }
-.home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 42px; --grid-size: 42px; }
+.home-page .business-constellation__node { --orbit-size: 68px; --grid-size: 64px; --node-size: var(--grid-size); --node-face: var(--site-surface-soft); position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 0; min-height: 108px; text-align: center; }
+.home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 100px; --node-face: var(--site-surface); z-index: 4; }
+.home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 42px; }
 .home-page .business-constellation__icon { display: grid; place-items: center; flex: none; width: var(--node-size); height: var(--node-size); color: var(--site-ink); border: 1px solid var(--line-2); border-radius: 50%; background: var(--node-face); box-shadow: var(--shadow-card); }
 .home-page [data-emphasis="core"] .business-constellation__icon { box-shadow: var(--home-panel-shadow); }
 .home-page .business-constellation__icon svg { width: 51%; height: 51%; }
@@ -51,9 +51,9 @@
   .home-page .business-constellation__board { margin-top: 1rem; }
   .home-page .business-constellation__hub { width: 140px; height: 140px; }
   .home-page .business-constellation__mark { width: 80px; height: 80px; }
-  .home-page .business-constellation__node { --orbit-size: 48px; --grid-size: 46px; min-height: 94px; }
-  .home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 72px; --grid-size: 56px; }
-  .home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 34px; --grid-size: 34px; }
+  .home-page .business-constellation__node { --orbit-size: 48px; --grid-size: 52px; min-height: 94px; }
+  .home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 72px; }
+  .home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 34px; }
   .home-page .business-constellation__label { font-size: 0.78rem; line-height: 1.25; }
   .home-page .business-constellation__nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 0.5rem; }
   .home-page [data-scroll-motion] .business-constellation__board { height: 720px; }

@@ -41,7 +41,7 @@ are factual staff prompts, not cancellation predictions. The gym website article
 explicitly says website booking is not available and the joining journey still
 needs approval before promotion; no new website-booking claim is included.
 
-The scroll visual uses two rings and a six-column desktop/four-column phone grid.
+The scroll visual settles into a six-column desktop/four-column phone grid.
 Reduced-motion and short screens use the complete grid in normal page flow.
 Circle borders now use the existing stronger border token; orbit lines have
 slightly higher opacity. The approved palette, photos and existing animations stay.
@@ -51,7 +51,9 @@ centre. Memberships, bookings, payments, programs, leads, financial reports,
 locations and the assistant connection have 100px circles on desktop; supporting
 tools are 68px and detail capabilities 42px. Phone sizes are 72px, 48px and 34px.
 Positions are composed separately for desktop and phone, rather than repeating
-an evenly spaced ring. The grid keeps the relative emphasis at smaller sizes.
+an evenly spaced ring. As they settle, all capability circles converge to one
+size: 64px on desktop and 52px on phones. The static/reduced-motion grid uses
+those same uniform sizes; Movena remains the central brand mark.
 
 The thin outline symbols in this section have been replaced with a dedicated
 filled symbol system and existing official OpenAI/Anthropic artwork for the
