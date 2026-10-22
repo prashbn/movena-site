@@ -45,3 +45,8 @@ The scroll visual uses two rings and a six-column desktop/four-column phone grid
 Reduced-motion and short screens use the complete grid in normal page flow.
 Circle borders now use the existing stronger border token; orbit lines have
 slightly higher opacity. The approved palette, photos and existing animations stay.
+
+Size refinement: capability circles are 64px on desktop (previously 44px) and
+52px on phones (previously 36px), with larger symbols and labels. Only the visual
+stage pins during scrolling; the heading and footer use normal flow. This gives
+the larger circles room while keeping all 24 capabilities and the reverse motion.

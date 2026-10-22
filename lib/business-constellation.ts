@@ -39,22 +39,22 @@ export function constellationFrame(progress: number, columns: 4 | 6 = 6) {
   const gather = ease(t / 0.38);
   const spread = ease((t - 0.38) / 0.52);
   return {
-    hubY: mix(0.5, 0.065, spread),
-    hubScale: mix(1 - gather * 0.18, 0.6, spread),
+    hubY: mix(0.5, 0.07, spread),
+    hubScale: mix(1 - gather * 0.06, 0.8, spread),
     ringOpacity: (1 - spread) * 0.85,
     nodes: businessCapabilities.map((_, index) => {
       const inner = index < 8;
       const angle = -Math.PI / 2 + (inner ? index * Math.PI / 4 : (index - 8) * Math.PI / 8 + Math.PI / 16) + gather * 0.12;
-      const radius = mix(1, 0.84, gather);
+      const radius = mix(1, 0.9, gather);
       const orbitX = 0.5 + Math.cos(angle) * (inner ? 0.27 : 0.44) * radius;
       const orbitY = 0.5 + Math.sin(angle) * (inner ? 0.25 : 0.42) * radius;
       const rows = Math.ceil(businessCapabilities.length / columns);
       const gridX = columns === 6 ? 0.08 + (index % columns) * 0.84 / (columns - 1) : 0.1 + (index % columns) * 0.8 / (columns - 1);
-      const gridY = (columns === 6 ? 0.28 : 0.24) + Math.floor(index / columns) * (columns === 6 ? 0.66 : 0.7) / (rows - 1);
+      const gridY = (columns === 6 ? 0.25 : 0.21) + Math.floor(index / columns) * (columns === 6 ? 0.6 : 0.69) / (rows - 1);
       return {
         x: mix(orbitX, gridX, spread),
         y: mix(orbitY, gridY, spread),
-        scale: mix(mix(0.9, 0.78, gather), 1, spread),
+        scale: mix(mix(1, 0.94, gather), 1, spread),
         labelOpacity: ease((t - 0.5) / 0.35),
       };
     }),
