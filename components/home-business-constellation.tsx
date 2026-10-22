@@ -16,20 +16,20 @@ export function HomeBusinessConstellation() {
     const hub = root.querySelector<HTMLElement>(".business-constellation__hub")!;
     const rings = root.querySelector<HTMLElement>(".business-constellation__rings")!;
     const nodes = Array.from(root.querySelectorAll<HTMLElement>(".business-constellation__node"));
-    // A regular grid is easier to read when a short viewport cannot hold the scene.
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce), (max-height: 680px)");
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let request = 0;
     let inView = false;
+    let enabled = false;
     let distance = 440;
     let width = 0;
     let height = 0;
 
     function paint() {
       request = 0;
-      if (preference.matches) return;
+      if (!enabled) return;
       const top = Number.parseFloat(getComputedStyle(sticky).top);
       const progress = Math.max(0, Math.min(1, (top - root!.getBoundingClientRect().top) / distance));
-      const frame = constellationFrame(progress);
+      const frame = constellationFrame(progress, window.innerWidth <= 1000 ? 4 : 6);
       root!.style.setProperty("--constellation-progress", progress.toFixed(4));
       hub.style.transform = `translate3d(${width * 0.5}px, ${height * frame.hubY}px, 0) translate(-50%, -50%) scale(${frame.hubScale})`;
       rings.style.opacity = String(frame.ringOpacity);
@@ -41,7 +41,7 @@ export function HomeBusinessConstellation() {
     }
 
     function schedule() {
-      if (!request && inView && !preference.matches) request = requestAnimationFrame(paint);
+      if (!request && inView && enabled) request = requestAnimationFrame(paint);
     }
 
     function measure() {
@@ -50,40 +50,49 @@ export function HomeBusinessConstellation() {
       distance = Math.round(Math.max(320, Math.min(520, window.innerHeight * 0.65)));
       root!.style.setProperty("--constellation-sticky-height", `${sticky.offsetHeight}px`);
       root!.style.setProperty("--constellation-distance", `${distance}px`);
-      schedule();
     }
 
     function configure() {
       if (request) cancelAnimationFrame(request);
       request = 0;
-      if (preference.matches) {
+      enabled = !preference.matches;
+      if (enabled) {
+        root!.setAttribute("data-scroll-motion", "true");
+        measure();
+        // Keep the full grid in normal flow if the scene cannot fit on screen.
+        enabled = sticky.offsetHeight + Number.parseFloat(getComputedStyle(sticky).top) <= window.innerHeight;
+      }
+      if (!enabled) {
         root!.removeAttribute("data-scroll-motion");
         [hub, ...nodes].forEach(element => element.removeAttribute("style"));
         rings.removeAttribute("style");
       } else {
-        root!.setAttribute("data-scroll-motion", "true");
-        measure();
         paint();
       }
     }
 
     const observer = new IntersectionObserver(entries => {
       inView = entries.some(entry => entry.isIntersecting);
-      if (inView) { measure(); schedule(); }
+      if (inView && enabled) { measure(); schedule(); }
     }, { rootMargin: "200px 0px" });
-    const resize = new ResizeObserver(measure);
+    const resize = new ResizeObserver(() => {
+      if (!enabled) return;
+      measure();
+      if (sticky.offsetHeight + Number.parseFloat(getComputedStyle(sticky).top) > window.innerHeight) configure();
+      else schedule();
+    });
     observer.observe(root);
     resize.observe(sticky);
     configure();
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", measure, { passive: true });
+    window.addEventListener("resize", configure, { passive: true });
     preference.addEventListener("change", configure);
     return () => {
       if (request) cancelAnimationFrame(request);
       observer.disconnect();
       resize.disconnect();
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", measure);
+      window.removeEventListener("resize", configure);
       preference.removeEventListener("change", configure);
     };
   }, []);
@@ -94,7 +103,7 @@ export function HomeBusinessConstellation() {
         <div className="wrap">
           <div className="business-constellation__intro">
             <span className="kicker">One connected business</span>
-            <h2 id="business-constellation-heading">Your whole gym.<br />Working together.</h2>
+            <h2 id="business-constellation-heading"><span>Your whole gym.</span>{" "}<span>Working together.</span></h2>
             <p>Memberships, bookings, payments and the people behind them. Connected in Movena.</p>
           </div>
           <div className="business-constellation__board">
