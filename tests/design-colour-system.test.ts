@@ -7,6 +7,7 @@ const customStylePaths = [
   "styles/premium-shell.css",
   "styles/home.css",
   "styles/home-enquiry-story.css",
+  "styles/home-business-constellation.css",
   "styles/members.css",
   "styles/platform-proof.css",
   "styles/platform-features.css",

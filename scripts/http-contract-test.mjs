@@ -115,7 +115,7 @@ async function runContract() {
   assert.match(homepageMain, /<h1>Run every location from one place\.<\/h1>/);
   assert.ok(homepageMain.includes("One location or many. Five spreadsheets. No idea what&#x27;s working.") || homepageMain.includes("One location or many. Five spreadsheets. No idea what's working."));
   const sectionMarkers = [
-    'class="hero"', 'id="members"', 'id="loop"', 'class="home-community"',
+    'class="hero"', 'id="connected-business"', 'id="members"', 'id="loop"', 'class="home-community"',
     'id="platform"', 'id="ai-connections"', 'class="home-access"',
     'id="disciplines"', 'id="retention"', 'id="boundaries"', 'class="home-closing"',
   ];
@@ -138,6 +138,10 @@ async function runContract() {
     "Access respects your role, permissions and member consent",
   ]) assert.ok(homepageMain.includes(marker), marker);
   assert.doesNotMatch(homepageMain, /AI-powered|enterprise-grade|payroll|commissions|on autopilot|never lose a lead|staff performance scores|readiness score/i);
+  const connectedBusiness = homepageMain.match(/<section id="connected-business"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(connectedBusiness, "Business connection visual is present without JavaScript");
+  assert.equal(connectedBusiness.match(/class="business-constellation__node"/g)?.length, 8);
+  for (const label of ["Memberships", "Bookings", "Payments", "Programs", "Leads", "Team tasks", "Waivers", "Kiosk check-in"]) assert.ok(connectedBusiness.includes(label), label);
   const enquiryStory = homepageMain.match(/<section id="enquiries"[\s\S]*?<\/section>/)?.[0];
   assert.ok(enquiryStory, "Homepage enquiry story is server rendered");
   for (const marker of ["Enquiry arrives", "Team follows up", "You see what needs you", "You approve", "Edit the example follow-up draft", "Approve example draft", "No email is sent.", 'href="/gym-crm/"']) assert.ok(enquiryStory.includes(marker), marker);
