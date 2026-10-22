@@ -154,6 +154,9 @@ async function runContract() {
   assert.ok(homepageMain.indexOf('id="enquiries"') < homepageMain.indexOf('id="ai-connections"'));
   const discovery = homepageMain.match(/<section id="platform"[\s\S]*?<\/section>/)?.[0];
   assert.ok(discovery);
+  assert.ok(discovery.includes("Illustrative Financials view · Example figures"));
+  assert.ok(discovery.includes("By sale location"));
+  assert.ok(!discovery.includes("/product-screenshots/movena-financials.png"));
   assert.equal(discovery.match(/role="tab"/g)?.length, 4);
   assert.equal(discovery.match(/role="tabpanel"/g)?.length, 4);
   assert.equal(discovery.match(/aria-selected="true"/g)?.length, 1);
@@ -165,7 +168,7 @@ async function runContract() {
   assert.ok(homepageMain.includes('href="/legal/privacy/"'));
   assert.doesNotMatch(homepageMain, /owner-section|owner-proof|owner-task-board|owner-location-switcher/);
   for (const path of [
-    "/product-screenshots/movena-financials.png", "/product-screenshots/movena-program-builder.png",
+    "/product-screenshots/movena-program-builder.png",
     "/members-screens/1.8.0/workout-dark.png", "/members-screens/1.8.0/home.png", "/members-screens/1.8.0/progress-dark.png",
     "/home-yoga/group-1600.jpg", "/home-pilates/class-1600.jpg", "/home-closing/member-1800.jpg",
     "/integration-logos/openai-blossom.svg", "/integration-logos/anthropic-symbol.svg",
@@ -184,6 +187,7 @@ async function runContract() {
   assert.ok(preserved.includes("An app worth opening."));
   assert.ok(preserved.includes("Coaches and members record it."));
   assert.ok(preserved.includes("ChatGPT"));
+  assert.ok(preserved.includes("/product-screenshots/movena-financials.png"));
 
   const contactHtml = await (await fetch(`${origin}/contact/`)).text();
   for (const email of ["sales@movena.com.au", "info@movena.com.au", "support@movena.com.au"]) {

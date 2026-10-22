@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { HomeProductWindow } from "./home-product-window";
+import { HomeFinancialsMock } from "./home-financials-mock";
 import { homeWorkflows as originalAreas } from "@/lib/home-workflows";
 import { ownerHomeWorkflows } from "@/lib/home-owner-workflows";
 
@@ -22,9 +23,11 @@ export function HomePlatformDiscovery({ ownerFirst = false }: { ownerFirst?: boo
             <a className="link-arrow" href="/platform/">Explore the platform <span aria-hidden="true">→</span></a>
             <p className="home-financials-proof__detail">{ownerFirst ? "Stripe payments + Direct Debit · Xero · Kiosk check-in · Retail" : "Card · BECS direct debit · PayTo"}</p>
           </div>
-          <HomeProductWindow label="Movena / Financials"
-            src="/product-screenshots/movena-financials.png" width={3350} height={1776}
-            alt="Movena Financials showing collected payments, fees, next payout and revenue by product and location" />
+          {ownerFirst
+            ? <HomeFinancialsMock />
+            : <HomeProductWindow label="Movena / Financials"
+                src="/product-screenshots/movena-financials.png" width={3350} height={1776}
+                alt="Movena Financials showing collected payments, fees, next payout and revenue by product and location" />}
         </div>
         <div className="home-discovery-tabs" role="tablist" aria-label="Explore the platform">
           {areas.map((area, index) => (

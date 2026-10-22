@@ -227,6 +227,7 @@ test("the homepage showcases the native member app with real product screens", (
 test("real product proof is integrated into the original homepage sections", () => {
   const homepage = readLegacyMainMarkup("index.html");
   const platform = readFileSync("components/home-platform-discovery.tsx", "utf8");
+  const financialMock = readFileSync("components/home-financials-mock.tsx", "utf8");
   const training = readFileSync("components/home-training-connection.tsx", "utf8");
   const window = readFileSync("components/home-product-window.tsx", "utf8");
   const renderer = readFileSync("components/legacy-main.tsx", "utf8");
@@ -237,6 +238,8 @@ test("real product proof is integrated into the original homepage sections", () 
   assert.match(platform, /Everything a gym runs on\./);
   assert.match(platform, /Less switching\.<br \/>More coaching\./);
   assert.match(platform, /movena-financials\.png/);
+  assert.match(platform, /ownerFirst\s*\? <HomeFinancialsMock/);
+  assert.match(financialMock, /Illustrative Financials view · Example figures/);
   assert.match(platform, /role="tablist"/);
   assert.match(training, /id="disciplines"/);
   assert.match(training, /Built for how your gym trains\./);
