@@ -49,9 +49,19 @@ export function HomeBusinessConstellation() {
     function measure() {
       width = board.clientWidth;
       height = board.clientHeight;
-      distance = Math.round(Math.max(320, Math.min(520, window.innerHeight * 0.65)));
+      // The phone board uses svh, so collapsing browser bars must not change
+      // the distance or jump to a different point in the animation.
+      const travel = window.innerWidth <= 640 ? height * 0.75 : window.innerHeight * 0.65;
+      distance = Math.round(Math.max(320, Math.min(520, travel)));
       root!.style.setProperty("--constellation-sticky-height", `${sticky.offsetHeight}px`);
       root!.style.setProperty("--constellation-distance", `${distance}px`);
+    }
+
+    function sceneFits() {
+      // A compact portrait scene can extend slightly below Safari's toolbars.
+      // Normal scrolling reveals its final row once the sticky scene releases.
+      const phonePortrait = window.innerWidth <= 640 && window.innerHeight >= window.innerWidth;
+      return phonePortrait || sticky.offsetHeight + Number.parseFloat(getComputedStyle(sticky).top) <= window.innerHeight;
     }
 
     function configure() {
@@ -61,8 +71,7 @@ export function HomeBusinessConstellation() {
       if (enabled) {
         root!.setAttribute("data-scroll-motion", "true");
         measure();
-        // Keep the full grid in normal flow if the scene cannot fit on screen.
-        enabled = sticky.offsetHeight + Number.parseFloat(getComputedStyle(sticky).top) <= window.innerHeight;
+        enabled = sceneFits();
       }
       if (!enabled) {
         root!.removeAttribute("data-scroll-motion");
@@ -80,7 +89,7 @@ export function HomeBusinessConstellation() {
     const resize = new ResizeObserver(() => {
       if (!enabled) return;
       measure();
-      if (sticky.offsetHeight + Number.parseFloat(getComputedStyle(sticky).top) > window.innerHeight) configure();
+      if (!sceneFits()) configure();
       else schedule();
     });
     observer.observe(root);

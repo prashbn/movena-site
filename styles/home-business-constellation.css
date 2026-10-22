@@ -62,8 +62,16 @@
   .home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 34px; }
   .home-page .business-constellation__label { font-size: 0.78rem; line-height: 1.25; }
   .home-page .business-constellation__nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 0.5rem; }
-  .home-page [data-scroll-motion] .business-constellation__board { height: 720px; }
-  .home-page [data-scroll-motion] .business-constellation__node { width: 84px; min-height: 0; }
+  /* Size for Safari with its toolbars visible; scrolling them away must not
+     change the scene's geometry. Keep short phones readable as it releases. */
+  .home-page [data-scroll-motion] .business-constellation__board { height: clamp(500px, calc(100vh - 124px), 720px); height: clamp(500px, calc(100svh - 124px), 720px); }
+  .home-page [data-scroll-motion] .business-constellation__hub { width: clamp(112px, 20svh, 140px); height: clamp(112px, 20svh, 140px); }
+  .home-page [data-scroll-motion] .business-constellation__mark { width: clamp(64px, 11.5svh, 80px); height: clamp(64px, 11.5svh, 80px); }
+  .home-page [data-scroll-motion] .business-constellation__node { --orbit-size: clamp(40px, 7svh, 48px); --grid-size: clamp(40px, calc((100svh - 124px) * 0.082), 52px); }
+  .home-page [data-scroll-motion] .business-constellation__node[data-emphasis="core"] { --orbit-size: clamp(58px, 10svh, 72px); }
+  .home-page [data-scroll-motion] .business-constellation__node[data-emphasis="detail"] { --orbit-size: clamp(28px, 5svh, 34px); }
+  .home-page [data-scroll-motion] .business-constellation__label { top: calc(100% + 4px); font-size: clamp(10px, 1.65svh, 0.78rem); line-height: 1.2; }
+  .home-page [data-scroll-motion] .business-constellation__node { width: min(84px, 22vw); min-height: 0; }
   .home-page .business-constellation__rings { transform: scale(0.64); }
   .home-page .business-constellation__foot { flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
   .home-page .business-constellation__scroll-note, .home-page .business-constellation__foot .link-arrow { font-size: 0.72rem; }
