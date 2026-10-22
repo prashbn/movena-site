@@ -3,17 +3,25 @@
 .home-page .business-constellation__intro { text-align: center; }
 .home-page .business-constellation__intro h2 { max-width: none; margin: 0.8rem auto; font-size: clamp(2.15rem, 3.3vw, 2.65rem); line-height: 1.06; letter-spacing: -0.05em; }
 .home-page .business-constellation__intro p { max-width: 51ch; margin: 0 auto; color: var(--site-ink-soft); font-size: 0.96rem; line-height: 1.6; }
-.home-page .business-constellation__board { position: relative; width: min(100%, 1040px); margin: 1.25rem auto 0; }
-.home-page .business-constellation__hub { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; width: 128px; height: 128px; margin: 0 auto 2rem; border: 1px solid var(--line-2); border-radius: 50%; background: var(--site-surface); box-shadow: var(--home-panel-shadow); }
-.home-page .business-constellation__mark { width: 76px; height: 76px; }
+.home-page .business-constellation__board { position: relative; width: min(100%, 880px); margin: 1.25rem auto 0; }
+.home-page .business-constellation__hub { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; width: 184px; height: 184px; margin: 0 auto 2rem; border: 1px solid var(--line-2); border-radius: 50%; background: var(--site-surface); box-shadow: var(--home-panel-shadow); }
+.home-page .business-constellation__mark { width: 108px; height: 108px; }
 .home-page .business-constellation__rings { display: none; position: absolute; inset: 0; pointer-events: none; }
-.home-page .business-constellation__rings > span { position: absolute; top: 50%; left: 50%; width: 16rem; height: 16rem; transform: translate(-50%, -50%); border: 1px solid var(--line-2); border-radius: 50%; }
-.home-page .business-constellation__rings > span:nth-child(2) { width: 24rem; height: 24rem; opacity: 0.8; }
-.home-page .business-constellation__rings > span:nth-child(3) { width: 32rem; height: 32rem; opacity: 0.6; }
+.home-page .business-constellation__rings > span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid var(--line-2); border-radius: 50%; }
 .home-page .business-constellation__nodes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.5rem 0.75rem; margin: 0 auto; padding: 0; list-style: none; }
-.home-page .business-constellation__node { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 0; min-height: 108px; text-align: center; }
-.home-page .business-constellation__icon { display: grid; place-items: center; flex: none; width: 64px; height: 64px; border: 1px solid var(--line-2); border-radius: 50%; background: var(--site-surface-soft); box-shadow: var(--shadow-card); }
-.home-page .business-constellation__icon svg { width: 32px; height: 32px; stroke-width: 1.6; }
+.home-page .business-constellation__node { --orbit-size: 68px; --grid-size: 58px; --node-size: var(--grid-size); --node-face: var(--site-surface-soft); position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 0; min-height: 108px; text-align: center; }
+.home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 100px; --grid-size: 76px; --node-face: var(--site-surface); z-index: 4; }
+.home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 42px; --grid-size: 42px; }
+.home-page .business-constellation__icon { display: grid; place-items: center; flex: none; width: var(--node-size); height: var(--node-size); color: var(--site-ink); border: 1px solid var(--line-2); border-radius: 50%; background: var(--node-face); box-shadow: var(--shadow-card); }
+.home-page [data-emphasis="core"] .business-constellation__icon { box-shadow: var(--home-panel-shadow); }
+.home-page .business-constellation__icon svg { width: 51%; height: 51%; }
+.home-page .capability-mark__cut { fill: var(--node-face); }
+.home-page .capability-mark__cut-line { fill: none; stroke: var(--node-face); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.home-page [data-mark="assistant"] .business-constellation__icon { background: white; }
+.home-page .business-capability__brands { display: flex; align-items: center; justify-content: center; gap: 10%; width: 74%; height: 46%; }
+.home-page .business-capability__brands > span { display: flex; align-items: center; justify-content: center; width: 45%; height: 100%; overflow: hidden; }
+.home-page .business-capability__openai img { flex: none; width: 180%; max-width: none; height: auto; }
+.home-page .business-capability__anthropic img { width: 100%; height: auto; }
 .home-page .business-constellation__label { max-width: 100%; color: var(--site-ink-soft); font-size: 0.875rem; line-height: 1.25; }
 .home-page .business-constellation__foot { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 1.25rem; }
 .home-page .business-constellation__scroll-note { display: none; align-items: center; gap: 0.6rem; margin-top: 0.65rem; white-space: nowrap; color: var(--site-ink-soft); font-size: 0.76rem; }
@@ -23,11 +31,11 @@
 .home-page .home-business-constellation[data-scroll-motion] { padding-block: 2rem; }
 .home-page [data-scroll-motion] .business-constellation__stage { height: calc(var(--constellation-sticky-height, 572px) + var(--constellation-distance, 440px)); }
 .home-page [data-scroll-motion] .business-constellation__sticky { position: sticky; top: 80px; }
-.home-page [data-scroll-motion] .business-constellation__board { height: 520px; }
+.home-page [data-scroll-motion] .business-constellation__board { height: 560px; }
 .home-page [data-scroll-motion] .business-constellation__hub { position: absolute; top: 0; left: 0; margin: 0; will-change: transform; }
 .home-page [data-scroll-motion] .business-constellation__rings { display: block; }
 .home-page [data-scroll-motion] .business-constellation__nodes { display: block; max-width: none; }
-.home-page [data-scroll-motion] .business-constellation__node { position: absolute; top: 0; left: 0; width: 160px; height: 64px; min-height: 0; will-change: transform; }
+.home-page [data-scroll-motion] .business-constellation__node { --node-size: calc(var(--orbit-size) + (var(--grid-size) - var(--orbit-size)) * var(--constellation-spread, 0)); position: absolute; top: 0; left: 0; width: 160px; height: var(--node-size); min-height: 0; will-change: transform; }
 .home-page [data-scroll-motion] .business-constellation__label { position: absolute; top: calc(100% + 0.5rem); width: 100%; opacity: var(--label-opacity, 1); }
 .home-page [data-scroll-motion] .business-constellation__scroll-note { display: inline-flex; opacity: calc(1 - var(--constellation-progress, 0)); }
 @media (max-width: 1000px) {
@@ -41,18 +49,16 @@
   .home-page .business-constellation__intro h2 > span { display: block; }
   .home-page .business-constellation__intro p { max-width: 34ch; font-size: 0.85rem; }
   .home-page .business-constellation__board { margin-top: 1rem; }
-  .home-page .business-constellation__hub { width: 112px; height: 112px; }
-  .home-page .business-constellation__mark { width: 64px; height: 64px; }
-  .home-page .business-constellation__icon { width: 52px; height: 52px; }
-  .home-page .business-constellation__icon svg { width: 27px; height: 27px; }
-  .home-page .business-constellation__node { min-height: 94px; }
+  .home-page .business-constellation__hub { width: 140px; height: 140px; }
+  .home-page .business-constellation__mark { width: 80px; height: 80px; }
+  .home-page .business-constellation__node { --orbit-size: 48px; --grid-size: 46px; min-height: 94px; }
+  .home-page .business-constellation__node[data-emphasis="core"] { --orbit-size: 72px; --grid-size: 56px; }
+  .home-page .business-constellation__node[data-emphasis="detail"] { --orbit-size: 34px; --grid-size: 34px; }
   .home-page .business-constellation__label { font-size: 0.78rem; line-height: 1.25; }
   .home-page .business-constellation__nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 0.5rem; }
   .home-page [data-scroll-motion] .business-constellation__board { height: 720px; }
-  .home-page [data-scroll-motion] .business-constellation__node { width: 84px; height: 52px; min-height: 0; }
-  .home-page .business-constellation__rings > span { width: 11rem; height: 11rem; }
-  .home-page .business-constellation__rings > span:nth-child(2) { width: 16rem; height: 16rem; }
-  .home-page .business-constellation__rings > span:nth-child(3) { width: 21rem; height: 21rem; }
+  .home-page [data-scroll-motion] .business-constellation__node { width: 84px; min-height: 0; }
+  .home-page .business-constellation__rings { transform: scale(0.64); }
   .home-page .business-constellation__foot { flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
   .home-page .business-constellation__scroll-note, .home-page .business-constellation__foot .link-arrow { font-size: 0.72rem; }
 }
@@ -64,7 +70,7 @@
   .home-page [data-scroll-motion] .business-constellation__hub, .home-page [data-scroll-motion] .business-constellation__node { position: relative; top: auto; left: auto; transform: none !important; will-change: auto; }
   .home-page [data-scroll-motion] .business-constellation__hub { margin: 0 auto 2rem; }
   .home-page [data-scroll-motion] .business-constellation__nodes { display: grid; }
-  .home-page [data-scroll-motion] .business-constellation__node { width: auto; }
+  .home-page [data-scroll-motion] .business-constellation__node { --node-size: var(--grid-size); width: auto; height: auto; }
   .home-page [data-scroll-motion] .business-constellation__label { position: static; }
   .home-page [data-scroll-motion] .business-constellation__label { opacity: 1; }
   .home-page [data-scroll-motion] .business-constellation__rings, .home-page [data-scroll-motion] .business-constellation__scroll-note { display: none; }

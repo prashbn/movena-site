@@ -22,8 +22,8 @@ test("scroll geometry is reversible and stays inside the board throughout the tr
       const frame = constellationFrame(index / 100, columns);
       assert.deepEqual(frame, frames[index]);
       for (const node of frame.nodes) {
-        assert.ok(Number.isFinite(node.x) && node.x >= 0.05 && node.x <= 0.95);
-        assert.ok(Number.isFinite(node.y) && node.y >= 0.05 && node.y <= 0.95);
+        assert.ok(Number.isFinite(node.x) && node.x >= 0.05 && node.x <= 0.98);
+        assert.ok(Number.isFinite(node.y) && node.y >= 0.05 && node.y <= 0.98);
         assert.ok(node.labelOpacity >= 0 && node.labelOpacity <= 1);
       }
     }

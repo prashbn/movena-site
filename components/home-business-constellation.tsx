@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { businessCapabilities, constellationFrame } from "@/lib/business-constellation";
-import { HomeDiscoveryIcon } from "./home-discovery-icon";
+import { HomeCapabilityMark } from "./home-capability-mark";
 
 export function HomeBusinessConstellation() {
   const section = useRef<HTMLElement>(null);
@@ -32,6 +32,7 @@ export function HomeBusinessConstellation() {
       const progress = Math.max(0, Math.min(1, (top - stage.getBoundingClientRect().top) / distance));
       const frame = constellationFrame(progress, window.innerWidth <= 1000 ? 4 : 6);
       root!.style.setProperty("--constellation-progress", progress.toFixed(4));
+      root!.style.setProperty("--constellation-spread", String(frame.spread));
       hub.style.transform = `translate3d(${width * 0.5}px, ${height * frame.hubY}px, 0) translate(-50%, -50%) scale(${frame.hubScale})`;
       rings.style.opacity = String(frame.ringOpacity);
       nodes.forEach((node, index) => {
@@ -112,14 +113,14 @@ export function HomeBusinessConstellation() {
         <div className="business-constellation__sticky">
           <div className="wrap">
             <div className="business-constellation__board">
-              <div className="business-constellation__rings" aria-hidden="true"><span /><span /><span /></div>
+              <div className="business-constellation__rings" aria-hidden="true">{Array.from({ length: 13 }, (_, index) => <span key={index} style={{ width: `${12 + index * 2}rem`, height: `${12 + index * 2}rem`, opacity: 0.9 - index * 0.055 }} />)}</div>
               <div className="business-constellation__hub">
                 <Image src="/brand/light/favicon.svg" width={80} height={80} alt="Movena" className="business-constellation__mark site-logo__image--light" />
                 <Image src="/brand/dark/favicon.svg" width={80} height={80} alt="Movena" className="business-constellation__mark site-logo__image--dark" />
               </div>
               <ul className="business-constellation__nodes" aria-label="Connected Movena capabilities">
-                {businessCapabilities.map(capability => <li key={capability.label} className="business-constellation__node">
-                  <span className="business-constellation__icon"><HomeDiscoveryIcon name={capability.icon} /></span>
+                {businessCapabilities.map(capability => <li key={capability.label} className="business-constellation__node" data-emphasis={capability.emphasis} data-mark={capability.icon}>
+                  <span className="business-constellation__icon"><HomeCapabilityMark name={capability.icon} /></span>
                   <span className="business-constellation__label">{capability.label}</span>
                 </li>)}
               </ul>

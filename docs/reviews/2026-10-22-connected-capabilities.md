@@ -46,7 +46,15 @@ Reduced-motion and short screens use the complete grid in normal page flow.
 Circle borders now use the existing stronger border token; orbit lines have
 slightly higher opacity. The approved palette, photos and existing animations stay.
 
-Size refinement: capability circles are 64px on desktop (previously 44px) and
-52px on phones (previously 36px), with larger symbols and labels. Only the visual
-stage pins during scrolling; the heading and footer use normal flow. This gives
-the larger circles room while keeping all 24 capabilities and the reverse motion.
+Hierarchy refinement: the orbit uses three sizes, with Movena largest in the
+centre. Memberships, bookings, payments, programs, leads, financial reports,
+locations and the assistant connection have 100px circles on desktop; supporting
+tools are 68px and detail capabilities 42px. Phone sizes are 72px, 48px and 34px.
+Positions are composed separately for desktop and phone, rather than repeating
+an evenly spaced ring. The grid keeps the relative emphasis at smaller sizes.
+
+The thin outline symbols in this section have been replaced with a dedicated
+filled symbol system and existing official OpenAI/Anthropic artwork for the
+assistant connection. Thirteen fine concentric lines replace the three broad
+rings. Only the visual stage pins during scrolling; the heading and footer use
+normal flow. All 24 capabilities, reduced-motion fallback and reverse motion stay.
