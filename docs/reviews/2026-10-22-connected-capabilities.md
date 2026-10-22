@@ -60,3 +60,8 @@ filled symbol system and existing official OpenAI/Anthropic artwork for the
 assistant connection. Thirteen fine concentric lines replace the three broad
 rings. Only the visual stage pins during scrolling; the heading and footer use
 normal flow. All 24 capabilities, reduced-motion fallback and reverse motion stay.
+
+The upper orbit now forms a balanced crown: locations and bookings mirror each
+other, flanked by door access and team tasks, with smaller packs and exports at
+the outer edges and the timetable centred above. The phone layout uses the same
+paired hierarchy. The lower orbit retains its more organic spacing.
