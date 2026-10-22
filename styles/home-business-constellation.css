@@ -22,6 +22,12 @@
 .home-page .business-capability__brands > span { display: flex; align-items: center; justify-content: center; width: 45%; height: 100%; overflow: hidden; }
 .home-page .business-capability__openai img { flex: none; width: 180%; max-width: none; height: auto; }
 .home-page .business-capability__anthropic img { width: 100%; height: auto; }
+/* Use the official silhouettes as monochrome marks on the dark surface. */
+:root[data-theme="dark"] .home-page [data-mark="assistant"] .business-constellation__icon { background: var(--node-face); }
+:root[data-theme="dark"] .home-page .business-capability__brands > span { background: currentColor; }
+:root[data-theme="dark"] .home-page .business-capability__brands img { visibility: hidden; }
+:root[data-theme="dark"] .home-page .business-capability__openai { mask: url("/integration-logos/openai-blossom.svg") center / 180% no-repeat; }
+:root[data-theme="dark"] .home-page .business-capability__anthropic { mask: url("/integration-logos/anthropic-symbol.svg") center / contain no-repeat; }
 .home-page .business-constellation__label { max-width: 100%; color: var(--site-ink-soft); font-size: 0.875rem; line-height: 1.25; }
 .home-page .business-constellation__foot { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 1.25rem; }
 .home-page .business-constellation__scroll-note { display: none; align-items: center; gap: 0.6rem; margin-top: 0.65rem; white-space: nowrap; color: var(--site-ink-soft); font-size: 0.76rem; }
