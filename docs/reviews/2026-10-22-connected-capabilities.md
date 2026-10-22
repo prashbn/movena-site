@@ -45,16 +45,20 @@ needs approval before promotion; no new website-booking claim is included.
 
 The orbit now opens into two banks of capabilities as the owner scrolls. Movena
 moves to the top and changes from its symbol tile to the approved wordmark.
-The centre reveals an illustrative Leads workspace. It is explicitly labelled
-“Illustrative workspace · Example data”, not presented as a product screenshot.
+The centre reveals an illustrative business workspace. Owners can switch its
+Leads, Financials, Analytics and Hangout views. The attached product screenshots
+guided the layout, but none is embedded in this section. Financial figures,
+people and article text are examples; Hangout uses photos already on the site.
+The caption says “Illustrative workspace · Example names and figures”.
 
 The three sample stages — New, Contacted and Trial scheduled — are checked
 against `src/app/(owner)/leads/page.tsx`. Converted is deliberately absent from
 the active board. Board/Table/Follow-ups, location, assignee and next action/time
 are checked against `docs/help/owner-guide/leads/working-with-leads.md`,
 `src/components/leads/leads-kanban.tsx` and `lead-card.tsx`. The compact mobile
-view shows the same three example people as a list. No new product actions or
-outbound integrations are introduced by the illustration.
+view shows the same three example people as a list. The other three views
+adapt to the narrow space. No new product actions or outbound integrations are
+introduced by the illustration.
 
 Desktop has twelve capabilities on either side, each bank in two columns.
 Phones use two slim icon rails to leave space for the CRM. The complete labelled

@@ -143,7 +143,7 @@ async function runContract() {
   assert.equal(connectedBusiness.match(/class="business-constellation__node"/g)?.length, 24);
   for (const label of ["Memberships", "Payments", "Programs", "Leads", "Team tasks", "Waivers", "Kiosk check-in", "Retail", "Accounting exports", "Attendance follow-ups", "Financial reports", "Multiple locations", "Door access (add-on)"]) assert.ok(connectedBusiness.includes(label), label);
   assert.match(connectedBusiness, /ChatGPT (?:&amp;|&) Claude/);
-  for (const marker of ["Movena CRM illustration", "Illustrative workspace · Example data", "Trial scheduled", "Arrange a trial", "Reply to Alex", "All locations"]) assert.ok(connectedBusiness.includes(marker), marker);
+  for (const marker of ["Illustration of Movena", "Illustrative workspace · Example names and figures", "Financials", "Analytics", "Hangout", "Trial scheduled", "Arrange a trial", "Reply to Alex", "All locations"]) assert.ok(connectedBusiness.includes(marker), marker);
   const enquiryStory = homepageMain.match(/<section id="enquiries"[\s\S]*?<\/section>/)?.[0];
   assert.ok(enquiryStory, "Homepage enquiry story is server rendered");
   for (const marker of ["Enquiry arrives", "Team follows up", "You see what needs you", "You approve", "Edit the example follow-up draft", "Approve example draft", "No email is sent.", 'href="/gym-crm/"']) assert.ok(enquiryStory.includes(marker), marker);
