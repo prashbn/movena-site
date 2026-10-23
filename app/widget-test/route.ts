@@ -18,8 +18,8 @@ const html = `<!doctype html>
   <main>
     <h1>Giraween Strength Studio (test site)</h1>
     <p>Test page only. This is not a real gym. Bookings and payments use Movena's UAT environment and the Stripe sandbox.</p>
-    <iframe src="https://app.mvn-uat.net/gyms/movena-giraween/embed" title="Gym timetable and booking" style="width:100%;height:640px;border:0" referrerpolicy="no-referrer"></iframe>
-    <script>
+<iframe src="https://app.mvn-uat.net/gyms/movena-giraween/embed" title="Gym timetable and booking" style="width:100%;height:640px;border:0" referrerpolicy="no-referrer"></iframe>
+<script>
 (function () {
   var frame = document.currentScript.previousElementSibling;
   var origin = new URL(frame.src).origin;
@@ -34,7 +34,7 @@ const html = `<!doctype html>
     frame.style.height = Math.max(420, value.px) + "px";
   });
 })();
-    </script>
+</script>
   </main>
 </body>
 </html>`;
