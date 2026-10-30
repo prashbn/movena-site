@@ -52,7 +52,7 @@ export const faqItems = [
       },
       {
         type: "paragraph",
-        text: "Payments settle into your own Stripe account—not a Movena account you need to withdraw from. Stripe sets its processing fees and discloses them in your Stripe account.",
+        text: "Payments settle into your own Stripe account—not a Movena account you need to withdraw from. Stripe sets its processing fees and discloses them in your Stripe account. For recurring memberships, Stripe also charges a separate Stripe Billing fee to your connected account. Both Stripe fees are separate from Movena’s platform administration fee.",
       },
       {
         type: "paragraph",

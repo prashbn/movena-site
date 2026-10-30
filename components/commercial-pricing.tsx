@@ -87,7 +87,14 @@ export async function PlatformFee() {
     <div className="commercial-wrap">
       <aside className="platform-fee" aria-label="Platform administration fee">
         <span>{platformFeeLabel}</span>
-        <p>{platformAdministrationFee}</p>
+        <div className="platform-fee__copy">
+          <p>{platformAdministrationFee}</p>
+          <p>
+            Stripe charges your connected account separately for payment
+            processing and Stripe Billing on recurring memberships. Stripe sets
+            those fees under your Stripe agreement.
+          </p>
+        </div>
       </aside>
     </div>
   );
